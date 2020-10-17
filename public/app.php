@@ -1,5 +1,6 @@
 <?php
 
+    ini_set('display_errors', E_ALL);
     DEFINE('__ROOT__', realpath(__DIR__ . '/..'));
 
     if (isset($_GET['_bootload_'])) {

@@ -121,7 +121,7 @@ class ParentController {
     * @var mixed $fallback if not null, would be taken as the default value. Otw the parameter is required.
     * @return mixed $_GET[$key] or $fallback
     */
-    function getGet($key, $fallback = NULL) {         
+    function getGet($key, $fallback = NULL) {
         $value = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($value) && isset($_GET[$key])) {
             $value = $_GET[$key];
@@ -140,7 +140,7 @@ class ParentController {
     * @var mixed $fallback if not null, would be taken as the default value. Otw the parameter is required.
     * @return mixed $_POST[$key] or $fallback
     */
-    function getPost($key, $fallback = NULL) {         
+    function getPost($key, $fallback = NULL) {
         $value = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($value) && isset($_POST[$key])) {
             $value = $_POST[$key];
@@ -152,121 +152,6 @@ class ParentController {
         }
     }
 
-    /**
-     * Shows a view inside a specified template
-     * Remember that both $view and $template can be absolute or relative paths
-     *
-     * @param string $view The path to the file, being '/' the 'views' directory
-     * @param string $template The name of the template
-     *
-     * @throws \Exception specifying the type of missing view.
-     * @throws \Exception specifying the type of missing view.
-     */
-    public function show($view, $template = 'default') {
-        ob_start();
-        extract($this->vars['view']);
-        if (file_exists($file = ($view[0] === '/' ? $view : str_replace('{view}', $view, $this->viewPath)))) {
-            try {
-                /* Useful if you need to include extra things to a view */
-                $this->hooks->do_action('include_show_view', ['vars' => $this->vars]);
-                /* We include the view file */
-                include $file;
-            } catch (\Exception $e) {
-                ob_end_clean();
-                Exception::singleton()->showException($e);
-            }
-        } else {
-            throw new \Exception(str_replace('[[FILE]]', $file, $this->config->get('Exceptions', 'VIEW_NOT_FOUND')));
-        }
-        $_body = ob_get_clean();
-
-        foreach ($this->vars['script'] as $s) {
-            $this->addScript($this->asset('js/' . $s, TRUE), FALSE);
-        }
-        foreach ($this->vars['style'] as $s) {
-            $this->addStyle($this->asset('css/' . $s, TRUE), FALSE);
-        }
-
-        $_js      = $this->vars['JS'];
-        $_title   = $this->vars['title'];
-        $_style   = $this->vars['styleSnippet'];
-        $_script  = $this->vars['scriptSnippet'];
-        $_favicon = $this->vars['favicon'];
-
-        if (file_exists($templateFile = ($template[0] === '/' ? $template : str_replace('{template}', $template, $this->templatePath)))) {
-            try {
-                /* We include the template file */
-                include $templateFile;
-            } catch (\Exception $e) {
-                ob_end_clean();
-                Exception::singleton()->showException($e);
-            }
-        } else {
-            throw new \Exception(str_replace('[[FILE]]', $template, $this->config->get('Exceptions', 'TEMPLATE_NOT_FOUND')));
-        }
-    }
-
-    /**
-     * Renders a view and returns it
-     * @param string $view The path to the file, being '/' the 'views' directory
-     * @param array $_vars The $vars to include in the view
-     * @param string $template The template name
-     *
-     * @return string The requested view
-     *
-     * @throws \Exception specifying the type of missing view.
-     */
-    public function get($view, $_vars = array(), $template = '') {
-        ob_start();
-        extract($_vars);
-        if (file_exists($file = ($view[0] === '/' ? $view : str_replace('{view}', $view, $this->viewPath)))) {
-            try {
-                /* Useful if you need to include extra things to a view */
-                $this->hooks->do_action('include_get_view', ['vars' => $_vars]);
-
-                /* We include the view file */
-                include $file;
-            } catch (\Exception $e) {
-                ob_end_clean();
-                Exception::singleton()->showException($e);
-            }
-        } else {
-            throw new \Exception(str_replace('[[FILE]]', $file, $this->config->get('Exceptions', 'VIEW_NOT_FOUND')));
-        }
-        $_body = ob_get_clean();
-        if ($template) {
-            ob_start();
-            if (file_exists($templateFile = ($template[0] === '/' ? $template : str_replace('{template}', $template, $this->templatePath)))) {
-                try {
-                    /* We include the template file */
-                    include $templateFile;
-                } catch (\Exception $e) {
-                    ob_end_clean();
-                    Exception::singleton()->showException($e);
-                }
-            } else {
-                throw new \Exception(str_replace('[[FILE]]', $template, $this->config->get('Exceptions', 'TEMPLATE_NOT_FOUND')));
-            }
-            $_body = ob_get_clean();
-        }
-        return $_body;
-    }
-
-    /**
-     * Returns the web path for a given URL
-     * @param string $path
-     * @param bool $return
-     * @return string $webPath
-     */
-    public function asset($path = '', $return = FALSE) {
-        $fullPath = $this->path . $path;
-        if ($return) {
-            return $fullPath;
-        } else {
-            echo $fullPath;
-        }
-    }
-    
     /**
      * Returns the web path for a given Route name
      * @param string $path The path identifier ('Home', 'Login', ...)
@@ -306,7 +191,7 @@ class ParentController {
             echo $this->path . $uri;
         }
     }
-    
+
     /**
      * Alias for ::path with $return = TRUE. Use it for controllers
      * @param string $path The path identifier ('Home', 'Login', ...)
@@ -334,99 +219,6 @@ class ParentController {
     }
 
     /**
-     * Adds a var to the $this->show() renderer.
-     * @param string $varName
-     * @param mixed $value
-     * @return ParentController
-     */
-    public function add($varName, $value) {
-        $this->vars['view'][$varName] = $value;
-        return $this;
-    }
-
-    /**
-     * Adds a JS variable to the $this->show() renderer.
-     * @param string $var
-     * @param mixed $value
-     * @param bool $encoded
-     * @return ParentController
-     */
-    public function addJSVar($var, $value, $encoded = TRUE) {
-        if (is_array($var)) {
-            foreach ($var as $k => $v) {
-                $this->addJSVar($k, $v);
-            }
-            return $this;
-        }
-        $js = $this->vars['JS'];
-        $js .= "\n" . 'var ' . $var . ' = ' . ($encoded ? json_encode($value) : $value) . ';';
-        $this->vars['JS'] = $js;
-        return $this;
-    }
-
-    /**
-     * Adds a script snippet to the $this->show() renderer.
-     * @param string $path The path to the asset (local or absolute)
-     * @param bool|TRUE $local whether it's a relative (local) or absolute URL
-     * @return ParentController
-     */
-    public function addStyle($path, $local = TRUE) {
-        if ($local) {
-            $this->vars['style'][] = $path;
-        } else {
-            $this->vars['styleSnippet'] .= "\r\n\t\t" . '<link href="' . ($local ? $this->asset('css/' . $path, TRUE) : $path) . '" rel="stylesheet" type="text/css"/>';
-        }
-        return $this;
-    }
-
-    /**
-     * Adds a style snippet to the $this->show() renderer.
-     * @param string $path The path to the asset (local or absolute)
-     * @param bool|TRUE $local whether it's a relative (local) or absolute URL
-     * @return ParentController
-     */
-    public function addScript($path, $local = true) {
-        if ($local) {
-            $this->vars['script'][] = $path;
-        } else {
-            $this->vars['scriptSnippet'] .= "\r\n\t\t" . '<script src="' . ($local ? $this->asset('js/' . $path, TRUE) : $path). '" type="text/javascript"></script>';
-        }
-        return $this;
-    }
-
-
-    /**
-     * Adds the $_header variable to the view
-     * @param array $vars|[] The vars to pass to the header
-     * @param string|bool $headerLocation an (optional) alternative route for the header
-     * @return ParentController
-     * @throws \Exception
-     */
-    public function addHeader($vars = [], $headerLocation = FALSE) {
-        $header = $headerLocation ?
-            $this->get($headerLocation, $vars) :
-            $this->get('blocks/header', $vars);
-        $this->add('_header', $header);
-        return $this;
-    }
-
-    /**
-     * Adds the $_footer variable to the view
-     * @param array $vars|[] The vars to pass to the footer
-     * @param string|bool $footerLocation an (optional) alternative route for the footer
-     *
-     * @return ParentController
-     * @throws \Exception
-     */
-    public function addFooter($vars = [], $footerLocation = FALSE) {
-        $footer = $footerLocation ?
-            $this->get($footerLocation, $vars) :
-            $this->get('blocks/footer', $vars);
-        $this->add('_footer', $footer);
-        return $this;
-    }
-    
-    /**
      * Sets a title for the website (different from the default one)
      * @param string $title
      *
@@ -436,7 +228,7 @@ class ParentController {
         $this->vars['title'] = $title;
         return $this;
     }
-    
+
     /**
      * Sets a favicon for the website (different from the default one)
      * @param string $favicon Route to the favicon asset
@@ -519,7 +311,7 @@ class ParentController {
             throw new \Exception(str_replace('[[FILE]]', $file, $this->config->get('Exceptions', 'VIEW_NOT_FOUND')));
         }
     }
-    
+
     /**
      * Outputs the correspondent header for the given HTTP code, on the form header('HTTP/1.0 404 Not Found');
      * See description of the status codes in the provided url
