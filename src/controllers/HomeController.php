@@ -47,22 +47,6 @@ class HomeController extends Controller {
         return $this->model;
     }
 
-    public function showHome() {
-
-//        $this->hooks->add_action('extra_params_path', function($params) {
-            // I'll appear on the "Login" link on the home page
-//            return ['im_a_hook' => 'yes'];
-//        });
-
-        $this->hooks->add_action('exec_afterend', function($params) {
-            echo "<small style='position:fixed;bottom:0'>I'm a hook called from " .
-                $params['controller'] . '->' . $params['action'] . '()</small>';
-        });
-        $this->show('home/index');
-
-        return $this;
-    }
-
     /*
      * See more info about this function at /src/config/routing.ini :)
      */

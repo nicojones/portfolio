@@ -43,22 +43,6 @@
             $this->auth  = Authenticate::singleton();
         }
 
-        /**
-         * Shows the login page / login form
-         * @throws Exception
-         */
-        public function showLogin() {
-            if (isAuth()) {
-                Flash::set("You're already logged in!", 'info');
-                $this->redirect($this->url('LoginHome'));
-            }
-            $active = 'login';
-            $this
-                ->setTitle('Login')
-                ->add('active', $active)
-                ->show('login/login');
-        }
-
         public function doLogin() {
             $user = $this->auth->login();
 
@@ -69,7 +53,7 @@
                     $this->redirect($this->url('Login'));
                 }
             }
-            
+
             /**
              * Redirect after login if previous attempt got a 403
              */
@@ -81,19 +65,6 @@
 
             if (isAjax()) {
                 $this->json(['redirect' => $afterLogin]);
-            } else {
-                $this->redirect($afterLogin);
             }
-        }
-
-        /**
-         * @throws \Exception if the view doesn't exist
-         */
-        public function showLoginHome() {
-            $active = 'login';
-            $this
-                ->setTitle('Admin Page')
-                ->add('active', $active)
-                ->show('login/index');
         }
     }

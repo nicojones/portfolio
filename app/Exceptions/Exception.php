@@ -34,7 +34,7 @@ class Exception extends ParentController {
         }
         return self::$instance;
     }
-    
+
     /**
      * Outputs a 500 header. In <b>dev</b> mode and in localhost shows the catched exception with debug information, otherwise a 500 page is shown.
      * @see isLocalServer()
@@ -45,25 +45,17 @@ class Exception extends ParentController {
     public function showException(\Exception $e) {
         if (isProd() && !isLocalServer()) {
             $this->hooks->do_action('show_prod_exception', ['e' => $e]);
-            $this
-                ->header(500)
-                ->setTitle('500 Internal Server Error')
-                ->add('e', $e)
-                ->show('exception/exception');
+            $this->header(500);
+            die('Exception');
+
         } else /* isDev() */ {
             $this->hooks->do_action('show_dev_exception', ['e' => $e]);
 
             $trace = $e->getTrace();
 
-            $this
-                ->header(500)
-                ->setTitle('Rendering Exception')
-                ->add('e', $e)
-                ->add('routing', $this->config->get("Routing"))
-                ->add('trace', $trace)
-                ->addStyle('libs/bootstrap/themes/paper_theme.css')
-                ->show('exception/renderingException');
+            $this->header(500);
+            // TODO - Render the `exception-caught.php` file
         }
     }
+
 }
-    

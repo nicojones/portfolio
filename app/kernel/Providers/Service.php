@@ -48,7 +48,7 @@
             // Server query to retrieve the language array
             $translations = [];
             // we get the vector $translations from the language file
-            include (__ROOT__ . '/src/resources/languages/' . $lang . '.php');
+            include (__ROOT__ . '/src/languages/' . $lang . '.php');
             return $translations;
 
             // Dummy: This was done by \Core\Language but we've moved it here.

@@ -41,7 +41,7 @@ class ErrorController extends \Core\ErrorController {
                 die(); // it's an asset, there should be no output!
             }
         } else {
-            $this->show('error/404_not_found');
+            $this->json(['success' => 0, 'message' => 'error/404_not_found']);
         }
     }
 }
