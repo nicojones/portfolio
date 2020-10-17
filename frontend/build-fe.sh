@@ -2,7 +2,14 @@ c="\x1B[93m\x1B[1m" # Color - in our case, yellow
 n="\x1B[0m" # Normal / neutral
 path_here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-cd $path_here;
+if [[ -z "$1" ]]; then
+  echo "Must provide the app name as first argument"
+  exit;
+fi
+
+appName="$1"
+
+cd $path_here/$appName;
 
 echo -e "${c} * Running script from $path_here$n"
 
@@ -12,16 +19,15 @@ npm run build
 
 
 distDir="dist"
-appName="ribosome"
 originDir="$distDir/$appName"
 publicDir="public"
-destination="../$publicDir"
+destination="$path_here/../$publicDir"
 
 echo -e "${c} * Deleting old files...$n"
-for file in ${destination}/*.html; do rm "$file";done
-for file in ${destination}/*.css; do rm "$file";done
-for file in ${destination}/*.ico; do rm "$file";done
-for file in ${destination}/*.js; do rm "$file";done
+for file in ${destination}/*.html; do rm "$file" >/dev/null 2>&1;done
+for file in ${destination}/*.css; do rm "$file" >/dev/null 2>&1;done
+for file in ${destination}/*.ico; do rm "$file" >/dev/null 2>&1;done
+for file in ${destination}/*.js; do rm "$file" >/dev/null 2>&1;done
 
 echo -e "${c} * Moving new files...$n"
 for file in ${originDir}/*.html; do cp "$file" "$destination";done
