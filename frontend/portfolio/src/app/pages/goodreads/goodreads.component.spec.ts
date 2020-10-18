@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GoodreadsComponent } from './goodreads.component';
+import { GoodreadsResolver } from '~goodreads/shared/resolvers';
+import { TestModule } from '~app/tests';
+
 
 describe('GoodreadsComponent', () => {
   let component: GoodreadsComponent;
@@ -8,14 +11,36 @@ describe('GoodreadsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GoodreadsComponent ]
-    })
-    .compileComponents();
+      declarations: [GoodreadsComponent],
+      imports: [TestModule],
+      providers: [
+        GoodreadsResolver
+      ]
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GoodreadsComponent);
     component = fixture.componentInstance;
+    component.books = [{
+      title: 'The Travels of Marco Polo',
+      pages: '302',
+      descr: 'His pilgrimage through the East began in 1271 when, still a teenager, he found hi',
+      link: 'https://www.goodreads.com/book/show/11047892-the-travels-of-marco-polo',
+      image: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1445619795l/11047892._SY500_.jpg'
+    }, {
+      title: 'Thinking, Fast and Slow',
+      pages: '499',
+      descr: 'In the highly anticipated Thinking, Fast and Slow, Kahneman takes us on a groundbreaki',
+      link: 'https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow',
+      image: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1317793965l/11468377._SX500_.jpg'
+    }, {
+      title: 'Réquiem por un campesino español',
+      pages: '69',
+      descr: 'Réquiem por un campesino español recoge un dramático episodio de la guerra civil en un p',
+      link: 'https://www.goodreads.com/book/show/754353.R_quiem_por_un_campesino_espa_ol',
+      image: 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
+    }];
     fixture.detectChanges();
   });
 

@@ -1,0 +1,9 @@
+@import 'globals';
+
+.latte-item {
+  height: auto;
+  max-height: 500px;
+
+  font-size: $app-font-size;
+}
+

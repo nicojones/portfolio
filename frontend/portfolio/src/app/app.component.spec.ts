@@ -1,16 +1,23 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AppTitleService } from '~app/services';
+import { StarsComponent } from '~app/components/stars/stars.component';
+import { TestModule } from '~app/tests';
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        TestModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        StarsComponent
       ],
+      providers: [
+        AppTitleService
+      ]
     }).compileComponents();
   });
 
@@ -20,16 +27,17 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'portfolio'`, () => {
+  it('should have set my title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('portfolio');
+    // @ts-ignore
+    expect(app.title.titleService.getTitle()).toEqual('Nicolas Kupfer');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('portfolio app is running!');
-  });
+  // it('should render title', () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.nativeElement;
+  //   expect(compiled.querySelector('.content span').textContent).toContain('portfolio app is running!');
+  // });
 });

@@ -1,12 +1,41 @@
-@import 'styles/mixins';
+@import 'mixins';
+@import 'breakpoints';
+
+:host {
+  position: absolute;
+}
 
 .book-card {
-  box-shadow: 0 0 11px -4px $box-shadow;
-  flex: 0 1 25%;
+  //flex: 0 1 25%;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 
   .book-img {
     margin: 0 auto;
     height: 300px;
+  }
+}
+
+#carousel {
+  width: $breakpoint-tablet;
+  height: auto;
+
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .latte-content {
+    height: auto
+  }
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .latte-stage {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    width: $breakpoint-mobile;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    width: $breakpoint-mobile-sm;
   }
 }

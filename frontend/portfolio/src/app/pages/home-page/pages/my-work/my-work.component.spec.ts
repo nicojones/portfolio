@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyWorkComponent } from './my-work.component';
+import { SharedModule } from '~app/shared';
 
 
 describe('MyWorkComponent', () => {
@@ -9,7 +10,8 @@ describe('MyWorkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MyWorkComponent]
+      declarations: [MyWorkComponent],
+      imports: [SharedModule]
     }).compileComponents();
   });
 

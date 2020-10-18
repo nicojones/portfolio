@@ -8,6 +8,7 @@ import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { AppTitleService } from '~app/services';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppTitleService } from '~app/services';
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRouting
   ],
   providers: [

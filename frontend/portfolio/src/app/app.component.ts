@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { slide } from '~app/shared/animations';
-import { detectAndSaveOS } from '~app/functions';
+
 import { Routes } from '~routes/routes';
+
+import { slide } from '~app/shared/animations';
 import { AppTitleService } from '~app/services';
+import { detectAndSaveOS } from '~app/functions';
 
 
 @Component({

@@ -1,8 +1,21 @@
-<div class="flex-row app-row space-around" @slideIn>
-  <div class="book-card slide-in" *ngFor="let book of books">
-    <img [src]="book.image" class="book-img" [alt]="book.title"/>
-    <h3><a [href]="book.link" target="_blank" [innerHTML]="book.title"></a></h3>
-    <p [innerHTML]="book.descr"></p>
-    <small [innerHTML]="book.pages"></small>
+<div class="flex-row app-row space-around" @fadeIn>
+  <h1 class="jumbo fade-in">I read <span class="accent">a lot</span>.</h1>
+  <h2>Currently reading:</h2>
+  <div class="latte-carousel" id="carousel">
+    <app-book class="book-card latte-item" *ngFor="let book of books" [book]="book"></app-book>
   </div>
+</div>
+
+<div class="pagination">
+  <button
+    class="paginate left"
+    (click)="prevItem()"
+    [disabled]="carouselIndex === 0"
+  ><i></i><i></i></button>
+  <div class="pagination-counter">{{ carouselIndex }} / {{ books.length }}</div>
+  <button
+    class="paginate right"
+    (click)="nextItem()"
+    [disabled]="carouselIndex === books.length - 1"
+  ><i></i><i></i></button>
 </div>

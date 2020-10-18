@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { GoodreadsComponent } from '~goodreads/goodreads.component';
 import { GoodreadsResolver } from '~goodreads/shared/resolvers';
 import { SharedModule } from '~app/shared';
+import { BookComponent } from './components/book/book.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from '~app/shared';
     ])
   ],
   declarations: [
-    GoodreadsComponent
+    GoodreadsComponent,
+    BookComponent
   ],
   providers: [
     GoodreadsResolver

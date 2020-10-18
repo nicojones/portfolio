@@ -1,6 +1,6 @@
 export interface Book {
   title: string;
-  pages: number;
+  pages: string;
   descr: string;
   link: string;
   image: string;

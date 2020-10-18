@@ -4,7 +4,8 @@ html, body {
 }
 body { margin: 0 }
 
-//@import 'styles/theming.scss';
-@import 'styles/generic/all';
-@import 'styles/generic';
-@import 'styles/portfolio';
+//@import 'theming.scss';
+@import 'components/all';
+@import 'generic/all';
+@import 'generic';
+@import 'portfolio';

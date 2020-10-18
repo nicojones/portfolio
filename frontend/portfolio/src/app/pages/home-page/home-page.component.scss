@@ -1,8 +1,8 @@
-@import 'styles/mixins';
-@import 'styles/colors';
-@import 'styles/globals';
-@import 'styles/images';
-@import 'styles/breakpoints';
+@import 'mixins';
+@import 'colors';
+@import 'globals';
+@import 'images';
+@import 'breakpoints';
 
 %show-menu {
   > h1.hello {
