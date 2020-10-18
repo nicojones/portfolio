@@ -4,152 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba8e0e13-1920-4836-bf28-5deb740be19f" name="Default Changelist" comment="First commit for my new portfolio">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/portfolio.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-    </list>
+    <list default="true" id="53f79db0-d056-4c8a-a7b3-03bf7e9a55cb" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1j1GRXvmDAsLAw3KWQk1FNKJr7L" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/portfolio/src/assets/images/home" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/portfolio/node_modules/typescript/lib" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend/portfolio/src/assets/images/home" />
-      <recent name="$PROJECT_DIR$/frontend/portfolio/src/app/pages/home-page" />
-      <recent name="$PROJECT_DIR$/frontend/portfolio" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Ng Serve" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/frontend/portfolio/package.json" />
-      <command value="start" />
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/frontend/portfolio/package.json" />
-      <command value="start" />
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ba8e0e13-1920-4836-bf28-5deb740be19f" name="Default Changelist" comment="" />
-      <created>1602964176948</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1602964176948</updated>
-      <workItem from="1602964178230" duration="16807000" />
-    </task>
-    <task id="LOCAL-00001" summary="First commit for my new portfolio">
-      <created>1602982129719</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1602982129719</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="First commit for my new portfolio" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit for my new portfolio" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="392" y="340" key="#ESLint" timestamp="1602967187407">
+    <state width="1771" height="304" key="GridCell.Tab.0.bottom" timestamp="1602982307817">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="392" y="340" key="#ESLint/0.0.1792.1120@0.0.1792.1120" timestamp="1602967187407" />
-    <state x="360" y="222" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602968382418">
+    <state width="1771" height="304" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1602982307817" />
+    <state width="1771" height="304" key="GridCell.Tab.0.center" timestamp="1602982307816">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="360" y="222" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602968382418" />
-    <state x="584" y="360" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602981172747">
+    <state width="1771" height="304" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1602982307816" />
+    <state width="1771" height="304" key="GridCell.Tab.0.left" timestamp="1602982307815">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="584" y="360" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1602981172747" />
-    <state x="354" y="68" key="CommitChangelistDialog2" timestamp="1602982129434">
+    <state width="1771" height="304" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1602982307815" />
+    <state width="1771" height="304" key="GridCell.Tab.0.right" timestamp="1602982307816">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="354" y="68" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1602982129434" />
-    <state width="1771" height="304" key="GridCell.Tab.0.bottom" timestamp="1602982001689">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="1771" height="304" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1602982001689" />
-    <state width="1771" height="304" key="GridCell.Tab.0.center" timestamp="1602982001688">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="1771" height="304" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1602982001688" />
-    <state width="1771" height="304" key="GridCell.Tab.0.left" timestamp="1602982001687">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="1771" height="304" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1602982001687" />
-    <state width="1771" height="304" key="GridCell.Tab.0.right" timestamp="1602982001688">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="1771" height="304" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1602982001688" />
-    <state x="397" y="199" key="SettingsEditor" timestamp="1602967167178">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state x="397" y="199" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1602967167178" />
-    <state x="496" y="296" key="Vcs.Push.Dialog.v2" timestamp="1602982131609">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state x="496" y="296" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1602982131609" />
-    <state x="693" y="477" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602965769394">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state x="693" y="477" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1792.1120@0.0.1792.1120" timestamp="1602965769394" />
-    <state x="598" y="299" width="596" height="522" key="find.popup" timestamp="1602973845213">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state x="598" y="299" width="596" height="522" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1602973845213" />
-    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1602979741215">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1602979741215" />
+    <state width="1771" height="304" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1602982307816" />
   </component>
 </project>
