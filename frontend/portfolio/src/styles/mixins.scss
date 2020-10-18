@@ -1,5 +1,9 @@
 @import 'styles/colors';
 
+@mixin transitions($time: 0.4s, $property: all) {
+  transition: $time $property;
+}
+
 @mixin no_select() {
   user-select: none;
   -moz-user-select: none;
@@ -10,4 +14,27 @@
   -webkit-box-shadow: 0 0 $size 0 $color;
   -moz-box-shadow: 0 0 $size 0 $color;
   box-shadow: 0 0 $size 0 $color;
+}
+
+@mixin transform($value) {
+  transform: $value;
+  -moz-transform: $value;
+  -o-transform: $value;
+  -webkit-transform: $value;
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
 }

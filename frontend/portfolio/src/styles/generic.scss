@@ -1,5 +1,6 @@
 @import 'styles/colors';
 @import 'styles/globals';
+@import 'styles/breakpoints';
 
 .flex-row {
   display: flex;
@@ -32,6 +33,27 @@
   cursor: progress !important;
 }
 
-h1.jumbo {
+.loading {
+  opacity: 0 !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.jumbo {
   font-size: $jumbo-font-size;
 }
+
+@media (max-width: $breakpoint-mobile){
+  .jumbo {
+    font-size: $jumbo-font-size-mobile;
+  }
+}
+
+@media (max-width: $breakpoint-mobile-sm){
+  .jumbo {
+    font-size: $jumbo-font-size-mobile-sm;
+  }
+}
+

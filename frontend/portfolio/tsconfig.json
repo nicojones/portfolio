@@ -20,6 +20,9 @@
       "~env/*": [
         "src/environments/*"
       ],
+      "~routes/*": [
+        "src/app/shared/routes/*"
+      ],
       "~app/*": [
         "src/app/*"
       ],

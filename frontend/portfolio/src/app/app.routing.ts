@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { GoodreadsResolver } from '~goodreads/shared/resolvers';
+import { RouterModule } from '@angular/router';
+import { Routes } from '~routes/routes';
 
-
-const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('~home-page/home-page.module').then((m) => m.HomePageModule)
-  },
-  {
-    path: 'goodreads',
-    loadChildren: () => import('~goodreads/goodreads.module').then((m) => m.GoodreadsModule),
-  }
-];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot([
+      {
+        path: Routes.Home,
+        loadChildren: () => import('~home-page/home-page.module').then((m) => m.HomePageModule)
+      },
+      {
+        path: Routes.Goodreads,
+        loadChildren: () => import('~goodreads/goodreads.module').then((m) => m.GoodreadsModule)
+      }
+    ])
   ],
   exports: [
     RouterModule

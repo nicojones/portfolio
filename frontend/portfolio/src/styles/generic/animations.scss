@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+
+$pulse-move-px: 4px;
+@include keyframes(pulse) {
+  0%, 100% {
+    opacity: 0.2;
+    @include transform(translateY(-$pulse-move-px))
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    @include transform(translateY($pulse-move-px))
+  }
+}

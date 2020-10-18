@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '~goodreads/shared/interfaces/book';
-import { slide } from '~app/shared/animations';
 
 
 @Component({
@@ -9,7 +8,7 @@ import { slide } from '~app/shared/animations';
   templateUrl: './goodreads.component.html',
   styleUrls: ['./goodreads.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slide()]
+  animations: [slideIn()]
 })
 export class GoodreadsComponent implements OnInit {
 
@@ -19,7 +18,6 @@ export class GoodreadsComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.books = this.activatedRoute.snapshot.data.books;
-    console.log(this.books);
   }
 
   ngOnInit (): void {

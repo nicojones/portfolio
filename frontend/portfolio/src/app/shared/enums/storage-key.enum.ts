@@ -1,4 +1,5 @@
 export const enum StorageKey {
   Prefix = 'p',
-  Books = 'b'
+  Books = 'b',
+  ClientOS = 'co'
 }

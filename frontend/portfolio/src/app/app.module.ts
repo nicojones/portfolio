@@ -3,17 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from '~app/shared';
-import { AngularMaterialModule } from '~app/shared/angular-material.module';
 
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
-import { GoodreadsComponent } from './pages/goodreads/goodreads.component';
-import { MatButtonModule } from '@angular/material/button';
+import { StarsComponent } from './components/stars/stars.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     AppRouting
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [
     AppComponent
   ]

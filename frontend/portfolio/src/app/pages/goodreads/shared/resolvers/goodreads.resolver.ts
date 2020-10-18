@@ -6,9 +6,9 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '~goodreads/shared/interfaces/book';
 import { environment } from '~env/environment';
-import { getLocalStorage } from '~app/shared/services';
 import { StorageKey } from '~app/shared/enums';
 import { tap } from 'rxjs/operators';
+import { getLocalStorage } from '~app/services';
 
 
 @Injectable()

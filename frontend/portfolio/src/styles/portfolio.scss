@@ -1,10 +1,12 @@
 @import 'styles/colors';
 @import 'styles/globals';
+@import 'styles/breakpoints';
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: $app-font-size;
   //font-family: 'Monospaced', monospace;
-  background: $app-background;
+  //background: $app-background;
   color: $primary-color-text;
 }
 
@@ -14,10 +16,29 @@ a {
   &:hover {
     text-decoration: none;
   }
+
+  &.no-style {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .app-row {
   width: $app-row-width;
   display: flex;
+  flex-direction: column;
   margin: $app-row-top auto;
+
+  .text {
+    padding: 0 $app-row-text-padding;
+    width: 600px;
+    margin: 0 auto;
+  }
+
+  @media(max-width: $breakpoint-mobile) {
+    width: $app-row-width-sm;
+    .text {
+      padding: 0 0;
+    }
+  }
 }
