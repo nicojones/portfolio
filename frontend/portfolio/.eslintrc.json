@@ -1,0 +1,157 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "expect": "readonly",
+    "it": "readonly",
+    "spyOn": "readonly",
+    "describe": "readonly",
+    "beforeEach": "readonly",
+    "afterEach": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "sort-class-members"
+  ],
+  "rules": {
+    "selector-pseudo-element-no-unknown": ["off", {
+      "ignorePseudoElements": ["ng-deep"]
+    }],
+    "no-case-declarations": "off",
+    "no-undef": "off",
+    "no-multiple-empty-lines": "off",
+    "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "padded-blocks": "off",
+    "sort-class-members/sort-class-members": [
+      "error",
+      {
+        "order": [
+          "[static-properties]",
+          "[properties]",
+          "[conventional-private-properties]",
+          "[conventional-getters]",
+          "[conventional-setters]",
+          "[accessor-pairs]",
+          "constructor",
+          "[angular-functions]",
+          "[static-methods]",
+          "[arrow-methods]",
+          "[methods]",
+          "[conventional-private-methods]"
+        ],
+        "groups": {
+          "angular-functions": [
+            {
+              "name": "/ng.+/",
+              "type": "method",
+              "static": false
+            }
+          ],
+          "conventional-getters": [
+            {
+              "type": "method",
+              "kind": "get",
+              "accessorPair": false,
+              "name": "/.+/"
+            }
+          ],
+          "conventional-setters": [
+            {
+              "type": "method",
+              "kind": "set",
+              "accessorPair": false,
+              "name": "/.+/"
+            }
+          ],
+          "arrow-methods": [
+            {
+              "type": "property",
+              "propertyType": "ArrowFunctionExpression"
+            }
+          ]
+        },
+        "accessorPairPositioning": "any"
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "template-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-trailing-spaces": "off",
+    "handle-callback-err": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error", "info", "trace"]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|count)$/]",
+        "message": "This is valid only for Local Development.\nUse `console.info` or `console.error` with clear,\nwell-formatted messages if you intend to have them on DEV. "
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "CallExpression": {
+          "arguments": "off"
+        },
+        "FunctionDeclaration": {
+          "parameters": 2,
+          "body": 1
+        },
+        "FunctionExpression": {
+          "parameters": 1,
+          "body": 1
+        }
+      }
+    ],
+    "no-unreachable": "off",
+    "no-prototype-builtins": "off",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ]
+  },
+  "ignorePatterns": [
+    "*.html",
+    "*.json",
+    "*.scss",
+    "*.e2e-spec.ts",
+    "*.test.ts"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.spec.ts",
+        "*.e2e-spec.ts",
+        "*.test.ts"
+      ]
+    }
+  ]
+}

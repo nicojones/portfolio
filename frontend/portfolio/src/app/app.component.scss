@@ -1,0 +1,33 @@
+@import 'styles/colors';
+@import 'styles/globals';
+
+$name-logo-left: 220px;
+$name-logo-left-hover: $name-logo-left + 40px;
+#name-logo {
+  position: fixed;
+  font-size: 20px;
+  font-family: 'Monospaced', monospace;
+  left: calc(100% - #{$name-logo-left});
+  top: $name-logo-top;
+  color: $primary-color-text;
+  text-decoration: none;
+  transition: all 0.4s;
+
+
+  > .name-logo-name {
+
+  }
+  > .name-logo-url {
+    display: none;
+  }
+
+  &:hover {
+    left: calc(100% - #{$name-logo-left-hover});
+    > .name-logo-name {
+      display: none;
+    }
+    > .name-logo-url {
+      display: inherit;
+    }
+  }
+}

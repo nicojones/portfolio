@@ -1,0 +1,8 @@
+<div class="flex-row app-row space-around" @slide>
+  <div class="book-card" *ngFor="let book of books">
+    <img [src]="book.image" class="book-img"/>
+    <h3><a [href]="book.link" target="_blank" [innerHTML]="book.title"></a></h3>
+    <p [innerHTML]="book.descr"></p>
+    <small [innerHTML]="book.pages"></small>
+  </div>
+</div>

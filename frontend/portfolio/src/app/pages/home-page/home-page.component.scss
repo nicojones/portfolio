@@ -1,0 +1,52 @@
+@import 'styles/colors';
+@import 'styles/globals';
+
+
+.home {
+  height: 80%;
+}
+.jumbo-box {
+  padding-top: $app-row-top;
+}
+
+.jumbo-line {
+  transition: 0.4s all;
+  > h1 {
+    margin: 15px auto;
+    cursor: pointer;
+    display: flex;
+
+    &.hello {
+
+    }
+
+    &.link {
+      display: none;
+    }
+
+    > .mini {
+      font-size: 30px;
+      float: right;
+      align-self: center;
+      justify-content: center;
+      margin-left: 20px;
+    }
+  }
+
+  &:hover {
+    margin-left: 50px;
+
+    > h1.hello {
+      display: none;
+    }
+
+    > h1.link {
+      display: inherit;
+    }
+  }
+}
+
+.img-home {
+  height: 80%;
+  float: right;
+}

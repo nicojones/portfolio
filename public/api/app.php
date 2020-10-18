@@ -1,6 +1,7 @@
 <?php
 
     ini_set('display_errors', E_ALL);
+    header('Access-Control-Allow-Origin: *');
     DEFINE('__ROOT__', realpath(__DIR__ . '/../..'));
 
     if (isset($_GET['_bootload_'])) {

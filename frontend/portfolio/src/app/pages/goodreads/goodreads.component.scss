@@ -1,0 +1,12 @@
+@import 'styles/mixins';
+
+.book-card {
+  box-shadow: 0 0 11px -4px $box-shadow;
+  flex: 0 1 25%;
+  padding: 15px;
+
+  .book-img {
+    margin: 0 auto;
+    height: 300px;
+  }
+}

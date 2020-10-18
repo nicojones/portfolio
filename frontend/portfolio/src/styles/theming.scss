@@ -1,0 +1,124 @@
+@import 'styles/colors';
+
+@import '~@angular/material/theming';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+//$custom-typography: mat-typography-config(
+        //$font-family: $scayla-font-family,
+        //$subheading-2: mat-typography-level($font-size, $line-height, $content-weight)
+//);
+
+//@include mat-core($custom-typography);
+
+$dark-blue: $primary-color;
+$another-color: orange;
+$light-color-something: #c6a774;
+$error-color: #880505;
+
+$primary-map: (
+        50: $dark-blue,
+        100: $dark-blue,
+        200: $dark-blue,
+        300: $dark-blue,
+        400: $dark-blue,
+        500: $dark-blue,
+        600: $dark-blue,
+        700: $dark-blue,
+        800: $dark-blue,
+        900: $dark-blue,
+        A100: $dark-blue,
+        A200: $dark-blue,
+        A400: $dark-blue,
+        A700: $dark-blue,
+        contrast: (
+                50: $another-color,
+                100: $another-color,
+                200: $another-color,
+                300: $another-color,
+                400: $another-color,
+                500: $light-color-something,
+                600: $light-color-something,
+                700: $light-color-something,
+                800: $light-color-something,
+                900: $light-color-something,
+                A100: $another-color,
+                A200: $light-color-something,
+                A400: $light-color-something,
+                A700: $light-color-something,
+        )
+);
+
+$accent-map: (
+        50: $another-color,
+        100: $another-color,
+        200: $another-color,
+        300: $another-color,
+        400: $another-color,
+        500: $another-color,
+        600: $another-color,
+        700: $another-color,
+        800: $another-color,
+        900: $another-color,
+        A100: $another-color,
+        A200: $another-color,
+        A400: $another-color,
+        A700: $another-color,
+        contrast: (
+                50: $another-color,
+                100: $another-color,
+                200: $another-color,
+                300: $another-color,
+                400: $another-color,
+                500: $light-color-something,
+                600: $light-color-something,
+                700: $light-color-something,
+                800: $light-color-something,
+                900: $light-color-something,
+                A100: $another-color,
+                A200: $light-color-something,
+                A400: $light-color-something,
+                A700: $light-color-something,
+        )
+);
+
+$warn-map: (
+        50: $error-color,
+        100: $error-color,
+        200: $error-color,
+        300: $error-color,
+        400: $error-color,
+        500: $error-color,
+        600: $error-color,
+        700: $error-color,
+        800: $error-color,
+        900: $error-color,
+        A100: $error-color,
+        A200: $error-color,
+        A400: $error-color,
+        A700: $error-color,
+        contrast: (
+                50: $another-color,
+                100: $another-color,
+                200: $another-color,
+                300: $another-color,
+                400: $another-color,
+                500: $light-color-something,
+                600: $light-color-something,
+                700: $light-color-something,
+                800: $light-color-something,
+                900: $light-color-something,
+                A100: $light-color-something,
+                A200: $light-color-something,
+                A400: $light-color-something,
+                A700: $light-color-something,
+        )
+);
+
+// theme palette with custom brand colors.
+// More info about palette and colors: https://material.io/design/color/
+$ui-primary: mat-palette($primary-map);
+$ui-accent: mat-palette($accent-map, A200, A100, A400);
+$ui-warn: mat-palette($warn-map);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ui-theme: mat-light-theme($ui-primary, $ui-accent, $ui-warn);

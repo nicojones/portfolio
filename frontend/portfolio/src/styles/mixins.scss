@@ -1,0 +1,13 @@
+@import 'styles/colors';
+
+@mixin no_select() {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+@mixin box_shadow($color: $box-shadow, $size: 4px) {
+  -webkit-box-shadow: 0 0 $size 0 $color;
+  -moz-box-shadow: 0 0 $size 0 $color;
+  box-shadow: 0 0 $size 0 $color;
+}

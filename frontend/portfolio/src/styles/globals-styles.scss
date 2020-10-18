@@ -1,0 +1,37 @@
+@import 'styles/colors';
+@import 'styles/globals';
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.accent {
+  color: $primary-color
+}
+
+.accent-bg {
+  background: $primary-color;
+  color: $primary-color-text;
+}
+
+.progress {
+  cursor: progress !important;
+}
+
+h1.jumbo {
+  font-size: $jumbo-font-size;
+}

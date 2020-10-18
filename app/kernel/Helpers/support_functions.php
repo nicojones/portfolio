@@ -90,6 +90,8 @@
         } else {
             if (file_exists($req = $root . '/src/controllers/' . $name . '.php')) {
                 // ...
+            } elseif (file_exists($req = $root . '/src/services/' . $name . '.php')) {
+                // ...
             } elseif (file_exists($req = $root . '/src/models/' . $name . '.php')) {
                 // ...
             } else {
@@ -345,7 +347,7 @@
         if (!$fstream) {
             return;
         }
- 
+
         $backtraceInfo = '';
         $fileName = '';
         // if the $backtrace is not null in the $options array, we do it. Usually we'll always do it
@@ -365,7 +367,7 @@
             // this is what we output
             $backtraceInfo .= 'trace: ' . $fileName . ' line ' . $caller['line'] . "\n";
         }
- 
+
         // we set the label to whatever it's been set, or to the file name, or (if none of that) to "debug".
         $label = $label ?? $fileName ?? 'debug';
         $log =
@@ -374,12 +376,12 @@
             "\nlabel: $label\n$backtraceInfo\n";
 
         fwrite($fstream, $log);
- 
+
         if (!is_string($content)) {
             $content = var_export($content, true);
         }
         fwrite($fstream, $content . "\n\n");
- 
+
         fclose($fstream);
     }
 

@@ -79,29 +79,28 @@
          */
         public function set() {
             /* If it's a bot, we use the default language */
-            if ($this->isBot) {
-                $this->get_user_language(false);
-
-            /* If the language is already set in $_SESSION but we're NOT setting a new one through $_GET: */
-            } elseif (isset($_SESSION['lang']) && !isset($_GET['lang'])) { /* Only if we're not asking for a different language! */
-                $this->translations = Service::getLanguage($_SESSION['lang']);
-
-            /* Else: we set the language based on $_GET (if set) or based on the browser language */
-            } else {
-                $preferredLanguage = isset($_GET['lang']) ? $_GET['lang'] : $this->acceptLang;
-                $lang = $this->get_user_language($preferredLanguage);
-
-                $_SESSION['lang'] = $lang;
-                $uri = explode('?', $_SERVER['REQUEST_URI']);
-
-                if (isset($_GET['noredirect'])) {
-                    $uri[0] = substr($uri[0],0,strlen($uri[0])-3);
-                }
-
-                $this->translations = Service::getLanguage($lang);
-
-                header ("Location: " . $uri[0]);
-            }
+//             if ($this->isBot) {
+//                 $this->get_user_language(false);
+//
+//             /* If the language is already set in $_SESSION but we're NOT setting a new one through $_GET: */
+//             } elseif (isset($_SESSION['lang']) && !isset($_GET['lang'])) { /* Only if we're not asking for a different language! */
+//                 $this->translations = Service::getLanguage($_SESSION['lang']);
+//
+//             /* Else: we set the language based on $_GET (if set) or based on the browser language */
+//             } else {
+//                 $preferredLanguage = isset($_GET['lang']) ? $_GET['lang'] : $this->acceptLang;
+//                 $lang = $this->get_user_language($preferredLanguage);
+//
+//                 $_SESSION['lang'] = $lang;
+//                 $uri = explode('?', $_SERVER['REQUEST_URI']);
+//
+//                 if (isset($_GET['noredirect'])) {
+//                     $uri[0] = substr($uri[0],0,strlen($uri[0])-3);
+//                 }
+//
+//                 $this->translations = Service::getLanguage($lang);
+//                 header ("Location: " . $uri[0]);
+//             }
         }
 
         /**

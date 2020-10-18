@@ -1,0 +1,23 @@
+@import 'styles/colors';
+@import 'styles/globals';
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  //font-family: 'Monospaced', monospace;
+  background: $app-background;
+  color: $primary-color-text;
+}
+
+a {
+  color: $primary-color;
+  //text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.app-row {
+  width: $app-row-width;
+  display: flex;
+  margin: $app-row-top auto;
+}

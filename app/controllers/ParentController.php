@@ -263,31 +263,7 @@ class ParentController {
      * @return string JSON_encoded $obj
      */
     public function json($obj, $flags = 0) {
-        $defaults = [
-            'success' => 1,
-            'message' => ''
-        ];
-
-        $response = $obj;
-        foreach ($defaults as $k => $d) {
-            if (!isset($response[$k])) {
-                $response[$k] = $d;
-            } else {
-                unset($obj[$k]);
-            }
-        }
-
-        $responseObj = [
-            'success' => (int)$response['success'],
-            'responseData' => [
-                'message' => $response['message'],
-            ]
-        ];
-        foreach ($obj as $k => $o) {
-            $responseObj['responseData'][$k] = $o;
-        }
-
-        die(json_encode($responseObj, $flags));
+        die(json_encode($obj, $flags));
     }
 
     /**
