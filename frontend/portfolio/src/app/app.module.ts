@@ -7,6 +7,7 @@ import { SharedModule } from '~app/shared';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
 import { StarsComponent } from './components/stars/stars.component';
+import { AppTitleService } from '~app/services';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { StarsComponent } from './components/stars/stars.component';
     AppRouting
   ],
   providers: [
+    AppTitleService
   ],
   bootstrap: [
     AppComponent

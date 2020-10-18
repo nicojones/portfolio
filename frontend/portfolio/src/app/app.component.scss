@@ -1,13 +1,22 @@
 @import 'styles/colors';
 @import 'styles/globals';
 
-$name-logo-left: 220px;
-$name-logo-left-hover: $name-logo-left + 40px;
+$name-logo-right: 220px;
+$name-logo-right-hover: $name-logo-right + 40px;
+$name-logo-left: 100px;
+$name-logo-left-hover: 120px;
+$name-logo-position: 'left';
+
 #name-logo {
   position: fixed;
   font-size: 20px;
   font-family: 'Monospaced', monospace;
-  left: calc(100% - #{$name-logo-left});
+  @if($name-logo-position == 'right') {
+    left: calc(100% - #{$name-logo-right});
+  }
+  @else {
+    left: $name-logo-left;
+  }
   top: $name-logo-top;
   color: $primary-color-text;
   text-decoration: none;
@@ -22,7 +31,12 @@ $name-logo-left-hover: $name-logo-left + 40px;
   }
 
   &:hover {
-    left: calc(100% - #{$name-logo-left-hover});
+    @if($name-logo-position == 'right') {
+      left: calc(100% - #{$name-logo-right-hover});
+    }
+    @else {
+      left: $name-logo-left-hover;
+    }
     > .name-logo-name {
       display: none;
     }

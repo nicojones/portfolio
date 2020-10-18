@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { slide } from '~app/shared/animations';
 import { detectAndSaveOS } from '~app/functions';
+import { Routes } from '~routes/routes';
+import { AppTitleService } from '~app/services';
 
 
 @Component({
@@ -11,7 +13,13 @@ import { detectAndSaveOS } from '~app/functions';
   animations: [slide()]
 })
 export class AppComponent {
-  constructor () {
+  public readonly Routes = Routes;
+
+  // noinspection JSUnusedLocalSymbols
+  constructor (
+    private title: AppTitleService
+  ) {
     detectAndSaveOS();
+    AppTitleService.title.setTitle('Nicolas Kupfer');
   }
 }

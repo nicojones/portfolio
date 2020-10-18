@@ -1,6 +1,6 @@
 <header class="mat-header-background" style="position: absolute; top: 0">
-  <a routerLink="" mat-button>go home</a>
-  <a routerLink="goodreads" mat-button>goodreads</a>
+  <a [routerLink]="'/' + Routes.Home" mat-button>go home</a>
+  <a [routerLink]="'/' + Routes.Goodreads" mat-button>goodreads</a>
 </header>
 
 <a id="name-logo" routerLink="" @slide>

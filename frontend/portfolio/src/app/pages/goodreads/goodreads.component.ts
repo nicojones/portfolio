@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '~goodreads/shared/interfaces/book';
+import { slideIn } from '~app/shared/animations';
 
 
 @Component({
