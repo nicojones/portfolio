@@ -87,7 +87,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       responsive: {
         0: { count: 1.1, mode: 'free', buttons: false },
         480: { count: 1.1, mode: 'free', buttons: false },
-        768: { count: 2, move: 2, buttons: false },
+        768: { count: 1.1, move: 1, buttons: false },
         1440: { count: 2, move: 2, buttons: false }
       }
     };

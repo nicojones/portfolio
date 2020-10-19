@@ -1,5 +1,6 @@
-<div class="flex-row app-row space-around" @fadeIn>
-  <h1 class="jumbo fade-in">I read <span class="accent">a lot</span>.</h1>
+<div class="flex-row app-row space-around with-margin" @slideIn>
+  <h1 class="jumbo slide-in">I read <span class="accent">a lot</span>.</h1>
   <app-carousel [books]="shelf.reading" [title]="title.reading"></app-carousel>
+  <hr class="slide-in w-100">
   <app-carousel [books]="shelf.read" [title]="title.read"></app-carousel>
 </div>

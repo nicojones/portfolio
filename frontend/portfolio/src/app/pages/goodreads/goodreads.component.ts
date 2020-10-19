@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Shelf } from '~goodreads/shared/interfaces/book';
-import { fadeIn } from '~app/shared/animations';
+import { slideIn } from '~app/shared/animations';
 import { BooksService } from '~app/services';
 
 
@@ -9,7 +9,7 @@ import { BooksService } from '~app/services';
   templateUrl: './goodreads.component.html',
   styleUrls: ['./goodreads.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [fadeIn()]
+  animations: [slideIn()]
 })
 export class GoodreadsComponent {
 

@@ -43,3 +43,14 @@ a {
     }
   }
 }
+
+.with-margin {
+  @if($content-with-margin) {
+
+  }
+  @else {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+}
