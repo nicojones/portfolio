@@ -7,13 +7,13 @@ import { BooksService } from '~app/services';
 
 
 @Injectable()
-export class GoodreadsResolver implements Resolve<unknown> {
+export class ReadBooksResolver implements Resolve<unknown> {
   constructor (
     private booksService: BooksService
   ) {
   }
 
   public resolve (): Observable<Book[]> {
-    return this.booksService.getStartedBooks();
+    return this.booksService.getReadBooks();
   }
 }

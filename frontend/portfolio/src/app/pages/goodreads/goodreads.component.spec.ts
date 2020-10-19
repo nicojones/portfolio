@@ -1,10 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GoodreadsComponent } from './goodreads.component';
-import { GoodreadsResolver } from '~goodreads/shared/resolvers';
 import { TestModule } from '~app/tests';
 import { BooksService } from '~app/services';
 import { CarouselModule } from '~app/modules/carousel';
+import { ReadBooksResolver } from '~app/shared/resolvers/read-books-resolver.service';
+import { ReadingBooksResolver } from '~app/shared/resolvers';
+import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { Book } from '~goodreads/shared/interfaces/book';
+import { lastBook } from '~app/modules/book/last-book';
 
 
 describe('GoodreadsComponent', () => {
@@ -21,7 +27,8 @@ describe('GoodreadsComponent', () => {
         CarouselModule
       ],
       providers: [
-        GoodreadsResolver,
+        { provide: ReadBooksResolver, useClass: FakeBooksResolver },
+        { provide: ReadingBooksResolver, useClass: FakeBooksResolver },
         BooksService
       ]
     }).compileComponents();
@@ -56,3 +63,12 @@ describe('GoodreadsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Injectable()
+export class FakeBooksResolver implements Resolve<unknown> {
+  constructor () {}
+
+  public resolve (): Observable<Book[]> {
+    return of([lastBook])
+  }
+}

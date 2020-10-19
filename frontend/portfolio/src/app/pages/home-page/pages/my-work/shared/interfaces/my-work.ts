@@ -1,4 +1,7 @@
+import { ContentType } from '~app/shared/interfaces';
+
+
 export interface MyWork {
-  text: string[];
+  text: { type: ContentType, content: string }[];
   title: string;
 }

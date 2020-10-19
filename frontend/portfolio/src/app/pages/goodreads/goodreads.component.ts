@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Book } from '~goodreads/shared/interfaces/book';
+import { Shelf } from '~goodreads/shared/interfaces/book';
 import { fadeIn } from '~app/shared/animations';
 import { BooksService } from '~app/services';
 
@@ -17,17 +16,18 @@ export class GoodreadsComponent {
   /**
    * List of Goodreads books
    */
-  public books: Book[] = null;
+  public shelf: Shelf = BooksService.shelf;
 
   /**
    * Title for the carousel.
    */
-  public readonly title: string = 'currently reading';
+  public readonly title: { read: string, reading: string } = {
+    reading: 'currently reading',
+    read: 'read since last january'
+  };
 
   constructor (
-    private activatedRoute: ActivatedRoute,
     public booksService: BooksService
   ) {
-    this.books = this.activatedRoute.snapshot.data.books;
   }
 }

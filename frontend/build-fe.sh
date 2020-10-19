@@ -24,12 +24,14 @@ publicDir="public"
 destination="$path_here/../$publicDir"
 
 echo -e "${c} * Deleting old files...$n"
+rm -rf "$destination/assets"
 for file in ${destination}/*.html; do rm "$file" >/dev/null 2>&1;done
 for file in ${destination}/*.css; do rm "$file" >/dev/null 2>&1;done
 for file in ${destination}/*.ico; do rm "$file" >/dev/null 2>&1;done
 for file in ${destination}/*.js; do rm "$file" >/dev/null 2>&1;done
 
 echo -e "${c} * Moving new files...$n"
+cp -r "$originDir/assets" "$destination"
 for file in ${originDir}/*.html; do cp "$file" "$destination";done
 for file in ${originDir}/*.css; do cp "$file" "$destination";done
 for file in ${originDir}/*.ico; do cp "$file" "$destination";done

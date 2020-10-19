@@ -6,6 +6,7 @@ import { SharedModule } from '~app/shared';
 import { AboutComponent } from './about.component';
 import { BooksService } from '~app/services';
 import { CarouselModule } from '~app/modules/carousel';
+import { AboutPageResolver } from '~home-page/pages/about/shared/resolvers/about-page.resolver';
 
 
 @NgModule({
@@ -16,14 +17,18 @@ import { CarouselModule } from '~app/modules/carousel';
     RouterModule.forChild([
       {
         path: '',
-        component: AboutComponent
+        component: AboutComponent,
+        resolve: {
+          aboutPage: AboutPageResolver
+        }
       }
     ]),
     SharedModule,
     CarouselModule
   ],
   providers: [
-    BooksService
+    BooksService,
+    AboutPageResolver
   ]
 })
 export class AboutModule {}

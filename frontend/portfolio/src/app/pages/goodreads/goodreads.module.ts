@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '~app/shared';
 import { BooksService } from '~app/services';
 
-import { GoodreadsResolver } from '~goodreads/shared/resolvers';
 import { GoodreadsComponent } from '~goodreads/goodreads.component';
 
 import { CarouselModule } from '~app/modules/carousel';
+import { ReadingBooksResolver } from '~app/shared/resolvers';
+import { ReadBooksResolver } from '~app/shared/resolvers/read-books-resolver.service';
 
 
 @NgModule({
@@ -18,7 +19,10 @@ import { CarouselModule } from '~app/modules/carousel';
       {
         path: '',
         component: GoodreadsComponent,
-        resolve: { books: GoodreadsResolver }
+        resolve: {
+          reading: ReadingBooksResolver,
+          read: ReadBooksResolver
+        }
       }
     ])
   ],
@@ -28,7 +32,8 @@ import { CarouselModule } from '~app/modules/carousel';
   exports: [],
   providers: [
     BooksService,
-    GoodreadsResolver
+    ReadingBooksResolver,
+    ReadBooksResolver
   ]
 })
 export class GoodreadsModule {}

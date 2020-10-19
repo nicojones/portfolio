@@ -17,7 +17,7 @@ export class BooksService {
     private http: HttpClient
   ) {}
 
-  public getStartedBooks (forceLoad: boolean = false): Observable<Books> {
+  public getCurrentlyReading (forceLoad: boolean = false): Observable<Books> {
     if (BooksService.shelf.reading && !forceLoad) {
       return of(BooksService.shelf.reading);
     }
