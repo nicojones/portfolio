@@ -5,7 +5,8 @@ interface MyRoutes {
   ContactMe: string;
   About: string;
   Home: string;
-  Goodreads: string;
+  Reading: string;
+  Read: string;
 }
 
 export const Routes: MyRoutes = {
@@ -13,7 +14,8 @@ export const Routes: MyRoutes = {
   ContactMe: 'contact',
   About: 'about',
   Home: '',
-  Goodreads: 'goodreads',
+  Reading: 'books-reading',
+  Read: 'books-read',
 
   absolute: (key: keyof MyRoutes) => {
     return `/${ Routes[key] }`;

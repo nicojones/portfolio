@@ -30,4 +30,4 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule {}

@@ -11,7 +11,7 @@ import { Routes } from '~routes/routes';
         loadChildren: () => import('~home-page/home-page.module').then((m) => m.HomePageModule)
       },
       {
-        path: Routes.Goodreads,
+        path: Routes.Reading,
         loadChildren: () => import('~goodreads/goodreads.module').then((m) => m.GoodreadsModule)
       }
     ])

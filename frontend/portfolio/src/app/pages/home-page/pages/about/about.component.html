@@ -1,22 +1,49 @@
 <div class="app-row" @slideIn>
   <h1 class="jumbo slide-in center">
-    <span class="accent">mathematician</span><br>turned<br><span class="accent">web developer</span>.
+    <span class="accent">mathematician</span><br><span [innerHTML]="plus[plusIndex]"></span><br><span class="accent">web developer</span>.
   </h1>
   <div class="text">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam memini etiam quae nolo, oblivisci non possum
+    <p
+      class="slide-in"
+    >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam memini etiam quae nolo, oblivisci non possum
       quae volo. Ita similis erit ei finis boni, atque antea fuerat, neque idem tamen; Quod autem in homine
       praestantissimum atque optimum est, id deseruit. Te enim iudicem aequum puto, modo quae dicat ille bene noris.
       Sed quid minus probandum quam esse aliquem beatum nec satis beatum? <b>Proclivi currit oratio.</b></p>
 
-    <p>Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Duo Reges: constructio
+    <p
+      class="slide-in"
+    >Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Duo Reges: constructio
       interrete. Aut, Pylades cum sis, dices te esse Orestem, ut moriare pro amico? An vero displicuit ea, quae tributa
       est animi virtutibus tanta praestantia? Illud mihi a te nimium festinanter dictum videtur, sapientis omnis esse
       semper beatos; Omnis enim est natura diligens sui. An me, inquis, tam amentem putas, ut apud imperitos isto modo
       loquar? <b>Ita credo.</b></p>
 
-    <p>Hoc ipsum elegantius poni meliusque potuit. <i>Urgent tamen et nihil remittunt.</i>
+    <p class="slide-in">Hoc ipsum elegantius poni meliusque potuit. <i>Urgent tamen et nihil remittunt.</i>
       Fatebuntur Stoici haec omnia dicta esse praeclare, neque eam causam Zenoni desciscendi fuisse.
     </p>
+
+    <p class="slide-in">Currently reading
+      <ng-container *ngIf="!shelf.reading">some books...</ng-container>
+      <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
+        <ng-container *ngSwitchCase="0">no books.</ng-container>
+        <ng-container *ngSwitchCase="1">one book.</ng-container>
+        <ng-container *ngSwitchDefault>
+          {{ shelf.reading.length }} books, among them {{ shelf.reading[0].title }}.
+        </ng-container>
+      </ng-container>
+      You can see them <a [routerLink]="'/' + Routes.Reading">here</a>.
+    </p>
+
+
   </div>
+  <app-carousel
+    *ngIf="shelf.read"
+    class="mt-20"
+    [books]="shelf.read"
+    [title]="title"
+    [wrap]="true"
+    [totalBooks]="shelf.totalRead"
+    [lastBook]="lastBook"
+  ></app-carousel>
 
 </div>

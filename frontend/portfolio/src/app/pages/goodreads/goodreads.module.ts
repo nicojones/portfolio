@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GoodreadsComponent } from '~goodreads/goodreads.component';
-import { GoodreadsResolver } from '~goodreads/shared/resolvers';
+
 import { SharedModule } from '~app/shared';
-import { BookComponent } from './components/book/book.component';
+import { BooksService } from '~app/services';
+
+import { GoodreadsResolver } from '~goodreads/shared/resolvers';
+import { GoodreadsComponent } from '~goodreads/goodreads.component';
+
+import { CarouselModule } from '~app/modules/carousel';
 
 
 @NgModule({
   imports: [
     SharedModule,
+    CarouselModule,
     RouterModule.forChild([
       {
         path: '',
@@ -18,10 +23,11 @@ import { BookComponent } from './components/book/book.component';
     ])
   ],
   declarations: [
-    GoodreadsComponent,
-    BookComponent
+    GoodreadsComponent
   ],
+  exports: [],
   providers: [
+    BooksService,
     GoodreadsResolver
   ]
 })

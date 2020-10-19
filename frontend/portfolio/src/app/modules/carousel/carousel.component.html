@@ -1,0 +1,19 @@
+<div class="latte-carousel" #carouselElement>
+  <app-book class="book-card latte-item" *ngFor="let book of books" [book]="book"></app-book>
+</div>
+<h2 class="flex-row just-center pagination-title align-center">
+  <span>{{ title }}</span>
+  <span class="pagination flex-row align-center">
+      <button
+        class="paginate left"
+        (click)="prevItem()"
+        [disabled]="!wrap && index === 1"
+      ><i></i><i></i></button>
+      <span class="pagination-counter">{{ index }} / {{ totalBooks || books.length }}</span>
+      <button
+        class="paginate right"
+        (click)="nextItem()"
+        [disabled]="!wrap && index === books.length"
+      ><i></i><i></i></button>
+    </span>
+</h2>

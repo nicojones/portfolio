@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GoodreadsComponent } from './goodreads.component';
 import { GoodreadsResolver } from '~goodreads/shared/resolvers';
 import { TestModule } from '~app/tests';
-import { BookComponent } from '~goodreads/components/book/book.component';
+import { BooksService } from '~app/services';
+import { CarouselModule } from '~app/modules/carousel';
 
 
 describe('GoodreadsComponent', () => {
@@ -13,12 +14,15 @@ describe('GoodreadsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        GoodreadsComponent,
-        BookComponent
+        GoodreadsComponent
       ],
-      imports: [TestModule],
+      imports: [
+        TestModule,
+        CarouselModule
+      ],
       providers: [
-        GoodreadsResolver
+        GoodreadsResolver,
+        BooksService
       ]
     }).compileComponents();
   });

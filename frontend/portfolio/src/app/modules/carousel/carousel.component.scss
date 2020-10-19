@@ -1,0 +1,12 @@
+@import 'breakpoints';
+@import 'globals';
+
+.pagination-title {
+  font-size: $h2-font-size;
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $app-font-size;
+  }
+  .pagination {
+    margin-left: 30px;
+  }
+}

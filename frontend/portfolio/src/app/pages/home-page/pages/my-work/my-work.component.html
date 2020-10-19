@@ -1,1 +1,6 @@
-<p>my-work works!</p>
+<div class="app-row" @slideIn>
+  <h1 class="jumbo slide-in center" [innerHTML]="myWork.title"></h1>
+  <div class="text">
+    <p *ngFor="let text of myWork.text" class="slide-in" [innerHTML]="text"></p>
+  </div>
+</div>

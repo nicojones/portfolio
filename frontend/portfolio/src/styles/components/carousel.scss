@@ -1,9 +1,22 @@
 @import 'globals';
 
 .latte-item {
-  height: auto;
-  max-height: 500px;
+  min-height: 400px;
+  //max-height: 500px;
 
   font-size: $app-font-size;
+
+  * {
+    font-size: $app-font-size;
+  }
+}
+
+.latte-content {
+  height: auto
+}
+
+.latte-stage {
+  display: flex;
+  flex-direction: row;
 }
 

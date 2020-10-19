@@ -1,0 +1,31 @@
+@import 'globals';
+
+$book-padding: 25px;
+
+:host {
+  //flex: 0 1 25%;
+  //padding: $book-padding;
+  display: flex;
+  flex-direction: column;
+
+  .book-title {
+    padding: 0 0 $book-padding 0;
+    margin: 0;
+    .book-link {
+      font-size: $big-font-size;
+    }
+  }
+  .book-img-box {
+    flex: 0 0 35%;
+    .book-img {
+      //flex: 0 0 100%;
+      width: 200px;
+      //max-height: 300px;
+    }
+  }
+  .book-descr {
+    flex: 0 0 50%;
+    padding: 0 $book-padding;
+    margin: 0;
+  }
+}

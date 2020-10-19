@@ -6,11 +6,19 @@
 
 %show-menu {
   > h1.hello {
-    display: none;
+    @if ($home-page-use-opacity) {
+      opacity: 0;
+    } @else {
+      display: none;
+    }
   }
 
   > h1.link {
-    display: inherit;
+    @if ($home-page-use-opacity) {
+      opacity: 1;
+    } @else {
+      display: inherit;
+    }
   }
 }
 
@@ -41,43 +49,61 @@
 }
 
 .jumbo-box {
+
+  @if ($home-page-centered) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
   &.show-menu > .jumbo-line {
     margin-left: 0;
     @extend %show-menu;
   }
-}
 
-.jumbo-line {
-  @include transitions();
 
-  > h1 {
-    margin: 15px auto;
-    cursor: pointer;
-    display: flex;
-    min-width: $breakpoint-mobile-sm;
+  .jumbo-line {
+    @include transitions();
+    width: max-content;
+    min-width: 600px;
 
-    &.hello {
+    > h1 {
+      margin: 15px auto;
+      cursor: pointer;
+      display: flex;
+      @include transitions();
+      min-width: $breakpoint-mobile-sm;
 
-    }
+      &.hello {
+        @if ($home-page-use-opacity) {
+          position: absolute;
+          z-index: -1;
+        }
+      }
 
-    &.link {
-      display: none;
-    }
+      &.link {
+        @if ($home-page-use-opacity) {
+          opacity: 0;
+        } @else {
+          display: none;
+        }
+      }
 
-    > .mini {
-      font-size: 30px;
-      float: right;
-      align-self: center;
-      justify-content: center;
-      margin-left: 20px;
+      > .mini {
+        font-size: 30px;
+        float: right;
+        align-self: center;
+        justify-content: center;
+        margin-left: 20px;
 
-      @media (max-width: $breakpoint-mobile-sm) {
-        font-size: 20px;
+        @media (max-width: $breakpoint-mobile-sm) {
+          font-size: 20px;
+        }
       }
     }
   }
 
-  &:hover {
+  &.loaded > .jumbo-line:hover {
     margin-left: 50px;
     @extend %show-menu;
   }

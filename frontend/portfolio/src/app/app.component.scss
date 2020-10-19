@@ -1,12 +1,6 @@
 @import 'colors';
 @import 'globals';
 
-$name-logo-right: 220px;
-$name-logo-right-hover: $name-logo-right + 40px;
-$name-logo-left: 100px;
-$name-logo-left-hover: 120px;
-$name-logo-position: 'left';
-
 #name-logo {
   position: fixed;
   font-size: 20px;

@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AboutComponent } from './about.component';
-import { SharedModule } from '~app/shared';
 import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '~app/shared';
+
+import { AboutComponent } from './about.component';
+import { BooksService } from '~app/services';
+import { CarouselModule } from '~app/modules/carousel';
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import { RouterModule } from '@angular/router';
         component: AboutComponent
       }
     ]),
-    SharedModule
+    SharedModule,
+    CarouselModule
+  ],
+  providers: [
+    BooksService
   ]
 })
 export class AboutModule {}

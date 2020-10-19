@@ -47,10 +47,17 @@ class HomeController extends Controller {
         return $this->model;
     }
 
-    /*
-     * See more info about this function at /src/config/routing.ini :)
-     */
-    public function animalZoo() {
-        die($_GET['animal'] . ' -> ' . $_GET['sound'] . ' -> ' . $_GET['extra']);
+    public function getMyWork () {
+        $title = 'what drives me?';
+        $text = [
+            'hello!<br>with <b>bold</b> even...',
+            'hello!<br>with <b>bold</b> even...',
+            'hello!<br>with <b>bold</b> even...',
+            'hello!<br>with <b>bold</b> even...',
+        ];
+        $this->json([
+            'title' => $title,
+            'text' => $text
+        ]);
     }
 }

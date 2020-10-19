@@ -42,11 +42,12 @@ class Router {
      * Searches for a URI match and returns the Controller + Action that dispatch it.
      * @return string The routing.ini key
      */
-    public static function matchRoute() {        
+    public static function matchRoute() {
         $config = Config::singleton();
         $routing = $config->get('Routing');
 
         self::$uri = substr(strtok($_SERVER['REQUEST_URI'] ?: '/', '?'), strlen(__PATH__) + 1);
+
         foreach ($routing as $routeKey => $route) {
             if (
                 /* You can set a `method = get|post|put|delete` to further filter. See example above */
@@ -92,7 +93,7 @@ class Router {
         /* Not found! Will go to NOT_FOUND_PAGE route */
         return 'NOT_FOUND_PAGE';
     }
-    
+
     /**
      * Sets the $_GET superglobal with the GET parsed parameters. Just like .htaccess
      * @param array $route The route object from the routing file

@@ -20,6 +20,18 @@
   justify-content: space-around;
 }
 
+.just-left {
+  justify-content: left;
+}
+
+.just-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
 .accent {
   color: $primary-color
 }
@@ -55,5 +67,13 @@
   .jumbo {
     font-size: $jumbo-font-size-mobile-sm;
   }
+}
+
+h2, .h2 {
+  font-size: $h2-font-size;
+}
+
+.secondary {
+  opacity: 0.4;
 }
 

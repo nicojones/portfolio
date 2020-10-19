@@ -1,16 +1,21 @@
 <div class="home app-row my-0" (click)="toggleMenu()" *ngIf="{ loading: true } as _">
-  <div class="jumbo-box" [class.show-menu]="showMenu" @fadeIn (@fadeIn.done)="_.loading = false">
+  <div
+    class="jumbo-box"
+    [class.show-menu]="showMenu"
+    [class.loaded]="!_.loading"
+    @fadeIn (@fadeIn.done)="_.loading = false"
+  >
     <div class="jumbo-line fade-in">
-      <h1 class="jumbo hello">Hello World!</h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.About">About</a></h1>
+      <h1 class="jumbo hello">hello world!</h1>
+      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.About">about</a></h1>
     </div>
     <div class="jumbo-line accent fade-in">
       <h1 class="jumbo hello">Nico Kupfer</h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.ContactMe">Contact me</a></h1>
+      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.ContactMe">contact me</a></h1>
     </div>
     <div class="jumbo-line fade-in">
-      <h1 class="jumbo hello">Angular + <small class="mini">lots of<br>other stuff</small></h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.Work">My work</a></h1>
+      <h1 class="jumbo hello">angular + <small class="mini">lots of<br>other stuff</small></h1>
+      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.Work">my work</a></h1>
     </div>
   </div>
   <div class="myself" [class.loading]="_.loading"></div>

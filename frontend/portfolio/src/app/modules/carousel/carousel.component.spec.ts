@@ -1,33 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AboutComponent } from './about.component';
+import { CarouselComponent } from './carousel.component';
 import { TestModule } from '~app/tests';
-import { CarouselModule } from '~app/modules/carousel';
-import { BooksService } from '~app/services';
+import { BookModule } from '~app/modules/book/book.module';
+import { lastBook } from '~app/modules/book/last-book';
 
 
-describe('AboutComponent', () => {
-  let component: AboutComponent;
-  let fixture: ComponentFixture<AboutComponent>;
+describe('CarouselComponent', () => {
+  let component: CarouselComponent;
+  let fixture: ComponentFixture<CarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AboutComponent
+        CarouselComponent
       ],
       imports: [
         TestModule,
-        CarouselModule
-      ],
-      providers: [
-        BooksService
+        BookModule
       ]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AboutComponent);
+    fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
+    component.books = [lastBook];
     fixture.detectChanges();
   });
 

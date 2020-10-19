@@ -39,4 +39,12 @@
 //         var_dump($books);
         $this->json($books);
     }
+
+    public function getRead () {
+        $page = $this->getGet('page');
+        $books = $this->goodreadsService->getReadBooks($page);
+//         var_dump($books);die;
+//         var_dump($books);
+        $this->json($books);
+    }
 }

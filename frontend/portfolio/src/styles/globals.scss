@@ -1,11 +1,28 @@
+// set to true/false to center (or keep to the left) the menu in the home component
+$home-page-centered: true;
+// The position of the `Nico Kupfer` menu
+$name-logo-position: 'left';
+// Use opacity for the Home Page menu transitions
+$home-page-use-opacity: true;
+
+
 $app-font-size: 20px;
 $jumbo-font-size: 110px;
 $jumbo-font-size-mobile: 70px;
 $jumbo-font-size-mobile-sm: 40px;
+
 $name-logo-top: 80px;
+$name-logo-right: 220px;
+$name-logo-left: 100px;
+$name-logo-right-hover: $name-logo-right + 40px;
+$name-logo-left-hover: 120px;
+
 $app-row-top: 140px;
 
 $app-row-width: 75%;
 $app-row-width-sm: 95%;
 
 $app-row-text-padding: 50px;
+
+$h2-font-size: 50px;
+$big-font-size: 30px;
