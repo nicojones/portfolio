@@ -1,0 +1,98 @@
+// text and buttons
+
+
+.back-button {
+  position: fixed;
+  bottom: 50px;
+}
+
+// //////////////////////
+
+
+
+
+
+.astronaut {
+  width: 150px;
+  left: calc(50% - 300px);
+  transform-origin: 300px center;
+  animation: circle 17s linear infinite reverse;
+}
+
+.rocket {
+  width: 200px;
+  left: calc(50% - 450px);
+  animation: circle 13s linear infinite;
+  transform-origin: 450px center;
+}
+
+.object {
+  position: fixed;
+  top: calc(50% - 100px);
+}
+
+@keyframes circle {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+$black-hole-color-1: #0a0808;
+$black-hole-color-2: #333;
+$black-hole-color-3: #000;
+.black-hole {
+  //position: fixed;
+  width: 300px;
+  height: 300px;
+  //left: calc(50% - 150px);
+  //top: calc(50% - 150px);
+  border-radius: 50%;
+  background: linear-gradient(#{$black-hole-color-1}, #{$black-hole-color-2}, #{$black-hole-color-3});
+  animation: animate 4s linear infinite;
+
+  > span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(#{$black-hole-color-1}, #{$black-hole-color-2}, #{$black-hole-color-3});
+
+    &:nth-child(1) {
+      filter: blur(5px);
+    }
+
+    &:nth-child(2) {
+      filter: blur(10px);
+    }
+
+    &:nth-child(3) {
+      filter: blur(25px);
+    }
+
+    &:nth-child(4) {
+      filter: blur(50px);
+    }
+  }
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    right: 13px;
+    bottom: 14px;
+    background: #000;
+    border-radius: 50%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -8,9 +8,12 @@ export class StarsService {
   /**
    * Extra objects to show in the {@see StarsComponent}
    */
-  public static objects$ = new BehaviorSubject<StarObject>({ astronaut: false });
+  public static objects$ = new BehaviorSubject<StarObject>({ astronaut: false, rocket: false });
+
+  public static reverse$ = new BehaviorSubject<boolean>(false);
 
   public static set showObject (objects: Partial<StarObject>) {
     StarsService.objects$.next({ ...this.objects$.getValue(), ...objects });
   }
+
 }
