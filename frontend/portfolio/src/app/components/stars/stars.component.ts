@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ClientScreen, Position2D, Star, StarConfig, Velocity } from '~app/components/stars/interfaces/star';
+import { CelestialPosition, ClientScreen, Position2D, Spacetime, Star } from '~app/components/stars/interfaces/star';
+import { StarsService } from '~app/components/stars/shared/services/stars.service';
+import { StarObject } from '~app/components/stars/interfaces';
+import { StarWanderer } from '~app/components/stars/interfaces/star-wanderer';
+import { StarConfig } from '~app/components/stars/interfaces/star-config';
 
 
 @Component({
@@ -12,6 +16,12 @@ export class StarsComponent implements OnInit {
   /**
    * The canvas element
    */
+  @ViewChild('astronaut', { static: true })
+  public astronaut: ElementRef<HTMLImageElement>;
+
+  /**
+   * The canvas element
+   */
   @ViewChild('canvasElement', { static: true })
   public canvas: ElementRef<HTMLCanvasElement>;
 
@@ -20,6 +30,10 @@ export class StarsComponent implements OnInit {
    */
   private context: CanvasRenderingContext2D;
 
+  /**
+   * Configuration for the stars.
+   * @private
+   */
   private config: StarConfig;
 
   private scale: number = 1; // The device's pixel-ratio, which might change on resize.
@@ -33,10 +47,16 @@ export class StarsComponent implements OnInit {
   private stars: Star[] = [];
 
   /**
+   * The elements to render every time
+   * @private
+   */
+  private wanderers: StarWanderer[] = [];
+
+  /**
    * Velocity of each star
    * @private
    */
-  private velocity: Velocity = {
+  private velocity: Spacetime = {
     x: 0,
     y: 0,
     xMomentum: 0,
@@ -53,8 +73,11 @@ export class StarsComponent implements OnInit {
       colorLimit: 400,
       size: 3,
       starMinScale: 0.1,
-      overflow: 1,
-      zVelocity: 0.005
+      overflow: 100,
+      zVelocity: 0.005,
+      maxImgSize: 480,
+      imgSizeStep: 0.3,
+      initialImgSize: 0
     };
   }
 
@@ -70,6 +93,23 @@ export class StarsComponent implements OnInit {
     document.onmouseleave = this.onMouseLeave;
     document.ontouchmove = this.onTouchMove;
     document.ontouchend = this.onMouseLeave;
+
+    StarsService.objects$.subscribe((objects: StarObject) => {
+      const wanderers: StarWanderer[] = [];
+
+      if (objects.astronaut) {
+        const img = this.astronaut.nativeElement;
+        const wanderer: StarWanderer = {
+          img: img,
+          x: this.screen.w / (2 + 0.5 * Math.random()),
+          y: this.screen.h / (2 + 0.5 * Math.random()),
+          z: this.config.zVelocity * 100,
+          size: this.config.maxImgSize
+        };
+        wanderers.push(wanderer);
+      }
+      this.wanderers = wanderers;
+    });
   }
 
 
@@ -125,24 +165,31 @@ export class StarsComponent implements OnInit {
 
   };
 
-  private generate () {
+  private updatePosition = (body: StarWanderer | Star, isWanderer: boolean = true) => {
 
-    const starCount = (window.innerWidth + window.innerHeight) * this.config.starDensity;
+    body.x += this.velocity.x * body.z;
+    body.y += this.velocity.y * body.z;
 
-    for (let i = 0; i < starCount; i++) {
-      this.stars.push({
-        x: 0,
-        y: 0,
-        z: this.config.starMinScale + Math.random() * (1 - this.config.starMinScale),
-        color: this.randomStarColor()
-      });
+    body.x += (body.x - this.screen.w / 2) * this.velocity.z * body.z;
+    body.y += (body.y - this.screen.h / 2) * this.velocity.z * body.z;
+    body.z += this.velocity.z;
 
+    // recycle when out of bounds
+    if (
+      body.x < -this.config.overflow ||
+      body.x > this.screen.w + this.config.overflow ||
+      body.y < -this.config.overflow ||
+      body.y > this.screen.h + this.config.overflow
+    ) {
+      if (isWanderer) {
+        (body as StarWanderer).size = 0;
+      }
+      this.recycleBody(body);
     }
 
-  }
+  };
 
-
-  private recycleStar (star: Star) {
+  private recycleBody = (body: CelestialPosition) => {
 
     let direction = 'z';
 
@@ -165,26 +212,45 @@ export class StarsComponent implements OnInit {
       }
     }
 
-    star.z = this.config.starMinScale + Math.random() * (1 - this.config.starMinScale);
+    body.z = this.config.starMinScale + Math.random() * (1 - this.config.starMinScale);
 
     if (direction === 'z') {
-      star.z = 0.1;
-      star.x = Math.random() * this.screen.w;
-      star.y = Math.random() * this.screen.h;
+      body.z = 0.1;
+      body.x = Math.random() * this.screen.w;
+      body.y = Math.random() * this.screen.h;
     } else if (direction === 'l') {
-      star.x = -this.config.overflow;
-      star.y = this.screen.h * Math.random();
+      body.x = -this.config.overflow;
+      body.y = this.screen.h * Math.random();
     } else if (direction === 'r') {
-      star.x = this.screen.w + this.config.overflow;
-      star.y = this.screen.h * Math.random();
+      body.x = this.screen.w + this.config.overflow;
+      body.y = this.screen.h * Math.random();
     } else if (direction === 't') {
-      star.x = this.screen.w * Math.random();
-      star.y = -this.config.overflow;
+      body.x = this.screen.w * Math.random();
+      body.y = -this.config.overflow;
     } else if (direction === 'b') {
-      star.x = this.screen.w * Math.random();
-      star.y = this.screen.h + this.config.overflow;
+      body.x = this.screen.w * Math.random();
+      body.y = this.screen.h + this.config.overflow;
     }
 
+  };
+
+  private wandererSize = (wanderer: StarWanderer) => {
+    wanderer.size = Math.min(wanderer.size + this.config.imgSizeStep, this.config.maxImgSize);
+  }
+
+  private generate () {
+
+    const starCount = (window.innerWidth + window.innerHeight) * this.config.starDensity;
+
+    for (let i = 0; i < starCount; i++) {
+      this.stars.push({
+        x: 0,
+        y: 0,
+        z: this.config.starMinScale + Math.random() * (1 - this.config.starMinScale),
+        color: this.randomStarColor()
+      });
+
+    }
   }
 
 
@@ -197,30 +263,18 @@ export class StarsComponent implements OnInit {
     this.velocity.x += (this.velocity.xMomentum - this.velocity.x) * 0.8;
     this.velocity.y += (this.velocity.yMomentum - this.velocity.y) * 0.8;
 
-    this.stars.forEach((star: Star) => {
-
-      star.x += this.velocity.x * star.z;
-      star.y += this.velocity.y * star.z;
-
-      star.x += (star.x - this.screen.w / 2) * this.velocity.z * star.z;
-      star.y += (star.y - this.screen.h / 2) * this.velocity.z * star.z;
-      star.z += this.velocity.z;
-
-      // recycle when out of bounds
-      if (
-        star.x < -this.config.overflow ||
-        star.x > this.screen.w + this.config.overflow ||
-        star.y < -this.config.overflow ||
-        star.y > this.screen.h + this.config.overflow
-      ) {
-        this.recycleStar(star);
-      }
-
-    });
+    this.stars.forEach((star: Star) => this.updatePosition(star));
+    this.wanderers.forEach((wanderer: StarWanderer) => this.updatePosition(wanderer, true));
+    this.wanderers.forEach(this.wandererSize);
 
   }
 
   private render () {
+
+    this.wanderers.forEach((wanderer: StarWanderer) => {
+      // this.context.globalAlpha = wanderer.opacity;
+      this.context.drawImage(wanderer.img, wanderer.x, wanderer.y, wanderer.size, wanderer.size);
+    });
 
     this.stars.forEach((star: Star) => {
 

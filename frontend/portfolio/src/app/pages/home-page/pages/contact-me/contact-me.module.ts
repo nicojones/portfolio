@@ -3,6 +3,7 @@ import { ContactMeComponent } from './contact-me.component';
 import { SharedModule } from '~app/shared';
 import { RouterModule } from '@angular/router';
 import { ContactMeResolver } from '~home-page/pages/contact-me/shared/resolvers';
+import { TextModule } from '~app/modules/text';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ContactMeResolver } from '~home-page/pages/contact-me/shared/resolvers'
         }
       }
     ]),
-    SharedModule
+    SharedModule,
+    TextModule
   ],
   providers: [
     ContactMeResolver

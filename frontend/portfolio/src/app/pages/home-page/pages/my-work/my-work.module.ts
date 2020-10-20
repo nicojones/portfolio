@@ -3,6 +3,7 @@ import { MyWorkComponent } from './my-work.component';
 import { SharedModule } from '~app/shared';
 import { RouterModule } from '@angular/router';
 import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
+import { TextModule } from '~app/modules/text';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
         }
       }
     ]),
-    SharedModule
+    SharedModule,
+    TextModule
   ],
   providers: [
     MyWorkResolver

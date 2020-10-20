@@ -55,19 +55,21 @@ class GoodreadsService {
                 'pages' => $book['num_pages'],
                 'descr' => $this->shortDesc($book['description']),
                 'link'  => $book['link'],
+                'order' => 'd',
                 'image' => preg_replace($this->imgUrlPreg, '${1}500${3}', $book['image_url'])
             ];
         }
 
-        return $books;
+        return array_reverse($books);
     }
 
     public function getReadBooks ($page, $perPage = 50) {
         $lastYear = (date('Y') - 1) . '';
 
-        $url = "https://www.goodreads.com/review/list/{$this->userId}.xml?";
+        $url = "https://www.goodreads.com/review/list?";
 
         $query = http_build_query([
+            'id' => $this->userId,
             'key' => $this->API_KEY,
             'v' => 2,
             'shelf' => 'read',

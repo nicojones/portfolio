@@ -1,7 +1,7 @@
-import { ContentType } from '~app/shared/interfaces';
+import { TextContent } from '~app/shared/interfaces';
 
 
 export interface MyWork {
-  text: { type: ContentType, content: string }[];
+  text: TextContent[];
   title: string;
 }

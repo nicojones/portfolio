@@ -2,16 +2,19 @@
   <h1 class="jumbo slide-in center">
     <span class="accent">{{ aboutPage.title.first }}</span>
     <br>
-    <span [innerHTML]="aboutPage.title.multi[plusIndex]"></span>
+    <span class="plus-box">
+      <span
+        *ngFor="let multi of aboutPage.title.multi; index as i"
+        [innerHTML]="multi"
+        [class.shown]="plusIndex === i"
+      ></span>
+    </span>
     <br>
     <span class="accent">{{ aboutPage.title.last }}</span>{{ aboutPage.title.period }}
   </h1>
   <div class="text">
-    <ng-container *ngFor="let text of aboutPage.text">
-      <hr *ngIf="text.type === 'hr'" class="slide-in">
-      <p *ngIf="text.type === 'p'" [innerHTML]="text.content" class="slide-in"></p>
-      <img *ngIf="text.type === 'img'" [src]="text.content" class="slide-in" [alt]="text.extra.alt"/>
-    </ng-container>
+    <app-text [text]="aboutPage.text"></app-text>
+
     <p class="slide-in">Currently reading
       <ng-container *ngIf="!shelf.reading">some books...</ng-container>
       <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
@@ -37,3 +40,4 @@
   ></app-carousel>
 
 </div>
+

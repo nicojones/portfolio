@@ -1,8 +1,8 @@
-import { ContentType } from '~app/shared/interfaces';
+import { TextContent } from '~app/shared/interfaces';
 
 
 export interface AboutPage {
-  text: { type: ContentType, content: string, extra?: any }[];
+  text: TextContent[];
   title: {
     first: string;
     multi: string[];

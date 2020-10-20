@@ -1,6 +1,6 @@
 <div class="app-row with-margin" @slideIn>
   <h1 class="jumbo slide-in center" [innerHTML]="myWork.title"></h1>
   <div class="text">
-    <p *ngFor="let text of myWork.text" class="slide-in" [innerHTML]="text.content"></p>
+    <app-text [text]="myWork.text"></app-text>
   </div>
 </div>

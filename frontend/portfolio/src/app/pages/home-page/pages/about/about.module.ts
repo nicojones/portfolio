@@ -7,6 +7,7 @@ import { AboutComponent } from './about.component';
 import { BooksService } from '~app/services';
 import { CarouselModule } from '~app/modules/carousel';
 import { AboutPageResolver } from '~home-page/pages/about/shared/resolvers/about-page.resolver';
+import { TextModule } from '~app/modules/text';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AboutPageResolver } from '~home-page/pages/about/shared/resolvers/about
       }
     ]),
     SharedModule,
-    CarouselModule
+    CarouselModule,
+    TextModule
   ],
   providers: [
     BooksService,

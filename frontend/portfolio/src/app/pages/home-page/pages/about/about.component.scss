@@ -1,0 +1,17 @@
+@import 'mixins';
+
+.plus-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  > span {
+    @include transitions();
+    position: absolute;
+    opacity: 0;
+
+    &.shown {
+      opacity: 1;
+    }
+  }
+}

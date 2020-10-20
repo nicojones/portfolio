@@ -6,9 +6,7 @@
     </ng-container>
   </div>
   <div class="text flex-column">
-    <ng-container *ngFor="let link of contactMe.links">
-      <a [href]="link.url" target="_blank" class="slide-in mt-20" [innerHTML]="link.text"></a>
-    </ng-container>
+    <app-text [links]="contactMe.links"></app-text>
   </div>
 
 </div>
