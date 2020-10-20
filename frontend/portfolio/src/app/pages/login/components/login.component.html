@@ -1,0 +1,21 @@
+<div class="app-row">
+  <h1 class="jumbo center">login</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSave()" class="form">
+    <div class="row">
+      <label>
+        Name
+      </label>
+      <input matInput formControlName="username"/>
+    </div>
+    <div class="row">
+      <label>
+        Password
+      </label>
+      <input matInput formControlName="password" type="pass"/>
+    </div>
+    <div class="row">
+      <button mat-button>login</button>
+    </div>
+  </form>
+</div>

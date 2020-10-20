@@ -70,6 +70,7 @@ class AuthenticateController extends ParentController {
      * @return array $user The authenticated user (on success) or FALSE on fail
      */
     public function login($username = '', $password = '') {
+
         $user = $this->authenticateUser(
             $username ?: $this->getPost('username'),
             $password ?: $this->getPost('password')
@@ -103,6 +104,7 @@ class AuthenticateController extends ParentController {
         $config = $this->config->get('Login');
         $dbEnabled = (bool)(int)$this->config->get('Database', 'DB_SUPPORT');
         $user = [];
+
         if ($dbEnabled && $config['DB_SUPPORT'] == 1) {
             $user = $this->model->getUser($username, $password);
         } elseif ($username == $config['LOGIN_USERNAME'] && $password == $config['LOGIN_PASSWORD']) {

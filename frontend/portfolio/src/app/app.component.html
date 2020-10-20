@@ -3,6 +3,8 @@
   <span class="name-logo-url">nico.kupfer.es/</span>
 </a>
 
+<a id="authed" *ngIf="isAuthed$ | async" [routerLink]="'/' + Routes.Admin">go to admin</a>
+
 <router-outlet></router-outlet>
 
 <app-stars></app-stars>

@@ -34,6 +34,12 @@
       ],
       "~home-page/*": [
         "src/app/pages/home-page/*"
+      ],
+      "~login/*": [
+        "src/app/pages/login/*"
+      ],
+      "~admin/*": [
+        "src/app/pages/admin/*"
       ]
     }
   }

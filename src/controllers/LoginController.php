@@ -54,17 +54,7 @@
                 }
             }
 
-            /**
-             * Redirect after login if previous attempt got a 403
-             */
-            if ($afterLogin = Session::getAfterLogin()) {
-                Session::cleanAfterLogin();
-            } else {
-                $afterLogin = $this->url('LoginHome');
-            }
-
-            if (isAjax()) {
-                $this->json(['redirect' => $afterLogin]);
-            }
+            unset($user['password']);
+            $this->json(['user' => $user]);
         }
     }

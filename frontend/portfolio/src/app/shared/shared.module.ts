@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '~app/shared/angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -8,7 +10,9 @@ import { AngularMaterialModule } from '~app/shared/angular-material.module';
   ],
   exports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatSnackBarModule,
+    ReactiveFormsModule
     // RouterModule
   ]
 })

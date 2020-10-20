@@ -10,22 +10,22 @@ import { AppTitleService } from '~app/services';
 import { NotFoundComponent } from '~app/components/not-found/not-found.component';
 
 import { StarsComponent } from './components/stars/stars.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginModule } from '~app/pages/login/login.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StarsComponent,
-    NotFoundComponent,
-    LoginComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRouting
+    AppRouting,
+    LoginModule
   ],
   providers: [
     AppTitleService

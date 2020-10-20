@@ -6,6 +6,8 @@ interface MyRoutes {
   About: string;
   Home: string;
   Reading: string;
+  Login: string;
+  Admin: string;
   Read: string;
 }
 
@@ -16,6 +18,8 @@ export const Routes: MyRoutes = {
   Home: '',
   Reading: 'books-reading',
   Read: 'books-read',
+  Admin: 'dashboard',
+  Login: '_login_',
 
   absolute: (key: keyof MyRoutes) => {
     return `/${ Routes[key] }`;

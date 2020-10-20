@@ -1,0 +1,42 @@
+@import 'colors';
+
+.cdk-overlay-container:empty {
+  display: none;
+}
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+}
+.cdk-overlay-container, .cdk-global-overlay-wrapper {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  z-index: 1000;
+}
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.mat-snack-bar-container {
+  border: 3px solid $primary-color;
+  color: $primary-color;
+
+  .mat-simple-snackbar-action > button {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    box-shadow: 0 0 3px 0 $primary-color;
+  }
+
+  .mat-simple-snackbar {
+    font-size: 14px;
+  }
+}
