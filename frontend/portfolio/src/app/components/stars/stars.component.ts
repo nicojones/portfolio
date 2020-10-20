@@ -42,12 +42,6 @@ export class StarsComponent implements OnInit {
   private stars: Star[] = [];
 
   /**
-   * The elements to render every time
-   * @private
-   */
-  // private wanderers: StarWanderer[] = [];
-
-  /**
    * Velocity of each star
    * @private
    */
@@ -95,22 +89,6 @@ export class StarsComponent implements OnInit {
     document.ontouchmove = this.onTouchMove;
     document.ontouchend = this.onMouseLeave;
 
-    // StarsService.objects$.subscribe((objects: StarObject) => {
-    //   const wanderers: StarWanderer[] = [];
-    //
-    //   if (objects.astronaut) {
-    //     const img = this.astronaut.nativeElement;
-    //     const wanderer: StarWanderer = {
-    //       img: img,
-    //       x: this.screen.w / (2 + 0.5 * Math.random()),
-    //       y: this.screen.h / (2 + 0.5 * Math.random()),
-    //       z: this.config.zVelocity * 100,
-    //       size: this.config.maxImgSize
-    //     };
-    //     wanderers.push(wanderer);
-    //   }
-    //   this.wanderers = wanderers;
-    // });
   }
 
 
@@ -244,10 +222,6 @@ export class StarsComponent implements OnInit {
 
   };
 
-  // private wandererSize = (wanderer: StarWanderer) => {
-  //   wanderer.size = Math.min(wanderer.size + this.config.imgSizeStep, this.config.maxImgSize);
-  // }
-
   private generate () {
 
     const starCount = (window.innerWidth + window.innerHeight) * this.config.starDensity;
@@ -277,16 +251,10 @@ export class StarsComponent implements OnInit {
     this.velocity.y += (this.velocity.yMomentum - this.velocity.y) * 0.8;
 
     this.stars.forEach((star: Star) => this.updatePosition(star));
-    // this.wanderers.forEach((wanderer: StarWanderer) => this.updatePosition(wanderer, true));
-    // this.wanderers.forEach(this.wandererSize);
 
   }
 
   private render () {
-
-    // this.wanderers.forEach((wanderer: StarWanderer) => {
-    //   this.context.drawImage(wanderer.img, wanderer.x, wanderer.y, wanderer.size, wanderer.size);
-    // });
 
     this.stars.forEach((star: Star) => {
 

@@ -1,4 +1,4 @@
 export interface StarObject {
-  astronaut: boolean;
-  rocket: boolean;
+  // astronaut: boolean;
+  // rocket: boolean;
 }

@@ -13,7 +13,6 @@ export class NotFoundComponent implements OnInit, OnDestroy {
   public readonly Routes = Routes;
 
   constructor () {
-    StarsService.showObject = { astronaut: true, rocket: true };
     StarsService.reverse$.next(true);
   }
 
@@ -21,7 +20,6 @@ export class NotFoundComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy () {
-    StarsService.showObject = { astronaut: false, rocket: false };
     StarsService.reverse$.next(false);
   }
 
