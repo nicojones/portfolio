@@ -55,7 +55,7 @@ html, body {
 
 .accent-bg {
   background: $primary-color;
-  color: $primary-color-text;
+  color: $text-color;
 }
 
 .progress {
@@ -102,4 +102,14 @@ h2, .h2 {
 
 .no-deco {
   text-decoration: none;
+}
+
+.l1 {
+  position: relative;
+  left: -2px;
+}
+
+::selection {
+  background-color: $primary-color;
+  color: $text-color;
 }

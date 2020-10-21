@@ -12,18 +12,24 @@ $name-logo-width: 13rem;
   font-family: 'Monospaced', monospace;
   width: $name-logo-width;
   text-align: center;
+  z-index: 1;
   @if ($name-logo-position == 'right') {
     left: calc(100% - #{$name-logo-right + $name-logo-width});
   } @else {
     left: $name-logo-left;
   }
   top: $name-logo-top;
-  color: $primary-color-text;
+  color: $text-color;
   text-decoration: none;
   transition: all 0.4s;
 
+  .name-bg {
+    background: $app-background;
+    padding: 2px;
+  }
 
-  > i {
+
+  i {
     @include transitions();
     font-style: normal;
     opacity: 0;
@@ -36,7 +42,7 @@ $name-logo-width: 13rem;
       left: $name-logo-move-on-hover;
     }
 
-    > i {
+    i {
       opacity: 1;
     }
   }
