@@ -1,5 +1,5 @@
 <ng-container *ngFor="let t of text">
-  <hr *ngIf="t.type === 'hr'" class="slide-in">
+  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">
   <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>
   <img *ngIf="t.type === 'img'" [src]="t.content" class="slide-in {{ t.extra?.className }}" [alt]="t.extra?.alt"/>
 </ng-container>
