@@ -1,9 +1,22 @@
+@import 'mixins';
 @import 'colors';
 @import 'globals';
 @import 'breakpoints';
 
+html, body {
+  font-size: $app-font-size;
+}
+
 .w-100 {
   width: 100%
+}
+
+.relative {
+  position: relative;
+}
+
+.v-hidden {
+  visibility: hidden;
 }
 
 .flex-row {
@@ -58,20 +71,26 @@
 }
 
 .jumbo {
-  font-size: $jumbo-font-size;
+  //font-size: $jumbo-font-size;
+  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size, $jumbo-font-size);
 }
 
-@media (max-width: $breakpoint-mobile){
-  .jumbo {
-    font-size: $jumbo-font-size-mobile;
-  }
-}
+//@media (max-width: $breakpoint-tablet){
+//  .jumbo {
+//    font-size: $huge-font-size;
+//  }
+//}
+//@media (max-width: $breakpoint-mobile){
+//  .jumbo {
+//    font-size: $huge-font-size;
+//  }
+//}
 
-@media (max-width: $breakpoint-mobile-sm){
-  .jumbo {
-    font-size: $jumbo-font-size-mobile-sm;
-  }
-}
+//@media (max-width: $breakpoint-mobile-sm){
+//  .jumbo {
+//    font-size: $h2-font-size;
+//  }
+//}
 
 h2, .h2 {
   font-size: $h2-font-size;
@@ -83,8 +102,4 @@ h2, .h2 {
 
 .no-deco {
   text-decoration: none;
-}
-
-.mid-size {
-  font-size: $jumbo-font-size-mobile;
 }

@@ -14,8 +14,14 @@ cd $path_here/$appName;
 echo -e "${c} * Running script from $path_here$n"
 
 
-echo -e "${c} * Compiling...$n"
-npm run build
+
+if [[ "$2" ]]; then
+  echo -e "${c} * Compiling in DEV mode$n"
+  ng build "$2"
+else
+  echo -e "${c} * Compiling in PROD mode$n"
+  npm run build
+fi
 
 
 distDir="dist"

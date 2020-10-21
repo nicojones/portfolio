@@ -1,13 +1,15 @@
-<img src="assets/images/astro/astro1.gif" alt="astronaut" class="astronaut object"/>
-<img src="assets/images/astro/rocket.gif" alt="rocket" class="rocket object"/>
+<img src="assets/images/astro/astro1.gif" alt="astronaut" class="astronaut object" [class.spiral-in]="showBlackHole"/>
+<img src="assets/images/astro/rocket.gif" alt="rocket" class="rocket object" [class.spiral-in]="showBlackHole"/>
 
-<div class="__app-row just-center flex-column align-center">
-  <h1 class="jumbo secondary">not found</h1>
-  <div class="black-hole">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+<div class="__app-row just-center flex-column align-center page">
+  <h1 class="jumbo secondary my-0">not found</h1>
+  <div class="black-hole-box">
+    <div class="black-hole" [class.big]="showBlackHole">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
-  <a [routerLink]="'/' + Routes.Home" class="no-deco mid-size back-button secondary">go back</a>
+  <a [routerLink]="'/' + Routes.Home" class="no-deco back-button secondary">go back</a>
 </div>

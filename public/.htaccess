@@ -54,6 +54,10 @@ DirectoryIndex index.html
     Options +FollowSymlinks
     RewriteEngine On
     RewriteBase /public
+
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
 #
     RewriteCond %{HTTP_HOST} ^www\.(.+)
     RewriteCond %{HTTPS}s/%1 ^(on(s)|offs)/(.+)

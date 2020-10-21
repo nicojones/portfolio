@@ -33,6 +33,7 @@
     button {
       @extend %label-input;
       width: 100%;
+      background: transparent;
       @extend %border-color;
     }
   }

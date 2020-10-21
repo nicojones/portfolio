@@ -1,5 +1,5 @@
 // set to true/false to center (or keep to the left) the menu in the home component
-$home-page-centered: true;
+$home-page-centered: false;
 // The position of the `Nico Kupfer` menu
 $name-logo-position: 'right';
 // Use opacity for the Home Page menu transitions
@@ -8,23 +8,30 @@ $home-page-use-opacity: true;
 $content-with-margin: true;
 
 
-$app-font-size: 20px;
-$jumbo-font-size: 110px;
-$jumbo-font-size-mobile: 70px;
-$jumbo-font-size-mobile-sm: 40px;
+$app-font-size: 20px; // MUST BE PX
+$jumbo-font-size: 6 * $app-font-size;
+$h2-font-size: 3 * $app-font-size;
+$big-font-size: 2 * $app-font-size;
 
-$name-logo-top: 100px;
-$name-logo-right: 260px;
-$name-logo-left: 100px;
-$name-logo-right-hover: $name-logo-right + 40px;
-$name-logo-left-hover: 120px;
+$name-logo-top: 5rem;
+$name-logo-right: 4rem;
+$name-logo-left: 5rem;
+$name-logo-move-on-hover: 1rem;
 
-$app-row-top: 140px;
+$app-row-top: 5rem;
+
+// How much to indent stuff in the home page when we hover on them
+$indent-hover: 4rem;
 
 $app-row-width: 75%;
 $app-row-width-sm: 95%;
 
-$app-row-text-padding: 50px;
+$app-row-text-padding: 2.5rem;
 
-$h2-font-size: 50px;
-$big-font-size: 30px;
+// My photo in the homepage
+$myself-opacity: 1;
+$myself-brightness: 25%;
+///
+$myself-opacity-mobile: 0.3;
+$myself-brightness-mobile: 100%;
+//////

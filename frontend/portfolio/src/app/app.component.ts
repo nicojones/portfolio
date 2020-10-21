@@ -18,6 +18,11 @@ import { AuthGuard } from '~app/services/guards/auth.guard';
 export class AppComponent {
   public readonly Routes = Routes;
 
+  /**
+   * Toggle to disable stars.
+   */
+  public stars: boolean = true;
+
   public isAuthed$ = AuthGuard.loggedIn$;
 
   // noinspection JSUnusedLocalSymbols

@@ -1,34 +1,45 @@
-// text and buttons
+@import 'mixins';
+
+$black-hole-color-1: #0a0808;
+$black-hole-color-2: #333;
+$black-hole-color-3: #000;
+$black-hole-size: 300px;
 
 
-.back-button {
-  position: fixed;
-  bottom: 50px;
+.page {
+  height: 100%;
 }
+
+$astronaut-width: 150px;
+$rocket-width: 200px;
 
 // //////////////////////
 
-
-
-
-
 .astronaut {
-  width: 150px;
-  left: calc(50% - 300px);
-  transform-origin: 300px center;
-  animation: circle 17s linear infinite reverse;
+  width: $astronaut-width;
+  top: calc(50% - #{0 * $astronaut-width});
+  left: calc(50% - #{2 * $astronaut-width});
+  transform-origin: #{2 * $astronaut-width} center;
+  animation: circle 12s linear infinite reverse;
 }
 
 .rocket {
+  top: calc(50% - #{0 * $rocket-width});
+  left: calc(50% - #{2 * $rocket-width});
+  transform-origin: #{2 * $rocket-width} center;
   width: 200px;
-  left: calc(50% - 450px);
-  animation: circle 13s linear infinite;
-  transform-origin: 450px center;
+  animation: circle 10s linear infinite;
+}
+
+.spiral-in {
+  @include transitions(90s);
+  transform-origin: 0 center;
+  top: 50%;
+  left: 50%;
 }
 
 .object {
   position: fixed;
-  top: calc(50% - 100px);
 }
 
 @keyframes circle {
@@ -37,16 +48,18 @@
   }
 }
 
+.black-hole-box, .black-hole.big {
+  width: $black-hole-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $black-hole-size;
+}
 
-$black-hole-color-1: #0a0808;
-$black-hole-color-2: #333;
-$black-hole-color-3: #000;
 .black-hole {
-  //position: fixed;
-  width: 300px;
-  height: 300px;
-  //left: calc(50% - 150px);
-  //top: calc(50% - 150px);
+  width: 0;
+  height: 0;
+  @include transitions(15s);
   border-radius: 50%;
   background: linear-gradient(#{$black-hole-color-1}, #{$black-hole-color-2}, #{$black-hole-color-3});
   animation: animate 4s linear infinite;
@@ -83,7 +96,7 @@ $black-hole-color-3: #000;
     left: 12px;
     right: 13px;
     bottom: 14px;
-    background: #000;
+    background: $black-hole-color-1;
     border-radius: 50%;
   }
 }

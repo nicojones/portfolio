@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePageComponent } from '~home-page/home-page.component';
 import { Routes } from '~routes/routes';
+import { HomePageResolver } from '~home-page/shared/resolvers';
 
 
 @NgModule({
@@ -10,10 +11,13 @@ import { Routes } from '~routes/routes';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePageComponent
+        component: HomePageComponent,
+        resolve: {
+          homePage: HomePageResolver
+        }
       },
       {
-        path: Routes.ContactMe,
+        path: Routes.Contact,
         loadChildren: () => import('~home-page/pages/contact-me').then((m) => m.ContactMeModule)
       },
       {

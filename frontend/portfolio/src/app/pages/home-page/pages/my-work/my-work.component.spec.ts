@@ -5,7 +5,7 @@ import { SharedModule } from '~app/shared';
 import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
 import { TestModule } from '~app/tests';
 import { Resolve } from '@angular/router';
-import { MyWork } from '~home-page/pages/my-work/shared/interfaces';
+import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { of } from 'rxjs';
 
 
@@ -39,9 +39,9 @@ describe('MyWorkComponent', () => {
   });
 });
 
-class MyFakeWorkResolver implements Resolve<MyWork> {
+class MyFakeWorkResolver implements Resolve<MyWorkPage> {
   public resolve () {
-    return of<MyWork>(JSON.parse(
+    return of<MyWorkPage>(JSON.parse(
       '{"title":"what drives me?","text":["hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even..."]}'));
   }
 }

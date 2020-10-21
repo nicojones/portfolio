@@ -1,0 +1,44 @@
+{
+    "title": {
+        "first": "mathe&shy;matician",
+        "last": "web developer",
+        "period": ".",
+        "multi": [
+            "+",
+            "turned",
+            "and"
+        ]
+    },
+    "text": [
+        {
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At Zeno eum non beatum modo, sed etiam divitem dicere\n                   ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae\n                   corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis\n                   ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate,\n                   haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare,\n                   quae sunt a te dicta? <\/p>",
+            "extra": null,
+            "type": "p"
+        },
+        {
+            "content": "<blockquote cite=\"http:\/\/loripsum.net\">\n                   Alia quaedam dicent, credo, magna antiquorum esse peccata, quae ille veri investigandi cupidus nullo modo ferre potuerit.\n                 <\/blockquote>",
+            "extra": null,
+            "type": "p"
+        },
+        {
+            "content": "<p>Cum audissem Antiochum, Brute, ut solebam, cum M. <i>Ego vero isti, inquam, permitto.<\/i>\n                   <a href=\"http:\/\/loripsum.net\/\" target=\"_blank\">Quantum Aristoxeni in musicis?<\/a>\n                   Iam id ipsum absurdum, maximum malum neglegi.\n                   <b>Ita multa dicunt, quae vix intellegam.<\/b><\/p>",
+            "extra": null,
+            "type": "p"
+        },
+        {
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At Zeno eum non beatum modo, sed etiam divitem dicere\n                   ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae\n                   corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis\n                   ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate,\n                   haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare,\n                   quae sunt a te dicta? <\/p>",
+            "extra": null,
+            "type": "p"
+        },
+        {
+            "content": "<blockquote cite=\"http:\/\/loripsum.net\">\n                   Alia quaedam dicent, credo, magna antiquorum esse peccata, quae ille veri investigandi cupidus nullo modo ferre potuerit.\n                 <\/blockquote>",
+            "extra": null,
+            "type": "p"
+        },
+        {
+            "content": "<p>Cum audissem Antiochum, Brute, ut solebam, cum M. <i>Ego vero isti, inquam, permitto.<\/i>\n                   <a href=\"http:\/\/loripsum.net\/\" target=\"_blank\">Quantum Aristoxeni in musicis?<\/a>\n                   Iam id ipsum absurdum, maximum malum neglegi.\n                   <b>Ita multa dicunt, quae vix intellegam.<\/b><\/p>",
+            "extra": null,
+            "type": "p"
+        }
+    ]
+}

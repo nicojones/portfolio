@@ -5,6 +5,13 @@
  */
 class HomeController extends Controller {
 
+    const SECTIONS = [
+        'home' => 'home-section.json',
+        'work' => 'work-section.json',
+        'about' => 'about-section.json',
+        'contact' => 'contact-section.json'
+    ];
+
     /**
      * @var HomeController The class instance.
      * @internal
@@ -47,108 +54,36 @@ class HomeController extends Controller {
         return $this->model;
     }
 
-    public function getMyWorkPage () {
-        $title = 'what drives me?';
-        $text = [
-            [ 'type' => 'p', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At Zeno eum non beatum modo, sed etiam divitem dicere
-                   ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae
-                   corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis
-                   ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate,
-                   haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare,
-                   quae sunt a te dicta? </p>'],
+    public function getJSON() {
+        $fileName = $this->getSection($_GET['section']);
 
-            [ 'type' => 'p', 'content' => '<blockquote cite="http://loripsum.net">
-                   Alia quaedam dicent, credo, magna antiquorum esse peccata, quae ille veri investigandi cupidus nullo modo ferre potuerit.
-                 </blockquote>'],
-
-            [ 'type' => 'p', 'content' => '<p>Cum audissem Antiochum, Brute, ut solebam, cum M. <i>Ego vero isti, inquam, permitto.</i>
-                   <a href="http://loripsum.net/" target="_blank">Quantum Aristoxeni in musicis?</a>
-                   Iam id ipsum absurdum, maximum malum neglegi.
-                   <b>Ita multa dicunt, quae vix intellegam.</b></p>'],
-
-
-            [ 'type' => 'p', 'content' => '<p>Illa tamen simplicia, vestra versuta. Itaque his sapiens semper vacabit. Sed emolumenta communia esse
-                   dicuntur, recte autem facta et peccata non habentur communia. Istam voluptatem, inquit, Epicurus ignorat?
-                   Mihi quidem Antiochum, quem audis, satis belle videris attendere. Efficiens dici potest. Si stante, hoc
-                   natura videlicet vult, salvam esse se, quod concedimus; Unum est sine dolore esse, alterum cum voluptate. </p>']
-        ];
-        $this->json([
-            'title' => $title,
-            'text' => $text
-        ]);
+        die(file_get_contents($fileName));
     }
 
-    public function getAboutPage () {
-        $title = [
-            'first' => 'mathematician',
-            'multi' => ['+', 'turned', 'and'],
-            'last' => 'web developer',
-            'period' => '.'
-        ];
-        $text = [
-            [ 'type' => 'p', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At Zeno eum non beatum modo, sed etiam divitem dicere
-                   ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae
-                   corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis
-                   ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate,
-                   haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare,
-                   quae sunt a te dicta? </p>'],
+    public function saveJSON () {
+        $fileName = $this->getSection($_POST['section']);
+        // All well, section is valid
+        $sectionContent = $_POST['content'];
 
-            [ 'type' => 'p', 'content' => '<blockquote cite="http://loripsum.net">
-                   Alia quaedam dicent, credo, magna antiquorum esse peccata, quae ille veri investigandi cupidus nullo modo ferre potuerit.
-                 </blockquote>'],
-
-            [ 'type' => 'p', 'content' => '<p>Cum audissem Antiochum, Brute, ut solebam, cum M. <i>Ego vero isti, inquam, permitto.</i>
-                   <a href="http://loripsum.net/" target="_blank">Quantum Aristoxeni in musicis?</a>
-                   Iam id ipsum absurdum, maximum malum neglegi.
-                   <b>Ita multa dicunt, quae vix intellegam.</b></p>'],
-
-
-            [ 'type' => 'p', 'content' => '<p>Illa tamen simplicia, vestra versuta. Itaque his sapiens semper vacabit. Sed emolumenta communia esse
-                   dicuntur, recte autem facta et peccata non habentur communia. Istam voluptatem, inquit, Epicurus ignorat?
-                   Mihi quidem Antiochum, quem audis, satis belle videris attendere. Efficiens dici potest. Si stante, hoc
-                   natura videlicet vult, salvam esse se, quod concedimus; Unum est sine dolore esse, alterum cum voluptate. </p>']
-                        ];
-        $this->json([
-            'title' => $title,
-            'text' => $text
-        ]);
+        if (!file_exists($fileName)) {
+        }
+//         $saved = file_put_contents($fileName, $sectionContent);
+        $saved = file_put_contents($fileName, json_encode(json_decode($sectionContent, true), JSON_PRETTY_PRINT));
+        if ($saved === false) {
+            $this->header(400);
+            die("{ \"message\": \"Couldn't save to file <$fileName>\" }");
+        } else {
+            die("{ \"message\": \"Data saved in <$fileName>\" }");
+        }
     }
 
-    public function getContactMePage () {
-        $title = 'Interested?<br> Sounds <span class="accent">great!</span>';
-        $text = [
-            [ 'type' => 'p', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At Zeno eum non beatum modo, sed etiam divitem dicere
-                   ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae
-                   corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis
-                   ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate,
-                   haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare,
-                   quae sunt a te dicta? </p>'],
-
-            [ 'type' => 'p', 'content' => '<blockquote cite="http://loripsum.net">
-                   Alia quaedam dicent, credo, magna antiquorum esse peccata, quae ille veri investigandi cupidus nullo modo ferre potuerit.
-                 </blockquote>'],
-
-            [ 'type' => 'p', 'content' => '<p>Cum audissem Antiochum, Brute, ut solebam, cum M. <i>Ego vero isti, inquam, permitto.</i>
-                   <a href="http://loripsum.net/" target="_blank">Quantum Aristoxeni in musicis?</a>
-                   Iam id ipsum absurdum, maximum malum neglegi.
-                   <b>Ita multa dicunt, quae vix intellegam.</b></p>'],
-
-
-            [ 'type' => 'p', 'content' => '<p>Illa tamen simplicia, vestra versuta. Itaque his sapiens semper vacabit. Sed emolumenta communia esse
-                   dicuntur, recte autem facta et peccata non habentur communia. Istam voluptatem, inquit, Epicurus ignorat?
-                   Mihi quidem Antiochum, quem audis, satis belle videris attendere. Efficiens dici potest. Si stante, hoc
-                   natura videlicet vult, salvam esse se, quod concedimus; Unum est sine dolore esse, alterum cum voluptate. </p>']
-        ];
-        $links = [
-            ['text' => 'My Curriculum', 'url' => ''],
-            ['text' => 'GitHub', 'url' => 'https://github.com/nicojones'],
-            ['text' => 'YouTube', 'url' => 'https://youtube.com/user/njrubik'],
-            ['text' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/nico-kupfer/'],
-        ];
-        $this->json([
-            'title' => $title,
-            'text' => $text,
-            'links' => $links
-        ]);
+    private function getSection($section) {
+        $fileName = HomeController::SECTIONS[$section];
+        if (!$fileName) {
+            $this->header(400);
+            die("{ \"error\": \"Section <$section> does not exist\" }");
+            // die("{ \"error\": \"Could not retrieve DATA from file <$fileName>\" }");
+        }
+        return __ROOT__ . '/src/data/' . $fileName;
     }
 }

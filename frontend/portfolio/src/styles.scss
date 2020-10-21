@@ -1,6 +1,8 @@
+@import 'globals';
 
 html, body {
   height: 100%;
+  font-size: $app-font-size;
 }
 body { margin: 0 }
 
@@ -10,5 +12,3 @@ body { margin: 0 }
 @import 'generic';
 @import 'portfolio';
 @import 'snackbar';
-
-//@import '~@angular/material/prebuilt-themes/indigo-pink.css';

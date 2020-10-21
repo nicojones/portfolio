@@ -5,8 +5,6 @@
       <p *ngIf="text.type === 'p'" [innerHTML]="text.content" class="slide-in"></p>
     </ng-container>
   </div>
-  <div class="text flex-column">
-    <app-text [links]="contactMe.links"></app-text>
-  </div>
+  <app-text [links]="contactMe.link" class="text flex-column"></app-text>
 
 </div>

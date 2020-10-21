@@ -3,7 +3,8 @@ import { fadeIn, slide, slideIn, Timings } from '~app/shared/animations';
 import { ClientOs } from '~app/shared/interfaces';
 import { getLocalStorage } from '~app/services';
 import { StorageKey } from '~app/shared/enums';
-import { Routes } from '~routes/routes';
+import { HomePage } from '~home-page/interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,11 +15,16 @@ import { Routes } from '~routes/routes';
   animations: [slide(), slideIn(), fadeIn(Timings.FadeInStaggerSlow)]
 })
 export class HomePageComponent {
-  public readonly Routes = Routes;
 
   public showMenu: boolean = false;
 
   public clientOs: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
+
+  public homePage: HomePage = this.route.snapshot.data.homePage;
+
+  public constructor (
+    private route: ActivatedRoute
+  ) {}
 
   public toggleMenu () {
     if (this.clientOs.isMobile) {

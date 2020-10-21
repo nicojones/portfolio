@@ -1,19 +1,12 @@
 @import 'globals';
 @import 'colors';
+@import 'mixins';
 
 $size: 50px;
 $thickness: 5px;
 $angle: 40deg;
 $angleHover: 30deg;
 $angleActive: 25deg;
-
-@mixin transition( $value ) {
-  transition: $value;
-}
-
-@mixin transform( $value ) {
-  transform: $value;
-}
 
 @mixin transform-origin( $value ) {
   transform-origin: $value;
@@ -29,14 +22,11 @@ $angleActive: 25deg;
   }
 }
 
-button {
+.paginate {
   -webkit-appearance: none;
   background: transparent;
   border: 0;
   outline: 0;
-}
-
-.paginate {
   position: relative;
   margin: 10px;
   width: $size;
@@ -58,7 +48,7 @@ button {
     border-radius: $thickness / 2;
     background: #fff;
 
-    @include transition( all 0.15s ease );
+    @include transitions( all 0.15s ease );
   }
 
   &.left {

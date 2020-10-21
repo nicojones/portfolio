@@ -6,28 +6,29 @@ import { Observable, of } from 'rxjs';
 
 import { environment } from '~env/environment';
 
-import { MyWork } from '~home-page/pages/my-work/shared/interfaces';
+import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { tap } from 'rxjs/operators';
+import { Section } from '~app/shared/enums';
 
 
 @Injectable()
 export class MyWorkResolver implements Resolve<unknown> {
 
-  public static myWork: MyWork;
+  public static myWork: MyWorkPage;
 
   constructor (
     private http: HttpClient
   ) {
   }
 
-  public resolve (): Observable<MyWork> {
+  public resolve (): Observable<MyWorkPage> {
     if (MyWorkResolver.myWork) {
       return of(MyWorkResolver.myWork);
     }
     return this.http
-      .get<MyWork>(`${ environment.url }/section/my-work-page`)
+      .get<MyWorkPage>(`${ environment.url }/section/${ Section.Work }`)
       .pipe(
-        tap((myWork: MyWork) => (MyWorkResolver.myWork = myWork))
+        tap((myWork: MyWorkPage) => (MyWorkResolver.myWork = myWork))
       );
   }
 }

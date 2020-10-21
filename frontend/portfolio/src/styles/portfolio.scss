@@ -5,8 +5,7 @@
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: $app-font-size;
-  //font-family: 'Monospaced', monospace;
-  //background: $app-background;
+  background: $app-background;
   color: $primary-color-text;
 }
 
@@ -30,10 +29,15 @@ a {
   margin: $app-row-top auto;
 
   .text {
-    padding: 0 $app-row-text-padding;
-    width: 600px;
+    //padding: 0 $app-row-text-padding;
     margin: 0 auto;
     //margin: 0 auto 0 0;
+
+    width: 90%;
+    max-width: $breakpoint-mobile;
+    //@media (min-width: $breakpoint-mobile) {
+    //  max-width: $breakpoint-mobile;
+    //}
   }
 
   @media(max-width: $breakpoint-mobile) {

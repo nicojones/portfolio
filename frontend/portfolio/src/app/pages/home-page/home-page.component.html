@@ -2,25 +2,23 @@
   <div
     class="jumbo-box"
     [class.show-menu]="showMenu"
-    [class.loaded]="!_.loading"
+    [class.hover-effects]="!(_.loading || clientOs.isMobile)"
     @fadeIn (@fadeIn.done)="_.loading = false"
   >
-    <div class="jumbo-line fade-in">
-      <h1 class="jumbo hello">hello world!</h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.About">about</a></h1>
-    </div>
-    <div class="jumbo-line accent fade-in">
-      <h1 class="jumbo hello">Nico Kupfer</h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.ContactMe">contact me</a></h1>
-    </div>
-    <div class="jumbo-line fade-in">
-      <h1 class="jumbo hello">angular + <small class="mini">lots of<br>other stuff</small></h1>
-      <h1 class="jumbo link"><a class="no-style" [routerLink]="'/' + Routes.Work">my work</a></h1>
+    <div
+      *ngFor="let t of homePage.title" [class.accent]="t.accent"
+      class="jumbo-line fade-in"
+    >
+      <h1 class="jumbo hover-item link"><a class="no-style" [routerLink]="'/' + t.url" [innerHTML]="t.textHover"></a></h1>
+      <h1 class="jumbo hover-item hello">
+        {{ t.text }}
+        <small class="mini" *ngIf="t.mini" [innerHTML]="t.mini"></small>
+      </h1>
     </div>
   </div>
   <div class="myself" [class.loading]="_.loading"></div>
 </div>
 
-<span class="tap-anywhere" *ngIf="clientOs.isMobile">tap anywhere</span>
+<span class="tap-anywhere" *ngIf="clientOs.isMobile">{{ homePage.mobileTap }}</span>
 
 <!--<img src="assets/images/home/night1.jpeg" alt="night matterhorn" class="img-home" @slide>-->

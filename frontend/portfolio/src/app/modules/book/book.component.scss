@@ -1,4 +1,5 @@
 @import 'globals';
+@import 'breakpoints';
 
 $book-padding: 25px;
 
@@ -17,6 +18,8 @@ $book-padding: 25px;
   }
   .book-img-box {
     flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
     .book-img {
       //flex: 0 0 100%;
       width: 200px;
@@ -27,5 +30,18 @@ $book-padding: 25px;
     flex: 0 0 50%;
     padding: 0 $book-padding;
     margin: 0;
+  }
+
+  @media(max-width: $breakpoint-mobile) {
+    text-align: center;
+    .book-item {
+      flex-direction: column;
+      > .book-img-box {
+        align-items: center;
+      }
+      .book-descr {
+        text-align: justify;
+      }
+    }
   }
 }

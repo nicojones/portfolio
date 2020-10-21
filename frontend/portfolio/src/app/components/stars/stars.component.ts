@@ -5,8 +5,6 @@ import { StarWanderer } from '~app/components/stars/interfaces/star-wanderer';
 import { StarConfig } from '~app/components/stars/interfaces/star-config';
 
 
-const defaultVelocity: Spacetime['z'] = 0.0005;
-
 @Component({
   selector: 'app-stars',
   templateUrl: './stars.component.html',
@@ -50,8 +48,14 @@ export class StarsComponent implements OnInit {
     y: 0,
     xMomentum: 0,
     yMomentum: 0,
-    z: defaultVelocity
+    z: 0.0005
   };
+
+  /**
+   * How "easy" the stars move when you move the cursor. 0 -> normal, 1 -> {@see reverse}
+   * @private
+   */
+  private moveStiffness = [70, 500];
 
   private isTouchscreen = false;
 
@@ -59,8 +63,8 @@ export class StarsComponent implements OnInit {
 
   constructor () {
     this.config = {
-      moveEaseness: 70,
-      starDensity: 0.125,
+      moveEaseness: this.moveStiffness[0],
+      starDensity: 0.05,
       colorLimit: 400,
       size: 3,
       starMinScale: 0.1,
@@ -70,18 +74,20 @@ export class StarsComponent implements OnInit {
       imgSizeStep: 0.3,
       initialImgSize: 0
     };
-
-    StarsService.reverse$.subscribe((reverse: boolean) => {
-      this.reverse = reverse;
-    });
   }
 
   public ngOnInit () {
     this.context = this.canvas.nativeElement.getContext('2d');
 
     this.generate();
-    this.resize();
     this.step();
+
+    StarsService.reverse$.subscribe((reverse: boolean) => {
+      this.reverse = reverse;
+      !reverse && this.resize();
+      this.config.moveEaseness = this.moveStiffness[Number(reverse)];
+    });
+
 
     window.onresize = this.resize;
     document.onmousemove = this.onMouseMove;
@@ -144,15 +150,17 @@ export class StarsComponent implements OnInit {
 
   };
 
-  private updatePosition = (body: StarWanderer | Star, isWanderer: boolean = true) => {
+  private updatePosition = (body: StarWanderer | Star) => {
 
     body.x += this.velocity.x * body.z;
     body.y += this.velocity.y * body.z;
 
+    const xDistance: number = (body.x - this.screen.w / 2);
+    const yDistance: number = (body.y - this.screen.h / 2);
 
     if (!this.reverse) {
-      body.x += (body.x - this.screen.w / 2) * this.velocity.z * body.z;
-      body.y += (body.y - this.screen.h / 2) * this.velocity.z * body.z;
+      body.x += xDistance * this.velocity.z * body.z;
+      body.y += yDistance * this.velocity.z * body.z;
       body.z += this.velocity.z;
       // recycle when out of bounds
       if (
@@ -161,17 +169,15 @@ export class StarsComponent implements OnInit {
         body.y < -this.config.overflow ||
         body.y > this.screen.h + this.config.overflow
       ) {
-        if (isWanderer) {
-          (body as StarWanderer).size = 0;
-        }
         this.recycleBody(body);
       }
     } else {
-      const xCenter = (body.x - this.screen.w / 2);
-      const yCenter = (body.y - this.screen.h / 2);
-      body.x -= xCenter * this.velocity.z * body.z;
-      body.y -= yCenter * this.velocity.z * body.z;
-      body.z = Math.abs(body.z - this.velocity.z);
+      body.x -= xDistance * this.velocity.z * body.z * 10;
+      body.y -= yDistance * this.velocity.z * body.z * 10;
+
+      if (Math.abs(xDistance) + Math.abs(yDistance) < 50) {
+        body.z = 0;
+      }
     }
 
 

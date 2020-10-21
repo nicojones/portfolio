@@ -1,14 +1,20 @@
 @import 'colors';
+@import 'breakpoints';
+@import 'images';
 @import 'globals';
+@import 'mixins';
+
+$name-logo-width: 13rem;
 
 #name-logo {
   position: fixed;
   font-size: 20px;
   font-family: 'Monospaced', monospace;
-  @if($name-logo-position == 'right') {
-    left: calc(100% - #{$name-logo-right});
-  }
-  @else {
+  width: $name-logo-width;
+  text-align: center;
+  @if ($name-logo-position == 'right') {
+    left: calc(100% - #{$name-logo-right + $name-logo-width});
+  } @else {
     left: $name-logo-left;
   }
   top: $name-logo-top;
@@ -17,25 +23,66 @@
   transition: all 0.4s;
 
 
-  > .name-logo-name {
-
-  }
-  > .name-logo-url {
-    display: none;
+  > i {
+    @include transitions();
+    font-style: normal;
+    opacity: 0;
   }
 
   &:hover {
-    @if($name-logo-position == 'right') {
-      left: calc(100% - #{$name-logo-right-hover});
+    @if ($name-logo-position == 'right') {
+      left: calc(100% - #{$name-logo-right + $name-logo-width + $name-logo-move-on-hover});
+    } @else {
+      left: $name-logo-move-on-hover;
     }
-    @else {
-      left: $name-logo-left-hover;
+
+    > i {
+      opacity: 1;
     }
-    > .name-logo-name {
-      display: none;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    left: calc(50% - #{$name-logo-width / 2}); // centered
+    &:hover {
+      left: calc(50% - #{$name-logo-width / 2 + $name-logo-move-on-hover});
     }
-    > .name-logo-url {
-      display: inherit;
-    }
+  }
+}
+
+#authed {
+  opacity: 0.1;
+  position: fixed;
+  text-decoration: none;
+  top: 0;
+  @include transitions();
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+$star-position: 0px;
+$star-size: 30px;
+$star-icon-size: 15px;
+#toggle-stars {
+  @include transitions(1s);
+  cursor: pointer;
+  position: fixed;
+  opacity: 0.3;
+  bottom: $star-position;
+  left: $star-position;
+  height: $star-size;
+  width: $star-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  #star {
+    width: $star-icon-size;
+    height: $star-icon-size;
+  }
+
+  &:hover {
+    opacity: 1;
+    @include transform(rotate(540deg));
   }
 }

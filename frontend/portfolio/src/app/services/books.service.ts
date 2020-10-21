@@ -11,7 +11,7 @@ import { Books, ReadBooks, Shelf } from '~goodreads/shared/interfaces/book';
 
 @Injectable()
 export class BooksService {
-  public static shelf: Shelf = { read: null, reading: null, page: 0, totalRead: 0 };
+  public static shelf: Shelf = { read: [], reading: [], page: 0, totalRead: 0 };
 
   public constructor (
     private http: HttpClient

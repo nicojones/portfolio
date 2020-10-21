@@ -31,18 +31,20 @@
     @include transitions(2s);
     position: absolute;
     right: 0;
-    width: calc(25% + 300px);
+    width: calc(25% + 15rem);
     height: 90%;
     top: 10%;
     overflow: hidden;
     background-image: url($image-nico);
-    background-position: 50px 0;
+    background-position: 2.5rem 0;
     background-size: cover;
     background-repeat: no-repeat;
     z-index: -1;
-    opacity: 0.7;
+    opacity: $myself-opacity;
+    filter: brightness($myself-brightness);
     @media (max-width: $breakpoint-mobile-sm) {
-      opacity: 0.3;
+      opacity: $myself-opacity-mobile;
+      filter: brightness($myself-brightness-mobile);
     }
 
   }
@@ -65,24 +67,27 @@
   .jumbo-line {
     @include transitions();
     width: max-content;
-    min-width: 600px;
+    //min-width: 600px;
 
-    > h1 {
-      margin: 15px auto;
+    > .hover-item {
+      white-space: nowrap;
+      margin: 0 auto;
       cursor: pointer;
       display: flex;
+      min-width: max-content;
       @include transitions();
-      min-width: $breakpoint-mobile-sm;
+      //min-width: $breakpoint-mobile-sm;
+      z-index: 1;
 
       &.hello {
         @if ($home-page-use-opacity) {
-          position: absolute;
-          z-index: -1;
+          z-index: 0;
         }
       }
 
       &.link {
         @if ($home-page-use-opacity) {
+          position: absolute;
           opacity: 0;
         } @else {
           display: none;
@@ -90,21 +95,21 @@
       }
 
       > .mini {
-        font-size: 30px;
+        font-size: 1.5rem;
         float: right;
         align-self: center;
         justify-content: center;
-        margin-left: 20px;
+        margin-left: 1rem;
 
         @media (max-width: $breakpoint-mobile-sm) {
-          font-size: 20px;
+          font-size: 1rem;
         }
       }
     }
   }
 
-  &.loaded > .jumbo-line:hover {
-    margin-left: 50px;
+  &.hover-effects > .jumbo-line:hover {
+    padding-left: $indent-hover;
     @extend %show-menu;
   }
 }
@@ -114,11 +119,14 @@
   float: right;
 }
 
+$tap-anywhere-width: 15rem;
 .tap-anywhere {
   position: fixed;
-  bottom: 50px;
-  width: 100px;
+  bottom: 3rem;
+  width: $tap-anywhere-width;
   left: 50%;
-  margin-left: -25px;
+  text-align: center;
+  z-index: -1;
+  margin-left: -$tap-anywhere-width / 2;
   animation: pulse 3s infinite ease-in-out;
 }

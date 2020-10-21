@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { slideIn } from '~app/shared/animations';
 import { ActivatedRoute } from '@angular/router';
-import { MyWork } from '~home-page/pages/my-work/shared/interfaces';
+import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { MyWork } from '~home-page/pages/my-work/shared/interfaces';
 })
 export class MyWorkComponent implements OnInit {
 
-  public readonly myWork: MyWork;
+  public readonly myWork: MyWorkPage;
 
   constructor (
     private route: ActivatedRoute

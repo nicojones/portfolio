@@ -1,6 +1,6 @@
 <div class="app-row with-margin" @slideIn>
   <h1 class="jumbo slide-in center">
-    <span class="accent">{{ aboutPage.title.first }}</span>
+    <span class="accent" [innerHTML]="aboutPage.title.first"></span>
     <br>
     <span class="plus-box">
       <span
@@ -10,25 +10,24 @@
       ></span>
     </span>
     <br>
-    <span class="accent">{{ aboutPage.title.last }}</span>{{ aboutPage.title.period }}
+    <span class="accent" [innerHTML]="aboutPage.title.last"></span>
+    {{ aboutPage.title.period }}
   </h1>
-  <div class="text">
-    <app-text [text]="aboutPage.text"></app-text>
+  <app-text [text]="aboutPage.text" class="text"></app-text>
 
-    <p class="slide-in">Currently reading
-      <ng-container *ngIf="!shelf.reading">some books...</ng-container>
-      <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
-        <ng-container *ngSwitchCase="0">no books.</ng-container>
-        <ng-container *ngSwitchCase="1">one book.</ng-container>
-        <ng-container *ngSwitchDefault>
-          {{ shelf.reading.length }} books, among them {{ shelf.reading[0].title }}.
-        </ng-container>
+  <p class="slide-in">Currently reading
+    <ng-container *ngIf="!shelf.reading">some books...</ng-container>
+    <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
+      <ng-container *ngSwitchCase="0">no books.</ng-container>
+      <ng-container *ngSwitchCase="1">one book.</ng-container>
+      <ng-container *ngSwitchDefault>
+        {{ shelf.reading.length }} books, among them {{ shelf.reading[0].title }}.
       </ng-container>
-      You can see them <a [routerLink]="'/' + Routes.Reading">here</a>.
-    </p>
+    </ng-container>
+    You can see them <a [routerLink]="'/' + Routes.Reading">here</a>.
+  </p>
 
 
-  </div>
   <app-carousel
     *ngIf="shelf.read"
     class="mt-20"

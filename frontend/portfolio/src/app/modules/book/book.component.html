@@ -5,8 +5,8 @@
     [innerHTML]="book.title"
   ></a>
 </h2>
-<div class="flex-row">
-  <div class="flex-column book-img-box">
+<div class="book-item">
+  <div class="book-img-box">
     <img [src]="book.image" class="book-img" [alt]="book.title"/>
     <small *ngIf="book.pages" [innerHTML]="book.pages + ' pages'" class="secondary"></small>
   </div>
