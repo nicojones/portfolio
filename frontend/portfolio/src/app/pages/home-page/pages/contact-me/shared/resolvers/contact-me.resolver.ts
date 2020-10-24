@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
 import { environment } from '~env/environment';
 import { tap } from 'rxjs/operators';
-import { Section } from '~app/shared/enums';
+import { SectionJSON } from '~app/shared/enums';
 
 
 @Injectable()
@@ -24,7 +24,7 @@ export class ContactMeResolver implements Resolve<ContactMePage> {
     }
 
     return this.http
-      .get<ContactMePage>(`${ environment.url }/section/${ Section.Contact }`)
+      .get<ContactMePage>(`${ environment.getUrl }/${ SectionJSON.Contact }`)
       .pipe(
         tap((contactMePage: ContactMePage) => (ContactMeResolver.contactMePage = contactMePage))
       );

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LinkContent, TextContent } from '~app/shared/interfaces';
+import { LinkContent, ProjectContent, TextContent } from '~app/shared/interfaces';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,9 +16,17 @@ export class TextComponent implements OnInit {
   @Input()
   public links: LinkContent[];
 
-  constructor () { }
+  @Input()
+  public projects: ProjectContent[];
+
+  constructor (
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit (): void {
   }
 
+  public sanitize (text: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(text);
+  }
 }

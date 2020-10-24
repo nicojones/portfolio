@@ -1,6 +1,9 @@
-export const environment = {
+import { Environment } from '~env/environment.interface';
+
+
+const ip = '192.168.210.100';
+export const environment: Environment = {
   production: false,
-  // url: 'http://portfolio.local/api'
-  url: 'http://172.20.10.3/home-section.json?'
-  // url: 'http://172.20.10.3/api'
+  getUrl: `http://${ ip }/json`,
+  phpUrl: 'http://portfolio.local/api'
 };

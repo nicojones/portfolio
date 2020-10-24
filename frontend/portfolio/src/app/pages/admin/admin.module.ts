@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { RichTextModule } from '~app/modules/rich-text';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatCheckboxModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    RichTextModule
   ],
   providers: [
     AdminService

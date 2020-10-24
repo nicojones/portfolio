@@ -4,20 +4,32 @@ import { SharedModule } from '~app/shared';
 import { RouterModule } from '@angular/router';
 import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
 import { TextModule } from '~app/modules/text';
+import { ProjectComponent } from '~home-page/pages/my-work/pages/project';
 
 
 @NgModule({
   declarations: [
-    MyWorkComponent
+    MyWorkComponent,
+    ProjectComponent
   ],
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: MyWorkComponent,
         resolve: {
           myWork: MyWorkResolver
-        }
+
+        },
+        children: [
+          {
+            path: '',
+            component: MyWorkComponent
+          },
+          {
+            path: ':projectName',
+            component: ProjectComponent
+          }
+        ]
       }
     ]),
     SharedModule,
@@ -27,4 +39,4 @@ import { TextModule } from '~app/modules/text';
     MyWorkResolver
   ]
 })
-export class MyWorkModule { }
+export class MyWorkModule {}

@@ -119,6 +119,10 @@
   float: right;
 }
 
+.home-title {
+  font-size: $home-font-size;
+}
+
 $tap-anywhere-width: 15rem;
 .tap-anywhere {
   position: fixed;

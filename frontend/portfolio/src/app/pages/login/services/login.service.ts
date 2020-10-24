@@ -17,6 +17,6 @@ export class LoginService {
     body.append('username', data.username);
     body.append('password', data.password);
 
-    return this.http.post(`${ environment.url }/login/auth`, body);
+    return this.http.post(`${ environment.phpUrl }/login/auth`, body);
   }
 }

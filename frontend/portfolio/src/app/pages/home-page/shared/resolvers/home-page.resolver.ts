@@ -8,7 +8,7 @@ import { environment } from '~env/environment';
 
 import { tap } from 'rxjs/operators';
 import { HomePage } from '~home-page/interfaces';
-import { Section } from '~app/shared/enums';
+import { SectionJSON } from '~app/shared/enums';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class HomePageResolver implements Resolve<unknown> {
       return of(HomePageResolver.homePage);
     }
     return this.http
-      .get<HomePage>(`${ environment.url }/section/${ Section.Home }`)
+      .get<HomePage>(`${ environment.getUrl }/${ SectionJSON.Home }`)
       .pipe(
         tap((homePage: HomePage) => (HomePageResolver.homePage = homePage))
       );

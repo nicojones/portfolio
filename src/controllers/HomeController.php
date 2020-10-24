@@ -57,7 +57,7 @@ class HomeController extends Controller {
     public function getJSON() {
         $fileName = $this->getSection($_GET['section']);
 
-        die(file_get_contents($fileName));
+        die(file_get_contents($fileName['src']));
     }
 
     public function saveJSON () {
@@ -65,15 +65,20 @@ class HomeController extends Controller {
         // All well, section is valid
         $sectionContent = $_POST['content'];
 
-        if (!file_exists($fileName)) {
-        }
-//         $saved = file_put_contents($fileName, $sectionContent);
-        $saved = file_put_contents($fileName, json_encode(json_decode($sectionContent, true), JSON_PRETTY_PRINT));
+
+        // save contents as they come. We save them unrendered.
+        $saved = file_put_contents($fileName['src'], json_encode(json_decode($sectionContent, true), JSON_PRETTY_PRINT));
+
+        // only replace the public one! We save it rendered
+        $sectionContent = preg_replace('/\{\{([^\}]+)\}\}/', '<span class=\"accent\">$1</span>', $sectionContent);
+//         die($sectionContent);
+        $saved = file_put_contents($fileName['public'], json_encode(json_decode($sectionContent, true), JSON_PRETTY_PRINT));
+
         if ($saved === false) {
             $this->header(400);
-            die("{ \"message\": \"Couldn't save to file <$fileName>\" }");
+            die("{ \"message\": \"Couldn't save to file <{$fileName['src']} and {$fileName['public']}>\" }");
         } else {
-            die("{ \"message\": \"Data saved in <$fileName>\" }");
+            die("{ \"message\": \"Data saved in <{$fileName['src']} and {$fileName['public']}>\" }");
         }
     }
 
@@ -84,6 +89,9 @@ class HomeController extends Controller {
             die("{ \"error\": \"Section <$section> does not exist\" }");
             // die("{ \"error\": \"Could not retrieve DATA from file <$fileName>\" }");
         }
-        return __ROOT__ . '/src/data/' . $fileName;
+        return [
+            'src' => __ROOT__ . '/src/data/' . $fileName,
+            'public' => __ROOT__ . '/public/json/' . $fileName
+        ];
     }
 }

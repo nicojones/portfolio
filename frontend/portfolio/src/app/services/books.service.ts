@@ -11,7 +11,7 @@ import { Books, ReadBooks, Shelf } from '~goodreads/shared/interfaces/book';
 
 @Injectable()
 export class BooksService {
-  public static shelf: Shelf = { read: [], reading: [], page: 0, totalRead: 0 };
+  public static shelf: Shelf = { read: null, reading: null, page: 0, totalRead: 0 };
 
   public constructor (
     private http: HttpClient
@@ -23,7 +23,7 @@ export class BooksService {
     }
 
     return this.http
-      .get<Books>(`${ environment.url }/goodreads/reading`)
+      .get<Books>(`${ environment.phpUrl }/goodreads/reading`)
       .pipe(
         tap((books: Books) => (BooksService.shelf.reading = books))
       );
@@ -36,7 +36,7 @@ export class BooksService {
 
     const params = new HttpParams().set('page', page as unknown as string);
     return this.http
-      .get<ReadBooks>(`${ environment.url }/goodreads/read`, { params })
+      .get<ReadBooks>(`${ environment.phpUrl }/goodreads/read`, { params })
       .pipe(
         filter(Boolean),
         map((read: ReadBooks) => {

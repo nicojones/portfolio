@@ -1,4 +1,11 @@
 <div class="app-row with-margin" @slideIn>
   <h1 class="jumbo slide-in center" [innerHTML]="myWork.title"></h1>
-  <app-text [text]="myWork.text" class="text"></app-text>
+  <div class="content" [innerHTML]="safeHTML(myWork.description)"></div>
+  <ng-container *ngFor="let project of myWork.projects; index as i; first as first">
+    <hr *ngIf="!first">
+    <a class="project-box" [routerLink]="'/' + Routes.Work + '/' + project.url">
+      <h2>{{ project.title }}</h2>
+    </a>
+    <div style="background-image: url({{ project.image }})" class="project-image"></div>
+  </ng-container>
 </div>

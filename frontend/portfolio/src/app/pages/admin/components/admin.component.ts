@@ -1,56 +1,72 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
+import { RouteUrls } from '~routes/routes';
+import { environment } from '~env/environment';
+
+import { Section, SocialIcons } from '~app/shared/enums';
+import { AdminService } from '~admin/services';
+import { MainFormArray } from '~app/shared/classes';
+
+import { HomePage } from '~home-page/interfaces';
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
-import { HomePage } from '~home-page/interfaces';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '~env/environment';
-import { Section } from '~app/shared/enums';
-import { AdminService } from '~admin/services';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MainFormArray } from '~app/shared/classes';
-import { RouteUrls } from '~routes/routes';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, tap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
 
 
-const enum TabEnum {
-  Welcome,
-  Home,
-  About,
-  Contact,
-  Work
+const Tabs = {
+  Welcome: 0,
+  Home: 1,
+  About: 2,
+  Contact: 3,
+  Work: 4
 }
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./admin.component.scss', './admin-theme.scss']
+  styleUrls: [
+    './admin.component.scss',
+    './admin-theme.scss'
+  ]
 })
 export class AdminComponent {
 
   public Routes = Object.values(RouteUrls);
   public RouteKeys = Object.keys(RouteUrls);
 
-  public formSetup: { [key in keyof TabEnum]: boolean } = {} as unknown as any;
+  public icons: SocialIcons[] = [SocialIcons.Github, SocialIcons.Linkedin, SocialIcons.Youtube, SocialIcons.Mail, SocialIcons.PDF, SocialIcons.User];
+
+  public formSetup: { [key: string]: boolean } = {} as unknown as any;
+
+  public currentIndex: number;
+
+  public tabs = Tabs;
 
   constructor (
     private http: HttpClient,
     private snackBar: MatSnackBar,
     public service: AdminService
-  ) { }
+  ) {}
 
   public changedTab (index: number) {
     switch (index) {
-      case TabEnum.Home:
+      case Tabs.Home:
+        window.location.hash = 'Home';
         return this.setupHomeForm();
-      case TabEnum.About:
+      case Tabs.About:
+        window.location.hash = 'About';
         return this.setupAboutForm();
-      case TabEnum.Work:
+      case Tabs.Work:
+        window.location.hash = 'Work';
         return this.setupWorkForm();
-      case TabEnum.Contact:
+      case Tabs.Contact:
+        window.location.hash = 'Contact';
         return this.setupContactForm();
     }
   }
@@ -63,22 +79,28 @@ export class AdminComponent {
     return form.get(key) as FormControl;
   }
 
-  public addFormControl (form: FormArray) {
-    form.push(new FormControl(null, Validators.required));
+  public addFormControl (
+    form: FormArray,
+    control: AbstractControl = new FormControl(null, Validators.required)
+  ) {
+    form.push(control);
   }
 
   public setupHomeForm () {
     return this.getSection<HomePage>(Section.Home).subscribe((home: HomePage) => {
+      this.service.workForm.reset();
       this.service.homeForm.patchValue(home);
       for (let i = 0, len = home.title.length; i < len; ++i) {
         (this.service.homeForm.get('title') as MainFormArray<HomePage['title']>).push(
           this.service.homeFormTitle(home.title[i]));
       }
+      this.currentIndex = Tabs.Home;
     });
   }
 
   public setupAboutForm () {
     return this.getSection<AboutPage>(Section.About).subscribe((about: AboutPage) => {
+      this.service.workForm.reset();
       this.service.aboutForm.patchValue(about);
 
       for (let i = 0, len = about.title.multi.length; i < len; ++i) {
@@ -89,11 +111,13 @@ export class AdminComponent {
         (this.service.aboutForm.get('text') as MainFormArray<AboutPage['text']>).push(
           this.service.textContent(about.text[i]));
       }
+      this.currentIndex = Tabs.About;
     });
   }
 
   public setupContactForm () {
     return this.getSection<ContactMePage>(Section.Contact).subscribe((contact: ContactMePage) => {
+      this.service.workForm.reset();
       this.service.contactForm.patchValue(contact);
 
       for (let i = 0, len = contact.text.length; i < len; ++i) {
@@ -104,17 +128,21 @@ export class AdminComponent {
         (this.service.contactForm.get('link') as MainFormArray<ContactMePage['link']>).push(
           this.service.linkContent(contact.link[i]));
       }
+
+      this.currentIndex = Tabs.Contact;
     });
   }
 
   public setupWorkForm () {
     return this.getSection<MyWorkPage>(Section.Work).subscribe((work: MyWorkPage) => {
+      this.service.workForm.reset();
       this.service.workForm.patchValue(work);
 
-      for (let i = 0, len = work.text.length; i < len; ++i) {
-        (this.service.workForm.get('text') as MainFormArray<MyWorkPage['text']>).push(
-          this.service.textContent(work.text[i]));
+      for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
+        (this.service.workForm.get('projects') as MainFormArray<MyWorkPage['projects']>).push(
+          this.service.projectContent(work.projects[i]));
       }
+      this.currentIndex = Tabs.Work;
     });
   }
 
@@ -143,11 +171,16 @@ export class AdminComponent {
   }
 
   private save<T> (section: Section, value: T) {
+    const valueString = JSON.stringify(value);
+    if (valueString.match(/"isTrusted"/)) {
+      this.snackBar.open('Please change back to rich HTML!');
+      return;
+    }
     const body = new FormData();
     body.append('section', section);
-    body.append('content', JSON.stringify(value));
+    body.append('content', valueString);
 
-    this.http.post<any>(`${ environment.url }/sections`, body)
+    this.http.post<any>(`${ environment.phpUrl }/sections`, body)
       .pipe(catchError((error: HttpErrorResponse) => {
         this.snackBar.open('ERROR! ' + error.error, 'dismiss');
         return throwError(error);
@@ -158,11 +191,11 @@ export class AdminComponent {
   }
 
   private getSection<T> (section: Section): Observable<T> {
-    if (this.formSetup[section]) {
-      return throwError(`form ${ section } already loaded - skipping`);
-    }
+    // if (this.formSetup[section]) {
+    //   return throwError(`form ${ section } already loaded - skipping`);
+    // }
     return this.http
-      .get<T>(`${ environment.url }/section/${ section }`)
+      .get<T>(`${ environment.phpUrl }/section/${ section }`)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.snackBar.open('ERROR! ' + error.error, 'dismiss');

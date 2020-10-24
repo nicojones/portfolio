@@ -9,6 +9,7 @@ $content-with-margin: true;
 
 
 $app-font-size: 20px; // MUST BE PX
+$home-font-size: 8 * $app-font-size;
 $jumbo-font-size: 6 * $app-font-size;
 $h2-font-size: 3 * $app-font-size;
 $big-font-size: 2 * $app-font-size;
@@ -35,3 +36,5 @@ $myself-brightness: 25%;
 $myself-opacity-mobile: 0.3;
 $myself-brightness-mobile: 100%;
 //////
+
+$app-hr-width: 2px;

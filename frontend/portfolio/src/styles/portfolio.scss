@@ -7,6 +7,12 @@ body {
   font-size: $app-font-size;
   background: $app-background;
   color: $text-color;
+  margin: 0;
+  overflow-x: hidden;
+}
+html, body {
+  font-size: $app-font-size;
+  height: 100%;
 }
 
 a {
@@ -31,6 +37,7 @@ a {
   .text {
     //padding: 0 $app-row-text-padding;
     margin: 0 auto;
+    @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
     //margin: 0 auto 0 0;
 
     width: 90%;

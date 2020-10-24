@@ -1,5 +1,5 @@
 {
-    "mobileTap": "tap anywhere",
+    "mobileTap": "tap anywhere...",
     "title": [
         {
             "accent": false,
@@ -17,10 +17,10 @@
         },
         {
             "accent": false,
-            "text": "Javascript + ",
+            "text": "Angular + ",
             "textHover": "My Work",
             "url": "work",
-            "mini": "other<br>cool<br>stuff"
+            "mini": "many other<br>cool skills"
         }
     ]
 }

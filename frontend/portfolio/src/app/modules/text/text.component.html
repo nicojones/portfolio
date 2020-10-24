@@ -1,9 +1,13 @@
 <ng-container *ngFor="let t of text">
-  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">
-  <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>
-  <img *ngIf="t.type === 'img'" [src]="t.content" class="slide-in {{ t.extra?.className }}" [alt]="t.extra?.alt"/>
+  <div [innerHTML]="sanitize(t.content)" class="content"></div>
+
+<!--  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">-->
+<!--  <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>-->
+<!--  <img *ngIf="t.type === 'img'" [src]="t.content" class="slide-in {{ t.extra?.className }}" [alt]="t.extra?.alt"/>-->
 </ng-container>
 
 <ng-container *ngFor="let l of links">
-  <a [href]="l.url" target="_blank" class="slide-in mt-20" [innerHTML]="l.text" [title]="l.title"></a>
+  <a [href]="l.url" target="_blank" class="link" [title]="l.title || l.url">
+    <img [src]="'/assets/icons/' + l.icon + '.svg'" [alt]="l.icon" class="social"/>{{ l.text }}
+  </a>
 </ng-container>

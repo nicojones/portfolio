@@ -1,5 +1,50 @@
+@import 'globals';
+@import 'mixins';
+
 :host {
   display: flex;
   flex-direction: column;
 
+  .content {
+    ::ng-deep .image {
+      margin: $app-font-size 0;
+
+      &.right {
+        width: 90vw;
+      }
+
+      &.left {
+        width: 90vw;
+        float: right;
+      }
+
+      &.center {
+        width: 100%;
+      }
+    }
+
+    ::ng-deep hr {
+      border-width: 0 0 $app-hr-width 0;
+    }
+  }
+
+  .link {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    @include transitions();
+
+    &:hover {
+      padding-left: $app-font-size;
+    }
+
+    .social {
+      height: $app-font-size;
+      filter: grayscale(100%);
+      -webkit-filter: grayscale(100%);
+      margin-right: 20px;
+    }
+  }
 }

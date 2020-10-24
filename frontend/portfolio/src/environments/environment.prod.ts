@@ -1,5 +1,8 @@
-export const environment = {
+import { Environment } from '~env/environment.interface';
+
+
+export const environment: Environment = {
   production: true,
-  // url: 'http://portfolio.local/api'
-  url: (window as any)._url_ || 'http://172.20.10.3/home-section.json?'
+  getUrl: 'http://172.20.10.3/json',
+  phpUrl: 'http://172.20.10.3/api'
 };

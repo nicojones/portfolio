@@ -11,15 +11,15 @@ import {
 import { Timings } from '~app/shared/animations/timings.animation';
 
 
-export function slideIn (): AnimationTriggerMetadata {
+export function slideIn (selector: string = '.slide-in'): AnimationTriggerMetadata {
   return trigger('slideIn', [
     transition(':enter', [
-      query('.slide-in', [
+      query(selector, [
         style({ transform: `translateX(${ Timings.SlideTranslate })`, opacity: '0' }),
         stagger(Timings.SlideStaggerTime, [
           group([
             animate(`${ Timings.SlideDuration } ease-out`, style({ transform: 'translateX(0)' })),
-            animate(`${ Timings.SlideDuration } 200ms ease-out`, style({ opacity: '1' }))
+            animate(`${ Timings.SlideDuration } 100ms ease-out`, style({ opacity: '1' }))
           ])
         ])
       ])

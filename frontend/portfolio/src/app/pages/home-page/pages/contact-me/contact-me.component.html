@@ -1,10 +1,6 @@
 <div class="app-row with-margin" @slideIn>
   <h1 class="slide-in jumbo center" [innerHTML]="contactMe.title"></h1>
-  <div class="text">
-    <ng-container *ngFor="let text of contactMe.text">
-      <p *ngIf="text.type === 'p'" [innerHTML]="text.content" class="slide-in"></p>
-    </ng-container>
-  </div>
+  <app-text [text]="contactMe.text" class="text flex-column"></app-text>
   <app-text [links]="contactMe.link" class="text flex-column"></app-text>
 
 </div>

@@ -1,11 +1,5 @@
 @import 'globals';
 
-html, body {
-  height: 100%;
-  font-size: $app-font-size;
-}
-body { margin: 0 }
-
 //@import 'theming.scss';
 @import 'components/all';
 @import 'generic/all';

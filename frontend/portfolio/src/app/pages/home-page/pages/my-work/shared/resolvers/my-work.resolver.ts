@@ -8,7 +8,7 @@ import { environment } from '~env/environment';
 
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { tap } from 'rxjs/operators';
-import { Section } from '~app/shared/enums';
+import { SectionJSON } from '~app/shared/enums';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class MyWorkResolver implements Resolve<unknown> {
       return of(MyWorkResolver.myWork);
     }
     return this.http
-      .get<MyWorkPage>(`${ environment.url }/section/${ Section.Work }`)
+      .get<MyWorkPage>(`${ environment.getUrl }/${ SectionJSON.Work }`)
       .pipe(
         tap((myWork: MyWorkPage) => (MyWorkResolver.myWork = myWork))
       );

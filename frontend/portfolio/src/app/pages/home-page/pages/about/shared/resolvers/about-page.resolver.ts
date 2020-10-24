@@ -8,7 +8,7 @@ import { environment } from '~env/environment';
 
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
 import { tap } from 'rxjs/operators';
-import { Section } from '~app/shared/enums';
+import { SectionJSON } from '~app/shared/enums';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class AboutPageResolver implements Resolve<AboutPage> {
       return of(AboutPageResolver.aboutPage);
     }
     return this.http
-      .get<AboutPage>(`${ environment.url }/section/${ Section.About }`)
+      .get<AboutPage>(`${ environment.getUrl }/${ SectionJSON.About }`)
       .pipe(
         tap((aboutPage: AboutPage) => (AboutPageResolver.aboutPage = aboutPage))
       );

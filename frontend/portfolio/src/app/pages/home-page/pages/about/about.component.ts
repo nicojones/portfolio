@@ -10,6 +10,7 @@ import { zip } from 'rxjs';
 import { lastBook } from '~app/modules/book/last-book';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
 import { ActivatedRoute } from '@angular/router';
+import { AnimationSelector } from '~app/shared/enums';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slideIn()]
+  animations: [slideIn(AnimationSelector.Text)]
 })
 export class AboutComponent {
 

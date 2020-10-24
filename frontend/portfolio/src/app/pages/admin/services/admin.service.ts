@@ -5,7 +5,7 @@ import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
 import { HomePage } from '~home-page/interfaces';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
-import { LinkContent, TextContent } from '~app/shared/interfaces';
+import { LinkContent, ProjectContent, TextContent } from '~app/shared/interfaces';
 
 
 @Injectable()
@@ -13,7 +13,8 @@ export class AdminService {
 
   public workForm: MainFormGroup<MyWorkPage> = new MainFormGroup<MyWorkPage>({
     title: new FormControl(null, Validators.required),
-    text: new MainFormArray<MyWorkPage['text']>([])
+    description: new FormControl(''),
+    projects: new MainFormArray<MyWorkPage['projects']>([])
   });
 
   public aboutForm: MainFormGroup<AboutPage> = new MainFormGroup<AboutPage>({
@@ -47,7 +48,7 @@ export class AdminService {
     });
   }
 
-  public textContent (textContent: TextContent) {
+  public textContent (textContent: Partial<TextContent>) {
     return new MainFormGroup<TextContent>({
       content: new FormControl(textContent.content, Validators.required),
       extra: new FormControl(textContent.extra),
@@ -55,11 +56,22 @@ export class AdminService {
     });
   }
 
-  public linkContent (linkContent: LinkContent) {
+  public linkContent (linkContent: Partial<LinkContent>) {
     return new MainFormGroup<LinkContent>({
       text: new FormControl(linkContent.text, Validators.required),
       url: new FormControl(linkContent.url, Validators.required),
-      title: new FormControl(linkContent.title)
+      title: new FormControl(linkContent.title),
+      icon: new FormControl(linkContent.icon)
+    });
+  }
+
+  public projectContent (projectContent: Partial<ProjectContent>) {
+    return new MainFormGroup<ProjectContent>({
+      image: new FormControl(projectContent.image, Validators.required),
+      content: new FormControl(projectContent.content, Validators.required),
+      url: new FormControl(projectContent.url, Validators.required),
+      link: new FormControl(projectContent.link),
+      title: new FormControl(projectContent.title, Validators.required)
     });
   }
 }
