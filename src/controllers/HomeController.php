@@ -71,7 +71,11 @@ class HomeController extends Controller {
 
         // only replace the public one! We save it rendered
         $sectionContent = preg_replace('/\{\{([^\}]+)\}\}/', '<span class=\"accent\">$1</span>', $sectionContent);
-//         die($sectionContent);
+        // allow [[IMG_URL|img_description]]
+        $sectionContent = preg_replace('/\[\[([^\]\|]+)(\|([^\]]+))?\]\]/', '<img class=\"project-image\" src=\"$1\" matTooltip=\"$3\" alt=\"$3\"></span>', $sectionContent);
+//         $sectionContent = preg_replace('/\[\[([^\]\|]+)(\|([^\]]+))?\]\]/', '<span class=\"project-image\" style=\"background-image:url($1)\" matTooltip=\"$3\"><img class=\"project-image-img\" src=\"$1\"></span>', $sectionContent);
+        $sectionContent = preg_replace('/<p>[ \n]*<\/p>/', '', $sectionContent);
+
         $saved = file_put_contents($fileName['public'], json_encode(json_decode($sectionContent, true), JSON_PRETTY_PRINT));
 
         if ($saved === false) {

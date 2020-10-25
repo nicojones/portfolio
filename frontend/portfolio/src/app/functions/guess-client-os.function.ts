@@ -51,8 +51,11 @@ export function guessClientOS (): ClientOs {
 /**
  * Saves the OS/Browser guess in the local storage. we don't need this every time...
  */
-export function detectAndSaveOS () {
-  if (!getLocalStorage().getItem(StorageKey.ClientOS)) {
-    getLocalStorage().setItem(StorageKey.ClientOS, guessClientOS());
+export function detectAndSaveOS (): ClientOs {
+  let clientOS: ClientOs = getLocalStorage().getItem(StorageKey.ClientOS)
+  if (!clientOS) {
+    clientOS = guessClientOS()
+    getLocalStorage().setItem(StorageKey.ClientOS, clientOS);
   }
+  return clientOS;
 }

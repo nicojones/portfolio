@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Shelf } from '~goodreads/shared/interfaces/book';
 import { slideIn } from '~app/shared/animations';
 import { BooksService } from '~app/services';
+import { Routes } from '~routes/routes';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class GoodreadsComponent {
     reading: 'currently reading',
     read: 'read since last january'
   };
+
+  public readonly Routes = Routes;
 
   constructor (
     public booksService: BooksService

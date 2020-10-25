@@ -1,5 +1,5 @@
 <div class="app-row with-margin" @slideIn>
-  <h1 class="jumbo slide-in center">
+  <h1 class="jumbo slide-in center landing">
     <span class="accent" [innerHTML]="aboutPage.title.first"></span>
     <br>
     <span class="plus-box">
@@ -10,12 +10,11 @@
       ></span>
     </span>
     <br>
-    <span class="accent" [innerHTML]="aboutPage.title.last"></span>
-    {{ aboutPage.title.period }}
+    <span class="accent" [innerHTML]="aboutPage.title.last"></span>{{ aboutPage.title.period }}
   </h1>
   <app-text [text]="aboutPage.text" class="text"></app-text>
 
-  <p class="slide-in">Currently reading
+  <p class="text slide-in">Currently reading
     <ng-container *ngIf="!shelf.reading">some books...</ng-container>
     <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
       <ng-container *ngSwitchCase="0">no books.</ng-container>
@@ -25,12 +24,19 @@
       </ng-container>
     </ng-container>
     You can see them <a [routerLink]="'/' + Routes.Reading">here</a>.
+<!--    <span class="reading-now">-->
+<!--      <span-->
+<!--        *ngFor="let now of shelf.reading; index as i"-->
+<!--        class="reading-now-img"-->
+<!--        [style]="'background-image: url(' + now.image + ');margin-left:' + ( i * 20 ) + 'px'"-->
+<!--      ></span>-->
+<!--    </span>-->
   </p>
 
 
   <app-carousel
     *ngIf="shelf.read"
-    class="mt-20"
+    class="mt-50"
     [books]="shelf.read"
     [title]="title"
     [wrap]="true"

@@ -1,6 +1,7 @@
 @import 'colors';
 @import 'globals';
 @import 'breakpoints';
+@import 'images';
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -9,7 +10,9 @@ body {
   color: $text-color;
   margin: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
+
 html, body {
   font-size: $app-font-size;
   height: 100%;
@@ -17,9 +20,10 @@ html, body {
 
 a {
   color: $primary-color;
-  //text-decoration: underline;
+  text-decoration: none;
+
   &:hover {
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   &.no-style {
@@ -32,19 +36,13 @@ a {
   width: calc(100% - #{$name-logo-left * 2});
   display: flex;
   flex-direction: column;
-  margin: $app-row-top auto;
+  margin: $app-row-top auto $app-row-bottom;
+  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
 
   .text {
-    //padding: 0 $app-row-text-padding;
     margin: 0 auto;
-    @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
-    //margin: 0 auto 0 0;
-
     width: 90%;
     max-width: $breakpoint-mobile;
-    //@media (min-width: $breakpoint-mobile) {
-    //  max-width: $breakpoint-mobile;
-    //}
   }
 
   @media(max-width: $breakpoint-mobile) {
@@ -56,12 +54,35 @@ a {
 }
 
 .with-margin {
-  @if($content-with-margin) {
+  @if ($content-with-margin) {
 
-  }
-  @else {
+  } @else {
     margin-top: 0;
     margin-bottom: 0;
   }
+}
 
+.back-title {
+  $title-back: 50px;
+  //@include transitions();
+  /*!* */
+  &:before {
+    @include transitions();
+    content: "";
+    background-image: url($image-back);
+    height: $title-back;
+    display: inline-block;
+    left: 0;
+    background-position: left;
+    background-size: $title-back;
+    width: 0;
+    opacity: 0;
+    margin-right: $title-back/2;
+    background-repeat: no-repeat;
+  }
+
+  &:hover:before {
+    opacity: 1;
+    width: $title-back;
+  }
 }

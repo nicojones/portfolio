@@ -1,4 +1,4 @@
-<div class="app-row form-box">
+<div class="text form-box">
   <mat-tab-group (selectedIndexChange)="changedTab($event)">
     <mat-tab label="_____">
       <h2>Choose a tab to edit it.</h2>
@@ -170,24 +170,28 @@
 <ng-template #projectContent let-form="form">
   <h2>Projects</h2>
   <div *ngFor="let control of formArray(form, 'projects').controls; index as i" class="flex-column border-box">
-    <mat-form-field>
+    <mat-form-field hintLabel="title of the project">
       <mat-label>Project Name</mat-label>
       <input matInput [formControl]="formControl(control, 'title')"/>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field hintLabel="short text to show near the title in the project list page">
+      <mat-label>Project Summary</mat-label>
+      <input matInput [formControl]="formControl(control, 'summary')"/>
+    </mat-form-field>
+    <mat-form-field hintLabel="the internal URL to access the project view">
       <mat-label>URL to the page</mat-label>
       <input matInput [formControl]="formControl(control, 'url')"/>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field hintLabel="external URL to this project">
       <mat-label>URL to the project (http:..)</mat-label>
       <input matInput [formControl]="formControl(control, 'link')"/>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field hintLabel="an image source for the project list page">
       <mat-label>Image</mat-label>
       <img *ngIf="formControl(control, 'image').value as src" [src]="src" height="40"/>
       <input matInput [formControl]="formControl(control, 'image')">
     </mat-form-field>
-    <h4>Description of project</h4>
+    <h4>Description of project (UNUSED)</h4>
     <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
     <button
       mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error"

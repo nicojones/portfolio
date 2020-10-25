@@ -64,7 +64,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
    */
   public get index (): number {
     // @ts-ignore
-    return this.carousel ? (this.carousel.stage.currentIndex + 1) : 1;
+    return this.carousel ? Math.round(this.carousel.stage.currentIndex + 1) : 1;
   }
 
   constructor () {}

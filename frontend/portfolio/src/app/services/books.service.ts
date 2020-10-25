@@ -23,7 +23,8 @@ export class BooksService {
     }
 
     return this.http
-      .get<Books>(`${ environment.phpUrl }/goodreads/reading`)
+      .get<Books>(`${ environment.getUrl }/reading.json`)
+      // .get<Books>(`${ environment.phpUrl }/goodreads/reading`)
       .pipe(
         tap((books: Books) => (BooksService.shelf.reading = books))
       );
@@ -36,7 +37,8 @@ export class BooksService {
 
     const params = new HttpParams().set('page', page as unknown as string);
     return this.http
-      .get<ReadBooks>(`${ environment.phpUrl }/goodreads/read`, { params })
+      .get<ReadBooks>(`${ environment.getUrl }/read.json`, { params })
+      // .get<ReadBooks>(`${ environment.phpUrl }/goodreads/read`, { params })
       .pipe(
         filter(Boolean),
         map((read: ReadBooks) => {

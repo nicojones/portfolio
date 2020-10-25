@@ -66,8 +66,18 @@
   text-align: center;
 }
 
+.landing {
+  margin-top: 30vh;
+  max-height: 35vh;
+  margin-bottom: 30vh;
+}
+
 .jumbo {
+  font-weight: $bold;
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size, $jumbo-font-size);
+}
+.jumbo-huge {
+  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $h2-font-size, $jumbo-huge-font-size);
 }
 
 h2, .h2 {
@@ -80,6 +90,7 @@ h2, .h2 {
 
 .no-deco {
   text-decoration: none;
+  color: inherit;
 }
 
 .l1 {

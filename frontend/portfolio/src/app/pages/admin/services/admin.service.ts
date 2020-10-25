@@ -70,6 +70,7 @@ export class AdminService {
       image: new FormControl(projectContent.image, Validators.required),
       content: new FormControl(projectContent.content, Validators.required),
       url: new FormControl(projectContent.url, Validators.required),
+      summary: new FormControl(projectContent.summary, Validators.required),
       link: new FormControl(projectContent.link),
       title: new FormControl(projectContent.title, Validators.required)
     });

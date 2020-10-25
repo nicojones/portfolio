@@ -5,6 +5,6 @@ export const enum Timings {
   SlideStaggerTime = 400,
   SlideTranslate = '-80px',
 
-  FadeInStaggerTime = 500,
+  FadeInStaggerTime = 300,
   FadeInStaggerSlow = 800,
 }

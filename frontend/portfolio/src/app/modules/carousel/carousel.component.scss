@@ -1,8 +1,17 @@
 @import 'breakpoints';
 @import 'globals';
 
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-box {
+  max-width: 2 * $breakpoint-mobile;
+  margin: 0 auto;
+}
 .pagination-title {
-  font-size: $h2-font-size;
+  font-size: $pagination-font-size;
   @media (max-width: $breakpoint-mobile) {
     font-size: $app-font-size;
   }

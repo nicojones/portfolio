@@ -12,36 +12,54 @@ $book-padding: 25px;
   .book-title {
     padding: 0 0 $book-padding 0;
     margin: 0;
+    width: 90%;
+
     .book-link {
       font-size: $big-font-size;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
     }
   }
+
   .book-img-box {
     flex: 0 0 35%;
     display: flex;
     flex-direction: column;
+
     .book-img {
       //flex: 0 0 100%;
       width: 200px;
       //max-height: 300px;
     }
   }
+
   .book-descr {
     flex: 0 0 50%;
     padding: 0 $book-padding;
     margin: 0;
   }
 
+  .book-item {
+    flex-direction: row;
+    display: flex;
+  }
+
   @media(max-width: $breakpoint-mobile) {
     text-align: center;
     .book-item {
       flex-direction: column;
+
       > .book-img-box {
         align-items: center;
       }
+
       .book-descr {
         text-align: justify;
       }
     }
   }
+
 }

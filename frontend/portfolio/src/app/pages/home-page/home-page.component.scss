@@ -109,7 +109,7 @@
   }
 
   &.hover-effects > .jumbo-line:hover {
-    padding-left: $indent-hover;
+    padding-left: $homepage-indent-hover;
     @extend %show-menu;
   }
 }
@@ -117,10 +117,6 @@
 .img-home {
   height: 80%;
   float: right;
-}
-
-.home-title {
-  font-size: $home-font-size;
 }
 
 $tap-anywhere-width: 15rem;

@@ -6,23 +6,29 @@ $name-logo-position: 'right';
 $home-page-use-opacity: true;
 // We want extra margin at the top for all the pages.
 $content-with-margin: true;
+// Transparent / darkened images for Project View. Set to `false` or to the desired brightness (in %)
+$project-transparent-images: false;
 
+$bold: 500; // font-weight for bold type.
 
 $app-font-size: 20px; // MUST BE PX
-$home-font-size: 8 * $app-font-size;
+$jumbo-huge-font-size: 7 * $app-font-size;
 $jumbo-font-size: 6 * $app-font-size;
 $h2-font-size: 3 * $app-font-size;
 $big-font-size: 2 * $app-font-size;
+$pagination-font-size: 1.5 * $app-font-size;
 
 $name-logo-top: 5rem;
 $name-logo-right: 4rem;
 $name-logo-left: 5rem;
 $name-logo-move-on-hover: 1rem;
 
-$app-row-top: 5rem;
+$app-row-top: 0; // 5rem;
+$app-row-bottom: 5rem;
 
 // How much to indent stuff in the home page when we hover on them
-$indent-hover: 4rem;
+$homepage-indent-hover: 4rem;
+$small-indent-hover: $app-font-size;
 
 $app-row-width: 75%;
 $app-row-width-sm: 95%;
@@ -38,3 +44,6 @@ $myself-brightness-mobile: 100%;
 //////
 
 $app-hr-width: 2px;
+
+$paragraph-margin: 4rem; // margin between paragraphs, or between big list items.
+$project-item-width: 50%; // The width of the Title+Summary for the Projects list. the rest is image.

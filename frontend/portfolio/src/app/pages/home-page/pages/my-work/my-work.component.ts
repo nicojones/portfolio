@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { slideIn } from '~app/shared/animations';
 import { ActivatedRoute } from '@angular/router';
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
-import { AnimationSelector } from '~app/shared/enums';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Routes } from '~routes/routes';
 
@@ -12,7 +11,7 @@ import { Routes } from '~routes/routes';
   templateUrl: './my-work.component.html',
   styleUrls: ['./my-work.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slideIn(AnimationSelector.Text)]
+  animations: [slideIn()]
 })
 export class MyWorkComponent {
 

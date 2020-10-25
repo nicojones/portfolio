@@ -1,5 +1,6 @@
 <div class="app-row with-margin" @slideIn>
-  <h1 class="slide-in jumbo center" [innerHTML]="contactMe.title"></h1>
+  <h1 class="slide-in jumbo center landing" [innerHTML]="contactMe.title"></h1>
+<!--  <a class="jumbo back-title center no-deco slide-in" [routerLink]="'/' + Routes.Home" [innerHTML]="contactMe.title"></a>-->
   <app-text [text]="contactMe.text" class="text flex-column"></app-text>
   <app-text [links]="contactMe.link" class="text flex-column"></app-text>
 

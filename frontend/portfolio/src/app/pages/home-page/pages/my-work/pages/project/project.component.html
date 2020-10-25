@@ -1,5 +1,11 @@
-<div class="app-row">
-  <h1 class="jumbo project-title"><a [href]="project.link" target="_blank">{{ project.title }}</a></h1>
-  <div style="background-image: url({{ project.image }})" class="project-image"></div>
-  <div class="project-content" [innerHTML]="safeHTML(project.content)"></div>
+<div class="app-row" @slideIn>
+  <a class="jumbo back-title center no-deco slide-in landing" [routerLink]="'/' + Routes.Work">
+    {{ project.title }}
+  </a>
+  <div class="text">
+    <a [href]="project.link" target="_blank" class="project-link">
+      {{ project.link }}<img src="assets/icons/external.svg" class="external">
+    </a>
+    <div class="project-content" [innerHTML]="safeHTML(project.content)"></div>
+  </div>
 </div>

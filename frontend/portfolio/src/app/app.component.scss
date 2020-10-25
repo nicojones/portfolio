@@ -24,8 +24,8 @@ $name-logo-width: 13rem;
   transition: all 0.4s;
 
   .name-bg {
-    background: $app-background;
-    padding: 2px;
+    //background: $app-background;
+    //padding: 2px;
   }
 
 
@@ -87,8 +87,10 @@ $star-icon-size: 15px;
     height: $star-icon-size;
   }
 
+  &:hover, &.no-stars {
+    @include transform(rotate(540deg));
+  }
   &:hover {
     opacity: 1;
-    @include transform(rotate(540deg));
   }
 }

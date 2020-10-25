@@ -21,6 +21,7 @@ export interface LinkContent<Type = any> {
 export interface ProjectContent {
   image: string;
   title: string;
+  summary: string; // short text
   url: string; // a url that defines where the project lies.
   link: string; // external URL, if possible
   content: string; // Rich HTML

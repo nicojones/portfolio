@@ -37,6 +37,7 @@
     public function getCurrentlyReading () {
         $books = $this->goodreadsService->getCurrentlyReading();
 //         var_dump($books);
+        $saved = file_put_contents(__ROOT__ . '/public/json/reading.json', json_encode($books, JSON_PRETTY_PRINT));
         $this->json($books);
     }
 
@@ -45,6 +46,7 @@
         $books = $this->goodreadsService->getReadBooks($page);
 //         var_dump($books);die;
 //         var_dump($books);
+        $saved = file_put_contents(__ROOT__ . '/public/json/read.json', json_encode($books, JSON_PRETTY_PRINT));
         $this->json($books);
     }
 }

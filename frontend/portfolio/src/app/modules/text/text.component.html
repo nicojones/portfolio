@@ -1,5 +1,5 @@
 <ng-container *ngFor="let t of text">
-  <div [innerHTML]="sanitize(t.content)" class="content"></div>
+  <div [innerHTML]="sanitize(t.content)" class="content" @slideIn></div>
 
 <!--  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">-->
 <!--  <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>-->

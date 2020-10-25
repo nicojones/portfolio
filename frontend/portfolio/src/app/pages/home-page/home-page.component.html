@@ -1,4 +1,4 @@
-<div class="home app-row my-0" (click)="toggleMenu()" *ngIf="{ loading: true } as _">
+<div class="app-row home my-0" (click)="toggleMenu()" *ngIf="{ loading: true } as _">
   <div
     class="jumbo-box"
     [class.show-menu]="showMenu"
@@ -9,8 +9,8 @@
       *ngFor="let t of homePage.title" [class.accent]="t.accent"
       class="jumbo-line fade-in"
     >
-      <h1 class="home-title hover-item link"><a class="no-style" [routerLink]="'/' + t.url" [innerHTML]="t.textHover"></a></h1>
-      <h1 class="home-title hover-item hello">
+      <h1 class="jumbo-huge hover-item link"><a class="no-style" [routerLink]="'/' + t.url" [innerHTML]="t.textHover"></a></h1>
+      <h1 class="jumbo-huge hover-item hello">
         {{ t.text }}
         <small class="mini" *ngIf="t.mini" [innerHTML]="t.mini"></small>
       </h1>
