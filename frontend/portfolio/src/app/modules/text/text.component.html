@@ -1,6 +1,6 @@
 <ng-container *ngFor="let t of text">
 
-  <div [innerHTML]="sanitize(t.content)" class="slide-in"></div>
+  <div [innerHTML]="t._sanitized || sanitize(t)" class="slide-in"></div>
 <!--  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">-->
 <!--  <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>-->
 <!--  <img *ngIf="t.type === 'img'" [src]="t.content" class="slide-in {{ t.extra?.className }}" [alt]="t.extra?.alt"/>-->

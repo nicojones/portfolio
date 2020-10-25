@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePageComponent } from '~home-page/home-page.component';
 import { Routes } from '~routes/routes';
-import { HomePageResolver } from '~home-page/shared/resolvers';
+import { HomePageResolver } from '~app/shared/resolvers';
 
 
 @NgModule({

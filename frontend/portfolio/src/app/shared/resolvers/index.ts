@@ -1,1 +1,3 @@
-export * from './reading-books-resolver.service';
+export * from './reading-books.resolver';
+export * from './reading-books.resolver';
+export * from './home-page.resolver';

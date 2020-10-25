@@ -1,13 +1,26 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Book, Books } from '~goodreads/shared/interfaces/book';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+
 import { Carousel, IOptions } from 'latte-carousel';
+
 import { clone } from '~app/functions';
+
+import { Book, Books } from '~goodreads/shared/interfaces/book';
 
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
 
@@ -62,12 +75,11 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   /**
    * The current index
    */
-  public get index (): number {
-    // @ts-ignore
-    return this.carousel ? Math.round(this.carousel.stage.currentIndex + 1) : 1;
-  }
+  public index: number = 1;
 
-  constructor () {}
+  constructor (
+    private ref: ChangeDetectorRef
+  ) {}
 
   ngOnInit () {
     if (this.lastBook) {
@@ -85,14 +97,20 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       autoplay: 0,
       animation: 500,
       responsive: {
-        0: { count: 1.1, mode: 'free', buttons: false },
-        480: { count: 1.1, mode: 'free', buttons: false },
+        0: { count: 1, buttons: false, touch: true },
+        480: { count: 1.1, buttons: false, touch: true },
         768: { count: 1.1, move: 1, buttons: false },
         1440: { count: 2, move: 2, buttons: false }
       }
     };
 
     this.buildCarousel();
+
+    this.carousel.on('move', () => {
+      // @ts-ignore
+      this.index = this.carousel ? Math.round(this.carousel.stage.currentIndex + 1) : 1;
+      this.ref.markForCheck();
+    })
   }
 
   public nextItem () {

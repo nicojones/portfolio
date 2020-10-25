@@ -4,8 +4,6 @@ $home-page-centered: false;
 $name-logo-position: 'right';
 // Use opacity for the Home Page menu transitions
 $home-page-use-opacity: true;
-// We want extra margin at the top for all the pages.
-$content-with-margin: true;
 // Transparent / darkened images for Project View. Set to `false` or to the desired brightness (in %)
 $project-transparent-images: false;
 
@@ -16,15 +14,15 @@ $jumbo-huge-font-size: 7 * $app-font-size;
 $jumbo-font-size: 6 * $app-font-size;
 $h2-font-size: 3 * $app-font-size;
 $big-font-size: 2 * $app-font-size;
-$pagination-font-size: 1.5 * $app-font-size;
+$book-font-size: 1.5 * $app-font-size;
 
 $name-logo-top: 5rem;
 $name-logo-right: 4rem;
 $name-logo-left: 5rem;
 $name-logo-move-on-hover: 1rem;
 
-$app-row-top: 0; // 5rem;
-$app-row-bottom: 5rem;
+$app-row-top: 0;
+$app-row-bottom: 3rem;
 
 // How much to indent stuff in the home page when we hover on them
 $homepage-indent-hover: 4rem;
@@ -37,7 +35,7 @@ $app-row-text-padding: 2.5rem;
 
 // My photo in the homepage
 $myself-opacity: 1;
-$myself-brightness: 25%;
+$myself-brightness: 50%;
 ///
 $myself-opacity-mobile: 0.3;
 $myself-brightness-mobile: 100%;

@@ -11,7 +11,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class TextComponent implements OnInit {
 
   @Input()
-  public text: TextContent[];
+  public text: (TextContent)[];
 
   @Input()
   public links: LinkContent[];
@@ -26,7 +26,7 @@ export class TextComponent implements OnInit {
   ngOnInit (): void {
   }
 
-  public sanitize (text: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(text);
+  public sanitize (text: TextContent): SafeHtml {
+    return (text.sanitized = this.sanitizer.bypassSecurityTrustHtml(text.content));
   }
 }

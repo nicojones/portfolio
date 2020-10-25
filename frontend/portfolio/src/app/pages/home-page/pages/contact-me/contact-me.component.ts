@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { slideIn } from '~app/shared/animations';
 import { ActivatedRoute } from '@angular/router';
-import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
 import { Routes } from '~routes/routes';
+
+import { slideIn } from '~app/shared/animations';
+
+import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
 
 
 @Component({

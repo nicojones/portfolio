@@ -4,7 +4,7 @@ import { GoodreadsComponent } from './goodreads.component';
 import { TestModule } from '~app/tests';
 import { BooksService } from '~app/services';
 import { CarouselModule } from '~app/modules/carousel';
-import { ReadBooksResolver } from '~app/shared/resolvers/read-books-resolver.service';
+import { ReadBooksResolver } from '~app/shared/resolvers/read-books.resolver';
 import { ReadingBooksResolver } from '~app/shared/resolvers';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';

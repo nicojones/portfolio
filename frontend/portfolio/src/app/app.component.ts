@@ -1,14 +1,13 @@
+import { NavigationEnd, Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { MyRoutes, Routes, RouteUrls } from '~routes/routes';
 
 import { slide } from '~app/shared/animations';
-import { AppTitleService, getLocalStorage } from '~app/services';
+import { StorageKey } from '~app/shared/enums';
 import { detectAndSaveOS } from '~app/functions';
 import { AuthGuard } from '~app/services/guards/auth.guard';
-import { NavigationEnd, Router } from '@angular/router';
-import { StorageKey } from '~app/shared/enums';
-import { environment } from '~env/environment';
+import { AppTitleService, getLocalStorage } from '~app/services';
 
 
 @Component({
@@ -19,7 +18,14 @@ import { environment } from '~env/environment';
   animations: [slide()]
 })
 export class AppComponent {
-  public readonly absolute = Routes.absolute;
+  /**
+   * The Absolute (real-path) URL
+   */
+  public readonly absolute = Routes.url;
+
+  /**
+   * Only the routes, no functions.
+   */
   public readonly RouteKeys: (keyof MyRoutes)[] = Object.keys(RouteUrls) as (keyof MyRoutes)[];
 
   /**
@@ -27,19 +33,24 @@ export class AppComponent {
    */
   public stars: boolean;
 
-  public isAuthed$ = AuthGuard.loggedIn$;
+  /**
+   * The authentication status.
+   */
+  public auth$ = AuthGuard.auth$;
 
-  // noinspection JSUnusedLocalSymbols
   constructor (
     private title: AppTitleService,
     private router: Router
   ) {
-    console.log(environment.getUrl)
-    const clientOS = detectAndSaveOS();
-    AppTitleService.title.setTitle('Nicolas Kupfer');
+    // Client OS - detect and save it if it's not in the local storage.
+    detectAndSaveOS();
+    // Name of the app
+    AppTitleService.title.setTitle('Nicolas Kupfer'); // TODO -> Read from a resolver.
 
+    // The visibility state of the stars/canvas.
     this.stars = !(getLocalStorage().getItem(StorageKey.Stars) === false);
 
+    // Re-scroll the window to the top when the route changes.
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -47,7 +58,6 @@ export class AppComponent {
       window.scrollTo(0, 0)
     });
 
-    document.body.classList.add(clientOS.isMobile ? 'mobile' : 'desktop');
   }
 
   public toggleStars (): void {

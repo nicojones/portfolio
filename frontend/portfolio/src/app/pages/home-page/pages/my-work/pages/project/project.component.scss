@@ -3,6 +3,7 @@
 @import 'breakpoints';
 
 :host {
+  //noinspection CssInvalidPseudoSelector
   ::ng-deep .project-image {
     $min-height: 350px;
     $max-height: 600px;
@@ -28,15 +29,16 @@
   }
 
 
+  //noinspection CssInvalidPseudoSelector
   ::ng-deep .project-content {
     /*!* */
     > p {
-      margin: $paragraph-margin auto;
       display: flex;
       flex-direction: column;
     }
   }
 
+  //noinspection CssInvalidPseudoSelector
   ::ng-deep .project-link {
     @include transitions();
 
@@ -45,6 +47,7 @@
     }
   }
 
+  //noinspection CssInvalidPseudoSelector
   ::ng-deep {
     .external {
       top: 5px;
@@ -57,7 +60,8 @@
 }
 
 @if ($project-transparent-images) {
-  :host-context(.desktop) ::ng-deep .project-image {
+  //noinspection CssInvalidPseudoSelector
+  .app-row.desktop ::ng-deep .project-image {
 
     filter: brightness($project-transparent-images);
     @include transitions();

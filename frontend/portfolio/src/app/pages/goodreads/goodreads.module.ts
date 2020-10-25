@@ -8,7 +8,7 @@ import { GoodreadsComponent } from '~goodreads/goodreads.component';
 
 import { CarouselModule } from '~app/modules/carousel';
 import { ReadingBooksResolver } from '~app/shared/resolvers';
-import { ReadBooksResolver } from '~app/shared/resolvers/read-books-resolver.service';
+import { ReadBooksResolver } from '~app/shared/resolvers/read-books.resolver';
 
 
 @NgModule({

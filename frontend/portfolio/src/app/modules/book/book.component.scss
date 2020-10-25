@@ -12,10 +12,10 @@ $book-padding: 25px;
   .book-title {
     padding: 0 0 $book-padding 0;
     margin: 0;
-    width: 90%;
+    width: 95%;
 
     .book-link {
-      font-size: $big-font-size;
+      font-size: $book-font-size;
       white-space: nowrap;
       text-overflow: ellipsis;
       display: inline-block;
@@ -52,8 +52,18 @@ $book-padding: 25px;
     .book-item {
       flex-direction: column;
 
+      .book-link {
+        font-size: $book-font-size;
+      }
+
       > .book-img-box {
         align-items: center;
+        height: 30vh;
+        padding-bottom: 30px;
+        > .book-img {
+          width: auto;
+          height: 100%;
+        }
       }
 
       .book-descr {

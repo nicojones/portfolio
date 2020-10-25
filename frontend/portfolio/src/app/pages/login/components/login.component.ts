@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Routes } from '~routes/routes';
 import { getLocalStorage } from '~app/services';
 import { StorageKey } from '~app/shared/enums';
+import { Auth } from '~app/shared/interfaces';
 
 
 @Component({
@@ -44,10 +45,10 @@ export class LoginComponent {
           return throwError(error);
         })
       )
-      .subscribe((response: { auth: string }) => {
-        getLocalStorage().setItem(StorageKey.Auth, { Authorization: response.auth });
+      .subscribe((auth: Auth) => {
+        getLocalStorage().setItem<string>(StorageKey.Auth, auth.Authorization);
         this.snackbar.open('Logged in', null, { duration: 2000 });
-        this.router.navigateByUrl(Routes.absolute('Admin'));
+        this.router.navigateByUrl(Routes.url('Admin'));
       });
   }
 

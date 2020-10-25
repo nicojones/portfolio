@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CelestialPosition, ClientScreen, Position2D, Spacetime, Star } from '~app/components/stars/interfaces/star';
-import { StarsService } from '~app/components/stars/shared/services/stars.service';
-import { StarWanderer } from '~app/components/stars/interfaces/star-wanderer';
+
 import { StarConfig } from '~app/components/stars/interfaces/star-config';
+import { StarWanderer } from '~app/components/stars/interfaces/star-wanderer';
+import { StarsService } from '~app/components/stars/shared/services/stars.service';
+import { CelestialPosition, ClientScreen, Position2D, Spacetime, Star } from '~app/components/stars/interfaces/star';
 
 
 @Component({

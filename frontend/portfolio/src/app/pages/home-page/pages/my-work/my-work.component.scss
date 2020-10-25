@@ -1,4 +1,5 @@
 @import 'globals';
+@import 'mixins';
 
 :host {
 
@@ -6,21 +7,32 @@
     display: inline-flex;
     flex-wrap: wrap;
     margin-bottom: $paragraph-margin;
-  }
 
-  .project-item-text {
-    flex: 0 0 $project-item-width;
-    justify-content: flex-start;
-    display: flex;
-    flex-direction: column;
-  }
 
-  .project-list-image {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex: 1 1 $project-image-width;
+    .project-item-text {
+      flex: 0 0 $project-item-width;
+      justify-content: flex-start;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-list-image {
+      height: 300px;
+      flex: 1 1 $project-image-width;
+      overflow: hidden;
+
+      .project-list-bg {
+        @include transitions();
+        background-size: cover;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+    }
+    &:hover .project-list-bg {
+      transform: scale(1.1);
+    }
   }
 
 }

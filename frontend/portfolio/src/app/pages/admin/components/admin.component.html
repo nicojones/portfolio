@@ -4,7 +4,11 @@
       <h2>Choose a tab to edit it.</h2>
     </mat-tab>
     <mat-tab label="Home">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Home) && service.homeForm as f">
+      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Home) && service.homeForm as f" class="flex-column">
+        <mat-form-field hintLabel="This is the name of the website, the page title.">
+          <mat-label>Name of the website</mat-label>
+          <input matInput formControlName="pageTitle">
+        </mat-form-field>
         <mat-form-field>
           <mat-label>Mobile tap message</mat-label>
           <input matInput formControlName="mobileTap">
@@ -17,6 +21,10 @@
           >
             <h3>Item {{ i + 1 }}</h3>
             <mat-checkbox [formControl]="formControl(control, 'accent')">With accent</mat-checkbox>
+            <mat-form-field>
+              <mat-label>position</mat-label>
+              <input matInput [formControl]="formControl(control, 'index')">
+            </mat-form-field>
             <mat-form-field>
               <mat-label>Text to show</mat-label>
               <input matInput [formControl]="formControl(control, 'text')">
@@ -121,10 +129,10 @@
     </mat-form-field>
     <h4>content</h4>
     <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
-    <mat-form-field>
-      <mat-label>Extra?</mat-label>
-      <input matInput [formControl]="formControl(control, 'extra')">
-    </mat-form-field>
+<!--    <mat-form-field>-->
+<!--      <mat-label>Extra?</mat-label>-->
+<!--      <input matInput [formControl]="formControl(control, 'extra')">-->
+<!--    </mat-form-field>-->
     <button
       mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error"
     >remove #{{ i + 1 }}</button>
@@ -188,8 +196,8 @@
     </mat-form-field>
     <mat-form-field hintLabel="an image source for the project list page">
       <mat-label>Image</mat-label>
-      <img *ngIf="formControl(control, 'image').value as src" [src]="src" height="40"/>
       <input matInput [formControl]="formControl(control, 'image')">
+      <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60" alt="Preview image"/>
     </mat-form-field>
     <h4>Description of project (UNUSED)</h4>
     <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>

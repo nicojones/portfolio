@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { slideIn } from '~app/shared/animations';
 import { ActivatedRoute } from '@angular/router';
-import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { Routes } from '~routes/routes';
+
+import { slideIn } from '~app/shared/animations';
+
+import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 
 
 @Component({

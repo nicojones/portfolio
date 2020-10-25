@@ -28,6 +28,7 @@ export class AdminService {
   });
 
   public homeForm: MainFormGroup<HomePage> = new MainFormGroup<HomePage>({
+    pageTitle: new FormControl(null, Validators.required),
     mobileTap: new FormControl(null, Validators.required),
     title: new MainFormArray<HomePage['title']>([])
   });
@@ -44,6 +45,7 @@ export class AdminService {
       text: new FormControl(title.text),
       textHover: new FormControl(title.textHover),
       url: new FormControl(title.url),
+      index: new FormControl(null),
       mini: new FormControl(title.mini)
     });
   }
@@ -51,7 +53,6 @@ export class AdminService {
   public textContent (textContent: Partial<TextContent>) {
     return new MainFormGroup<TextContent>({
       content: new FormControl(textContent.content, Validators.required),
-      extra: new FormControl(textContent.extra),
       type: new FormControl(textContent.type, Validators.required)
     });
   }

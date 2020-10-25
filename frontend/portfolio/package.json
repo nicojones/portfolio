@@ -1,5 +1,7 @@
 {
   "name": "portfolio",
+  "author": "Nico Kupfer",
+  "homepage": "https://nico.kupfer.es/",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,7 +17,6 @@
     "@angular/animations": "~10.1.6",
     "@angular/cdk": "^10.2.5",
     "@angular/common": "~10.1.6",
-    "@angular/compiler": "~10.1.6",
     "@angular/core": "~10.1.6",
     "@angular/forms": "~10.1.6",
     "@angular/material": "^10.2.5",
@@ -29,6 +30,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular/compiler": "~10.1.6",
     "@angular-devkit/build-angular": "~0.1001.7",
     "@angular/cli": "~10.1.7",
     "@angular/compiler-cli": "~10.1.6",

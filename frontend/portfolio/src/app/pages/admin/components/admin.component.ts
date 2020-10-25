@@ -1,5 +1,5 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -9,15 +9,15 @@ import { catchError, tap } from 'rxjs/operators';
 import { RouteUrls } from '~routes/routes';
 import { environment } from '~env/environment';
 
-import { Section, SocialIcons, StorageKey } from '~app/shared/enums';
 import { AdminService } from '~admin/services';
 import { MainFormArray } from '~app/shared/classes';
+import { Section, SocialIcons } from '~app/shared/enums';
+import { AuthGuard } from '~app/services/guards/auth.guard';
 
 import { HomePage } from '~home-page/interfaces';
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
-import { getLocalStorage } from '~app/services';
 
 
 const Tabs = {
@@ -26,7 +26,7 @@ const Tabs = {
   About: 2,
   Contact: 3,
   Work: 4
-}
+};
 
 @Component({
   selector: 'app-admin',
@@ -89,7 +89,7 @@ export class AdminComponent {
 
   public setupHomeForm () {
     return this.getSection<HomePage>(Section.Home).subscribe((home: HomePage) => {
-      this.service.workForm.reset();
+      this.service.homeForm.reset();
       this.service.homeForm.patchValue(home);
       for (let i = 0, len = home.title.length; i < len; ++i) {
         (this.service.homeForm.get('title') as MainFormArray<HomePage['title']>).push(
@@ -101,7 +101,7 @@ export class AdminComponent {
 
   public setupAboutForm () {
     return this.getSection<AboutPage>(Section.About).subscribe((about: AboutPage) => {
-      this.service.workForm.reset();
+      this.service.aboutForm.reset();
       this.service.aboutForm.patchValue(about);
 
       for (let i = 0, len = about.title.multi.length; i < len; ++i) {
@@ -118,7 +118,7 @@ export class AdminComponent {
 
   public setupContactForm () {
     return this.getSection<ContactMePage>(Section.Contact).subscribe((contact: ContactMePage) => {
-      this.service.workForm.reset();
+      this.service.contactForm.reset();
       this.service.contactForm.patchValue(contact);
 
       for (let i = 0, len = contact.text.length; i < len; ++i) {
@@ -149,6 +149,8 @@ export class AdminComponent {
 
   public saveHomeForm () {
     const value: HomePage = this.service.homeForm.value;
+    value.title.sort((a, b) => a.index - b.index)
+    console.log(value);
     this.save<HomePage>(Section.Home, value);
   }
 
@@ -181,12 +183,13 @@ export class AdminComponent {
     body.append('section', section);
     body.append('content', valueString);
 
-    this.http.post<any>(`${ environment.phpUrl }?save`,
+    this.http.post<any>(
+      `${ environment.phpUrl }?save`,
       body,
-      { headers: { headers: getLocalStorage().getItem(StorageKey.Auth)}}
-      )
+      { headers: { Authorization: AuthGuard.auth$.value } }
+    )
       .pipe(catchError((error: HttpErrorResponse) => {
-        this.snackBar.open('ERROR! ' + error.error, 'dismiss');
+        this.snackBar.open('ERROR! ' + JSON.stringify(error.error), 'dismiss');
         return throwError(error);
       }))
       .subscribe((a: any) => {
@@ -196,7 +199,8 @@ export class AdminComponent {
 
   private getSection<T> (section: Section): Observable<T> {
     return this.http
-      .get<T>(`${ environment.phpUrl }?section=${ section }`, { headers: getLocalStorage().getItem(StorageKey.Auth) })
+      .get<T>(
+        `${ environment.phpUrl }?section=${ section }`, { headers: { Authorization: AuthGuard.auth$.value } })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.snackBar.open('ERROR! ' + error.error, 'dismiss');

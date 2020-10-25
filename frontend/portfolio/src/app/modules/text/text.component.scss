@@ -6,6 +6,7 @@
   flex-direction: column;
 
   .content {
+    //noinspection CssInvalidPseudoSelector
     ::ng-deep .image {
       margin: $app-font-size 0;
 
@@ -23,6 +24,7 @@
       }
     }
 
+    //noinspection CssInvalidPseudoSelector
     ::ng-deep hr {
       border-width: 0 0 $app-hr-width 0;
     }

@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { fadeIn, Timings } from '~app/shared/animations';
-import { ClientOs } from '~app/shared/interfaces';
-import { getLocalStorage } from '~app/services';
-import { StorageKey } from '~app/shared/enums';
-import { HomePage } from '~home-page/interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { StorageKey } from '~app/shared/enums';
+import { getLocalStorage } from '~app/services';
+import { ClientOs } from '~app/shared/interfaces';
+import { fadeIn, Timings } from '~app/shared/animations';
+
+import { HomePage } from '~home-page/interfaces';
 
 
 @Component({

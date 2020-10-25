@@ -1,14 +1,12 @@
 import { ContentType } from '~app/shared/interfaces/content-type';
 import { SocialIcons } from '~app/shared/enums';
+import { SafeHtml } from '@angular/platform-browser';
 
 
 export interface TextContent<Type = any> {
   type: ContentType;
+  _sanitized?: SafeHtml;
   content: string;
-  /**
-   * @deprecated
-   */
-  extra?: Type
 }
 
 export interface LinkContent<Type = any> {

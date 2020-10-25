@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanLoad, CanActivate {
 
-  public static loggedIn$ = new BehaviorSubject<boolean>(!!getLocalStorage().getItem(StorageKey.Auth));
+  public static auth$ = new BehaviorSubject<string>(getLocalStorage().getItem(StorageKey.Auth));
 
   constructor (
     private snackbar: MatSnackBar,
@@ -22,13 +22,14 @@ export class AuthGuard implements CanLoad, CanActivate {
    * @returns - Permission to activate route
    */
   private isAuthed (): boolean {
-    if (getLocalStorage().getItem(StorageKey.Auth)) {
-      AuthGuard.loggedIn$.next(true);
+    const auth = getLocalStorage().getItem<string>(StorageKey.Auth);
+    if (auth) {
+      AuthGuard.auth$.next(auth);
       return true;
     } else {
       this.snackbar.open('Not authed', 'dismiss');
-      this.router.navigateByUrl(Routes.absolute('Home'));
-      AuthGuard.loggedIn$.next(false);
+      this.router.navigateByUrl(Routes.url('Login'));
+      AuthGuard.auth$.next(null);
       return false;
     }
   }

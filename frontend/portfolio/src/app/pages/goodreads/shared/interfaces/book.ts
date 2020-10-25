@@ -11,7 +11,6 @@ export type Books = Book[];
 export interface ReadBooks {
   totalRead: number;
   read: Books;
-  page: number;
 }
 
 export interface Shelf extends ReadBooks {

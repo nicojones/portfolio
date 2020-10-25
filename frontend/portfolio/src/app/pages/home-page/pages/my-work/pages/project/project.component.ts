@@ -4,10 +4,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { Routes } from '~routes/routes';
 
-import { ProjectContent } from '~app/shared/interfaces';
-import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
+import { getLocalStorage } from '~app/services';
 import { slideIn } from '~app/shared/animations';
-import { AnimationSelector } from '~app/shared/enums';
+import { AnimationSelector, StorageKey } from '~app/shared/enums';
+import { ClientOs, ProjectContent } from '~app/shared/interfaces';
+
+import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
 
 
 @Component({
@@ -21,6 +23,8 @@ export class ProjectComponent {
   public Routes = Routes;
 
   public readonly project: ProjectContent;
+
+  public readonly client: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
 
   constructor(
     private route: ActivatedRoute,

@@ -11,7 +11,7 @@ export interface MyRoutes {
 }
 
 export interface MyRoutesFunctions {
-  absolute: (key: keyof MyRoutes) => string;
+  url: (key: keyof MyRoutes) => string;
   path: (keys: (keyof MyRoutes)[], absolute: string) => string;
 }
 
@@ -29,7 +29,7 @@ export const RouteUrls: MyRoutes = {
 export const Routes: MyRoutes & MyRoutesFunctions = {
   ...RouteUrls,
 
-  absolute: (key: keyof MyRoutes) => {
+  url: (key: keyof MyRoutes) => {
     return `/${ Routes[key] }`;
   },
   path: (keys: Extract<MyRoutes, string>[], absolute: string = '/') => {

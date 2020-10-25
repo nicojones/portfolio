@@ -1,12 +1,12 @@
 {
   "/json": {
-    "target": "http://localhost",
+    "target": "http://localhost/portfolio/public",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/api": {
-    "target": "http://localhost",
+    "target": "http://localhost/portfolio/public",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

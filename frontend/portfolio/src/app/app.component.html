@@ -6,9 +6,9 @@
 
 <app-stars *ngIf="stars"></app-stars>
 <a (click)="toggleStars()" id="toggle-stars" [title]="stars ? 'Hide stars': 'Show stars'" [class.no-stars]="!stars">
-  <img src="assets/icons/star.svg" id="star"/>
+  <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background"/>
 </a>
 
-<span id="authed" *ngIf="isAuthed$ | async">
+<span id="authed" *ngIf="auth$ | async">
   <a  [routerLink]="absolute(key)" class="mr-20" *ngFor="let key of RouteKeys">{{ key }}</a>
 </span>

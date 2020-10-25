@@ -7,6 +7,6 @@ import { Environment } from '~env/environment.interface';
 // const ip = '172.20.10.3';
 export const environment: Environment = {
   production: false,
-  getUrl: '/json/',
-  phpUrl: '/api/'
+  getUrl: `/json`,
+  phpUrl: '/api/app.php'
 };
