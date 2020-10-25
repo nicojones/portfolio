@@ -2,7 +2,7 @@
   <!--  <a class="jumbo back-title center no-deco slide-in" [routerLink]="'/' + Routes.Home" [innerHTML]="myWork.title"></a>-->
   <h1 class="jumbo slide-in center landing" [innerHTML]="myWork.title"></h1>
 <!--  <div class="slide-in mb-50" [innerHTML]="safeHTML(myWork.description)"></div>-->
-  <div *ngFor="let project of myWork.projects; index as i" class="project-item slide-in">
+  <div *ngFor="let project of myWork.projects; index as i" class="project-item slide-in text">
     <div class="project-item-text">
       <a class="project-box no-deco" [routerLink]="'/' + Routes.Work + '/' + project.url">
         <h2 class="my-0">{{ project.title }}</h2>

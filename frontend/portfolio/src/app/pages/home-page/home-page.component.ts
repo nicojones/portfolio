@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { fadeIn, slide, slideIn, Timings } from '~app/shared/animations';
+import { fadeIn, Timings } from '~app/shared/animations';
 import { ClientOs } from '~app/shared/interfaces';
 import { getLocalStorage } from '~app/services';
 import { StorageKey } from '~app/shared/enums';
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slide(), slideIn(), fadeIn(Timings.FadeInStaggerSlow)]
+  animations: [fadeIn(Timings.FadeInStaggerSlow)]
 })
 export class HomePageComponent {
 

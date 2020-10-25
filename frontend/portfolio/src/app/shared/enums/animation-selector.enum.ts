@@ -1,3 +1,3 @@
 export const enum AnimationSelector {
-  Text = 'p,hr,.link,.slide-in'
+  Text = 'p, hr, .link, .slide-in'
 }

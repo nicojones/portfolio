@@ -49,15 +49,22 @@ DirectoryIndex index.html
 #<IfModule mod_deflate.c>
 #    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
 #</IfModule>
+<FilesMatch "\.(json)$">
+    <IfModule mod_headers.c>
+        Header add Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+        Header add Access-Control-Allow-Origin "*"
+        Header add Access-Control-Allow-Methods "GET"
+#        Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+#        Header set Access-Control-Allow-Origin "*"
+#        Header set Access-Control-Allow-Methods "GET"
+    </IfModule>
+</FilesMatch>
 
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
     RewriteEngine On
     RewriteBase /public
 
-    <IfModule mod_headers.c>
-        Header set Access-Control-Allow-Origin "*"
-    </IfModule>
 #
     RewriteCond %{HTTP_HOST} ^www\.(.+)
     RewriteCond %{HTTPS}s/%1 ^(on(s)|offs)/(.+)

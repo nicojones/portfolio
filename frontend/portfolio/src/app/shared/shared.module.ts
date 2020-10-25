@@ -6,11 +6,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [],
+  declarations: [
+    // ImageDirective
+  ],
   exports: [
+    // ImageDirective,
     CommonModule,
     AngularMaterialModule,
     ReactiveFormsModule
-    // RouterModule
   ]
 })
 export class SharedModule {}

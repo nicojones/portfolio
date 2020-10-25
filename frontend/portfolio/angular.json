@@ -91,6 +91,10 @@
           "configurations": {
             "production": {
               "browserTarget": "portfolio:build:production"
+            },
+            "mobile": {
+              "browserTarget": "portfolio:build:mobile",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },

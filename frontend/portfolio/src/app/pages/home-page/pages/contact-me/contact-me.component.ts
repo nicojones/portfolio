@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { slideIn } from '~app/shared/animations';
 import { ActivatedRoute } from '@angular/router';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
-import { AnimationSelector } from '~app/shared/enums';
 import { Routes } from '~routes/routes';
 
 
@@ -11,7 +10,7 @@ import { Routes } from '~routes/routes';
   templateUrl: './contact-me.component.html',
   styleUrls: ['./contact-me.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slideIn(AnimationSelector.Text)]
+  animations: [slideIn()]
 })
 export class ContactMeComponent implements OnInit {
 

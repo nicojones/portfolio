@@ -12,7 +12,8 @@
     <br>
     <span class="accent" [innerHTML]="aboutPage.title.last"></span>{{ aboutPage.title.period }}
   </h1>
-  <app-text [text]="aboutPage.text" class="text"></app-text>
+
+  <app-text [text]="aboutPage.text" class="text flex-column"></app-text>
 
   <p class="text slide-in">Currently reading
     <ng-container *ngIf="!shelf.reading">some books...</ng-container>
