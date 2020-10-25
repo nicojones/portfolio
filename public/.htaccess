@@ -45,20 +45,23 @@ DirectoryIndex index.html
 #<FilesMatch ".(eot|ttf|otf|woff)">
 #    Header set Access-Control-Allow-Origin "*"
 #</FilesMatch>
+
+## Do NOT cache .json files
+<FilesMatch "\.(json)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</FilesMatch>
 #
 #<IfModule mod_deflate.c>
 #    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
 #</IfModule>
-<FilesMatch "\.(json)$">
-    <IfModule mod_headers.c>
-        Header add Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-        Header add Access-Control-Allow-Origin "*"
-        Header add Access-Control-Allow-Methods "GET"
-#        Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-#        Header set Access-Control-Allow-Origin "*"
-#        Header set Access-Control-Allow-Methods "GET"
-    </IfModule>
-</FilesMatch>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Allow-Methods "GET, POST"
+</IfModule>
 
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks

@@ -91,6 +91,9 @@ h2, .h2 {
 .no-deco {
   text-decoration: none;
   color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .l1 {

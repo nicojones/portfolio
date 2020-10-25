@@ -44,8 +44,8 @@ export class LoginComponent {
           return throwError(error);
         })
       )
-      .subscribe((response: any) => {
-        getLocalStorage().setItem(StorageKey.Auth, response);
+      .subscribe((response: { auth: string }) => {
+        getLocalStorage().setItem(StorageKey.Auth, { Authorization: response.auth });
         this.snackbar.open('Logged in', null, { duration: 2000 });
         this.router.navigateByUrl(Routes.absolute('Admin'));
       });

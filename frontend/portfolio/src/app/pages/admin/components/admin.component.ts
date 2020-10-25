@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { RouteUrls } from '~routes/routes';
 import { environment } from '~env/environment';
 
-import { Section, SocialIcons } from '~app/shared/enums';
+import { Section, SocialIcons, StorageKey } from '~app/shared/enums';
 import { AdminService } from '~admin/services';
 import { MainFormArray } from '~app/shared/classes';
 
@@ -17,6 +17,7 @@ import { HomePage } from '~home-page/interfaces';
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
 import { ContactMePage } from '~home-page/pages/contact-me/shared/interfaces';
+import { getLocalStorage } from '~app/services';
 
 
 const Tabs = {
@@ -180,7 +181,10 @@ export class AdminComponent {
     body.append('section', section);
     body.append('content', valueString);
 
-    this.http.post<any>(`${ environment.phpUrl }/sections`, body)
+    this.http.post<any>(`${ environment.phpUrl }?save`,
+      body,
+      { headers: { headers: getLocalStorage().getItem(StorageKey.Auth)}}
+      )
       .pipe(catchError((error: HttpErrorResponse) => {
         this.snackBar.open('ERROR! ' + error.error, 'dismiss');
         return throwError(error);
@@ -191,11 +195,8 @@ export class AdminComponent {
   }
 
   private getSection<T> (section: Section): Observable<T> {
-    // if (this.formSetup[section]) {
-    //   return throwError(`form ${ section } already loaded - skipping`);
-    // }
     return this.http
-      .get<T>(`${ environment.phpUrl }/section/${ section }`)
+      .get<T>(`${ environment.phpUrl }?section=${ section }`, { headers: getLocalStorage().getItem(StorageKey.Auth) })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.snackBar.open('ERROR! ' + error.error, 'dismiss');

@@ -7,8 +7,8 @@ import { Environment } from '~env/environment.interface';
 
 export const environment: Environment = {
   production: false,
-  phpUrl: 'http://portfolio.local/api',
-  getUrl: 'http://portfolio.local/json'
+  phpUrl: 'http://portfolio.local/api/',
+  getUrl: 'http://portfolio.local/json/'
 };
 
 /*

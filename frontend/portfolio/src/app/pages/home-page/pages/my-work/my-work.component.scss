@@ -4,6 +4,7 @@
 
   .project-item {
     display: inline-flex;
+    flex-wrap: wrap;
     margin-bottom: $paragraph-margin;
   }
 
@@ -15,11 +16,11 @@
   }
 
   .project-list-image {
-    width: 100%;
     height: 300px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    flex: 1 1 $project-image-width;
   }
 
 }

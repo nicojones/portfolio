@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Routes } from '~routes/routes';
+import { MyRoutes, Routes, RouteUrls } from '~routes/routes';
 
 import { slide } from '~app/shared/animations';
 import { AppTitleService, getLocalStorage } from '~app/services';
@@ -8,6 +8,7 @@ import { detectAndSaveOS } from '~app/functions';
 import { AuthGuard } from '~app/services/guards/auth.guard';
 import { NavigationEnd, Router } from '@angular/router';
 import { StorageKey } from '~app/shared/enums';
+import { environment } from '~env/environment';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { StorageKey } from '~app/shared/enums';
   animations: [slide()]
 })
 export class AppComponent {
-  public readonly Routes = Routes;
+  public readonly absolute = Routes.absolute;
+  public readonly RouteKeys: (keyof MyRoutes)[] = Object.keys(RouteUrls) as (keyof MyRoutes)[];
 
   /**
    * Toggle to disable stars.
@@ -32,6 +34,7 @@ export class AppComponent {
     private title: AppTitleService,
     private router: Router
   ) {
+    console.log(environment.getUrl)
     const clientOS = detectAndSaveOS();
     AppTitleService.title.setTitle('Nicolas Kupfer');
 

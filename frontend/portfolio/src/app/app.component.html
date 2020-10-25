@@ -2,11 +2,13 @@
   <i>&nbsp;&nbsp;&nbsp;&nbsp;</i><span class="name-bg">nico<i>.</i>kupfer</span><i class="name-bg l1">.es/</i>
 </a>
 
-<a id="authed" *ngIf="isAuthed$ | async" [routerLink]="'/' + Routes.Admin">go to admin</a>
-
 <router-outlet></router-outlet>
 
 <app-stars *ngIf="stars"></app-stars>
 <a (click)="toggleStars()" id="toggle-stars" [title]="stars ? 'Hide stars': 'Show stars'" [class.no-stars]="!stars">
   <img src="assets/icons/star.svg" id="star"/>
 </a>
+
+<span id="authed" *ngIf="isAuthed$ | async">
+  <a  [routerLink]="absolute(key)" class="mr-20" *ngFor="let key of RouteKeys">{{ key }}</a>
+</span>
