@@ -1,0 +1,36 @@
+{
+    "title": "Interested?<br> Sounds <span class=\"accent\">great!<\/span>",
+    "text": [
+        {
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At <span class=\"accent\">ZENO<\/span> eum non beatum modo, sed etiam divitem dicere ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate, haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta?<\/p>\n\n<p>nthnth<\/p>\n\n<p> <\/p>\n\n<p>nthnth<\/p>\n\n<div class=\"slide-in\" style=\"background-image:url(\/assets\/images\/home\/night1.jpeg); background-position:center; background-size:cover; min-height:400px\">\n<p> <\/p>\n<\/div>\n\n<p>nthnth<\/p>\n\n<hr \/>\n<p>something else :)<\/p>\n\n<p>erspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate, haec omnia; Tecum optime, <span class=\"accent\">very important<\/span> deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta?<\/p>\n",
+            "extra": null,
+            "type": "p"
+        }
+    ],
+    "link": [
+        {
+            "text": "My Curriculum",
+            "url": "",
+            "title": null,
+            "icon": "user"
+        },
+        {
+            "text": "GitHub",
+            "url": "https:\/\/github.com\/nicojones",
+            "title": null,
+            "icon": "github"
+        },
+        {
+            "text": "YouTube",
+            "url": "https:\/\/youtube.com\/user\/njrubik",
+            "title": null,
+            "icon": "youtube"
+        },
+        {
+            "text": "LinkedIn",
+            "url": "https:\/\/www.linkedin.com\/in\/nico-kupfer\/",
+            "title": null,
+            "icon": "linkedin"
+        }
+    ]
+}

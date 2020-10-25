@@ -1,0 +1,30 @@
+{
+    "pageTitle": "My Website",
+    "mobileTap": "tap anywhere...",
+    "title": [
+        {
+            "accent": false,
+            "text": "Hello.",
+            "textHover": "About",
+            "url": "about",
+            "index": null,
+            "mini": ""
+        },
+        {
+            "accent": false,
+            "text": "I am",
+            "textHover": "Projects",
+            "url": "work",
+            "index": null,
+            "mini": ""
+        },
+        {
+            "accent": true,
+            "text": "Nico Kupfer",
+            "textHover": "Contact",
+            "url": "contact",
+            "index": null,
+            "mini": null
+        }
+    ]
+}

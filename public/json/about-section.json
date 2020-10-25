@@ -1,0 +1,19 @@
+{
+    "title": {
+        "first": "mathe&shy;matician",
+        "last": "web developer",
+        "period": ".",
+        "multi": [
+            "+",
+            "turned",
+            "and"
+        ]
+    },
+    "text": [
+        {
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At <span class=\"accent\">ZENO<\/span> eum non beatum modo, sed etiam divitem dicere ausus est. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Duo Reges: constructio interrete. Atque haec coniunctio confusioque virtutum tamen a philosophis ratione quadam distinguitur. Ut optime, secundum naturam affectum esse possit. Faceres tu quidem, Torquate, haec omnia; Tecum optime, deinde etiam cum mediocri amico. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta?<\/p>\n\n<hr \/>\n<p>Lorem ipsum dolor sit amet consectetur adipiscing, elit nec congue euismod viverra mi, tellus nascetur gravida metus condimentum egestas, per turpis accumsan duis ridiculus. Aliquam diam netus vestibulum praesent litora nunc volutpat fusce venenatis tristique pulvinar, turpis fringilla consequat fames taciti a semper dictumst rhoncus auctor suscipit montes, posuere maecenas donec sollicitudin primis tortor vulputate lobortis placerat nam. Varius eros nec enim leo fermentum nostra, habitasse bibendum aliquam quam.<\/p>\n\n<p>Augue arcu dignissim ut consequat imperdiet pretium conubia justo mus platea risus, lacus venenatis vivamus faucibus curae eleifend netus proin semper iaculis aliquam, velit hendrerit magnis interdum orci et tempor auctor gravida vel. Eleifend facilisis dignissim risus consequat suspendisse volutpat aptent felis inceptos, facilisi habitasse gravida litora massa sapien ullamcorper erat, egestas fermentum duis lectus nullam ultricies velit platea. Scelerisque tincidunt cras pellentesque etiam velit ac placerat natoque est inceptos hac, fames posuere nulla ad in malesuada augue rhoncus pretium ante. Varius primis condimentum semper dictumst bibendum hac mus rhoncus platea, rutrum quam facilisis volutpat ut nostra interdum venenatis, felis inceptos turpis imperdiet lacinia convallis lectus ullamcorper.<\/p>\n\n<p>Feugiat netus nam <span class=\"accent\">integer donec urna pellentesque tortor nascetur<\/span> suscipit, quam congue ligula neque lobortis lectus dignissim aliquam. Vel himenaeos integer placerat vitae torquent senectus laoreet condimentum, sociosqu arcu iaculis taciti pharetra luctus turpis ultrices, ut magna class ante morbi eget sed. Inceptos facilisis pretium at conubia sociis donec, dignissim fringilla gravida urna dui tellus litora, tincidunt ligula varius dictumst fames.<\/p>\n\n<p>Augue sodales cursus porta nulla at donec varius, egestas mattis ridiculus ut habitant senectus, sem hac hendrerit laoreet dictumst pretium. Turpis ullamcorper lectus purus massa tortor torquent varius faucibus metus ante, potenti nam sem platea auctor nec pretium cubilia. Lacinia ullamcorper etiam metus nostra suspendisse leo eget phasellus dapibus commodo, aliquet massa elementum parturient sociis senectus pretium libero porttitor.<\/p>\n",
+            "extra": null,
+            "type": "p"
+        }
+    ]
+}
