@@ -1,4 +1,4 @@
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { MyRoutes, Routes, RouteUrls } from '~routes/routes';
@@ -8,6 +8,8 @@ import { StorageKey } from '~app/shared/enums';
 import { detectAndSaveOS } from '~app/functions';
 import { AuthGuard } from '~app/services/guards/auth.guard';
 import { AppTitleService, getLocalStorage } from '~app/services';
+import { BehaviorSubject } from 'rxjs';
+import { environment } from '~env/environment';
 
 
 @Component({
@@ -36,16 +38,17 @@ export class AppComponent {
   /**
    * The authentication status.
    */
-  public auth$ = AuthGuard.auth$;
+  public auth$: BehaviorSubject<string> = AuthGuard.auth$;
 
   constructor (
+    private route: ActivatedRoute,
     private title: AppTitleService,
     private router: Router
   ) {
     // Client OS - detect and save it if it's not in the local storage.
     detectAndSaveOS();
     // Name of the app
-    AppTitleService.title.setTitle('Nicolas Kupfer'); // TODO -> Read from a resolver.
+    AppTitleService.title.setTitle(environment.pageTitle);
 
     // The visibility state of the stars/canvas.
     this.stars = !(getLocalStorage().getItem(StorageKey.Stars) === false);

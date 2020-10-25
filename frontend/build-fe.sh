@@ -33,7 +33,7 @@ echo -e "${c} * Deleting old files...$n"
 rm -rf "$destination/assets"
 for file in ${destination}/*.html; do rm "$file" >/dev/null 2>&1;done
 for file in ${destination}/*.css; do rm "$file" >/dev/null 2>&1;done
-for file in ${destination}/*.ico; do rm "$file" >/dev/null 2>&1;done
+#for file in ${destination}/*.ico; do rm "$file" >/dev/null 2>&1;done
 for file in ${destination}/*.js; do rm "$file" >/dev/null 2>&1;done
 
 echo -e "${c} * Moving new files...$n"
