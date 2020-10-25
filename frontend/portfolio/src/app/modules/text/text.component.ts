@@ -27,6 +27,6 @@ export class TextComponent implements OnInit {
   }
 
   public sanitize (text: TextContent): SafeHtml {
-    return (text.sanitized = this.sanitizer.bypassSecurityTrustHtml(text.content));
+    return (text._sanitized = this.sanitizer.bypassSecurityTrustHtml(text.content));
   }
 }

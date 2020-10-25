@@ -18,7 +18,7 @@ import { HomePage } from '~home-page/interfaces';
 })
 export class HomePageComponent {
 
-  public showMenu: boolean = false;
+  public showMenu: number = 0;
 
   public clientOs: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
 
@@ -29,8 +29,6 @@ export class HomePageComponent {
   ) {}
 
   public toggleMenu () {
-    if (this.clientOs.isMobile) {
-      this.showMenu = !this.showMenu;
-    }
+    ++this.showMenu;
   }
 }

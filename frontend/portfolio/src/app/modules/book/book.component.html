@@ -8,7 +8,7 @@
 <div class="book-item">
   <div class="book-img-box">
     <img [src]="book.image" class="book-img" [alt]="book.title"/>
-    <span *ngIf="book.pages" ><span [innerHTML]="book.pages" class="accent mr-5"></span><small>pages</small></span>
+    <span *ngIf="book.pages" ><span [innerHTML]="book.pages" class="accent"></span>&nbsp;<small>pages</small></span>
   </div>
   <p class="book-descr fluid" [innerHTML]="book.descr"></p>
 </div>

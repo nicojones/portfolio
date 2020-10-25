@@ -16,7 +16,7 @@ echo -e "${c} * Running script from $path_here$n"
 
 
 if [[ "$2" ]]; then
-  echo -e "${c} * Compiling in DEV mode$n"
+  echo -e "${c} * Compiling in CUSTOM mode ($2) $n"
   ng build "$2"
 else
   echo -e "${c} * Compiling in PROD mode$n"

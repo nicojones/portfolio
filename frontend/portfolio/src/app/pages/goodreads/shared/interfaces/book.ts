@@ -6,14 +6,26 @@ export interface Book {
   image: string;
 }
 
-export type Books = Book[];
-
-export interface ReadBooks {
-  totalRead: number;
-  read: Books;
+interface UpdatedJSON {
+  _last_update?: string;
+  _updated?: boolean;
 }
 
-export interface Shelf extends ReadBooks {
-  reading: Books;
+export type Books = Book[];
+
+export interface ReadBooks extends UpdatedJSON {
+  totalRead: number;
+  books: Books;
+  _info?: string;
+}
+
+export interface ReadingBooks extends UpdatedJSON {
+  books: Books;
+  reading: number;
+}
+
+export interface Shelf {
+  reading: ReadingBooks;
+  read: ReadBooks;
 }
 

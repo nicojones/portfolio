@@ -17,11 +17,11 @@
 
   <p class="text slide-in">Currently reading
     <ng-container *ngIf="!shelf.reading">some books...</ng-container>
-    <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.length">
+    <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.reading">
       <ng-container *ngSwitchCase="0">no books.</ng-container>
       <ng-container *ngSwitchCase="1">one book.</ng-container>
       <ng-container *ngSwitchDefault>
-        {{ shelf.reading.length }} books, among them {{ shelf.reading[0].title }}.
+        {{ shelf.reading?.reading }} books, among them {{ shelf.reading.books[0].title }}.
       </ng-container>
     </ng-container>
     You can see them <a [routerLink]="'/' + Routes.Reading">here</a>.
@@ -36,12 +36,12 @@
 
 
   <app-carousel
-    *ngIf="shelf.read"
+    *ngIf="shelf.read?.books"
     class="mt-50"
-    [books]="shelf.read"
+    [books]="shelf.read.books"
     [title]="title"
     [wrap]="true"
-    [totalBooks]="shelf.totalRead"
+    [totalBooks]="shelf.read.totalRead"
     [lastBook]="lastBook"
   ></app-carousel>
 

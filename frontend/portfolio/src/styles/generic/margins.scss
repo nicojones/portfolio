@@ -1,31 +1,31 @@
 $margin: 0;
 
-@while $margin <= 80 {
-  .mb-#{$margin} {
-    margin-bottom: #{$margin}px !important;
-  }
+@while $margin <= 30 {
+  //.mb-#{$margin} {
+  //  margin-bottom: #{$margin}px !important;
+  //}
 
-  .mt-#{$margin} {
-    margin-top: #{$margin}px !important;
-  }
+  //.mt-#{$margin} {
+  //  margin-top: #{$margin}px !important;
+  //}
 
-  .ml-#{$margin} {
-    margin-left: #{$margin}px !important;
-  }
+  //.ml-#{$margin} {
+  //  margin-left: #{$margin}px !important;
+  //}
 
-  .mr-#{$margin} {
-    margin-right: #{$margin}px !important;
-  }
+  //.mr-#{$margin} {
+  //  margin-right: #{$margin}px !important;
+  //}
 
-  .mx-#{$margin} {
-    margin-left: #{$margin}px !important;
-    margin-right: #{$margin}px !important;
-  }
+  //.mx-#{$margin} {
+  //  margin-left: #{$margin}px !important;
+  //  margin-right: #{$margin}px !important;
+  //}
 
   .my-#{$margin} {
     margin-top: #{$margin}px !important;
     margin-bottom: #{$margin}px !important;
   }
 
-  $margin: $margin + 5;
+  $margin: $margin + 10;
 }

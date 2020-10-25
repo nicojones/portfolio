@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
+import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
-import { Book } from '~goodreads/shared/interfaces/book';
 import { BooksService } from '~app/services';
+
+import { ReadBooks } from '~goodreads/shared/interfaces/book';
 
 
 @Injectable()
-export class ReadBooksResolver implements Resolve<unknown> {
+export class ReadBooksResolver implements Resolve<ReadBooks> {
   constructor (
     private booksService: BooksService
   ) {
   }
 
-  public resolve (): Observable<Book[]> {
+  public resolve (): Observable<ReadBooks> {
     return this.booksService.getReadBooks();
   }
 }

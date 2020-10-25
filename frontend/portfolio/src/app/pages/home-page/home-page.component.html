@@ -1,7 +1,7 @@
 <div class="app-row home" (click)="toggleMenu()" *ngIf="{ loading: true } as _">
   <div
     class="jumbo-box"
-    [class.show-menu]="showMenu"
+    [class.show-menu]="showMenu % 2"
     [class.hover-effects]="!(_.loading || clientOs.isMobile)"
     @fadeIn (@fadeIn.done)="_.loading = false"
   >
@@ -21,4 +21,4 @@
   <div class="myself" [class.loading]="_.loading"></div>
 </div>
 
-<span class="tap-anywhere" *ngIf="clientOs.isMobile" (click)="toggleMenu()">{{ homePage.mobileTap }}</span>
+<span class="tap-anywhere" *ngIf="clientOs.isMobile && showMenu < 2" (click)="toggleMenu()">{{ homePage.mobileTap }}</span>

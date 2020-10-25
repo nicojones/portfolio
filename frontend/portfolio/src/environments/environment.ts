@@ -7,7 +7,7 @@ import { Environment } from '~env/environment.interface';
 
 export const environment: Environment = {
   production: false,
-  phpUrl: 'http://portfolio.local/api/',
+  phpUrl: 'http://portfolio.local/api/app.php',
   getUrl: 'http://portfolio.local/json/'
 };
 

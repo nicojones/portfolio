@@ -60,7 +60,7 @@
           <mat-label>First</mat-label>
           <input matInput [formControl]="formControl(f, 'title.first')">
         </mat-form-field>
-        <div class="ml-20 flex-column">
+        <div class="flex-column" style="margin-left: 20px">
           <div *ngFor="let multi of formArray(f, 'title.multi').controls; index as i" class="flex-row">
             <mat-form-field>
               <input matInput [formControl]="multi">
