@@ -14,7 +14,6 @@ cd $path_here/$appName;
 echo -e "${c} * Running script from $path_here$n"
 
 
-
 if [[ "$2" ]]; then
   echo -e "${c} * Compiling in CUSTOM mode ($2) $n"
   ng build "$2"
@@ -25,9 +24,10 @@ fi
 
 
 distDir="dist"
-originDir="$distDir/$appName"
 publicDir="public"
-destination="$path_here/../$publicDir"
+
+originDir="$path_here/$distDir/$appName"
+destination="$path_here/$publicDir"
 
 echo -e "${c} * Deleting old files...$n"
 rm -rf "$destination/assets"
