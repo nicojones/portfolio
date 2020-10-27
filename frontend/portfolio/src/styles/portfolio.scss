@@ -4,7 +4,9 @@
 @import 'images';
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  //font-family: Maven Pro, "Helvetica Neue", sans-serif;
+  //font-family: Manrope, "Helvetica Neue", sans-serif;
+  font-family: Sora, "Helvetica Neue", sans-serif;
   font-size: $app-font-size;
   background: $app-background;
   color: $text-color;
@@ -71,6 +73,7 @@ a {
     background-image: url($image-back);
     height: $title-back;
     display: inline-block;
+    position: relative;
     left: 0;
     background-position: left;
     background-size: $title-back;

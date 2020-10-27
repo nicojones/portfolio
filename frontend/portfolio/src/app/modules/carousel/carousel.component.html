@@ -1,9 +1,9 @@
 <div class="carousel-box latte-carousel" #carouselElement>
   <app-book class="book-card latte-item" *ngFor="let book of books" [book]="book"></app-book>
 </div>
-<span class="just-center pagination-title">
-  <span class="my-30">{{ title }}</span>
-  <span class="pagination">
+<span class="just-center pagination">
+  <span class="my-30 pagination-title">{{ title }}</span>
+  <span class="pagination-numbers">
       <button
         class="paginate left"
         (click)="prevItem()"

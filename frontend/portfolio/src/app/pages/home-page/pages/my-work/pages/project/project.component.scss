@@ -57,6 +57,20 @@
       margin-left: $app-font-size;
     }
   }
+
+  .back-button {
+    font-size: $book-font-size;
+    text-align: center;
+    display: block;
+    margin-top: $book-font-size;
+    margin-bottom: $app-row-bottom;
+    position: relative;
+
+    &:before {
+      height: $book-font-size;
+      background-size: $book-font-size;
+    }
+  }
 }
 
 @if ($project-transparent-images) {

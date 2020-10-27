@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { MyRoutes, Routes, RouteUrls } from '~routes/routes';
 
-import { slide } from '~app/shared/animations';
 import { StorageKey } from '~app/shared/enums';
 import { detectAndSaveOS } from '~app/functions';
 import { AuthGuard } from '~app/services/guards/auth.guard';
@@ -17,7 +16,7 @@ import { environment } from '~env/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slide()]
+  animations: []
 })
 export class AppComponent {
   /**
