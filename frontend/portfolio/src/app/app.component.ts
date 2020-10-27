@@ -62,6 +62,9 @@ export class AppComponent {
 
   }
 
+  /**
+   * Show and hide the CANVAS with the stars.
+   */
   public toggleStars (): void {
     this.stars = !this.stars;
     getLocalStorage().setItem(StorageKey.Stars, this.stars);

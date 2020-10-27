@@ -11,11 +11,11 @@ import {
 import { Timings } from '~app/shared/animations/timings.animation';
 
 
-export function slideUnder (selector: string = '.slide-under'): AnimationTriggerMetadata {
+export function slideUnder (selector: string = '.slide-under > .slide-under-text'): AnimationTriggerMetadata {
   return trigger('slideUnder', [
     transition(':enter', [
       query(selector, [
-        style({ transform: `translateY(-100%)`, opacity: '0.8' }),
+        style({ transform: `translateY(100%)` }),
         stagger(Timings.SlideStaggerTime, [
           group([
             animate(`${ Timings.SlideDuration } ease-out`, style({ transform: 'translateY(0)' })),

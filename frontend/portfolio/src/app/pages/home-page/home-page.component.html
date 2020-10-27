@@ -1,18 +1,18 @@
-<div class="app-row home" (click)="toggleMenu()" *ngIf="{ loading: true } as _">
+<div class="app-row home" (click)="clientOs.isMobile && toggleMenu()" *ngIf="{ loading: true } as _">
   <div
     class="jumbo-box"
     [class.show-menu]="showMenu % 2"
     [class.hover-effects]="!(_.loading || clientOs.isMobile)"
-    @fadeIn (@fadeIn.done)="_.loading = false"
+    @slideUnder (@slideUnder.done)="_.loading = false"
   >
     <div
       *ngFor="let t of homePage.title" [class.accent]="t.accent"
-      class="jumbo-line fade-in"
+      class="jumbo-line fade-in slide-under"
     >
       <h1 class="jumbo-huge hover-item link">
         <a class="no-style" [routerLink]="'/' + t.url" [innerHTML]="t.textHover" (click)="$event.stopPropagation()"></a>
       </h1>
-      <h1 class="jumbo-huge hover-item hello">
+      <h1 class="jumbo-huge hover-item hello slide-under-text">
         {{ t.text }}
         <small class="mini" *ngIf="t.mini" [innerHTML]="t.mini"></small>
       </h1>

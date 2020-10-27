@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { Routes } from '~routes/routes';
+import { RouteUrls } from '~routes/routes';
 
 import { getLocalStorage } from '~app/services';
 import { slideIn } from '~app/shared/animations';
@@ -20,10 +20,19 @@ import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
 })
 export class ProjectComponent {
 
-  public Routes = Routes;
+  /**
+   * The routes object
+   */
+  public RouteUrls = RouteUrls;
 
+  /**
+   * The Project information.
+   */
   public readonly project: ProjectContent;
 
+  /**
+   * The user's client.
+   */
   public readonly client: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
 
   constructor(
@@ -31,16 +40,29 @@ export class ProjectComponent {
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
-    const projectUrl = this.route.snapshot.params.projectName;
+    /**
+     * Get the Project URL from the url
+     */
+    const projectUrl = this.route.snapshot.params.projectUrl;
+    /**
+     * Get the project (read from the URL) from the list of projects.
+     */
     this.project = MyWorkResolver.myWork.projects.find((p: ProjectContent) => p.url === projectUrl);
 
+    /**
+     * If the project doesn't exist, show the ERROR page.
+     */
     if (!this.project) {
-      this.router.navigateByUrl('____', { skipLocationChange: true });
+      this.router.navigateByUrl('404', { skipLocationChange: true });
     }
   }
 
-  public safeHTML (text: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(text);
+  /**
+   * Sanitise the HTML.
+   * @param project
+   */
+  public safeHTML (project: ProjectContent): SafeHtml {
+    return (project._sanitized = this.sanitizer.bypassSecurityTrustHtml(project.content));
   }
 
 }

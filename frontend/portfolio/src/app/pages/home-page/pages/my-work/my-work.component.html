@@ -1,11 +1,9 @@
 <div class="app-row bottom-padding" @slideIn>
-  <!--  <a class="jumbo back-title center no-deco slide-in" [routerLink]="'/' + Routes.Home" [innerHTML]="myWork.title"></a>-->
   <h1 class="jumbo slide-in center landing" [innerHTML]="myWork.title"></h1>
-  <!--  <div class="slide-in mb-50" [innerHTML]="safeHTML(myWork.description)"></div>-->
   <a
     *ngFor="let project of myWork.projects; index as i"
     class="project-item slide-in text no-deco"
-    [routerLink]="'/' + Routes.Work + '/' + project.url"
+    [routerLink]="'/' + RouteUrls.Work + '/' + project.url"
   >
     <div class="project-item-text">
       <h2 class="my-0 project-box">{{ project.title }}</h2>

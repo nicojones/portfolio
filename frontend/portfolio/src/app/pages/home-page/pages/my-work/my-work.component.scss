@@ -11,19 +11,20 @@
 
     .project-item-text {
       flex: 0 0 $project-item-width;
-      padding-right: $app-font-size;
+      padding: 0 $app-font-size;
       justify-content: flex-start;
       display: flex;
       flex-direction: column;
+      @include transitions();
     }
 
     .project-list-image {
-      height: 300px;
-      flex: 1 1 $project-image-width;
+      height: $project-item-height;
+      flex: 1 1;
       overflow: hidden;
 
       .project-list-bg {
-        @include transitions();
+        @include transitions(10s, all linear);
         background-size: cover;
         height: 100%;
         background-position: center;
@@ -31,8 +32,13 @@
       }
 
     }
-    &:hover .project-list-bg {
-      transform: scale(1.1);
+    &:hover {
+      .project-item-text {
+        background: rgba($primary-color, 0.05);
+      }
+      .project-list-bg {
+        transform: scale(1.5);
+      }
     }
   }
 

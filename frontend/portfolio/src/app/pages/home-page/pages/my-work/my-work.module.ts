@@ -26,7 +26,7 @@ import { ProjectComponent } from '~home-page/pages/my-work/pages/project';
             component: MyWorkComponent
           },
           {
-            path: ':projectName',
+            path: ':projectUrl',
             component: ProjectComponent
           }
         ]

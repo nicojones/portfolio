@@ -1,13 +1,13 @@
 <div class="app-row" @slideIn [class.desktop]="!client.isMobile">
-  <a class="jumbo back-title center no-deco slide-in landing" [routerLink]="'/' + Routes.Work">
+  <a class="jumbo back-title center no-deco slide-in landing" [routerLink]="'/' + RouteUrls.Work">
     {{ project.title }}
   </a>
   <div class="text">
     <a [href]="project.link" target="_blank" class="project-link">
       {{ project.link }}<img src="assets/icons/external.svg" class="external" alt="Open in new tab">
     </a>
-    <div class="project-content" [innerHTML]="safeHTML(project.content)"></div>
+    <div class="project-content" [innerHTML]="project._sanitized || safeHTML(project)"></div>
     <hr class="slide-in">
-    <a [routerLink]="'/' + Routes.Work" class="back-title no-deco back-button slide-in">back to Projects</a>
+    <a [routerLink]="'/' + RouteUrls.Work" class="back-title no-deco back-button slide-in">back to Projects</a>
   </div>
 </div>
