@@ -28,7 +28,7 @@
     }
 
     // GET THE BOOKS
-    if ($_GET['books'] === 'reading') {
+    if (isset($_GET['books']) && $_GET['books'] === 'reading') {
        $gr->getCurrentlyReading();
     } else if ($_GET['books'] === 'read') {
        $gr->getRead();
@@ -46,6 +46,6 @@
     }
 
     // GET a section - unparsed.
-    if ($_GET['section']) {
+    if (isset($_GET['section'])) {
         $home->getJSON();
     }

@@ -38,5 +38,5 @@ speed-measure-plugin*.json
 
 
 # Ignore the JSON files
-public/json
-public/api/json
+public/json/*
+public/api/json/*
