@@ -2,6 +2,7 @@
 @import 'globals';
 @import 'breakpoints';
 @import 'images';
+@import 'mixins';
 
 body {
   //font-family: Maven Pro, "Helvetica Neue", sans-serif;
@@ -65,8 +66,6 @@ a {
 
 .back-title {
   $title-back: 50px;
-  //@include transitions();
-  /*!* */
   &:before {
     @include transitions();
     content: "";

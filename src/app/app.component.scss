@@ -20,7 +20,11 @@ $name-logo-width: 13rem;
   top: $name-logo-top;
   color: $text-color;
   text-decoration: none;
-  transition: all 0.4s;
+  @include transitions();
+
+  @media (orientation: landscape) and (max-width: $breakpoint-mobile) {
+    top: $name-logo-top / 4;
+  }
 
   .name-bg {
     //background: $app-background;

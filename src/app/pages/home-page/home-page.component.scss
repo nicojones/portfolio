@@ -16,6 +16,7 @@
   > h1.link {
     @if ($home-page-use-opacity) {
       opacity: 1;
+      width: auto;
     } @else {
       display: inherit;
     }
@@ -39,7 +40,6 @@
     background-position: 2.5rem 0;
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: -1;
     opacity: $myself-opacity;
     filter: brightness($myself-brightness);
     @media (max-width: $breakpoint-mobile-sm) {
@@ -51,6 +51,8 @@
 }
 
 .jumbo-box {
+
+  z-index: 1;
 
   @if ($home-page-centered) {
     align-items: center;
@@ -74,8 +76,8 @@
       margin: 0 auto;
       cursor: pointer;
       display: flex;
-      min-width: max-content;
-      @include transitions();
+      //min-width: max-content;
+      @include transitions(opacity 0.4s, margin 0.4s );
       //min-width: $breakpoint-mobile-sm;
       z-index: 1;
 
@@ -88,6 +90,8 @@
       &.link {
         @if ($home-page-use-opacity) {
           position: absolute;
+          width: 0;
+          overflow: hidden;
           opacity: 0;
         } @else {
           display: none;
@@ -129,4 +133,11 @@ $tap-anywhere-width: 15rem;
   z-index: -1;
   margin-left: -$tap-anywhere-width / 2;
   animation: pulse 3s infinite ease-in-out;
+
+  @media (orientation: landscape) {
+    left: 1rem;
+    margin-left: 0;
+    bottom: 10px;
+  }
+
 }

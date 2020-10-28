@@ -10,7 +10,7 @@
 
 
     .project-item-text {
-      flex: 0 0 $project-item-width;
+      flex: 1 1 $project-item-width;
       padding: 0 $app-font-size;
       justify-content: flex-start;
       display: flex;
@@ -18,9 +18,13 @@
       @include transitions();
     }
 
+    .project-summary {
+      margin-bottom: 1rem;
+    }
+
     .project-list-image {
       height: $project-item-height;
-      flex: 1 1;
+      flex: 1 1 $project-item-width;
       overflow: hidden;
 
       .project-list-bg {
