@@ -28,10 +28,12 @@
     }
 
     // GET THE BOOKS
-    if (isset($_GET['books']) && $_GET['books'] === 'reading') {
-       $gr->getCurrentlyReading();
-    } else if ($_GET['books'] === 'read') {
-       $gr->getRead();
+    if (isset($_GET['books'])) {
+        if ($_GET['books'] === 'reading') {
+           $gr->getCurrentlyReading();
+        } else if ($_GET['books'] === 'read') {
+           $gr->getRead();
+        }
     }
 
     // Check if user is authenticated - otherwise it can't go further.
