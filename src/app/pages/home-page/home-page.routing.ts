@@ -25,7 +25,7 @@ import { HomePageResolver } from '~app/shared/resolvers';
         loadChildren: () => import('~home-page/pages/about').then((m) => m.AboutModule)
       },
       {
-        path: Routes.Work,
+        path: Routes.Projects,
         loadChildren: () => import('~home-page/pages/my-work').then((m) => m.MyWorkModule)
       }
     ])

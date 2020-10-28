@@ -1,6 +1,6 @@
 
 export interface MyRoutes {
-  Work: string;
+  Projects: string;
   Contact: string;
   About: string;
   Home: string;
@@ -16,7 +16,7 @@ export interface MyRoutesFunctions {
 }
 
 export const RouteUrls: MyRoutes = {
-  Work: 'work',
+  Projects: 'projects',
   Contact: 'contact',
   About: 'about',
   Home: '',

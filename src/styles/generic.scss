@@ -75,7 +75,7 @@
 .jumbo {
   font-weight: $bold;
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size, $jumbo-font-size);
-  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size * 1.2, $jumbo-font-size * .8, line-height);
+  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size * 1.2, $jumbo-font-size * .9, line-height);
 }
 .jumbo-huge {
   @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $h2-font-size, $jumbo-huge-font-size);

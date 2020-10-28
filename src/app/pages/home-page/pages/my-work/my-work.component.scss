@@ -28,7 +28,7 @@
       overflow: hidden;
 
       .project-list-bg {
-        @include transitions(10s, all linear);
+        @include transitions(#{10s, all linear});
         background-size: cover;
         height: 100%;
         background-position: center;
