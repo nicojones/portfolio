@@ -16,6 +16,10 @@ $h2-font-size: 3 * $app-font-size;
 $big-font-size: 2 * $app-font-size;
 $book-font-size: 1.5 * $app-font-size;
 
+$app-box-padding: 5rem;
+
+$app-content-max-width: 650px; // Width for all paragraphs.
+
 $name-logo-top: 5rem;
 $name-logo-right: 4rem;
 $name-logo-left: 5rem;
@@ -47,3 +51,4 @@ $paragraph-margin: 4rem; // margin between paragraphs, or between big list items
 $project-item-width: 300px; // The width of the Title+Summary for the Projects list. the rest is image.
 $project-item-height: 250px;
 $project-image-width: 250px; // The width of the Image for the Projects list.
+$project-content-image-width: 1100px;
