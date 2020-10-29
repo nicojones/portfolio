@@ -58,7 +58,7 @@
         <h2>Title</h2>
         <!------------------------------------------->
         <div class="flex-column" style="margin-left: 20px">
-          <mat-label>Multi</mat-label>
+          <mat-label>First</mat-label>
           <div *ngFor="let first of formArray(f, 'title.first').controls; index as i" class="flex-row">
             <mat-form-field>
               <!--suppress AngularInvalidExpressionResultType -->
@@ -132,7 +132,7 @@
           <mat-label>Title*</mat-label>
           <input matInput [formControl]="formControl(f, 'title')">
         </mat-form-field>
-        <h4>Description</h4>
+        <h4>Description (no rich text)</h4>
         <app-rich-text [control]="formControl(f, 'description')"></app-rich-text>
         <hr>
         <ng-container *ngTemplateOutlet="projectContent;context:{form: f}"></ng-container>
