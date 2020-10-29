@@ -56,11 +56,26 @@
     <mat-tab label="About">
       <form [formGroup]="f" *ngIf="(currentIndex === tabs.About) && service.aboutForm as f" class="flex-column">
         <h2>Title</h2>
-        <mat-form-field>
-          <mat-label>First</mat-label>
-          <input matInput [formControl]="formControl(f, 'title.first')">
-        </mat-form-field>
+        <!------------------------------------------->
         <div class="flex-column" style="margin-left: 20px">
+          <mat-label>Multi</mat-label>
+          <div *ngFor="let first of formArray(f, 'title.first').controls; index as i" class="flex-row">
+            <mat-form-field>
+              <!--suppress AngularInvalidExpressionResultType -->
+              <input matInput [formControl]="first">
+            </mat-form-field>
+            <button
+              mat-button (click)="formArray(f, 'title.first').removeAt(i)" class="mat-error"
+            >remove FIRST item {{ i + 1 }}</button>
+          </div>
+          <button
+            mat-button (click)="addFormControl(formArray(f, 'title.first'))" class="mat-accent"
+          >+ add FIRST item
+          </button>
+        </div>
+        <!------------------------------------------->
+        <div class="flex-column" style="margin-left: 20px">
+          <mat-label>Multi</mat-label>
           <div *ngFor="let multi of formArray(f, 'title.multi').controls; index as i" class="flex-row">
             <mat-form-field>
               <!--suppress AngularInvalidExpressionResultType -->
@@ -68,21 +83,31 @@
             </mat-form-field>
             <button
               mat-button (click)="formArray(f, 'title.multi').removeAt(i)" class="mat-error"
-            >remove item {{ i + 1 }}</button>
+            >remove MULTI item {{ i + 1 }}</button>
           </div>
           <button
             mat-button (click)="addFormControl(formArray(f, 'title.multi'))" class="mat-accent"
-          >+ add item
+          >+ add MULTI item
           </button>
         </div>
-        <mat-form-field>
+        <!------------------------------------------->
+        <div class="flex-column" style="margin-left: 20px">
           <mat-label>Last</mat-label>
-          <input matInput [formControl]="formControl(f, 'title.last')">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Period</mat-label>
-          <input matInput [formControl]="formControl(f, 'title.period')" [maxLength]="3">
-        </mat-form-field>
+          <div *ngFor="let last of formArray(f, 'title.last').controls; index as i" class="flex-row">
+            <mat-form-field>
+              <!--suppress AngularInvalidExpressionResultType -->
+              <input matInput [formControl]="last">
+            </mat-form-field>
+            <button
+              mat-button (click)="formArray(f, 'title.last').removeAt(i)" class="mat-error"
+            >remove LAST item {{ i + 1 }}</button>
+          </div>
+          <button
+            mat-button (click)="addFormControl(formArray(f, 'title.last'))" class="mat-accent"
+          >+ add LAST item
+          </button>
+        </div>
+        <!------------------------------------------->
         <hr>
         <ng-container *ngTemplateOutlet="textContent;context:{form: f}"></ng-container>
         <button mat-button (click)="saveAboutForm()">Save</button>

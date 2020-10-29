@@ -19,10 +19,9 @@ export class AdminService {
 
   public aboutForm: MainFormGroup<AboutPage> = new MainFormGroup<AboutPage>({
     title: new MainFormGroup<AboutPage['title']>({
-      first: new FormControl(null, Validators.required),
-      last: new FormControl(null, Validators.required),
-      period: new FormControl(null),
-      multi: new MainFormArray([])
+      first: new MainFormArray([]),
+      multi: new MainFormArray([]),
+      last: new MainFormArray([])
     }),
     text: new MainFormArray<AboutPage['text']>([])
   });

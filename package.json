@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4201",
+    "start": "ng serve --port=4201 --proxy-config proxy.conf.json",
     "mobile": "ng serve --port=4201 --host=0.0.0.0 --disableHostCheck --disable-host-check --configuration mobile",
     "build": "ng build --prod --aot --named-chunks --extract-css --configuration=production --build-optimizer",
     "test": "ng test",

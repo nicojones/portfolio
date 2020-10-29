@@ -104,9 +104,17 @@ export class AdminComponent {
       this.service.aboutForm.reset();
       this.service.aboutForm.patchValue(about);
 
+      for (let i = 0, len = about.title.first.length; i < len; ++i) {
+        (this.service.aboutForm.get(['title', 'first']) as FormArray).push(
+          new FormControl(about.title.first[i], Validators.required));
+      }
       for (let i = 0, len = about.title.multi.length; i < len; ++i) {
         (this.service.aboutForm.get(['title', 'multi']) as FormArray).push(
           new FormControl(about.title.multi[i], Validators.required));
+      }
+      for (let i = 0, len = about.title.last.length; i < len; ++i) {
+        (this.service.aboutForm.get(['title', 'last']) as FormArray).push(
+          new FormControl(about.title.last[i], Validators.required));
       }
       for (let i = 0, len = about.text.length; i < len; ++i) {
         (this.service.aboutForm.get('text') as MainFormArray<AboutPage['text']>).push(

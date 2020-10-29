@@ -1,15 +1,27 @@
 <h1 class="jumbo slide-in center landing">
-  <span class="accent" [innerHTML]="aboutPage.title.first"></span>
+  <span class="plus-box">
+    <span
+      *ngFor="let multi of aboutPage.title.first; index as i"
+      [innerHTML]="multi"
+      [class.shown]="(plusIndex % aboutPage.title.first.length) === i"
+    ></span>
+  </span>
   <br>
   <span class="plus-box">
     <span
       *ngFor="let multi of aboutPage.title.multi; index as i"
       [innerHTML]="multi"
-      [class.shown]="plusIndex === i"
+      [class.shown]="(plusIndex % aboutPage.title.multi.length) === i"
     ></span>
   </span>
   <br>
-  <span class="accent" [innerHTML]="aboutPage.title.last"></span>{{ aboutPage.title.period }}
+  <span class="plus-box">
+    <span
+      *ngFor="let multi of aboutPage.title.last; index as i"
+      [innerHTML]="multi"
+      [class.shown]="(plusIndex % aboutPage.title.last.length) === i"
+    ></span>
+  </span>
 </h1>
 <div class="app-row bottom-padding" @slideIn>
 

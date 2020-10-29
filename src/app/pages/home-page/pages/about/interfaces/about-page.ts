@@ -4,9 +4,8 @@ import { TextContent } from '~app/shared/interfaces';
 export interface AboutPage {
   text: TextContent[];
   title: {
-    first: string;
+    first: string[];
     multi: string[];
-    last: string;
-    period: '.' | '';
+    last: string[];
   };
 }

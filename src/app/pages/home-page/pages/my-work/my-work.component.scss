@@ -14,6 +14,7 @@
       padding: 0 $app-font-size;
       justify-content: flex-start;
       display: flex;
+      text-align: left;
       flex-direction: column;
       @include transitions();
     }
@@ -28,7 +29,7 @@
       overflow: hidden;
 
       .project-list-bg {
-        @include transitions(#{10s, all linear});
+        @include transitions(#{10s all linear});
         background-size: cover;
         height: 100%;
         background-position: center;
@@ -38,7 +39,7 @@
     }
     &:hover {
       .project-item-text {
-        background: rgba($primary-color, 0.05);
+        background: rgba($primary-color, 0.1);
       }
       .project-list-bg {
         transform: scale(1.5);

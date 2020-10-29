@@ -75,7 +75,7 @@ export class AboutComponent {
      * Change the "multiple-value" title automatically.
      */
     setInterval(() => {
-      this.plusIndex = (this.plusIndex + 1) % (this.aboutPage.title.multi.length);
+      ++this.plusIndex;
       this.ref.markForCheck();
     }, 5000);
   }
