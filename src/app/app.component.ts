@@ -60,7 +60,7 @@ export class AppComponent {
       window.scrollTo(0, 0)
     });
 
-    document.getElementsByTagName('base')[0].href = environment.baseHref;
+    // document.getElementsByTagName('base')[0].href = environment.baseHref;
 
   }
 
