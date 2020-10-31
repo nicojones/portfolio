@@ -10,7 +10,7 @@ $book-padding: 25px;
   flex-direction: column;
 
   .book-title {
-    padding: 0 0 $book-padding 0;
+    padding: 0 0 $book-padding $book-padding;
     margin: 0;
     width: max-content;
     max-width: calc(#{$book-carousel-width} - #{$book-padding});
