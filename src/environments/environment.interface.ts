@@ -3,4 +3,5 @@ export interface Environment {
   getUrl: string;
   phpUrl: string;
   pageTitle: string;
+  baseHref: string;
 }

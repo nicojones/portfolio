@@ -9,7 +9,8 @@ export const environment: Environment = {
   production: false,
   pageTitle: 'NK - Local',
   phpUrl: '/api/app.php',
-  getUrl: '/json'
+  getUrl: '/json',
+  baseHref: '/'
 };
 
 /*

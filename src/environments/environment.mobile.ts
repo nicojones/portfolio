@@ -9,5 +9,6 @@ export const environment: Environment = {
   production: false,
   pageTitle: 'NK - Mobile',
   getUrl: `/json`,
-  phpUrl: '/api/app.php'
+  phpUrl: '/api/app.php',
+  baseHref: '/'
 };
