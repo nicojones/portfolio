@@ -5,7 +5,7 @@
     [innerHTML]="book.title"
   ></a>
 </h2>
-<div class="book-item">
+<div class="book-item" [title]="book.title">
   <div class="book-img-box">
     <img [src]="book.image" class="book-img" [alt]="book.title"/>
     <span *ngIf="book.pages" ><span [innerHTML]="book.pages" class="accent"></span>&nbsp;<small>pages</small></span>

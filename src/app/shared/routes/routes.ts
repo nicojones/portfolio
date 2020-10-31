@@ -7,7 +7,6 @@ export interface MyRoutes {
   Reading: string;
   Login: string;
   Admin: string;
-  Read: string;
 }
 
 export interface MyRoutesFunctions {
@@ -20,8 +19,7 @@ export const RouteUrls: MyRoutes = {
   Contact: 'contact',
   About: 'about',
   Home: '',
-  Reading: 'books-reading',
-  Read: 'books-read',
+  Reading: 'books',
   Admin: 'dashboard',
   Login: '_login_'
 };

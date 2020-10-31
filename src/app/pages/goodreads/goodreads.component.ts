@@ -24,7 +24,7 @@ export class GoodreadsComponent {
    */
   public readonly title: { read: string, reading: string } = {
     reading: 'currently reading',
-    read: 'read since last january'
+    read: `books since January ${ (new Date()).getFullYear() - 1 }`
   };
 
   public readonly Routes = Routes;
