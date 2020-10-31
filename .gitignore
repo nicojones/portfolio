@@ -35,8 +35,3 @@ speed-measure-plugin*.json
 *.sublime-workspace
 
 .workspace
-
-
-# Ignore the JSON files
-public/json/*
-public/api/json/*
