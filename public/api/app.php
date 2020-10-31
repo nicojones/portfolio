@@ -33,11 +33,13 @@
            $gr->getCurrentlyReading();
         } else if ($_GET['books'] === 'read') {
            $gr->getRead();
+        } else {
+            json(['error' => 'wrong option for get_books: ' . $_GET['books']]);
         }
     }
 
     // Check if user is authenticated - otherwise it can't go further.
-    if ((getallheaders()['Authorization'] ?: getallheaders()['authorization']) !== AUTH) {
+    if (!isset($_GET['auth']) || $_GET['auth'] !== AUTH) {
         http_response_code(403);
         json(['error' => 'Not authenticated']);
     }

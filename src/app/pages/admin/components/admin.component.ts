@@ -192,9 +192,8 @@ export class AdminComponent {
     body.append('content', valueString);
 
     this.http.post<any>(
-      `${ environment.phpUrl }?save`,
-      body,
-      { headers: { Authorization: AuthGuard.auth$.value } }
+      `${ environment.phpUrl }?save&auth=${ AuthGuard.auth$.value }`,
+      body
     )
       .pipe(catchError((error: HttpErrorResponse) => {
         this.snackBar.open('ERROR! ' + JSON.stringify(error.error), 'dismiss');
@@ -208,7 +207,7 @@ export class AdminComponent {
   private getSection<T> (section: Section): Observable<T> {
     return this.http
       .get<T>(
-        `${ environment.phpUrl }?section=${ section }`, { headers: { Authorization: AuthGuard.auth$.value } })
+        `${ environment.phpUrl }?section=${ section }&auth=${ AuthGuard.auth$.value }` )
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.snackBar.open('ERROR! ' + error.error, 'dismiss');
