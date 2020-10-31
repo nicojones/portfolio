@@ -6,5 +6,5 @@ export const environment: Environment = {
   pageTitle: 'Nico Kupfer',
   getUrl: 'https://kupfer.es/portfolio-api/json/',
   phpUrl: 'https://kupfer.es/portfolio-api/api/app.php',
-  baseHref: '/portfolio'
+  baseHref: '/'
 };
