@@ -11,13 +11,10 @@ export class ImageDirective implements OnInit {
   public backgroundImage: string;
 
   constructor (private el: ElementRef<HTMLImageElement>) {
-    console.log(this.el.nativeElement)
     addClass('loading', this.el.nativeElement);
   }
 
   public ngOnInit () {
-    console.log(this.backgroundImage);
-
     const img = new Image();
     img.onload = () => {
       this.el.nativeElement.style.backgroundImage = `url(${ this.backgroundImage })`;

@@ -126,7 +126,7 @@
       </form>
 
     </mat-tab>
-    <mat-tab label="Work">
+    <mat-tab label="Projects">
       <form [formGroup]="f" *ngIf="(currentIndex === tabs.Work) && service.workForm as f" class="flex-column">
         <mat-form-field>
           <mat-label>Title*</mat-label>
@@ -189,7 +189,7 @@
   <h2>Projects</h2>
   <div *ngFor="let control of formArray(form, 'projects').controls; index as i" class="flex-column border-box">
     <div *ngIf="{ visible: false } as _" class="flex-column">
-      <button (click)="_.visible = !_.visible">toggle</button>
+      <button (click)="_.visible = !_.visible">toggle {{ formControl(control, 'title').value || '' }}</button>
       <div [class.hidden]="!_.visible" class="_box_ flex-column">
         <mat-form-field hintLabel="color for the background">
           <mat-label>Background color</mat-label>

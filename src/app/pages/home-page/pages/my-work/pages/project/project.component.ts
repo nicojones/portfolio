@@ -6,7 +6,7 @@ import { RouteUrls } from '~routes/routes';
 
 import { getLocalStorage } from '~app/services';
 import { slideIn } from '~app/shared/animations';
-import { AnimationSelector, StorageKey } from '~app/shared/enums';
+import { StorageKey } from '~app/shared/enums';
 import { ClientOs, ProjectContent } from '~app/shared/interfaces';
 
 // import { addClass, removeClass } from '~app/functions/class-name.function';
@@ -18,7 +18,7 @@ import { addClass, removeClass } from '~app/functions';
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss', './../../my-work.component.scss'],
-  animations: [slideIn(AnimationSelector.Text)]
+  animations: [slideIn()]
 })
 export class ProjectComponent implements OnDestroy {
 
