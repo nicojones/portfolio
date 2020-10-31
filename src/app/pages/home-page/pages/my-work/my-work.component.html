@@ -1,17 +1,18 @@
-<h1 class="jumbo slide-in center landing" [innerHTML]="myWork.title"></h1>
-<div class="text" *ngIf="myWork.description" [innerHTML]="myWork.description"></div>
-<div class="app-row bottom-padding" @slideIn>
-  <a
-    *ngFor="let project of myWork.projects; index as i"
-    class="project-item slide-in text no-deco"
-    [routerLink]="'/' + RouteUrls.Projects + '/' + project.url"
-  >
-    <div class="project-item-text">
-      <h2 class="my-0">{{ project.title }}</h2>
-      <small class="accent project-summary" [innerHTML]="project.summary"></small>
-    </div>
-    <div class="project-list-image">
-      <div [style]="'background-image: url(' + project.image + ')'" class="project-list-bg"></div>
-    </div>
-  </a>
+<div @slideIn>
+  <h1 class="jumbo center landing slide-in" [innerHTML]="myWork.title"></h1>
+  <div class="app-row bottom-padding">
+    <a
+      *ngFor="let project of myWork.projects; index as i"
+      class="project-item slide-in text no-deco"
+      [routerLink]="'/' + RouteUrls.Projects + '/' + project.url"
+    >
+      <div class="project-item-text">
+        <h2 class="my-0">{{ project.title }}</h2>
+        <small class="accent project-summary" [innerHTML]="project.summary"></small>
+      </div>
+      <div class="project-list-image">
+        <div [style]="'background-image: url(' + project.image + ')'" class="project-list-bg"></div>
+      </div>
+    </a>
+  </div>
 </div>

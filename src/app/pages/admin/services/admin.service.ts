@@ -11,9 +11,25 @@ import { LinkContent, ProjectContent, TextContent } from '~app/shared/interfaces
 @Injectable()
 export class AdminService {
 
+  public readonly colors: string[] = [
+    '#27ae60',
+    '#16a085',
+    '#1abc9c',
+    '#2ecc71',
+    '#3498db',
+    '#2980b9',
+    '#9b59b6',
+    '#8e44ad',
+    '#c0392b',
+    '#e74c3c',
+    '#d35400',
+    '#e67e22',
+    '#f39c12',
+    '#f1c40f'
+  ];
+
   public workForm: MainFormGroup<MyWorkPage> = new MainFormGroup<MyWorkPage>({
     title: new FormControl(null, Validators.required),
-    description: new FormControl(''),
     projects: new MainFormArray<MyWorkPage['projects']>([])
   });
 
@@ -51,8 +67,7 @@ export class AdminService {
 
   public textContent (textContent: Partial<TextContent>) {
     return new MainFormGroup<TextContent>({
-      content: new FormControl(textContent.content, Validators.required),
-      type: new FormControl(textContent.type, Validators.required)
+      content: new FormControl(textContent.content, Validators.required)
     });
   }
 
@@ -72,6 +87,8 @@ export class AdminService {
       url: new FormControl(projectContent.url, Validators.required),
       summary: new FormControl(projectContent.summary, Validators.required),
       link: new FormControl(projectContent.link),
+      textColor: new FormControl(projectContent.textColor),
+      bgColor: new FormControl(projectContent.bgColor),
       title: new FormControl(projectContent.title, Validators.required)
     });
   }

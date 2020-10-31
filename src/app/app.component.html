@@ -5,6 +5,7 @@
 <router-outlet></router-outlet>
 
 <app-stars *ngIf="stars"></app-stars>
+
 <a (click)="toggleStars()" id="toggle-stars" [title]="stars ? 'Hide stars': 'Show stars'" [class.no-stars]="!stars">
   <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background"/>
 </a>

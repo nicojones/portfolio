@@ -5,31 +5,6 @@
   display: flex;
   flex-direction: column;
 
-  .content {
-    //noinspection CssInvalidPseudoSelector
-    ::ng-deep .image {
-      margin: $app-font-size 0;
-
-      &.right {
-        width: 90vw;
-      }
-
-      &.left {
-        width: 90vw;
-        float: right;
-      }
-
-      &.center {
-        width: 100%;
-      }
-    }
-
-    //noinspection CssInvalidPseudoSelector
-    ::ng-deep hr {
-      border-width: 0 0 $app-hr-width 0;
-    }
-  }
-
   .link {
     margin-top: 20px;
     display: flex;

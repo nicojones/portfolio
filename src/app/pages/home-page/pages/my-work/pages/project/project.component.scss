@@ -4,40 +4,34 @@
 
 :host {
   //noinspection CssInvalidPseudoSelector
-  ::ng-deep .project-image {
-    $min-height: 350px;
-    $max-height: 600px;
+  ::ng-deep .project-main-image {
     background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    //min-height: $min-height;
-    //max-height: $max-height;
-    @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $min-height, $max-height, 'max-height');
+    background-size: cover;
     display: flex;
-    width: auto;
     justify-content: center;
     overflow: hidden;
     margin: 0 auto;
-    max-width: 100%;
-
-
-    //> .project-image-img {
-    //  max-height: $max-height;
-      //visibility: hidden;
-      //display: none;
-    //}
-  }
-
-
-  //noinspection CssInvalidPseudoSelector
-  ::ng-deep .project-content {
-    /*!* */
-    > p {
-      display: flex;
-      flex-direction: column;
+    max-width: 100vw;
+    height: 50vh;
+    position: relative;
+    width: 1000px;
+    &.loading:before {
+      opacity: 0.8;
+    }
+    &:before {
+      @include transitions();
+      opacity: 0;
+      content: attr(data-loading);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: #ddd;
+      background: #ccc;
+      font-size: 100px;
+      text-align: center;
+      line-height: 50vh;
     }
   }
-
   //noinspection CssInvalidPseudoSelector
   ::ng-deep .project-link {
     @include transitions();
@@ -82,6 +76,31 @@
 
     &:hover {
       filter: brightness(100%);
+    }
+  }
+}
+
+$progress-bar-height: 3px;
+#progress-bar {
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  position: fixed;
+  background: transparent;
+  height: $progress-bar-height;
+  @include transitions();
+
+  #progress-percent {
+    @include box_shadow(#333, 8px);
+    height: $progress-bar-height;
+    display: inline-block;
+    position: absolute;
+
+    &.white {
+      background: $white;
+    }
+    &.black {
+      background: $black;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -9,7 +9,9 @@ import { slideIn } from '~app/shared/animations';
 import { AnimationSelector, StorageKey } from '~app/shared/enums';
 import { ClientOs, ProjectContent } from '~app/shared/interfaces';
 
+// import { addClass, removeClass } from '~app/functions/class-name.function';
 import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
+import { addClass, removeClass } from '~app/functions';
 
 
 @Component({
@@ -18,7 +20,7 @@ import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
   styleUrls: ['./project.component.scss', './../../my-work.component.scss'],
   animations: [slideIn(AnimationSelector.Text)]
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnDestroy {
 
   /**
    * The routes object
@@ -34,6 +36,11 @@ export class ProjectComponent {
    * The user's client.
    */
   public readonly client: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
+
+  @ViewChild('appRow', { static: true })
+  private appRow: ElementRef<HTMLDivElement>;
+
+  public percentage = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +62,16 @@ export class ProjectComponent {
     if (!this.project) {
       this.router.navigateByUrl('404', { skipLocationChange: true });
     }
+
+    document.body.style.backgroundColor = this.project.bgColor;
+    addClass(this.project.textColor, document.body);
+    addClass('project-view', document.body);
+  }
+
+  public ngOnDestroy () {
+    document.body.style.backgroundColor = null;
+    removeClass(this.project.textColor, document.body);
+    removeClass('project-view', document.body);
   }
 
   /**
@@ -63,6 +80,11 @@ export class ProjectComponent {
    */
   public safeHTML (project: ProjectContent): SafeHtml {
     return (project._sanitized = this.sanitizer.bypassSecurityTrustHtml(project.content));
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.percentage = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   }
 
 }

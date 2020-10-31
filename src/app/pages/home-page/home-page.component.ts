@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { StorageKey } from '~app/shared/enums';
 import { getLocalStorage } from '~app/services';
 import { ClientOs } from '~app/shared/interfaces';
-import { slideUnder } from '~app/shared/animations';
+import { fadeIn, slideUnder } from '~app/shared/animations';
 
 import { HomePage } from '~home-page/interfaces';
 
@@ -14,7 +14,7 @@ import { HomePage } from '~home-page/interfaces';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [slideUnder()]
+  animations: [slideUnder(), fadeIn()]
 })
 export class HomePageComponent {
 

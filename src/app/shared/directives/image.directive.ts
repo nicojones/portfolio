@@ -1,24 +1,34 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { addClass, removeClass } from '~app/functions';
 
 
 @Directive({
-  selector: 'img'
+  selector: '[bgImage]'
 })
-export class ImageDirective {
+export class ImageDirective implements OnInit {
 
-  private readonly originalSrc: string;
+  @Input('bgImage')
+  public backgroundImage: string;
 
   constructor (private el: ElementRef<HTMLImageElement>) {
-    this.originalSrc = this.el.nativeElement.src;
-    console.log(this.originalSrc);
+    console.log(this.el.nativeElement)
+    addClass('loading', this.el.nativeElement);
+  }
 
-    this.el.nativeElement.src = 'https://place-hold.it/100x50';
+  public ngOnInit () {
+    console.log(this.backgroundImage);
 
     const img = new Image();
     img.onload = () => {
-      this.el.nativeElement.src = this.originalSrc;
+      this.el.nativeElement.style.backgroundImage = `url(${ this.backgroundImage })`;
+      setTimeout(() => {
+        removeClass('loading', this.el.nativeElement);
+      }, 100);
     }
-    img.src = this.originalSrc;
+    img.onerror = () => {
+      this.el.nativeElement.attributes['data-loading'].value = 'Could not load'
+    }
+    img.src = this.backgroundImage;
   }
 
 }

@@ -58,10 +58,6 @@
   cursor: progress !important;
 }
 
-.loading {
-  opacity: 0 !important;
-}
-
 .center {
   text-align: center;
 }
@@ -70,6 +66,19 @@
   margin-top: 30vh;
   //min-height: 35vh;
   margin-bottom: 30vh;
+
+  > .subtitle {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    display: block;
+    top: 1rem;
+    position: relative;
+
+    &.project-link {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+  }
 }
 
 .jumbo {
@@ -78,6 +87,7 @@
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size * 1.2, $jumbo-font-size * .9, line-height);
 }
 .jumbo-huge {
+  font-weight: $bold;
   @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $h2-font-size, $jumbo-huge-font-size);
 }
 
@@ -109,4 +119,9 @@ h2, .h2 {
 
 .slide-under {
   overflow: hidden;
+}
+
+hr {
+  border-width: 0 0 $app-hr-width 0;
+  border-style: solid;
 }

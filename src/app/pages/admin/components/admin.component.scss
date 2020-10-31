@@ -21,3 +21,11 @@
   margin: 10px 0;
   padding: 30px;
 }
+
+._box_ {
+  margin: 0;
+  padding: 0;
+  &.hidden {
+    display: none;
+  }
+}

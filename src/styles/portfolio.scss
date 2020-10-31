@@ -8,12 +8,16 @@ body {
   //font-family: Maven Pro, "Helvetica Neue", sans-serif;
   font-family: Manrope, "Helvetica Neue", sans-serif;
   //font-family: Sora, "Helvetica Neue", sans-serif;
-  font-size: $app-font-size;
   background: $app-background;
   color: $text-color;
   margin: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  @include transitions();
+
+  &.black {
+    color: $black;
+  }
 }
 
 html, body {
@@ -86,6 +90,10 @@ a {
     opacity: 1;
     width: $title-back;
   }
+}
+
+.black .back-title:before {
+  filter: brightness(0);
 }
 
 .app-row, .fluid {

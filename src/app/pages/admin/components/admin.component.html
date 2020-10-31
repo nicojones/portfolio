@@ -132,9 +132,6 @@
           <mat-label>Title*</mat-label>
           <input matInput [formControl]="formControl(f, 'title')">
         </mat-form-field>
-        <h4>Description (no rich text)</h4>
-        <app-rich-text [control]="formControl(f, 'description')"></app-rich-text>
-        <hr>
         <ng-container *ngTemplateOutlet="projectContent;context:{form: f}"></ng-container>
         <button mat-button (click)="saveWorkForm()">Save</button>
       </form>
@@ -145,20 +142,7 @@
 <ng-template #textContent let-form="form">
   <h2>Text</h2>
   <div *ngFor="let control of formArray(form, 'text').controls; index as i" class="flex-column border-box">
-    <mat-form-field>
-      <mat-label>Type</mat-label>
-      <mat-select [formControl]="formControl(control, 'type')">
-        <mat-option [value]="'p'">&lt;p&gt;</mat-option>
-        <mat-option [value]="'hr'">&lt;hr&gt;</mat-option>
-        <mat-option [value]="'img'">&lt;img&gt;</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <h4>content</h4>
     <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
-<!--    <mat-form-field>-->
-<!--      <mat-label>Extra?</mat-label>-->
-<!--      <input matInput [formControl]="formControl(control, 'extra')">-->
-<!--    </mat-form-field>-->
     <button
       mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error"
     >remove #{{ i + 1 }}</button>
@@ -204,32 +188,52 @@
 <ng-template #projectContent let-form="form">
   <h2>Projects</h2>
   <div *ngFor="let control of formArray(form, 'projects').controls; index as i" class="flex-column border-box">
-    <mat-form-field hintLabel="title of the project">
-      <mat-label>Project Name</mat-label>
-      <input matInput [formControl]="formControl(control, 'title')"/>
-    </mat-form-field>
-    <mat-form-field hintLabel="short text to show near the title in the project list page">
-      <mat-label>Project Summary</mat-label>
-      <input matInput [formControl]="formControl(control, 'summary')"/>
-    </mat-form-field>
-    <mat-form-field hintLabel="the internal URL to access the project view">
-      <mat-label>URL to the page</mat-label>
-      <input matInput [formControl]="formControl(control, 'url')"/>
-    </mat-form-field>
-    <mat-form-field hintLabel="external URL to this project">
-      <mat-label>URL to the project (http:..)</mat-label>
-      <input matInput [formControl]="formControl(control, 'link')"/>
-    </mat-form-field>
-    <mat-form-field hintLabel="an image source for the project list page">
-      <mat-label>Image</mat-label>
-      <input matInput [formControl]="formControl(control, 'image')">
-      <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60" alt="Preview image"/>
-    </mat-form-field>
-    <h4>Description of project (UNUSED)</h4>
-    <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
-    <button
-      mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error"
-    >remove project #{{ i + 1 }} {{ formControl(control, 'title').value }}</button>
+    <div *ngIf="{ visible: false } as _" class="flex-column">
+      <button (click)="_.visible = !_.visible">toggle</button>
+      <div [class.hidden]="!_.visible" class="_box_ flex-column">
+        <mat-form-field hintLabel="color for the background">
+          <mat-label>Background color</mat-label>
+          <mat-select [formControl]="formControl(control, 'bgColor')">
+            <mat-option *ngFor="let color of service.colors" [value]="color"
+              [style]="'background-color:' + color + '; color:' + color">{{ color }}</mat-option>
+          </mat-select>
+          <span matSuffix [style]="'background-color: ' + formControl(control, 'bgColor').value + ';height: 50px;width: 50px; float: right; display: inline-block'"></span>
+        </mat-form-field>
+        <mat-form-field hintLabel="color for the text">
+          <mat-label>Text color</mat-label>
+          <mat-select [formControl]="formControl(control, 'textColor')">
+            <mat-option value="black">black</mat-option>
+            <mat-option value="white">white</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field hintLabel="title of the project">
+          <mat-label>Project Name</mat-label>
+          <input matInput [formControl]="formControl(control, 'title')"/>
+        </mat-form-field>
+        <mat-form-field hintLabel="short text to show near the title in the project list page">
+          <mat-label>Project Summary</mat-label>
+          <input matInput [formControl]="formControl(control, 'summary')"/>
+        </mat-form-field>
+        <mat-form-field hintLabel="the internal URL to access the project view">
+          <mat-label>URL to the page</mat-label>
+          <input matInput [formControl]="formControl(control, 'url')"/>
+        </mat-form-field>
+        <mat-form-field hintLabel="external URL to this project">
+          <mat-label>URL to the project (http:..)</mat-label>
+          <input matInput [formControl]="formControl(control, 'link')"/>
+        </mat-form-field>
+        <mat-form-field hintLabel="an image source for the project list page">
+          <mat-label>Image</mat-label>
+          <input matInput [formControl]="formControl(control, 'image')">
+          <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60" alt="Preview image"/>
+        </mat-form-field>
+        <h4>Description of project</h4>
+        <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
+        <button
+          mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error"
+        >remove project #{{ i + 1 }} {{ formControl(control, 'title').value }}</button>
+      </div>
+    </div>
   </div>
   <button mat-button
     (click)="addFormControl(formArray(form, 'projects'), service.projectContent({}))"

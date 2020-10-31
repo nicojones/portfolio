@@ -1,5 +1,5 @@
-<h1 class="jumbo slide-in center landing">
-  <span class="plus-box">
+<h1 class="jumbo center landing" @slideIn>
+  <span class="plus-box slide-in">
     <span
       *ngFor="let multi of aboutPage.title.first; index as i"
       [innerHTML]="multi"
@@ -7,7 +7,7 @@
     ></span>
   </span>
   <br>
-  <span class="plus-box">
+  <span class="plus-box slide-in">
     <span
       *ngFor="let multi of aboutPage.title.multi; index as i"
       [innerHTML]="multi"
@@ -15,7 +15,7 @@
     ></span>
   </span>
   <br>
-  <span class="plus-box">
+  <span class="plus-box slide-in">
     <span
       *ngFor="let multi of aboutPage.title.last; index as i"
       [innerHTML]="multi"
