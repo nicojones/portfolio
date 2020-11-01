@@ -11,8 +11,6 @@ import { NotFoundComponent } from '~app/components/not-found/not-found.component
 
 import { StarsComponent } from './components/stars/stars.component';
 import { LoginModule } from '~app/pages/login/login.module';
-import { APP_BASE_HREF } from '@angular/common';
-import { environment } from '~env/environment';
 
 
 @NgModule({
@@ -30,7 +28,7 @@ import { environment } from '~env/environment';
     LoginModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: environment.baseHref },
+    // {provide: APP_BASE_HREF, useValue: environment.baseHref },
     AppTitleService
   ],
   bootstrap: [
