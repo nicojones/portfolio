@@ -65,6 +65,33 @@
       background-size: $book-font-size;
     }
   }
+
+  $min-height: 350px;
+  $max-height: 600px;
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .project-image {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $min-height, $max-height, 'max-height');
+    display: flex;
+    width: auto;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 100%;
+    @include transitions();
+
+    @extend %centered-object;
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .project-iframe {
+    width: 100%;
+    height: $min-height;
+    border: none;
+    @extend %centered-object;
+  }
 }
 
 @if ($project-transparent-images) {

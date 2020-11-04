@@ -1,4 +1,6 @@
 @import 'colors';
+@import 'breakpoints';
+@import 'globals';
 
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
@@ -61,5 +63,20 @@
   }
   @keyframes #{$name} {
     @content;
+  }
+}
+
+
+%centered-object {
+  &.center {
+    max-height: initial;
+  }
+
+  @media (min-width: $breakpoint-max-width) {
+    &.center {
+      width: $project-content-image-width;
+      max-width: 100vw;
+      margin-left: -1 * ( $project-content-image-width - $app-content-max-width ) / 2;
+    }
   }
 }
