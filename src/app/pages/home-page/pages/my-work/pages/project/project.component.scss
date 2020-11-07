@@ -65,19 +65,28 @@
       background-size: $book-font-size;
     }
   }
-}
 
-@if ($project-transparent-images) {
   //noinspection CssInvalidPseudoSelector
-  .app-row.desktop ::ng-deep .project-image {
+  ::ng-deep .project-iframe {
+    width: 100%;
+    height: $img-min-height;
+    border: none;
+    @extend %centered-object;
 
-    filter: brightness($project-transparent-images);
-    @include transitions();
-
-    &:hover {
-      filter: brightness(100%);
+    & + * {
+      display: none;
     }
   }
+
+  //noinspection CssInvalidPseudoSelector
+  .mobile ::ng-deep .project-iframe {
+    display: none;
+
+    & + * {
+      display: inline-block;
+    }
+  }
+
 }
 
 $progress-bar-height: 3px;

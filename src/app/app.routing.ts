@@ -30,7 +30,7 @@ import { AuthGuard } from '~app/services/guards/auth.guard';
         path: '**',
         component: NotFoundComponent
       }
-    ] )
+    ])
   ],
   exports: [
     RouterModule

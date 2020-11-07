@@ -8,8 +8,9 @@ import { Environment } from '~env/environment.interface';
 export const environment: Environment = {
   production: false,
   pageTitle: 'NK - Local',
-  phpUrl: '/api/app.php',
-  getUrl: '/json',
+  // phpUrl: 'http://localhost/portfolio-server/api/app.php',
+  phpUrl: 'https://kupfer.es/portfolio-api/api/app.php',
+  getUrl: 'https://kupfer.es/portfolio-api/json',
   baseHref: '/'
 };
 

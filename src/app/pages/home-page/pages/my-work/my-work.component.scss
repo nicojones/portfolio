@@ -12,16 +12,22 @@
     .project-item-text {
       flex: 1 1 $project-item-width;
       padding: 0 $app-font-size;
-      justify-content: flex-start;
+      //justify-content: flex-start;
       display: flex;
+      justify-content: center;
       text-align: left;
       flex-direction: column;
       @include transitions();
     }
 
+    .project-name {
+      font-size: $big-font-size;
+    }
+
     .project-summary {
       margin-bottom: 1rem;
     }
+
 
     .project-list-image {
       height: $project-item-height;

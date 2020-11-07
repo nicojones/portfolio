@@ -2,12 +2,12 @@
   <div id="progress-percent" [className]="project.textColor" [style.width.%]="percentage"></div>
 </div>
 
-<div class="app-row" @slideIn [class.desktop]="!client.isMobile" #appRow>
+<div class="app-row" @slideIn [class.mobile]="client.isMobile" #appRow>
   <h2 class="jumbo center slide-in landing">
-    {{ project.title }}
-    <span class="subtitle">{{ project.summary }}</span>
+    <span [innerHTML]="project.title"></span>
+    <span class="subtitle" [innerHTML]="project.summary"></span>
     <a [href]="project.link" target="_blank" class="project-link subtitle">
-      {{ project.link }}<img src="assets/icons/external.svg" class="external" alt="Open in new tab">
+      {{ project.link }}<img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
     </a>
   </h2>
 

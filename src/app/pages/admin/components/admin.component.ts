@@ -58,16 +58,16 @@ export class AdminComponent {
   public changedTab (index: number) {
     switch (index) {
       case Tabs.Home:
-        window.location.hash = 'Home';
+        // window.location.hash = 'Home';
         return this.setupHomeForm();
       case Tabs.About:
-        window.location.hash = 'About';
+        // window.location.hash = 'About';
         return this.setupAboutForm();
       case Tabs.Work:
-        window.location.hash = 'Work';
+        // window.location.hash = 'Work';
         return this.setupWorkForm();
       case Tabs.Contact:
-        window.location.hash = 'Contact';
+        // window.location.hash = 'Contact';
         return this.setupContactForm();
     }
   }

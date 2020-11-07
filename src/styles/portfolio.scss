@@ -100,14 +100,11 @@ a {
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
 }
 
-
 .project-image {
-  $min-height: 350px;
-  $max-height: 600px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $min-height, $max-height, 'max-height');
+  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $img-min-height, $img-max-height, 'max-height');
   display: flex;
   width: auto;
   justify-content: center;
@@ -116,15 +113,5 @@ a {
   max-width: 100%;
   @include transitions();
 
-  &.center {
-    max-height: initial;
-  }
-
-  @media (min-width: $breakpoint-max-width) {
-    &.center {
-      width: $project-content-image-width;
-      max-width: 100vw;
-      margin-left: -1 * ( $project-content-image-width - $app-content-max-width ) / 2;
-    }
-  }
+  @extend %centered-object;
 }

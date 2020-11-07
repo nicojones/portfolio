@@ -10,9 +10,10 @@ $book-padding: 25px;
   flex-direction: column;
 
   .book-title {
-    padding: 0 0 $book-padding 0;
+    padding: 0 0 $book-padding $book-padding;
     margin: 0;
-    width: 95%;
+    width: max-content;
+    max-width: calc(#{$book-carousel-width} - #{$book-padding});
 
     .book-link {
       font-size: $book-font-size;
@@ -37,7 +38,7 @@ $book-padding: 25px;
   }
 
   .book-descr {
-    flex: 0 0 50%;
+    flex: 0 0 calc(50% - #{2 * $book-padding});
     padding: 0 $book-padding;
     margin: 0;
   }
@@ -45,6 +46,8 @@ $book-padding: 25px;
   .book-item {
     flex-direction: row;
     display: flex;
+    //max-width: 800px;
+    max-width: $book-carousel-width;
   }
 
   @media(max-width: $breakpoint-mobile) {
