@@ -22,7 +22,7 @@ $name-logo-width: 13rem;
   text-decoration: none;
   @include transitions();
 
-  @media (orientation: landscape) and (max-width: $breakpoint-mobile) {
+  @media (max-width: $breakpoint-mobile) {
     top: $name-logo-top / 4;
   }
 
