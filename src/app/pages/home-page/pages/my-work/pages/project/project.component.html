@@ -2,7 +2,7 @@
   <div id="progress-percent" [className]="project.textColor" [style.width.%]="percentage"></div>
 </div>
 
-<div class="app-row" @slideIn [class.desktop]="!client.isMobile" #appRow>
+<div class="app-row" @slideIn [class.mobile]="client.isMobile" #appRow>
   <h2 class="jumbo center slide-in landing">
     <span [innerHTML]="project.title"></span>
     <span class="subtitle" [innerHTML]="project.summary"></span>

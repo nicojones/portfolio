@@ -99,3 +99,19 @@ a {
 .app-row, .fluid {
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
 }
+
+.project-image {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $img-min-height, $img-max-height, 'max-height');
+  display: flex;
+  width: auto;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 100%;
+  @include transitions();
+
+  @extend %centered-object;
+}

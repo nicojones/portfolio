@@ -66,45 +66,27 @@
     }
   }
 
-  $min-height: 350px;
-  $max-height: 600px;
-  //noinspection CssInvalidPseudoSelector
-  ::ng-deep .project-image {
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $min-height, $max-height, 'max-height');
-    display: flex;
-    width: auto;
-    justify-content: center;
-    overflow: hidden;
-    margin: 0 auto;
-    max-width: 100%;
-    @include transitions();
-
-    @extend %centered-object;
-  }
-
   //noinspection CssInvalidPseudoSelector
   ::ng-deep .project-iframe {
     width: 100%;
-    height: $min-height;
+    height: $img-min-height;
     border: none;
     @extend %centered-object;
-  }
-}
 
-@if ($project-transparent-images) {
-  //noinspection CssInvalidPseudoSelector
-  .app-row.desktop ::ng-deep .project-image {
-
-    filter: brightness($project-transparent-images);
-    @include transitions();
-
-    &:hover {
-      filter: brightness(100%);
+    & + * {
+      display: none;
     }
   }
+
+  //noinspection CssInvalidPseudoSelector
+  .mobile ::ng-deep .project-iframe {
+    display: none;
+
+    & + * {
+      display: inline-block;
+    }
+  }
+
 }
 
 $progress-bar-height: 3px;
