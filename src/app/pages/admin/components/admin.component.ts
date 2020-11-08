@@ -11,7 +11,7 @@ import { environment } from '~env/environment';
 
 import { AdminService } from '~admin/services';
 import { MainFormArray } from '~app/shared/classes';
-import { Section, SocialIcons } from '~app/shared/enums';
+import { SectionJSON, SocialIcons } from '~app/shared/enums';
 import { AuthGuard } from '~app/services/guards/auth.guard';
 
 import { HomePage } from '~home-page/interfaces';
@@ -88,7 +88,7 @@ export class AdminComponent {
   }
 
   public setupHomeForm () {
-    return this.getSection<HomePage>(Section.Home).subscribe((home: HomePage) => {
+    return this.getSection<HomePage>(SectionJSON.Home).subscribe((home: HomePage) => {
       this.service.homeForm.reset();
       this.service.homeForm.patchValue(home);
       for (let i = 0, len = home.title.length; i < len; ++i) {
@@ -100,7 +100,7 @@ export class AdminComponent {
   }
 
   public setupAboutForm () {
-    return this.getSection<AboutPage>(Section.About).subscribe((about: AboutPage) => {
+    return this.getSection<AboutPage>(SectionJSON.About).subscribe((about: AboutPage) => {
       this.service.aboutForm.reset();
       this.service.aboutForm.patchValue(about);
 
@@ -125,7 +125,7 @@ export class AdminComponent {
   }
 
   public setupContactForm () {
-    return this.getSection<ContactMePage>(Section.Contact).subscribe((contact: ContactMePage) => {
+    return this.getSection<ContactMePage>(SectionJSON.Contact).subscribe((contact: ContactMePage) => {
       this.service.contactForm.reset();
       this.service.contactForm.patchValue(contact);
 
@@ -143,7 +143,7 @@ export class AdminComponent {
   }
 
   public setupWorkForm () {
-    return this.getSection<MyWorkPage>(Section.Work).subscribe((work: MyWorkPage) => {
+    return this.getSection<MyWorkPage>(SectionJSON.Work).subscribe((work: MyWorkPage) => {
       this.service.workForm.reset();
       this.service.workForm.patchValue(work);
 
@@ -159,29 +159,29 @@ export class AdminComponent {
     const value: HomePage = this.service.homeForm.value;
     value.title.sort((a, b) => a.index - b.index)
     console.log(value);
-    this.save<HomePage>(Section.Home, value);
+    this.save<HomePage>(SectionJSON.Home, value);
   }
 
   public saveAboutForm () {
     const value: AboutPage = this.service.aboutForm.value;
-    this.save<AboutPage>(Section.About, value);
+    this.save<AboutPage>(SectionJSON.About, value);
   }
 
   public saveContactForm () {
     const value: ContactMePage = this.service.contactForm.value;
-    this.save<ContactMePage>(Section.Contact, value);
+    this.save<ContactMePage>(SectionJSON.Contact, value);
   }
 
   public saveWorkForm () {
     const value: MyWorkPage = this.service.workForm.value;
-    this.save<MyWorkPage>(Section.Work, value);
+    this.save<MyWorkPage>(SectionJSON.Work, value);
   }
 
   public addTitleControl (form: FormArray) {
     form.push(this.service.homeFormTitle({} as HomePage['title'][0]));
   }
 
-  private save<T> (section: Section, value: T) {
+  private save<T> (section: SectionJSON, value: T) {
     const valueString = JSON.stringify(value);
     if (valueString.match(/"isTrusted"/)) {
       this.snackBar.open('Please change back to rich HTML!');
@@ -204,7 +204,7 @@ export class AdminComponent {
       });
   }
 
-  private getSection<T> (section: Section): Observable<T> {
+  private getSection<T> (section: SectionJSON): Observable<T> {
     return this.http
       .get<T>(
         `${ environment.phpUrl }?section=${ section }&auth=${ AuthGuard.auth$.value }` )
