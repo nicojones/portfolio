@@ -7,7 +7,7 @@ import { ClientOs } from '~app/shared/interfaces';
 import { fadeIn, slideUnder } from '~app/shared/animations';
 
 import { HomePage } from '~home-page/interfaces';
-import { BehaviorSubject } from 'rxjs';
+import { AppService } from '~app/app.service';
 
 
 @Component({
@@ -18,11 +18,6 @@ import { BehaviorSubject } from 'rxjs';
   animations: [slideUnder(), fadeIn()]
 })
 export class HomePageComponent {
-
-  /**
-   * Changing this value will _permanently_ show the the menu <--> the intro
-   */
-  public static showMenu$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   /**
    * Info about the client's OS and browser.
@@ -38,7 +33,7 @@ export class HomePageComponent {
    * Getter for the static value (used in the view)
    */
   public get showMenu(): number {
-    return HomePageComponent.showMenu$.value;
+    return AppService.showMenu$.value;
   }
 
   public constructor (
@@ -47,6 +42,6 @@ export class HomePageComponent {
 
   public toggleMenu () {
     // Only for mobile devices... NOT for desktops.
-    HomePageComponent.showMenu$.next(this.showMenu + 1);
+    AppService.showMenu$.next(this.showMenu + 1);
   }
 }

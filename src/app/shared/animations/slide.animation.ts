@@ -22,7 +22,7 @@ export function slideIn (selector: string = '.slide-in'): AnimationTriggerMetada
             animate(`${ Timings.SlideDuration } 100ms ease-out`, style({ opacity: '1' }))
           ])
         ])
-      ])
+      ], {optional: true})
     ])
   ]);
 }

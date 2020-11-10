@@ -1,26 +1,21 @@
 <h1 class="jumbo center landing" @slideIn>
   <span class="plus-box slide-in">
-    <span
-      *ngFor="let multi of aboutPage.title.first; index as i"
-      [innerHTML]="multi"
-      [class.shown]="(plusIndex % aboutPage.title.first.length) === i"
-    ></span>
+    <ng-container *ngFor="let multi of aboutPage.title.first; index as i">
+      <span class="absolute" [innerHTML]="multi" [class.shown]="(plusIndex % aboutPage.title.first.length) === i"></span>
+      <span class="relative" [innerHTML]="multi"></span>
+    </ng-container>
   </span>
-  <br>
   <span class="plus-box slide-in">
-    <span
-      *ngFor="let multi of aboutPage.title.multi; index as i"
-      [innerHTML]="multi"
-      [class.shown]="(plusIndex % aboutPage.title.multi.length) === i"
-    ></span>
+    <ng-container *ngFor="let multi of aboutPage.title.multi; index as i">
+      <span class="absolute" [innerHTML]="multi" [class.shown]="(plusIndex % aboutPage.title.multi.length) === i"></span>
+      <span class="relative" [innerHTML]="multi"></span>
+    </ng-container>
   </span>
-  <br>
   <span class="plus-box slide-in">
-    <span
-      *ngFor="let multi of aboutPage.title.last; index as i"
-      [innerHTML]="multi"
-      [class.shown]="(plusIndex % aboutPage.title.last.length) === i"
-    ></span>
+    <ng-container *ngFor="let multi of aboutPage.title.last; index as i">
+      <span class="absolute" [innerHTML]="multi" [class.shown]="(plusIndex % aboutPage.title.last.length) === i"></span>
+      <span class="relative" [innerHTML]="multi"></span>
+    </ng-container>
   </span>
 </h1>
 <div class="app-row bottom-padding" @slideIn>

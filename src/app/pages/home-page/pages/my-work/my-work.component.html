@@ -1,9 +1,9 @@
-<div @slideIn>
+<div @slideIn [@.disabled]="!projectSlideIn">
   <h1 class="jumbo center landing slide-in" [innerHTML]="myWork.title"></h1>
   <div class="app-row bottom-padding">
     <a
       *ngFor="let project of myWork.projects; index as i"
-      class="project-item slide-in text no-deco"
+      class="project-item text no-deco slide-in"
       [routerLink]="'/' + RouteUrls.Projects + '/' + project.url"
     >
       <div class="project-item-text">

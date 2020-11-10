@@ -4,6 +4,10 @@
 @import 'images';
 @import 'mixins';
 
+html {
+  height: 100%; // the body can't be 100%-high, otherwise we can't reset the scroll to 0,0
+}
+
 body {
   //font-family: Maven Pro, "Helvetica Neue", sans-serif;
   font-family: Manrope, "Helvetica Neue", sans-serif;
@@ -11,9 +15,11 @@ body {
   background: $app-background;
   color: $text-color;
   margin: 0;
-  overflow-x: hidden;
   scroll-behavior: smooth;
   @include transitions();
+  min-height: 100%; // otherwise we can't vertically center stuff
+  display: flex;
+  align-items: center;
 
   &.black {
     color: $black;
@@ -22,7 +28,7 @@ body {
 
 html, body {
   font-size: $app-font-size;
-  height: 100%;
+  overflow-x: hidden;
 }
 
 a {

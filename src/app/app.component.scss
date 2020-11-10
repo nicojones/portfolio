@@ -6,6 +6,10 @@
 
 $name-logo-width: 13rem;
 
+:host {
+  width: 100vw; // otherwise it measures 1 million pixels width!
+}
+
 #name-logo {
   position: fixed;
   font-family: 'Monospaced', monospace;

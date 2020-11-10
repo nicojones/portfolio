@@ -12,6 +12,7 @@ import { ClientOs, ProjectContent } from '~app/shared/interfaces';
 // import { addClass, removeClass } from '~app/functions/class-name.function';
 import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
 import { addClass, removeClass } from '~app/functions';
+import { AppService } from '~app/app.service';
 
 
 @Component({
@@ -66,6 +67,9 @@ export class ProjectComponent implements OnDestroy {
     document.body.style.backgroundColor = this.project.bgColor;
     addClass(this.project.textColor, document.body);
     addClass('project-view', document.body);
+
+    // After visiting this page, we don't want the projects to auto-load.
+    AppService.projectSlideIn = false;
   }
 
   public ngOnDestroy () {

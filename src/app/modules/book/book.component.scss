@@ -13,7 +13,7 @@ $book-padding: 25px;
     padding: 0 0 $book-padding $book-padding;
     margin: 0;
     width: max-content;
-    max-width: calc(#{$book-carousel-width} - #{$book-padding});
+    max-width: calc(95% - #{$book-padding});
 
     .book-link {
       font-size: $book-font-size;
