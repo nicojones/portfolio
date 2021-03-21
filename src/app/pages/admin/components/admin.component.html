@@ -156,17 +156,18 @@
   <h2>Links</h2>
   <div *ngFor="let control of formArray(form, 'link').controls; index as i" class="flex-column border-box">
     <mat-form-field>
-      <mat-label>Type</mat-label>
+      <mat-label>Title / Label</mat-label>
       <input matInput [formControl]="formControl(control, 'text')"/>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Content</mat-label>
+      <mat-label>URL</mat-label>
       <input matInput [formControl]="formControl(control, 'url')"/>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Extra?</mat-label>
+      <mat-label>attr-title</mat-label>
       <input matInput [formControl]="formControl(control, 'title')">
     </mat-form-field>
+<!--    <mat-checkbox [formControl]="formControl(control, 'blank')">_blank</mat-checkbox>-->
     <mat-form-field>
       <mat-label>Icon</mat-label>
       <mat-select [formControl]="formControl(control, 'icon')">

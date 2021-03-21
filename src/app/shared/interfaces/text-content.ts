@@ -11,7 +11,9 @@ export interface LinkContent<Type = any> {
   text: string;
   url: string;
   title?: string;
+  // blank: boolean;
   icon: SocialIcons;
+  _sanitized?: SafeHtml;
 }
 
 export interface ProjectContent {

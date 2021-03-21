@@ -24,4 +24,13 @@
       margin-right: 20px;
     }
   }
+
+  ::ng-deep {
+    .email {
+      display: none;
+    }
+    .email, .email2 {
+      font-style: normal;
+    }
+  }
 }

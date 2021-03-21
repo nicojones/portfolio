@@ -76,6 +76,7 @@ export class AdminService {
       text: new FormControl(linkContent.text, Validators.required),
       url: new FormControl(linkContent.url, Validators.required),
       title: new FormControl(linkContent.title),
+      // blank: new FormControl(linkContent.blank),
       icon: new FormControl(linkContent.icon)
     });
   }

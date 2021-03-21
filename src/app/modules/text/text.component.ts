@@ -26,7 +26,13 @@ export class TextComponent implements OnInit {
   ngOnInit (): void {
   }
 
-  public sanitize (text: TextContent): SafeHtml {
-    return (text._sanitized = this.sanitizer.bypassSecurityTrustHtml(text.content));
+  public sanitize (text: any, key: string = 'content'): SafeHtml {
+    return (text._sanitized = this.sanitizer.bypassSecurityTrustHtml(text[key]));
+  }
+
+  public onLinkClick (event: any, link: LinkContent) {
+    if (!link.url) {
+      event.preventDefault();
+    }
   }
 }
