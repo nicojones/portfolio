@@ -35,3 +35,4 @@ speed-measure-plugin*.json
 *.sublime-workspace
 
 .workspace
+.DS_Store
