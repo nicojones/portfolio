@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.3.9",
-    "@angular/cli": "^12.2.18",
+    "@angular/cli": "^13.3.9",
     "@angular/compiler": "^12.2.16",
     "@angular/compiler-cli": "^13.3.11",
     "@types/ckeditor": "^4.9.10",
