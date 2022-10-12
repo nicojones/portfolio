@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 // function e2eControlName (control: FormControl): string {
@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 export class RichTextComponent {
 
   @Input()
-  public control: FormControl; // required
+  public control: UntypedFormControl; // required
 
   public config;//: CKEDITOR.config;
 

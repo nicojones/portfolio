@@ -1,9 +1,9 @@
-import { AbstractControl, AbstractControlOptions, AsyncValidatorFn, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, AsyncValidatorFn, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { FormObject } from '~app/shared/interfaces';
 
 
 // @ts-ignore
-export class MainFormGroup<Type = any> extends FormGroup {
+export class MainFormGroup<Type = any> extends UntypedFormGroup {
   public initialValue: Type;
 
   public readonly value: Type;

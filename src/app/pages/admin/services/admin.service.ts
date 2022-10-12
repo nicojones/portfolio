@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MainFormArray, MainFormGroup } from '~app/shared/classes';
 import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
 import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
@@ -29,7 +29,7 @@ export class AdminService {
   ];
 
   public workForm: MainFormGroup<MyWorkPage> = new MainFormGroup<MyWorkPage>({
-    title: new FormControl(null, Validators.required),
+    title: new UntypedFormControl(null, Validators.required),
     projects: new MainFormArray<MyWorkPage['projects']>([])
   });
 
@@ -43,54 +43,54 @@ export class AdminService {
   });
 
   public homeForm: MainFormGroup<HomePage> = new MainFormGroup<HomePage>({
-    pageTitle: new FormControl(null, Validators.required),
-    mobileTap: new FormControl(null, Validators.required),
+    pageTitle: new UntypedFormControl(null, Validators.required),
+    mobileTap: new UntypedFormControl(null, Validators.required),
     title: new MainFormArray<HomePage['title']>([])
   });
 
   public contactForm: MainFormGroup<ContactMePage> = new MainFormGroup<ContactMePage>({
-    title: new FormControl(null, Validators.required),
+    title: new UntypedFormControl(null, Validators.required),
     text: new MainFormArray<ContactMePage['text']>([]),
     link: new MainFormArray<ContactMePage['link']>([])
   });
 
   public homeFormTitle (title: HomePage['title'][0]) {
     return new MainFormGroup<HomePage['title'][0]>({
-      accent: new FormControl(title.accent),
-      text: new FormControl(title.text),
-      textHover: new FormControl(title.textHover),
-      url: new FormControl(title.url),
-      index: new FormControl(null),
-      mini: new FormControl(title.mini)
+      accent: new UntypedFormControl(title.accent),
+      text: new UntypedFormControl(title.text),
+      textHover: new UntypedFormControl(title.textHover),
+      url: new UntypedFormControl(title.url),
+      index: new UntypedFormControl(null),
+      mini: new UntypedFormControl(title.mini)
     });
   }
 
   public textContent (textContent: Partial<TextContent>) {
     return new MainFormGroup<TextContent>({
-      content: new FormControl(textContent.content, Validators.required)
+      content: new UntypedFormControl(textContent.content, Validators.required)
     });
   }
 
   public linkContent (linkContent: Partial<LinkContent>) {
     return new MainFormGroup<LinkContent>({
-      text: new FormControl(linkContent.text, Validators.required),
-      url: new FormControl(linkContent.url, Validators.required),
-      title: new FormControl(linkContent.title),
+      text: new UntypedFormControl(linkContent.text, Validators.required),
+      url: new UntypedFormControl(linkContent.url, Validators.required),
+      title: new UntypedFormControl(linkContent.title),
       // blank: new FormControl(linkContent.blank),
-      icon: new FormControl(linkContent.icon)
+      icon: new UntypedFormControl(linkContent.icon)
     });
   }
 
   public projectContent (projectContent: Partial<ProjectContent>) {
     return new MainFormGroup<ProjectContent>({
-      image: new FormControl(projectContent.image, Validators.required),
-      content: new FormControl(projectContent.content, Validators.required),
-      url: new FormControl(projectContent.url, Validators.required),
-      summary: new FormControl(projectContent.summary, Validators.required),
-      link: new FormControl(projectContent.link),
-      textColor: new FormControl(projectContent.textColor),
-      bgColor: new FormControl(projectContent.bgColor),
-      title: new FormControl(projectContent.title, Validators.required)
+      image: new UntypedFormControl(projectContent.image, Validators.required),
+      content: new UntypedFormControl(projectContent.content, Validators.required),
+      url: new UntypedFormControl(projectContent.url, Validators.required),
+      summary: new UntypedFormControl(projectContent.summary, Validators.required),
+      link: new UntypedFormControl(projectContent.link),
+      textColor: new UntypedFormControl(projectContent.textColor),
+      bgColor: new UntypedFormControl(projectContent.bgColor),
+      title: new UntypedFormControl(projectContent.title, Validators.required)
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -72,17 +72,17 @@ export class AdminComponent {
     }
   }
 
-  public formArray (form: FormGroup, key: string): MainFormArray<any> {
+  public formArray (form: UntypedFormGroup, key: string): MainFormArray<any> {
     return (form.get(key) as MainFormArray<any>) as MainFormArray<any>;
   }
 
-  public formControl (form: AbstractControl, key: string): FormControl {
-    return form.get(key) as FormControl;
+  public formControl (form: AbstractControl, key: string): UntypedFormControl {
+    return form.get(key) as UntypedFormControl;
   }
 
   public addFormControl (
-    form: FormArray,
-    control: AbstractControl = new FormControl(null, Validators.required)
+    form: UntypedFormArray,
+    control: AbstractControl = new UntypedFormControl(null, Validators.required)
   ) {
     form.push(control);
   }
@@ -105,16 +105,16 @@ export class AdminComponent {
       this.service.aboutForm.patchValue(about);
 
       for (let i = 0, len = about.title.first.length; i < len; ++i) {
-        (this.service.aboutForm.get(['title', 'first']) as FormArray).push(
-          new FormControl(about.title.first[i], Validators.required));
+        (this.service.aboutForm.get(['title', 'first']) as UntypedFormArray).push(
+          new UntypedFormControl(about.title.first[i], Validators.required));
       }
       for (let i = 0, len = about.title.multi.length; i < len; ++i) {
-        (this.service.aboutForm.get(['title', 'multi']) as FormArray).push(
-          new FormControl(about.title.multi[i], Validators.required));
+        (this.service.aboutForm.get(['title', 'multi']) as UntypedFormArray).push(
+          new UntypedFormControl(about.title.multi[i], Validators.required));
       }
       for (let i = 0, len = about.title.last.length; i < len; ++i) {
-        (this.service.aboutForm.get(['title', 'last']) as FormArray).push(
-          new FormControl(about.title.last[i], Validators.required));
+        (this.service.aboutForm.get(['title', 'last']) as UntypedFormArray).push(
+          new UntypedFormControl(about.title.last[i], Validators.required));
       }
       for (let i = 0, len = about.text.length; i < len; ++i) {
         (this.service.aboutForm.get('text') as MainFormArray<AboutPage['text']>).push(
@@ -177,7 +177,7 @@ export class AdminComponent {
     this.save<MyWorkPage>(SectionJSON.Work, value);
   }
 
-  public addTitleControl (form: FormArray) {
+  public addTitleControl (form: UntypedFormArray) {
     form.push(this.service.homeFormTitle({} as HomePage['title'][0]));
   }
 

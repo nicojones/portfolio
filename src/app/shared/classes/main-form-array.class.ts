@@ -2,21 +2,21 @@ import {
   AbstractControl,
   AbstractControlOptions,
   AsyncValidatorFn,
-  FormArray,
-  FormControl,
+  UntypedFormArray,
+  UntypedFormControl,
   ValidatorFn
 } from '@angular/forms';
 import { MainFormGroup } from '~app/shared/classes/main-form-group.class';
 import { FormObject } from '~app/shared/interfaces';
 
 
-export class MainFormArray<T extends Array<any>> extends FormArray {
+export class MainFormArray<T extends Array<any>> extends UntypedFormArray {
   public initialValue: T;
 
   public value: T;
 
   constructor (
-    controls: FormControl[] | MainFormGroup[],
+    controls: UntypedFormControl[] | MainFormGroup[],
     validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null,
     asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null
   ) {
@@ -84,7 +84,7 @@ export class MainFormArray<T extends Array<any>> extends FormArray {
   private rebuildFormGroup (defaultFormValue): MainFormGroup<T> {
     const formControls: FormObject<T> = {} as FormObject<T>;
     Object.keys(defaultFormValue).forEach((key: string) => {
-      formControls[key] = new FormControl(defaultFormValue[key]);
+      formControls[key] = new UntypedFormControl(defaultFormValue[key]);
     });
 
     return new MainFormGroup<T>(formControls);

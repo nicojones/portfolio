@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '~login/services';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginData } from '~login/shared/interfaces';
@@ -20,16 +20,16 @@ import { Auth } from '~app/shared/interfaces';
 })
 export class LoginComponent {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor (
     private router: Router,
     private service: LoginService,
     private snackbar: MatSnackBar
   ) {
-    this.form = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required)
+    this.form = new UntypedFormGroup({
+      username: new UntypedFormControl(null, Validators.required),
+      password: new UntypedFormControl(null, Validators.required)
     });
   }
 
