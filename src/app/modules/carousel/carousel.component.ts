@@ -7,19 +7,19 @@ import {
   Input,
   OnInit,
   ViewChild
-} from '@angular/core';
+} from "@angular/core";
 
-import { Carousel, IOptions } from 'latte-carousel';
+import {Carousel, IOptions} from "latte-carousel";
 
-import { clone } from '~app/functions';
+import {clone} from "~app/functions";
 
-import { Book, Books } from '~goodreads/shared/interfaces/book';
+import {Book, Books} from "~goodreads/shared/interfaces/book";
 
 
 @Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss'],
+  selector: "app-carousel",
+  templateUrl: "./carousel.component.html",
+  styleUrls: ["./carousel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
@@ -33,7 +33,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   /**
    * The HTML element that contains the carousel.
    */
-  @ViewChild('carouselElement', { static: true })
+  @ViewChild("carouselElement", {static: true})
   public carouselElement: ElementRef<HTMLDivElement>;
 
   /**
@@ -52,7 +52,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
    * If true, the last brings you to the first.
    */
   @Input()
-  public wrap: boolean = true;
+  public wrap = true;
 
   /**
    * A fake book that could link to Goodreads, for example.
@@ -75,53 +75,54 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   /**
    * The current index
    */
-  public index: number = 1;
+  public index = 1;
 
-  constructor (
+  constructor(
     private ref: ChangeDetectorRef
-  ) {}
+  ) {
+  }
 
-  ngOnInit () {
+  public ngOnInit() {
     if (this.lastBook) {
       this.books = [...clone(this.books), this.lastBook];
     }
   }
 
-  ngAfterViewInit (): void {
+  public ngAfterViewInit(): void {
     this.options = {
       touch: false,
-      mode: 'align',
+      mode: "align",
       // buttons: true,
       // dots: true,
       rewind: this.wrap,
       autoplay: 0,
       animation: 500,
       responsive: {
-        0: { count: 1, buttons: false, touch: true },
-        480: { count: 1.1, buttons: false, touch: true },
-        768: { count: 1.1, move: 1, buttons: false },
-        1440: { count: 2, move: 2, buttons: false }
+        0: {count: 1, buttons: false, touch: true},
+        480: {count: 1.1, buttons: false, touch: true},
+        768: {count: 1.1, move: 1, buttons: false},
+        1440: {count: 2, move: 2, buttons: false}
       }
     };
 
     this.buildCarousel();
 
-    this.carousel.on('move', () => {
+    this.carousel.on("move", () => {
       // @ts-ignore
       this.index = this.carousel ? Math.round(this.carousel.stage.currentIndex + 1) : 1;
       this.ref.markForCheck();
-    })
+    });
   }
 
-  public nextItem () {
-    this.carousel.trigger('next');
+  public nextItem() {
+    this.carousel.trigger("next");
   }
 
-  public prevItem () {
-    this.carousel.trigger('previous');
+  public prevItem() {
+    this.carousel.trigger("previous");
   }
 
-  private buildCarousel () {
+  private buildCarousel() {
     this.carousel = new Carousel(this.carouselElement.nativeElement, this.options) as Carousel;
   }
 

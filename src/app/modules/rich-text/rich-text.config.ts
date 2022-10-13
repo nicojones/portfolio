@@ -20,7 +20,7 @@ export const richTextConfig: RichTextConfig = {
      `,
   image_description: false,
   image_class_list: [
-    {title: "Normal", value: "project-image"},
-    {title: "Centered", value: "project-image center"}
+    {title: "Overflow", value: "project-image center"},
+    {title: "No Overflow", value: "project-image"}
   ]
 };
