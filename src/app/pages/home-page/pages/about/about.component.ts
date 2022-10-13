@@ -1,21 +1,21 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from "@angular/core";
 
-import { MyRoutes, RouteUrls } from '~routes/routes';
+import {MyRoutes, RouteUrls} from "~routes/routes";
 
-import { slideIn } from '~app/shared/animations';
-import { BooksService } from '~app/services';
+import {slideIn} from "~app/shared/animations";
+import {BooksService} from "~app/services";
 
-import { Book, Shelf } from '~goodreads/shared/interfaces/book';
-import { zip } from 'rxjs';
-import { lastBook } from '~app/modules/book/last-book';
-import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
-import { ActivatedRoute } from '@angular/router';
+import {Book, Shelf} from "~goodreads/shared/interfaces/book";
+import {zip} from "rxjs";
+import {lastBook} from "~app/modules/book/last-book";
+import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [slideIn()]
 })
@@ -39,7 +39,7 @@ export class AboutComponent {
   /**
    * Title for the page.
    */
-  public readonly title: string = 'books I\'ve read';
+  public readonly title: string = "books I've read";
 
   /**
    * Information about the about page.
@@ -51,7 +51,7 @@ export class AboutComponent {
    */
   public plusIndex = 0;
 
-  constructor (
+  constructor(
     public route: ActivatedRoute,
     public booksService: BooksService,
     private ref: ChangeDetectorRef

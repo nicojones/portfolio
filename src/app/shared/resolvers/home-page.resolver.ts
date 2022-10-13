@@ -1,34 +1,21 @@
-import { Resolve } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Resolve} from "@angular/router";
+import {Injectable} from "@angular/core";
 
-import { Observable, of } from 'rxjs';
-
-import { environment } from '~env/environment';
-
-import { tap } from 'rxjs/operators';
-import { HomePage } from '~home-page/interfaces';
-import { SectionJSON } from '~app/shared/enums';
+import {Observable} from "rxjs";
+import {HomePage} from "~home-page/interfaces";
+import {FirebasePageEnum} from "~app/shared/enums";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()
 export class HomePageResolver implements Resolve<unknown> {
 
-  public static homePage: HomePage;
-
-  constructor (
-    private http: HttpClient
+  constructor(
+    private firebaseApi: FirebaseApiService
   ) {
   }
 
-  public resolve (): Observable<HomePage> {
-    if (HomePageResolver.homePage) {
-      return of(HomePageResolver.homePage);
-    }
-    return this.http
-      .get<HomePage>(`${ environment.getUrl }/${ SectionJSON.Home }`)
-      .pipe(
-        tap((homePage: HomePage) => (HomePageResolver.homePage = homePage))
-      );
+  public resolve(): Observable<HomePage> {
+    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.HOME);
   }
 }

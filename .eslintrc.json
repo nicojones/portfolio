@@ -1,40 +1,250 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "node": true
   },
   "extends": [
-    "standard"
+    "prettier"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly",
-    "expect": "readonly",
-    "it": "readonly",
-    "spyOn": "readonly",
-    "describe": "readonly",
-    "beforeEach": "readonly",
-    "afterEach": "readonly"
-  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "**/*.html",
+    "**/*.scss"
+  ],
   "plugins": [
+    "@angular-eslint/eslint-plugin",
+    "sort-class-members",
+    "unused-imports",
     "@typescript-eslint",
-    "sort-class-members"
+    "change-detection-strategy"
   ],
   "rules": {
-    "selector-pseudo-element-no-unknown": ["off", {
-      "ignorePseudoElements": ["ng-deep"]
-    }],
-    "no-case-declarations": "off",
-    "no-undef": "off",
-    "no-multiple-empty-lines": "off",
-    "no-unused-vars": "off",
-    "no-useless-constructor": "off",
-    "padded-blocks": "off",
+    "change-detection-strategy/on-push": "off",
+    "@angular-eslint/component-class-suffix": [
+      "error",
+      {
+        "suffixes": [
+          "Component",
+          "Base",
+          "Page"
+        ]
+      }
+    ],
+    "@angular-eslint/component-selector": [
+      "error",
+      {
+        "type": "element",
+        "prefix": "app",
+        "style": "kebab-case"
+      }
+    ],
+    "@angular-eslint/directive-class-suffix": "error",
+    "@angular-eslint/directive-selector": [
+      "error",
+      {
+        "type": "attribute",
+        "prefix": "app",
+        "style": "camelCase"
+      }
+    ],
+    "@angular-eslint/no-host-metadata-property": [
+      "error",
+      {
+        "allowStatic": true
+      }
+    ],
+    "@angular-eslint/use-lifecycle-interface": "error",
+    "@angular-eslint/use-pipe-transform-interface": "error",
+    "@typescript-eslint/consistent-type-definitions": "error",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "accessors": "explicit",
+          "constructors": "no-public"
+        }
+      }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "semi",
+          "requireLast": false
+        }
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "enumMember",
+        "format": [
+          "UPPER_CASE"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-inferrable-types": [
+      "error",
+      {
+        "ignoreParameters": true
+      }
+    ],
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-shadow": [
+      "error",
+      {
+        "hoist": "all"
+      }
+    ],
+    "@typescript-eslint/no-var-requires": "error",
+    "@typescript-eslint/prefer-function-type": "error",
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "@typescript-eslint/unified-signatures": "error",
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "comma-dangle": [
+      "error"
+    ],
+    //    "comma-dangle": ["error", "always-multiline"],
+    "constructor-super": "error",
+    "curly": [
+      "error",
+      "all"
+    ],
+    "dot-notation": "error",
+    "eol-last": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "function-paren-newline": [
+      "error",
+      "multiline-arguments"
+    ],
+    "guard-for-in": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "ignorePattern": "(^import .* from .*)|(^\\} from .*)",
+        "ignoreTemplateLiterals": true,
+        "code": 120
+      }
+    ],
+    "no-bitwise": "error",
+    "no-caller": "error",
+    "keyword-spacing": "error",
+    "space-before-blocks": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "info",
+          "warn",
+          "dir",
+          "timeLog",
+          "assert",
+          "clear",
+          "count",
+          "countReset",
+          "group",
+          "groupEnd",
+          "table",
+          "dirxml",
+          "error",
+          "groupCollapsed",
+          "Console",
+          "profile",
+          "profileEnd",
+          "timeStamp",
+          "context"
+        ]
+      }
+    ],
+    "no-debugger": "error",
+    "no-empty": "error",
+    "object-curly-spacing": [
+      "off",
+      "always"
+    ],
+    // error
+    "no-fallthrough": "error",
+    "no-mixed-operators": [
+      "error",
+      {
+        "allowSamePrecedence": true
+      }
+    ],
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "fdescribe",
+        "message": "Do not commit `fdescribe`. Use `describe` instead. "
+      },
+      {
+        "name": "eval",
+        "message": "Do not use `eval`. Use `JSON.parse` instead. "
+      },
+      {
+        "name": "fit",
+        "message": "Do not commit `fit`. Use `it` instead. "
+      },
+      {
+        "name": "window",
+        "message": "Do not use `window` directly. Inject it or use `getWindow()`."
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      "rxjs/Rx"
+    ],
+    "no-throw-literal": "error",
+    "no-trailing-spaces": "error",
+    "no-unused-expressions": "error",
+    "unused-imports/no-unused-imports": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "radix": "error",
+    "semi": [
+      "error",
+      "always"
+    ],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "markers": [
+          "/"
+        ]
+      }
+    ],
     "sort-class-members/sort-class-members": [
       "error",
       {
@@ -85,74 +295,23 @@
         },
         "accessorPairPositioning": "any"
       }
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "template-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "no-trailing-spaces": "off",
-    "handle-callback-err": "off",
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "no-console": [
-      "error",
-      {
-        "allow": ["warn", "error", "info", "trace"]
-      }
-    ],
-    "no-restricted-syntax": [
-      "warn",
-      {
-        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|count)$/]",
-        "message": "This is valid only for Local Development.\nUse `console.info` or `console.error` with clear,\nwell-formatted messages if you intend to have them on DEV. "
-      }
-    ],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1,
-        "CallExpression": {
-          "arguments": "off"
-        },
-        "FunctionDeclaration": {
-          "parameters": 2,
-          "body": 1
-        },
-        "FunctionExpression": {
-          "parameters": 1,
-          "body": 1
-        }
-      }
-    ],
-    "no-unreachable": "off",
-    "no-prototype-builtins": "off",
-    "object-curly-spacing": [
-      "error",
-      "always"
     ]
   },
-  "ignorePatterns": [
-    "*.html",
-    "*.json",
-    "*.scss",
-    "*.e2e-spec.ts",
-    "*.test.ts",
-    "*.library.ts"
-  ],
   "overrides": [
     {
       "files": [
-        "*.spec.ts",
-        "*.e2e-spec.ts",
-        "*.test.ts"
-      ]
+        "**/*.spec.ts"
+      ],
+      "excludedFiles": "*.test.js",
+      "rules": {
+        "max-len": "off"
+      },
+      "parserOptions": {
+        "project": [
+          "./tsconfig.app.json"
+        ],
+        "createDefaultProgram": false
+      }
     }
   ]
 }

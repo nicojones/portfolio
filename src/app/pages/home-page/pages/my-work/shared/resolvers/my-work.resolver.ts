@@ -1,34 +1,23 @@
-import { Resolve } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Resolve} from "@angular/router";
+import {Injectable} from "@angular/core";
 
-import { Observable, of } from 'rxjs';
+import {Observable} from "rxjs";
 
-import { environment } from '~env/environment';
 
-import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
-import { tap } from 'rxjs/operators';
-import { SectionJSON } from '~app/shared/enums';
+import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
+import {FirebasePageEnum} from "~app/shared/enums";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()
 export class MyWorkResolver implements Resolve<unknown> {
 
-  public static myWork: MyWorkPage;
-
-  constructor (
-    private http: HttpClient
+  constructor(
+    private readonly firebaseApi: FirebaseApiService
   ) {
   }
 
-  public resolve (): Observable<MyWorkPage> {
-    if (MyWorkResolver.myWork) {
-      return of(MyWorkResolver.myWork);
-    }
-    return this.http
-      .get<MyWorkPage>(`${ environment.getUrl }/${ SectionJSON.Work }`)
-      .pipe(
-        tap((myWork: MyWorkPage) => (MyWorkResolver.myWork = myWork))
-      );
+  public resolve(): Observable<MyWorkPage> {
+    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.ABOUT);
   }
 }

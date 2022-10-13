@@ -1,8 +1,8 @@
 <div class="flex-row app-row space-around" @slideIn>
-  <a class="jumbo slide-in center landing back-title no-deco" [routerLink]="'/' + Routes.About">
+  <app-back-title [url]="Routes.About">
     I read <span class="accent">a lot</span>.
     <span class="subtitle"><span class="accent" [innerHTML]="shelf.read.books.length"></span> {{ title.read }}</span>
-  </a>
+  </app-back-title>
   <app-carousel [books]="shelf.reading.books" [title]="title.reading"></app-carousel>
   <hr class="slide-in w-100">
   <app-carousel [books]="shelf.read.books" [title]="title.read"></app-carousel>

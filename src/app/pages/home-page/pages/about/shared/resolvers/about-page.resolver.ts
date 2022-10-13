@@ -1,34 +1,22 @@
-import { Resolve } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Resolve} from "@angular/router";
+import {Injectable} from "@angular/core";
 
-import { Observable, of } from 'rxjs';
+import {Observable} from "rxjs";
 
-import { environment } from '~env/environment';
-
-import { AboutPage } from '~home-page/pages/about/interfaces/about-page';
-import { tap } from 'rxjs/operators';
-import { SectionJSON } from '~app/shared/enums';
+import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
+import {FirebasePageEnum} from "~app/shared/enums";
 
 
 @Injectable()
 export class AboutPageResolver implements Resolve<AboutPage> {
 
-  public static aboutPage: AboutPage;
-
-  constructor (
-    private http: HttpClient
+  constructor(
+    private readonly firebaseApi: FirebaseApiService
   ) {
   }
 
-  public resolve (): Observable<AboutPage> {
-    if (AboutPageResolver.aboutPage) {
-      return of(AboutPageResolver.aboutPage);
-    }
-    return this.http
-      .get<AboutPage>(`${ environment.getUrl }/${ SectionJSON.About }`)
-      .pipe(
-        tap((aboutPage: AboutPage) => (AboutPageResolver.aboutPage = aboutPage))
-      );
+  public resolve(): Observable<AboutPage> {
+    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.ABOUT);
   }
 }
