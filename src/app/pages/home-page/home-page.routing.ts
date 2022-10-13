@@ -1,32 +1,32 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
-import { HomePageComponent } from '~home-page/home-page.component';
-import { Routes } from '~routes/routes';
-import { HomePageResolver } from '~app/shared/resolvers';
+import {HomePageComponent} from "~home-page/home-page.component";
+import {Routes} from "~routes/routes";
+import {HomePageResolver} from "~app/shared/resolvers";
 
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: '',
+        path: "",
         component: HomePageComponent,
         resolve: {
           homePage: HomePageResolver
         }
       },
       {
-        path: Routes.Contact,
-        loadChildren: () => import('~home-page/pages/contact-me').then((m) => m.ContactMeModule)
+        path: Routes.CONTACT,
+        loadChildren: () => import("~home-page/pages/contact-me").then((m) => m.ContactMeModule)
       },
       {
-        path: Routes.About,
-        loadChildren: () => import('~home-page/pages/about').then((m) => m.AboutModule)
+        path: Routes.ABOUT,
+        loadChildren: () => import("~home-page/pages/about").then((m) => m.AboutModule)
       },
       {
-        path: Routes.Projects,
-        loadChildren: () => import('~home-page/pages/my-work').then((m) => m.MyWorkModule)
+        path: Routes.PROJECTS,
+        loadChildren: () => import("~home-page/pages/my-work").then((m) => m.ProjectsModule)
       }
     ])
   ],
@@ -35,4 +35,5 @@ import { HomePageResolver } from '~app/shared/resolvers';
   ]
 
 })
-export class HomePageRouting {}
+export class HomePageRouting {
+}

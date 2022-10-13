@@ -1,54 +1,50 @@
-import { Component } from '@angular/core';
-import { LoginService } from '~login/services';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { LoginData } from '~login/shared/interfaces';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { Routes } from '~routes/routes';
-import { getLocalStorage } from '~app/services';
-import { StorageKey } from '~app/shared/enums';
-import { Auth } from '~app/shared/interfaces';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {LoginData} from "~login/shared/interfaces";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+import {RouteUrls} from "~routes/routes";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
 
-  public form: UntypedFormGroup;
+  public readonly RouteUrls = RouteUrls;
 
-  constructor (
+  public loginError: any;
+
+  public form: FormGroup<LoginData<FormControl<string>>>;
+
+  constructor(
     private router: Router,
-    private service: LoginService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private readonly firebaseLogin: AngularFireAuth,
+    private readonly ref: ChangeDetectorRef
   ) {
-    this.form = new UntypedFormGroup({
-      username: new UntypedFormControl(null, Validators.required),
-      password: new UntypedFormControl(null, Validators.required)
+    this.form = new FormGroup({
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
   }
 
-  public onSave () {
-    const value: LoginData = this.form.value;
-    this.service
-      .doLogin(value)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.snackbar.open('error from BE', null, {
-            duration: 2000
-          });
-          return throwError(error);
-        })
-      )
-      .subscribe((auth: Auth) => {
-        getLocalStorage().setItem<string>(StorageKey.Auth, auth.Authorization);
-        this.snackbar.open('Logged in', null, { duration: 2000 });
-        this.router.navigateByUrl(Routes.url('Admin'));
+  public login() {
+    const value: LoginData = this.form.value as LoginData;
+    this.loginError = null;
+
+    this.firebaseLogin.signInWithEmailAndPassword(value.username, value.password)
+      .then((a) => {
+        this.router.navigate([`/${RouteUrls.ADMIN}`]);
+      })
+      .catch((error) => {
+        this.loginError = error;
+
+        this.ref.markForCheck();
       });
   }
 

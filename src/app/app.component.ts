@@ -1,20 +1,20 @@
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject} from "@angular/core";
 
-import { MyRoutes, Routes, RouteUrls } from '~routes/routes';
+import {MyRoutes, Routes, RouteUrls} from "~routes/routes";
 
-import { StorageKey } from '~app/shared/enums';
-import { detectAndSaveOS } from '~app/functions';
-import { AuthGuard } from '~app/services/guards/auth.guard';
-import { AppTitleService, getLocalStorage } from '~app/services';
-import { BehaviorSubject } from 'rxjs';
-import { environment } from '~env/environment';
+import {StorageKey} from "~app/shared/enums";
+import {detectAndSaveOS} from "~app/functions";
+import {AppTitleService, getLocalStorage} from "~app/services";
+import {environment} from "~env/environment";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: []
 })
@@ -37,12 +37,16 @@ export class AppComponent {
   /**
    * The authentication status.
    */
-  public auth$: BehaviorSubject<string> = AuthGuard.auth$;
+  public auth = false;
 
-  constructor (
+  constructor(
     private route: ActivatedRoute,
     private title: AppTitleService,
-    private router: Router
+    private router: Router,
+    @Inject("Window") private readonly window: Window,
+    private readonly ref: ChangeDetectorRef,
+    private readonly fireAuth: AngularFireAuth,
+    private readonly snackBar: MatSnackBar
   ) {
     // Client OS - detect and save it if it's not in the local storage.
     detectAndSaveOS();
@@ -57,18 +61,31 @@ export class AppComponent {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-      window.scrollTo(0, 0)
+      this.window.scrollTo(0, 0);
     });
 
-    // document.getElementsByTagName('base')[0].href = environment.baseHref;
+    this.fireAuth.authState
+      .subscribe((state: any) => {
+        this.auth = !!state;
+        this.ref.markForCheck();
+      });
 
   }
 
   /**
    * Show and hide the CANVAS with the stars.
    */
-  public toggleStars (): void {
+  public toggleStars(): void {
     this.stars = !this.stars;
     getLocalStorage().setItem(StorageKey.Stars, this.stars);
+  }
+
+  public logout(): void {
+    this.fireAuth
+      .signOut()
+      .then(() => {
+        this.snackBar.open("Logged out", null, {duration: 3000});
+        this.router.navigate([`/${RouteUrls.HOME}`]);
+      });
   }
 }

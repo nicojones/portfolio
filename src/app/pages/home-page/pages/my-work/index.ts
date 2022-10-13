@@ -1,1 +1,1 @@
-export * from './my-work.module';
+export * from "./projects.module";

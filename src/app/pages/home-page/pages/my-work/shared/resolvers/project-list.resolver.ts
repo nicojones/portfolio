@@ -10,7 +10,7 @@ import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()
-export class MyWorkResolver implements Resolve<unknown> {
+export class ProjectListResolver implements Resolve<unknown> {
 
   constructor(
     private readonly firebaseApi: FirebaseApiService
@@ -18,6 +18,6 @@ export class MyWorkResolver implements Resolve<unknown> {
   }
 
   public resolve(): Observable<MyWorkPage> {
-    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.ABOUT);
+    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.WORK);
   }
 }

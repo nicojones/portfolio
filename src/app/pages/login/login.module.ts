@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '~app/shared';
-import { LoginRouting } from '~login/login.routing';
-import { LoginComponent } from '~login/components';
-import { LoginService } from '~login/services';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {NgModule} from "@angular/core";
+import {SharedModule} from "~app/shared";
+import {LoginRouting} from "~login/login.routing";
+import {LoginComponent} from "~login/components";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
     LoginRouting
   ],
-  providers: [
-    LoginService
-  ]
+  providers: []
 })
-export class LoginModule { }
+export class LoginModule {
+}

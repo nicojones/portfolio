@@ -3,20 +3,21 @@
 </div>
 
 <div class="app-row" @slideIn [class.mobile]="client.isMobile" #appRow>
-  <h2 class="jumbo center landing slide-in">
+  <app-back-title [url]="RouteUrls.PROJECTS">
     <span [innerHTML]="project.title"></span>
     <span class="subtitle" [innerHTML]="project.summary"></span>
     <a [href]="project.link" target="_blank" class="project-link subtitle">
-      {{ project.link }}<img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
+      {{ project.link }}
+      <img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
     </a>
-  </h2>
+  </app-back-title>
 
   <div class="text">
     <div class="project-main-image right slide-in" [bgImage]="project.image" data-loading="Loading..."></div>
     <div class="project-content" [innerHTML]="project._sanitized || safeHTML(project)"></div>
     <hr class="slide-in">
     <a
-      [routerLink]="'/' + RouteUrls.Projects"
+      [routerLink]="'/' + RouteUrls.PROJECTS"
       class="back-button no-deco slide-in"
       [class.back-title]="!client.isMobile"
     >back to Projects</a>

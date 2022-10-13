@@ -1,6 +1,5 @@
-<ckeditor
-  [value]="control.value"
-  (change)="change($event)"
-  [config]="config"
-  [debounce]="debounce"
-></ckeditor>
+<editor
+  [init]="config"
+  [apiKey]="config.registration"
+  [formControl]="control"
+></editor>

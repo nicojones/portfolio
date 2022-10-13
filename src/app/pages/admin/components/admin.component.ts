@@ -7,17 +7,16 @@ import {Observable, throwError} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 
 import {RouteUrls} from "~routes/routes";
-import {environment} from "~env/environment";
 
 import {AdminService} from "~admin/services";
 import {MainFormArray} from "~app/shared/classes";
 import {FirebasePageEnum, SocialIcons} from "~app/shared/enums";
-import {AuthGuard} from "~app/services/guards/auth.guard";
 
 import {HomePage} from "~home-page/interfaces";
 import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 const Tabs = {
@@ -59,7 +58,8 @@ export class AdminComponent {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    public service: AdminService
+    public service: AdminService,
+    private readonly fireApi: FirebaseApiService
   ) {
   }
 
@@ -196,40 +196,21 @@ export class AdminComponent {
     form.push(this.service.homeFormTitle({} as HomePage["title"][0]));
   }
 
-  private save<T>(section: FirebasePageEnum, value: T) {
-    const valueString = JSON.stringify(value);
-    if (valueString.match(/"isTrusted"/)) {
-      this.snackBar.open("Please change back to rich HTML!");
-      return;
-    }
-    const body = new FormData();
-    body.append("section", section);
-    body.append("content", valueString);
-
-    this.http.post<any>(
-      `${environment.phpUrl}?save&auth=${AuthGuard.auth$.value}`,
-      body
-    )
+  private save<T>(page: FirebasePageEnum, value: T) {
+    this.fireApi.updatePage(page, value)
       .pipe(catchError((error: HttpErrorResponse) => {
         this.snackBar.open("ERROR! " + JSON.stringify(error.error), "dismiss");
         return throwError(error);
       }))
-      .subscribe((a: any) => {
-        this.snackBar.open(a.message, null, {duration: 3000});
+      .subscribe(() => {
+        this.snackBar.open("Saved!", null, {duration: 3000});
       });
   }
 
-  private getSection<T>(section: FirebasePageEnum): Observable<T> {
-    return this.http
-      .get<T>(
-        `${environment.phpUrl}?section=${section}&auth=${AuthGuard.auth$.value}`
-      )
+  private getSection<T>(page: FirebasePageEnum): Observable<T> {
+    return this.fireApi.fetchPageDocument(page)
       .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.snackBar.open("ERROR! " + error.error, "dismiss");
-          return throwError(error);
-        }),
-        tap(() => (this.formSetup[section] = true))
+        tap(() => (this.formSetup[page] = true))
       );
   }
 }

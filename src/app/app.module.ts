@@ -14,6 +14,8 @@ import {LoginModule} from "~app/pages/login/login.module";
 import {environment} from "~env/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {getWindow} from "~app/functions/get-window.function";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 
 @NgModule({
   imports: [
@@ -24,7 +26,8 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
     AppRouting,
     LoginModule,
     AngularFireModule.initializeApp(environment.fireBase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   declarations: [
     AppComponent,
@@ -32,7 +35,10 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
     NotFoundComponent
   ],
   providers: [
-    // {provide: APP_BASE_HREF, useValue: environment.baseHref },
+    {
+      provide: "Window",
+      useFactory: getWindow
+    },
     AppTitleService
   ],
   bootstrap: [

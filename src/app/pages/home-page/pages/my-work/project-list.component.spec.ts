@@ -1,35 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MyWorkComponent } from './my-work.component';
-import { SharedModule } from '~app/shared';
-import { MyWorkResolver } from '~home-page/pages/my-work/shared/resolvers';
-import { TestModule } from '~app/tests';
-import { Resolve } from '@angular/router';
-import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
-import { of } from 'rxjs';
+import {ProjectListComponent} from './project-list.component';
+import {SharedModule} from '~app/shared';
+import {ProjectListResolver} from '~home-page/pages/my-work/shared/resolvers';
+import {TestModule} from '~app/tests';
+import {Resolve} from '@angular/router';
+import {MyWorkPage} from '~home-page/pages/my-work/shared/interfaces';
+import {of} from 'rxjs';
 
 
 describe('MyWorkComponent', () => {
-  let component: MyWorkComponent;
-  let fixture: ComponentFixture<MyWorkComponent>;
+  let component: ProjectListComponent;
+  let fixture: ComponentFixture<ProjectListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        MyWorkComponent
+        ProjectListComponent
       ],
       imports: [
         TestModule,
         SharedModule
       ],
       providers: [
-        { provide: MyWorkResolver, useClass: MyFakeWorkResolver }
+        {provide: ProjectListResolver, useClass: MyFakeWorkResolver}
       ]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyWorkComponent);
+    fixture = TestBed.createComponent(ProjectListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

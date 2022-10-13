@@ -1,7 +1,7 @@
 <div class="app-row">
-  <h1 class="jumbo center">login</h1>
+  <app-back-title [url]="RouteUrls.HOME" [huge]="false">login</app-back-title>
 
-  <form [formGroup]="form" (ngSubmit)="onSave()" class="form">
+  <form [formGroup]="form" (ngSubmit)="login()" class="form">
     <div class="row">
       <label>
         Name
@@ -16,6 +16,9 @@
     </div>
     <div class="row">
       <button mat-button>login</button>
+    </div>
+    <div *ngIf="loginError">
+      {{ loginError }}
     </div>
   </form>
 </div>

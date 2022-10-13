@@ -10,6 +10,8 @@
   <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background"/>
 </a>
 
-<span id="authed" *ngIf="auth$ | async">
-  <a  [routerLink]="absolute(key)" style="margin-right: 20px" *ngFor="let key of RouteKeys">{{ key }}</a>
+<span id="authed" *ngIf="auth">
+  <a [routerLink]="absolute(key)" style="margin-right: 20px" *ngFor="let key of RouteKeys">{{ key }}</a>
+
+  <a (click)="logout()">logout</a>
 </span>

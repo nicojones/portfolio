@@ -11,13 +11,12 @@ import {ClientOs, ProjectContent} from "~app/shared/interfaces";
 
 import {addClass, removeClass} from "~app/functions";
 import {AppService} from "~app/app.service";
-import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
 
 
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
-  styleUrls: ["./project.component.scss", "./../../my-work.component.scss"],
+  styleUrls: ["./project.component.scss", "../../project-list.component.scss"],
   animations: [slideIn()]
 })
 export class ProjectComponent implements OnDestroy {
@@ -49,14 +48,9 @@ export class ProjectComponent implements OnDestroy {
     @Inject("Window") private readonly window: Window
   ) {
     /**
-     * Get the Project URL from the url
-     */
-    const projectUrl = this.route.snapshot.params.projectUrl;
-    /**
      * Get the project (read from the URL) from the list of projects.
      */
-    this.project = (this.route.snapshot.data as MyWorkPage).projects
-      .find((p: ProjectContent) => p.url === projectUrl);
+    this.project = this.route.snapshot.data.project;
 
     /**
      * If the project doesn't exist, show the ERROR page.

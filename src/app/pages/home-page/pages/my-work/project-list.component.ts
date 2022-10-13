@@ -1,22 +1,22 @@
-import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {AfterViewInit, ChangeDetectionStrategy, Component} from "@angular/core";
 
-import { RouteUrls } from '~routes/routes';
+import {RouteUrls} from "~routes/routes";
 
-import { slideIn } from '~app/shared/animations';
+import {slideIn} from "~app/shared/animations";
 
-import { MyWorkPage } from '~home-page/pages/my-work/shared/interfaces';
-import { AppService } from '~app/app.service';
+import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
+import {AppService} from "~app/app.service";
 
 
 @Component({
-  selector: 'app-my-work',
-  templateUrl: './my-work.component.html',
-  styleUrls: ['./my-work.component.scss'],
+  selector: "app-project-list",
+  templateUrl: "./project-list.component.html",
+  styleUrls: ["./project-list.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [slideIn()]
 })
-export class MyWorkComponent implements AfterViewInit {
+export class ProjectListComponent implements AfterViewInit {
 
   /**
    * The routes object.
@@ -33,7 +33,7 @@ export class MyWorkComponent implements AfterViewInit {
    */
   public readonly projectSlideIn: boolean = AppService.projectSlideIn;
 
-  constructor (
+  constructor(
     private route: ActivatedRoute
   ) {
     /**
@@ -42,7 +42,7 @@ export class MyWorkComponent implements AfterViewInit {
     this.myWork = this.route.snapshot.data.myWork;
   }
 
-  public ngAfterViewInit () {
+  public ngAfterViewInit() {
     AppService.projectSlideIn = true;
   }
 

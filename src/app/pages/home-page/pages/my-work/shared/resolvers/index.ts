@@ -1,1 +1,2 @@
-export * from './my-work.resolver';
+export * from "./project-list.resolver";
+export * from "./project.resolver";

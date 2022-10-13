@@ -1,12 +1,11 @@
-
 export interface MyRoutes {
-  Projects: string;
-  Contact: string;
-  About: string;
-  Home: string;
-  Reading: string;
-  Login: string;
-  Admin: string;
+  PROJECTS: string;
+  CONTACT: string;
+  ABOUT: string;
+  HOME: string;
+  READING: string;
+  LOGIN: string;
+  ADMIN: string;
 }
 
 export interface MyRoutesFunctions {
@@ -15,22 +14,18 @@ export interface MyRoutesFunctions {
 }
 
 export const RouteUrls: MyRoutes = {
-  Projects: 'projects',
-  Contact: 'contact',
-  About: 'about',
-  Home: '',
-  Reading: 'books',
-  Admin: 'dashboard',
-  Login: '_login_'
+  PROJECTS: "projects",
+  CONTACT: "contact",
+  ABOUT: "about",
+  HOME: "",
+  READING: "books",
+  ADMIN: "dashboard",
+  LOGIN: "_login_"
 };
 
 export const Routes: MyRoutes & MyRoutesFunctions = {
   ...RouteUrls,
 
-  url: (key: keyof MyRoutes) => {
-    return `/${ Routes[key] }`;
-  },
-  path: (keys: Extract<MyRoutes, string>[], absolute: string = '/') => {
-    return absolute + keys.join('/');
-  }
+  url: (key: keyof MyRoutes) => `/${Routes[key]}`,
+  path: (keys: Extract<MyRoutes, string>[], absolute: string = "/") => absolute + keys.join("/")
 };

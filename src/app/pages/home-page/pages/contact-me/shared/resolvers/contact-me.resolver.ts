@@ -15,6 +15,6 @@ export class ContactMeResolver implements Resolve<ContactMePage> {
   }
 
   public resolve(): Observable<ContactMePage> {
-    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.ABOUT);
+    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.CONTACT);
   }
 }

@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '~app/shared';
-import { RichTextComponent } from '~app/modules/rich-text/rich-text.component';
-import { CKEditorModule } from 'ng2-ckeditor';
-import { editor } from './library/ckeditor-library';
+import {NgModule} from "@angular/core";
+import {SharedModule} from "~app/shared";
+import {RichTextComponent} from "~app/modules/rich-text/rich-text.component";
+import {EditorModule as TinyMCEModule} from "@tinymce/tinymce-angular";
+import {getWindow} from "~app/functions/get-window.function";
 
 
 @NgModule({
   imports: [
     SharedModule,
-    CKEditorModule
+    TinyMCEModule
   ],
   declarations: [
     RichTextComponent
@@ -18,8 +18,7 @@ import { editor } from './library/ckeditor-library';
   ]
 })
 export class RichTextModule {
-  constructor () {
-    window['CKEDITOR_BASEPATH'] = '//cdn.ckeditor.com/4.6.0/full/';
-    editor();
+  constructor() {
+    getWindow();
   }
 }
