@@ -4,7 +4,7 @@
 @import 'images';
 @import 'breakpoints';
 
-$a-d: 2s;
+$a-d: .7s;
 
 %show-menu {
   > h1.hello {
@@ -43,6 +43,7 @@ $a-d: 2s;
       color: inherit;
       width: auto;
       animation: appear $a-d backwards;
+      overflow: visible;
 
     } @else {
       display: inherit;
@@ -80,6 +81,11 @@ $a-d: 2s;
 .jumbo-box {
 
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80vh;
+  margin-top: 10vh;
 
   @if ($home-page-centered) {
     align-items: center;
@@ -95,7 +101,9 @@ $a-d: 2s;
 
   .jumbo-line {
     @include transitions();
-    width: max-content;
+    min-width: max-content;
+    //height: 140px;
+    position: relative;
 
     > .hover-item {
       white-space: nowrap;
@@ -103,8 +111,12 @@ $a-d: 2s;
       cursor: pointer;
       display: flex;
       z-index: 1;
+      height: 100%;
+      line-height: 140px;
+      top: -20px;
 
       &.hello {
+        position: relative;
         @if ($home-page-use-opacity) {
           z-index: 0;
           animation: appear $a-d forwards;
