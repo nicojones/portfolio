@@ -13,7 +13,7 @@ import {MainFormArray} from "~app/shared/classes";
 import {FirebasePageEnum, SocialIcons} from "~app/shared/enums";
 
 import {HomePage} from "~home-page/interfaces";
-import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";
 import {FirebaseApiService} from "~app/services/firebase-api.service";
@@ -24,7 +24,8 @@ const Tabs = {
   Home: 1,
   About: 2,
   Contact: 3,
-  Work: 4
+  Work: 4,
+  Art: 5
 };
 
 @Component({
@@ -74,6 +75,9 @@ export class AdminComponent {
       case Tabs.Work:
         // window.location.hash = 'Work';
         return this.setupWorkForm();
+      case Tabs.Art:
+        // window.location.hash = 'Work';
+        return this.setupArtForm();
       case Tabs.Contact:
         // window.location.hash = 'Contact';
         return this.setupContactForm();
@@ -101,7 +105,7 @@ export class AdminComponent {
       this.service.homeForm.patchValue(home);
       for (let i = 0, len = home.title.length; i < len; ++i) {
         (this.service.homeForm.get("title") as MainFormArray<HomePage["title"]>).push(
-          this.service.homeFormTitle(home.title[i])
+          this.service.homeFormTitle(home.title[i], i)
         );
       }
       this.currentIndex = Tabs.Home;
@@ -158,16 +162,30 @@ export class AdminComponent {
   }
 
   public setupWorkForm() {
-    return this.getSection<MyWorkPage>(FirebasePageEnum.WORK).subscribe((work: MyWorkPage) => {
+    return this.getSection<ProjectsPage>(FirebasePageEnum.WORK).subscribe((work: ProjectsPage) => {
       this.service.workForm.reset();
       this.service.workForm.patchValue(work);
 
       for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
-        (this.service.workForm.get("projects") as MainFormArray<MyWorkPage["projects"]>).push(
+        (this.service.workForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
           this.service.projectContent(work.projects[i])
         );
       }
       this.currentIndex = Tabs.Work;
+    });
+  }
+
+  public setupArtForm() {
+    return this.getSection<ProjectsPage>(FirebasePageEnum.ART).subscribe((work: ProjectsPage) => {
+      this.service.artForm.reset();
+      this.service.artForm.patchValue(work);
+
+      for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
+        (this.service.artForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
+          this.service.projectContent(work.projects[i])
+        );
+      }
+      this.currentIndex = Tabs.Art;
     });
   }
 
@@ -188,12 +206,17 @@ export class AdminComponent {
   }
 
   public saveWorkForm() {
-    const value: MyWorkPage = this.service.workForm.value;
-    this.save<MyWorkPage>(FirebasePageEnum.WORK, value);
+    const value: ProjectsPage = this.service.workForm.value;
+    this.save<ProjectsPage>(FirebasePageEnum.WORK, value);
+  }
+
+  public saveArtForm() {
+    const value: ProjectsPage = this.service.artForm.value;
+    this.save<ProjectsPage>(FirebasePageEnum.ART, value);
   }
 
   public addTitleControl(form: UntypedFormArray) {
-    form.push(this.service.homeFormTitle({} as HomePage["title"][0]));
+    form.push(this.service.homeFormTitle({} as HomePage["title"][0], form.controls.length));
   }
 
   private save<T>(page: FirebasePageEnum, value: T) {

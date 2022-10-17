@@ -1,5 +1,5 @@
-import { AbstractControl, AbstractControlOptions, AsyncValidatorFn, UntypedFormGroup, ValidatorFn } from '@angular/forms';
-import { FormObject } from '~app/shared/interfaces';
+import {AbstractControl, AbstractControlOptions, AsyncValidatorFn, UntypedFormGroup, ValidatorFn} from '@angular/forms';
+import {FormObject} from '~app/shared/interfaces';
 
 
 // @ts-ignore
@@ -8,7 +8,7 @@ export class MainFormGroup<Type = any> extends UntypedFormGroup {
 
   public readonly value: Type;
 
-  public constructor (
+  constructor(
     controls: FormObject<Type>,
     validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null,
     asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null
@@ -32,17 +32,17 @@ export class MainFormGroup<Type = any> extends UntypedFormGroup {
    * @param path
    */
   // @ts-ignore
-  public get (path: keyof Type | PathsToProps<Type>): AbstractControl {
+  public get(path: keyof Type | PathsToProps<Type>): AbstractControl {
     return super.get(path as string | (string | number)[]);
   }
 
 
   // @ts-ignore
-  public addControl (name: keyof Type, control: AbstractControl): void {
+  public addControl(name: keyof Type, control: AbstractControl): void {
     super.addControl(name as unknown as string, control);
   }
 
-  public getRawValue (): Type {
+  public getRawValue(): Type {
     return super.getRawValue() as Type;
   }
 }

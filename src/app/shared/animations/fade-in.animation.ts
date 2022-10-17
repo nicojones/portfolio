@@ -1,5 +1,5 @@
-import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Timings } from '~app/shared/animations/timings.animation';
+import {animate, query, stagger, style, transition, trigger} from "@angular/animations";
+import {Timings} from "~app/shared/animations/timings.animation";
 
 
 /**
@@ -9,25 +9,25 @@ import { Timings } from '~app/shared/animations/timings.animation';
  * @param duration
  * @param finalOpacity
  */
-export function fadeIn (
-    staggerTime: number = Timings.FadeInStaggerTime,
-    duration: string = Timings.FadeInDuration,
-    finalOpacity: number = null
+export function fadeIn(
+  staggerTime: number = Timings.FADEIN_STAGGER_TIME,
+  duration: string = Timings.FADEIN_DURATION,
+  finalOpacity: number = null
 ) {
   // export function fadeIn(timings: string = Timings.CubicBezier) {
-  return trigger(`fadeIn${ finalOpacity || '' }`, [
-    transition(':enter', [
-      query('.fade-in', [
-        style({ opacity: 0 }),
+  return trigger(`fadeIn${finalOpacity || ""}`, [
+    transition(":enter", [
+      query(".fade-in", [
+        style({opacity: 0}),
         stagger(staggerTime, [
-          animate(duration, style({ opacity: finalOpacity || 1 }))
+          animate(duration, style({opacity: finalOpacity || 1}))
         ])
       ])
     ]),
 
-    transition(':leave', [
-      style({ opacity: 1 }),
-      animate(duration, style({ opacity: 0 }))
+    transition(":leave", [
+      style({opacity: 1}),
+      animate(duration, style({opacity: 0}))
     ])
   ]);
 }

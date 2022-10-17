@@ -3,7 +3,7 @@
 </div>
 
 <div class="app-row" @slideIn [class.mobile]="client.isMobile" #appRow>
-  <app-back-title [url]="RouteUrls.PROJECTS">
+  <app-back-title [url]="RouteUrls.WORK">
     <span [innerHTML]="project.title"></span>
     <span class="subtitle" [innerHTML]="project.summary"></span>
     <a [href]="project.link" target="_blank" class="project-link subtitle">
@@ -17,7 +17,7 @@
     <div class="project-content" [innerHTML]="project._sanitized || safeHTML(project)"></div>
     <hr class="slide-in">
     <a
-      [routerLink]="'/' + RouteUrls.PROJECTS"
+      [routerLink]="'/' + RouteUrls.WORK"
       class="back-button no-deco slide-in"
       [class.back-title]="!client.isMobile"
     >back to Projects</a>

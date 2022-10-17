@@ -4,7 +4,7 @@
     <a
       *ngFor="let project of myWork.projects; index as i"
       class="project-item text no-deco slide-in"
-      [routerLink]="'/' + RouteUrls.PROJECTS + '/' + project.url"
+      [routerLink]="'/' + RouteUrls.WORK + '/' + project.url"
     >
       <div class="project-item-text">
         <h2 class="my-0 project-name" [innerHTML]="project.title"></h2>

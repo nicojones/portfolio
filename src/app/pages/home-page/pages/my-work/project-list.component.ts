@@ -5,7 +5,7 @@ import {RouteUrls} from "~routes/routes";
 
 import {slideIn} from "~app/shared/animations";
 
-import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
 import {AppService} from "~app/app.service";
 
 
@@ -26,7 +26,7 @@ export class ProjectListComponent implements AfterViewInit {
   /**
    * Info about the page.
    */
-  public readonly myWork: MyWorkPage;
+  public readonly myWork: ProjectsPage;
 
   /**
    * We don't always want a .slide-in for the projects, not if we clicked on "back" from a project!

@@ -1,5 +1,6 @@
 export interface MyRoutes {
-  PROJECTS: string;
+  WORK: string;
+  ART: string;
   CONTACT: string;
   ABOUT: string;
   HOME: string;
@@ -14,7 +15,8 @@ export interface MyRoutesFunctions {
 }
 
 export const RouteUrls: MyRoutes = {
-  PROJECTS: "projects",
+  WORK: "projects",
+  ART: "art",
   CONTACT: "contact",
   ABOUT: "about",
   HOME: "",

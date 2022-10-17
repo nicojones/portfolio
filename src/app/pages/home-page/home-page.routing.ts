@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {HomePageComponent} from "~home-page/home-page.component";
 import {Routes} from "~routes/routes";
 import {HomePageResolver} from "~app/shared/resolvers";
+import {FirebasePageEnum} from "~app/shared/enums";
 
 
 @NgModule({
@@ -25,7 +26,13 @@ import {HomePageResolver} from "~app/shared/resolvers";
         loadChildren: () => import("~home-page/pages/about").then((m) => m.AboutModule)
       },
       {
-        path: Routes.PROJECTS,
+        path: Routes.WORK,
+        data: {page: FirebasePageEnum.WORK},
+        loadChildren: () => import("~home-page/pages/my-work").then((m) => m.ProjectsModule)
+      },
+      {
+        path: Routes.ART,
+        data: {page: FirebasePageEnum.ART},
         loadChildren: () => import("~home-page/pages/my-work").then((m) => m.ProjectsModule)
       }
     ])

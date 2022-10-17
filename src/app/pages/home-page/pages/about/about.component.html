@@ -1,13 +1,15 @@
 <h1 class="jumbo center landing" @slideIn>
   <span class="plus-box slide-in">
     <ng-container *ngFor="let multi of aboutPage.title.first; index as i">
-      <span class="absolute" [innerHTML]="multi" [class.shown]="(plusIndex % aboutPage.title.first.length) === i"></span>
+      <span class="absolute" [innerHTML]="multi"
+            [class.shown]="(plusIndex % aboutPage.title.first.length) === i"></span>
       <span class="relative" [innerHTML]="multi"></span>
     </ng-container>
   </span>
   <span class="plus-box slide-in">
     <ng-container *ngFor="let multi of aboutPage.title.multi; index as i">
-      <span class="absolute" [innerHTML]="multi" [class.shown]="(plusIndex % aboutPage.title.multi.length) === i"></span>
+      <span class="absolute" [innerHTML]="multi"
+            [class.shown]="(plusIndex % aboutPage.title.multi.length) === i"></span>
       <span class="relative" [innerHTML]="multi"></span>
     </ng-container>
   </span>
@@ -22,34 +24,37 @@
 
   <app-text [text]="aboutPage.text" class="text flex-column"></app-text>
 
-  <p class="text slide-in">Currently reading
-    <ng-container *ngIf="!shelf.reading">some books...</ng-container>
-    <ng-container *ngIf="shelf.reading" [ngSwitch]="shelf.reading.reading">
-      <ng-container *ngSwitchCase="0">no books.</ng-container>
-      <ng-container *ngSwitchCase="1">one book.</ng-container>
-      <ng-container *ngSwitchDefault>
-        {{ shelf.reading?.reading }} books, among them {{ shelf.reading.books[0].title }}.
+  <ng-container *ngIf="shelf.reading">
+
+    <p class="text slide-in">Currently reading
+      <ng-container [ngSwitch]="shelf.reading.reading">
+        <ng-container *ngSwitchCase="0">no books.</ng-container>
+        <ng-container *ngSwitchCase="1">one book.</ng-container>
+        <ng-container *ngSwitchDefault>
+          {{ shelf.reading?.reading }} books, among them {{ shelf.reading.books[0].title }}.
+        </ng-container>
       </ng-container>
-    </ng-container>
-    You can see them <a [routerLink]="'/' + RouteUrls.READING">here</a>.
-    <!--    <span class="reading-now">-->
-    <!--      <span-->
-    <!--        *ngFor="let now of shelf.reading; index as i"-->
-    <!--        class="reading-now-img"-->
-    <!--        [style]="'background-image: url(' + now.image + ');margin-left:' + ( i * 20 ) + 'px'"-->
-    <!--      ></span>-->
-    <!--    </span>-->
-  </p>
+      You can see them <a [routerLink]="'/' + RouteUrls.READING">here</a>.
+      <!--    <span class="reading-now">-->
+      <!--      <span-->
+      <!--        *ngFor="let now of shelf.reading; index as i"-->
+      <!--        class="reading-now-img"-->
+      <!--        [style]="'background-image: url(' + now.image + ');margin-left:' + ( i * 20 ) + 'px'"-->
+      <!--      ></span>-->
+      <!--    </span>-->
+    </p>
 
 
-  <app-carousel
-    *ngIf="shelf.read?.books"
-    [books]="shelf.read.books"
-    [title]="title"
-    [wrap]="true"
-    [totalBooks]="shelf.read.totalRead"
-    [lastBook]="lastBook"
-  ></app-carousel>
+    <app-carousel
+      *ngIf="shelf.read?.books"
+      [books]="shelf.read.books"
+      [title]="title"
+      [wrap]="true"
+      [totalBooks]="shelf.read.totalRead"
+      [lastBook]="lastBook"
+    ></app-carousel>
+
+  </ng-container>
 
 </div>
 

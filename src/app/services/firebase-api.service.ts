@@ -18,9 +18,9 @@ export class FirebaseApiService {
     return this.db.object<T>(`/pages/${page}`).valueChanges();
   }
 
-  public fetchProject(projectUrl: string): Observable<ProjectContent> {
+  public fetchProject(page: FirebasePageEnum, projectUrl: string): Observable<ProjectContent> {
     return this.db.list<ProjectContent>(
-      "/pages/" + FirebasePageEnum.WORK + "/projects",
+      "/pages/" + page + "/projects",
       (ref: DatabaseReference) =>
         ref.orderByChild("url").equalTo(projectUrl)
     ).valueChanges()

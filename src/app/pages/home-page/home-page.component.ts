@@ -1,19 +1,19 @@
-import { ActivatedRoute } from '@angular/router';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {ChangeDetectionStrategy, Component} from "@angular/core";
 
-import { StorageKey } from '~app/shared/enums';
-import { getLocalStorage } from '~app/services';
-import { ClientOs } from '~app/shared/interfaces';
-import { fadeIn, slideUnder } from '~app/shared/animations';
+import {StorageKey} from "~app/shared/enums";
+import {getLocalStorage} from "~app/services";
+import {ClientOs} from "~app/shared/interfaces";
+import {fadeIn, slideUnder} from "~app/shared/animations";
 
-import { HomePage } from '~home-page/interfaces';
-import { AppService } from '~app/app.service';
+import {HomePage} from "~home-page/interfaces";
+import {AppService} from "~app/app.service";
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  selector: "app-home",
+  templateUrl: "./home-page.component.html",
+  styleUrls: ["./home-page.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [slideUnder(), fadeIn()]
 })
@@ -36,11 +36,12 @@ export class HomePageComponent {
     return AppService.showMenu$.value;
   }
 
-  public constructor (
+  constructor(
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
-  public toggleMenu () {
+  public toggleMenu() {
     // Only for mobile devices... NOT for desktops.
     AppService.showMenu$.next(this.showMenu + 1);
   }

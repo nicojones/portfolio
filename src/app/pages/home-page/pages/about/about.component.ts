@@ -66,7 +66,7 @@ export class AboutComponent {
      */
     zip(
       this.booksService.getCurrentlyReading(),
-      this.booksService.getReadBooks()
+      this.booksService.getReadBooks(5)
     )
       .subscribe(() => this.ref.markForCheck());
 

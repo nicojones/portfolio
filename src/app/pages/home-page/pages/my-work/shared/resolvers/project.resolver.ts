@@ -18,6 +18,6 @@ export class ProjectResolver implements Resolve<unknown> {
 
   public resolve(snapshot: ActivatedRouteSnapshot): Observable<ProjectContent> {
     const projectUrl = snapshot.paramMap.get("projectUrl");
-    return this.firebaseApi.fetchProject(projectUrl);
+    return this.firebaseApi.fetchProject(snapshot.parent.data.page, projectUrl);
   }
 }

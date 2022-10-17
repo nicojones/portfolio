@@ -1,11 +1,10 @@
-import {Resolve} from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {Injectable} from "@angular/core";
 
 import {Observable} from "rxjs";
 
 
-import {MyWorkPage} from "~home-page/pages/my-work/shared/interfaces";
-import {FirebasePageEnum} from "~app/shared/enums";
+import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
 import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
@@ -17,7 +16,7 @@ export class ProjectListResolver implements Resolve<unknown> {
   ) {
   }
 
-  public resolve(): Observable<MyWorkPage> {
-    return this.firebaseApi.fetchPageDocument(FirebasePageEnum.WORK);
+  public resolve(snapshot: ActivatedRouteSnapshot): Observable<ProjectsPage> {
+    return this.firebaseApi.fetchPageDocument(snapshot.parent.data.page);
   }
 }

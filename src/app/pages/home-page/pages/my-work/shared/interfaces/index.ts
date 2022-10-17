@@ -1,1 +1,1 @@
-export * from './my-work-page';
+export * from './projects-page';

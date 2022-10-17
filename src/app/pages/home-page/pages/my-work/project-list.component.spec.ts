@@ -5,7 +5,7 @@ import {SharedModule} from '~app/shared';
 import {ProjectListResolver} from '~home-page/pages/my-work/shared/resolvers';
 import {TestModule} from '~app/tests';
 import {Resolve} from '@angular/router';
-import {MyWorkPage} from '~home-page/pages/my-work/shared/interfaces';
+import {ProjectsPage} from '~home-page/pages/my-work/shared/interfaces';
 import {of} from 'rxjs';
 
 
@@ -39,9 +39,9 @@ describe('MyWorkComponent', () => {
   });
 });
 
-class MyFakeWorkResolver implements Resolve<MyWorkPage> {
-  public resolve () {
-    return of<MyWorkPage>(JSON.parse(
+class MyFakeWorkResolver implements Resolve<ProjectsPage> {
+  public resolve() {
+    return of<ProjectsPage>(JSON.parse(
       '{"title":"what drives me?","text":["hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even...","hello!<br>with <b>bold<\\/b> even..."]}'));
   }
 }

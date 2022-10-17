@@ -1,6 +1,6 @@
 <div class="app-row bottom-padding" @slideIn>
   <app-back-title [url]="Routes.HOME">
-    {{ contactMe.title }}
+    <span [innerHTML]="contactMe.title"></span>
   </app-back-title>
   <!--  <a class="jumbo back-title center no-deco slide-in" [routerLink]="'/' + Routes.Home" [innerHTML]="contactMe.title"></a>-->
   <app-text [text]="contactMe.text" class="text flex-column slide-in"></app-text>

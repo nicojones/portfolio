@@ -4,11 +4,13 @@
 @import 'images';
 @import 'breakpoints';
 
+$a-d: 2s;
+
 %show-menu {
   > h1.hello {
     @if ($home-page-use-opacity) {
-      //opacity: 0;
-      color: transparent;
+      animation: disappear $a-d forwards;
+
     } @else {
       display: none;
     }
@@ -16,9 +18,32 @@
 
   > h1.link {
     @if ($home-page-use-opacity) {
-      //opacity: 1;
       color: inherit;
       width: auto;
+      animation: appear $a-d forwards;
+
+    } @else {
+      display: inherit;
+    }
+  }
+}
+
+%show-menu-hover {
+  > h1.hello {
+    @if ($home-page-use-opacity) {
+      animation: disappear $a-d forwards;
+
+    } @else {
+      display: none;
+    }
+  }
+
+  > h1.link {
+    @if ($home-page-use-opacity) {
+      color: inherit;
+      width: auto;
+      animation: appear $a-d backwards;
+
     } @else {
       display: inherit;
     }
@@ -71,21 +96,18 @@
   .jumbo-line {
     @include transitions();
     width: max-content;
-    //min-width: 600px;
 
     > .hover-item {
       white-space: nowrap;
       margin: 0 auto;
       cursor: pointer;
       display: flex;
-      //min-width: max-content;
-      @include transitions(#{color 0.4s, margin 0.4s});
-      //min-width: $breakpoint-mobile-sm;
       z-index: 1;
 
       &.hello {
         @if ($home-page-use-opacity) {
           z-index: 0;
+          animation: appear $a-d forwards;
         }
       }
 
@@ -94,8 +116,7 @@
           position: absolute;
           width: 0;
           overflow: hidden;
-          //opacity: 0;
-          color: transparent;
+          animation: disappear $a-d backwards;
         } @else {
           display: none;
         }
@@ -117,7 +138,7 @@
 
   &.hover-effects > .jumbo-line:hover {
     padding-left: $homepage-indent-hover;
-    @extend %show-menu;
+    @extend %show-menu-hover;
   }
 }
 
@@ -142,4 +163,27 @@ $tap-anywhere-width: 15rem;
     bottom: 10px;
   }
 
+}
+
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    //transform: rotate(10deg);
+  }
+  to {
+    opacity: 1;
+    //transform: rotate(0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    //transform: rotate(10deg);
+  }
+  to {
+    opacity: 0;
+    //transform: rotate(0);
+  }
 }
