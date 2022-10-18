@@ -1,4 +1,5 @@
 import {Environment} from "~env/environment.interface";
+import {Constants} from "~app/constants.enum";
 
 
 // const ip = '192.168.210.100';
@@ -8,9 +9,8 @@ import {Environment} from "~env/environment.interface";
 export const environment: Environment = {
   production: false,
   pageTitle: "NK - Mobile",
-  phpUrl: "https://kupfer.es/portfolio-api/api/app.php",
-  getUrl: "https://kupfer.es/portfolio-api/json",
-  baseHref: "/",
+  dbKeyPrefix: "",
+  fileStorage: (bucket: string, name: string) => `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${Constants.STORAGE_BUCKET_FOLDER}%2F${name}?alt=media`,
   fireBase: {
     apiKey: "AIzaSyAA-rfKPDUp0VZwIZjFVGkwkx5BkdtmjoY",
     authDomain: "kupferes-serefpuk.firebaseapp.com",

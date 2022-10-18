@@ -7,4 +7,6 @@ export const enum Timings {
 
   FADEIN_STAGGER_TIME = 300,
   FADEIN_STAGGER_SLOW = 800,
+
+  FADEIN_DELAY = 0
 }

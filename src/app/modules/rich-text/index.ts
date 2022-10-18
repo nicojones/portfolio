@@ -1,1 +1,1 @@
-export * from './rich-text.module';
+export * from "./rich-text.module";

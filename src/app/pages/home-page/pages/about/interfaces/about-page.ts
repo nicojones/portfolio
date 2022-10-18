@@ -1,4 +1,4 @@
-import { TextContent } from '~app/shared/interfaces';
+import {TextContent} from "~app/shared/interfaces";
 
 
 export interface AboutPage {

@@ -1,6 +1,7 @@
 import {FormControl} from "@angular/forms";
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from "@angular/core";
-import {richTextConfig} from "~app/modules/rich-text/rich-text.config";
+import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
+import {RichTextConfig, richTextConfig} from "~app/modules/rich-text/rich-text.config";
+import {FirestoreFile} from "~admin/types";
 
 // function e2eControlName (control: FormControl): string {
 //   let controlName: string = '';
@@ -19,14 +20,21 @@ import {richTextConfig} from "~app/modules/rich-text/rich-text.config";
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["rich-text.component.scss"]
 })
-export class RichTextComponent {
+export class RichTextComponent implements OnInit {
 
   @Input()
   public control: FormControl<string>; // required
 
-  public config = richTextConfig;
+  @Input()
+  public imageList: FirestoreFile[];
+
+  public config: RichTextConfig;
 
   constructor() {
+  }
+
+  public ngOnInit() {
+    this.config = richTextConfig(this.imageList);
   }
 
 }

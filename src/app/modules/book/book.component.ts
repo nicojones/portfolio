@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from "@angular/core";
 
-import { Book } from '~goodreads/shared/interfaces/book';
+import {Book} from "~goodreads/shared/interfaces/book";
 
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: "app-book",
+  templateUrl: "./book.component.html",
+  styleUrls: ["./book.component.scss"]
 })
 export class BookComponent {
 

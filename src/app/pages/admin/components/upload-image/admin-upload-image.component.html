@@ -1,0 +1,16 @@
+<label class="file-upload" appDropZone (filesDropped)="onFilesDropped($event)">
+  <input type="file" [multiple]="true" class="file-input"/>
+</label>
+
+<dl>
+  <ng-container *ngFor="let key of fileKeys">
+    <dd [class.complete]="filesUploading[key].percentage === 100">
+      <div class="progress">
+        <div class="progress-bar"
+             [style]="{width: filesUploading[key].percentage + '%'}"
+             [innerHTML]="filesUploading[key].name"
+        ></div>
+      </div>
+    </dd>
+  </ng-container>
+</dl>

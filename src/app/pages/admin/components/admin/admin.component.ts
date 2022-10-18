@@ -1,12 +1,12 @@
-import {Component} from "@angular/core";
+import {Component, Inject, ViewChild} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 
 import {Observable, throwError} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 
-import {RouteUrls} from "~routes/routes";
+import {MyRoutes} from "~routes/routes";
 
 import {AdminService} from "~admin/services";
 import {MainFormArray} from "~app/shared/classes";
@@ -17,71 +17,77 @@ import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";
 import {FirebaseApiService} from "~app/services/firebase-api.service";
+import {LinksPage, LinksPageLink} from "~home-page/pages/links/interfaces";
+import {ActivatedRoute} from "@angular/router";
+import {FirestoreFile} from "~admin/types";
+import {MatTabGroup} from "@angular/material/tabs";
 
-
-const Tabs = {
-  Welcome: 0,
-  Home: 1,
-  About: 2,
-  Contact: 3,
-  Work: 4,
-  Art: 5
-};
 
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
   styleUrls: [
     "./admin.component.scss",
-    "./admin-theme.scss"
+    "./../admin-theme.scss"
   ]
 })
 export class AdminComponent {
 
-  public Routes = Object.values(RouteUrls);
-  public RouteKeys = Object.keys(RouteUrls);
+  public Routes = Object.values(MyRoutes);
+  public RouteKeys = Object.keys(MyRoutes);
 
   public icons: SocialIcons[] = [
-    SocialIcons.Github,
-    SocialIcons.Linkedin,
-    SocialIcons.Youtube,
-    SocialIcons.Mail,
+    SocialIcons.GITHUB,
+    SocialIcons.LINKEDIN,
+    SocialIcons.YOUTUBE,
+    SocialIcons.MAIL,
     SocialIcons.PDF,
-    SocialIcons.User
+    SocialIcons.USER
   ];
+
+  public images: FirestoreFile[] = this.route.snapshot.data.files;
 
   public formSetup: { [key: string]: boolean } = {} as unknown as any;
 
-  public currentIndex: number;
+  public currentTab: MyRoutes;
 
-  public tabs = Tabs;
+  public readonly MyRoutes = MyRoutes;
+
+  @ViewChild("matTabGroup", {static: true})
+  public matTabGroup: MatTabGroup;
 
   constructor(
-    private http: HttpClient,
-    private snackBar: MatSnackBar,
-    public service: AdminService,
+    @Inject("Window") private readonly window: Window,
+    private readonly snackBar: MatSnackBar,
+    public readonly service: AdminService,
+    private readonly route: ActivatedRoute,
     private readonly fireApi: FirebaseApiService
   ) {
+
   }
 
-  public changedTab(index: number) {
-    switch (index) {
-      case Tabs.Home:
-        // window.location.hash = 'Home';
+  public changedTab(key: MyRoutes) {
+    this.window.location.hash = key;
+
+    switch (key) {
+      case MyRoutes.HOME:
         return this.setupHomeForm();
-      case Tabs.About:
-        // window.location.hash = 'About';
+      case MyRoutes.LINKS:
+        return this.setupLinksForm();
+      case MyRoutes.ABOUT:
         return this.setupAboutForm();
-      case Tabs.Work:
-        // window.location.hash = 'Work';
+      case MyRoutes.WORK:
         return this.setupWorkForm();
-      case Tabs.Art:
-        // window.location.hash = 'Work';
+      case MyRoutes.ART:
         return this.setupArtForm();
-      case Tabs.Contact:
-        // window.location.hash = 'Contact';
+      case MyRoutes.CONTACT:
         return this.setupContactForm();
+      case MyRoutes.BLOG:
+        return this.setupBlogForm();
+      case MyRoutes.UPLOAD_IMAGE:
+        this.currentTab = MyRoutes.UPLOAD_IMAGE;
     }
+
   }
 
   public formArray(form: UntypedFormGroup, key: string): MainFormArray<any> {
@@ -108,7 +114,20 @@ export class AdminComponent {
           this.service.homeFormTitle(home.title[i], i)
         );
       }
-      this.currentIndex = Tabs.Home;
+      this.currentTab = MyRoutes.HOME;
+    });
+  }
+
+  public setupLinksForm() {
+    return this.getSection<LinksPage>(FirebasePageEnum.LINKS).subscribe((links: LinksPage) => {
+      this.service.linksForm.reset();
+      this.service.linksForm.patchValue(links);
+      for (let i = 0, len = links.links.length; i < len; ++i) {
+        (this.service.linksForm.get("links") as MainFormArray<LinksPage["links"]>).push(
+          this.service.linkForm(links.links[i], i)
+        );
+      }
+      this.currentTab = MyRoutes.LINKS;
     });
   }
 
@@ -137,7 +156,7 @@ export class AdminComponent {
           this.service.textContent(about.text[i])
         );
       }
-      this.currentIndex = Tabs.About;
+      this.currentTab = MyRoutes.ABOUT;
     });
   }
 
@@ -157,7 +176,7 @@ export class AdminComponent {
         );
       }
 
-      this.currentIndex = Tabs.Contact;
+      this.currentTab = MyRoutes.CONTACT;
     });
   }
 
@@ -171,21 +190,35 @@ export class AdminComponent {
           this.service.projectContent(work.projects[i])
         );
       }
-      this.currentIndex = Tabs.Work;
+      this.currentTab = MyRoutes.WORK;
     });
   }
 
   public setupArtForm() {
-    return this.getSection<ProjectsPage>(FirebasePageEnum.ART).subscribe((work: ProjectsPage) => {
+    return this.getSection<ProjectsPage>(FirebasePageEnum.ART).subscribe((art: ProjectsPage) => {
       this.service.artForm.reset();
-      this.service.artForm.patchValue(work);
+      this.service.artForm.patchValue(art);
 
-      for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
+      for (let i = 0, len = (art.projects || []).length; i < len; ++i) {
         (this.service.artForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
-          this.service.projectContent(work.projects[i])
+          this.service.projectContent(art.projects[i])
         );
       }
-      this.currentIndex = Tabs.Art;
+      this.currentTab = MyRoutes.ART;
+    });
+  }
+
+  public setupBlogForm() {
+    return this.getSection<ProjectsPage>(FirebasePageEnum.BLOG).subscribe((blog: ProjectsPage) => {
+      this.service.blogForm.reset();
+      this.service.blogForm.patchValue(blog);
+
+      for (let i = 0, len = (blog.projects || []).length; i < len; ++i) {
+        (this.service.blogForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
+          this.service.projectContent(blog.projects[i])
+        );
+      }
+      this.currentTab = MyRoutes.BLOG;
     });
   }
 
@@ -193,6 +226,12 @@ export class AdminComponent {
     const value: HomePage = this.service.homeForm.value;
     value.title.sort((a, b) => a.index - b.index);
     this.save<HomePage>(FirebasePageEnum.HOME, value);
+  }
+
+  public saveLinksForm() {
+    const value: LinksPage = this.service.linksForm.value;
+    value.links.sort((a, b) => a.index - b.index);
+    this.save<LinksPage>(FirebasePageEnum.LINKS, value);
   }
 
   public saveAboutForm() {
@@ -215,8 +254,17 @@ export class AdminComponent {
     this.save<ProjectsPage>(FirebasePageEnum.ART, value);
   }
 
+  public saveBlogForm() {
+    const value: ProjectsPage = this.service.blogForm.value;
+    this.save<ProjectsPage>(FirebasePageEnum.BLOG, value);
+  }
+
   public addTitleControl(form: UntypedFormArray) {
     form.push(this.service.homeFormTitle({} as HomePage["title"][0], form.controls.length));
+  }
+
+  public addLinkControl(form: MainFormArray<LinksPageLink[]>) {
+    form.push(this.service.linkForm({} as LinksPageLink, form.controls.length));
   }
 
   private save<T>(page: FirebasePageEnum, value: T) {

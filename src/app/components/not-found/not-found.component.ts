@@ -1,19 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { StarsService } from '~app/components/stars/shared/services/stars.service';
-import { Routes } from '~routes/routes';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy} from "@angular/core";
+import {StarsService} from "~app/components/stars/shared/services/stars.service";
+import {MyRoutes} from "~routes/routes";
 
 
 @Component({
-  selector: 'app-not-found',
-  templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss'],
+  selector: "app-not-found",
+  templateUrl: "./not-found.component.html",
+  styleUrls: ["./not-found.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class NotFoundComponent implements OnDestroy {
 
-  public readonly Routes = Routes;
+  public readonly Routes = MyRoutes;
 
-  public showBlackHole: boolean = false;
+  public showBlackHole = false;
 
   constructor (
     private ref: ChangeDetectorRef
@@ -26,7 +26,7 @@ export class NotFoundComponent implements OnDestroy {
     }, 100);
   }
 
-  ngOnDestroy () {
+  public ngOnDestroy() {
     StarsService.reverse$.next(false);
   }
 }

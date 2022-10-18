@@ -1,5 +1,5 @@
-import { NgModule, Type } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import {NgModule, Type} from "@angular/core";
+import {MatButtonModule} from "@angular/material/button";
 
 
 const materialModules: Type<unknown>[] = [

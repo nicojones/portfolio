@@ -2,7 +2,7 @@ import {Component, ElementRef, HostListener, Inject, OnDestroy, ViewChild} from 
 import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
-import {RouteUrls} from "~routes/routes";
+import {MyRoutes} from "~routes/routes";
 
 import {getLocalStorage} from "~app/services";
 import {slideIn} from "~app/shared/animations";
@@ -24,7 +24,7 @@ export class ProjectComponent implements OnDestroy {
   /**
    * The routes object
    */
-  public RouteUrls = RouteUrls;
+  public RouteUrls = MyRoutes;
 
   /**
    * The Project information.
@@ -34,7 +34,7 @@ export class ProjectComponent implements OnDestroy {
   /**
    * The user's client.
    */
-  public readonly client: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
+  public readonly client: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.CLIENT_OS);
 
   @ViewChild("appRow", {static: true})
   private appRow: ElementRef<HTMLDivElement>;

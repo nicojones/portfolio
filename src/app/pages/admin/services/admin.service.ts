@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {UntypedFormControl, Validators} from "@angular/forms";
+import {FormControl, UntypedFormArray, UntypedFormControl, Validators} from "@angular/forms";
 import {MainFormArray, MainFormGroup} from "~app/shared/classes";
 import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {HomePage} from "~home-page/interfaces";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";
 import {LinkContent, ProjectContent, TextContent} from "~app/shared/interfaces";
+import {LinksPage, LinksPageLink} from "~home-page/pages/links/interfaces";
 
 
 @Injectable()
@@ -38,6 +39,11 @@ export class AdminService {
     projects: new MainFormArray<ProjectsPage["projects"]>([])
   });
 
+  public blogForm: MainFormGroup<ProjectsPage> = new MainFormGroup<ProjectsPage>({
+    title: new UntypedFormControl(null, Validators.required),
+    projects: new MainFormArray<ProjectsPage["projects"]>([])
+  });
+
   public aboutForm: MainFormGroup<AboutPage> = new MainFormGroup<AboutPage>({
     title: new MainFormGroup<AboutPage["title"]>({
       first: new MainFormArray([]),
@@ -51,6 +57,11 @@ export class AdminService {
     pageTitle: new UntypedFormControl(null, Validators.required),
     mobileTap: new UntypedFormControl(null, Validators.required),
     title: new MainFormArray<HomePage["title"]>([])
+  });
+
+  public linksForm: MainFormGroup<LinksPage> = new MainFormGroup<LinksPage>({
+    links: new UntypedFormArray([], Validators.required),
+    title: new FormControl<LinksPage["title"]>(null)
   });
 
   public contactForm: MainFormGroup<ContactMePage> = new MainFormGroup<ContactMePage>({
@@ -67,6 +78,16 @@ export class AdminService {
       url: new UntypedFormControl(title.url),
       index: new UntypedFormControl(index + 1),
       mini: new UntypedFormControl(title.mini)
+    });
+  }
+
+  public linkForm(link: LinksPageLink, index: number) {
+    return new MainFormGroup<LinksPageLink>({
+      image: new FormControl(link.image, Validators.required),
+      name: new FormControl(link.name, Validators.required),
+      subTitle: new FormControl(link.subTitle, Validators.required),
+      index: new FormControl(index + 1),
+      url: new FormControl(link.url, Validators.required)
     });
   }
 

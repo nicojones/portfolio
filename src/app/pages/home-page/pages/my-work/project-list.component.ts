@@ -1,7 +1,7 @@
 import {ActivatedRoute} from "@angular/router";
 import {AfterViewInit, ChangeDetectionStrategy, Component} from "@angular/core";
 
-import {RouteUrls} from "~routes/routes";
+import {MyRoutes} from "~routes/routes";
 
 import {slideIn} from "~app/shared/animations";
 
@@ -21,7 +21,7 @@ export class ProjectListComponent implements AfterViewInit {
   /**
    * The routes object.
    */
-  public readonly RouteUrls = RouteUrls;
+  public readonly RouteUrls = MyRoutes;
 
   /**
    * Info about the page.

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from "@angular/core";
 
-import {MyRoutes, RouteUrls} from "~routes/routes";
+import {MyRoutes} from "~routes/routes";
 
 import {slideIn} from "~app/shared/animations";
 import {BooksService} from "~app/services";
@@ -24,7 +24,7 @@ export class AboutComponent {
   /**
    * The routes
    */
-  public readonly RouteUrls: MyRoutes = RouteUrls;
+  public readonly RouteUrls = MyRoutes;
 
   /**
    * Info about my reading/read books
@@ -66,7 +66,7 @@ export class AboutComponent {
      */
     zip(
       this.booksService.getCurrentlyReading(),
-      this.booksService.getReadBooks(5)
+      this.booksService.getReadBooks()
     )
       .subscribe(() => this.ref.markForCheck());
 

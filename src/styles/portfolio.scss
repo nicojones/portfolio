@@ -9,17 +9,13 @@ html {
 }
 
 body {
-  //font-family: Maven Pro, "Helvetica Neue", sans-serif;
   font-family: Manrope, "Helvetica Neue", sans-serif;
-  //font-family: Sora, "Helvetica Neue", sans-serif;
   background: $app-background;
   color: $text-color;
   margin: 0;
   scroll-behavior: smooth;
   @include transitions();
   min-height: 100%; // otherwise we can't vertically center stuff
-  display: flex;
-  align-items: center;
 
   &.black {
     color: $black;

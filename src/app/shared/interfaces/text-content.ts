@@ -1,5 +1,5 @@
-import { SocialIcons } from '~app/shared/enums';
-import { SafeHtml } from '@angular/platform-browser';
+import {SocialIcons} from "~app/shared/enums";
+import {SafeHtml} from "@angular/platform-browser";
 
 
 export interface TextContent<Type = any> {

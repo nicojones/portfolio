@@ -1,0 +1,22 @@
+<div class="links-wrapper" @fadeIn>
+  <h4 class="" [innerHTML]="linksPage.title"></h4>
+  <div id="cards" (mousemove)="onMouseMove($event)">
+    <div
+      *ngFor="let link of linksPage.links" [class.accent]="false"
+      class="card fade-in"
+      #card
+    >
+      <div class="card-content">
+        <div class="card-image" [style]="{backgroundImage: 'url(' + link.image + ')'}"></div>
+        <a class="card-info-wrapper" [routerLink]="'/' + link.url">
+          <div class="card-info">
+            <div class="card-info-title">
+              <h3 [innerHTML]="link.name"></h3>
+              <h4 *ngIf="link.subTitle" [innerHTML]="link.subTitle"></h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

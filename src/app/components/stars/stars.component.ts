@@ -1,22 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 
-import { StarConfig } from '~app/components/stars/interfaces/star-config';
-import { StarWanderer } from '~app/components/stars/interfaces/star-wanderer';
-import { StarsService } from '~app/components/stars/shared/services/stars.service';
-import { CelestialPosition, ClientScreen, Position2D, Spacetime, Star } from '~app/components/stars/interfaces/star';
+import {StarConfig} from "~app/components/stars/interfaces/star-config";
+import {StarWanderer} from "~app/components/stars/interfaces/star-wanderer";
+import {StarsService} from "~app/components/stars/shared/services/stars.service";
+import {CelestialPosition, ClientScreen, Position2D, Spacetime, Star} from "~app/components/stars/interfaces/star";
 
 
 @Component({
-  selector: 'app-stars',
-  templateUrl: './stars.component.html',
-  styleUrls: ['./stars.component.scss']
+  selector: "app-stars",
+  templateUrl: "./stars.component.html",
+  styleUrls: ["./stars.component.scss"]
 })
 export class StarsComponent implements OnInit {
 
   /**
    * The canvas element
    */
-  @ViewChild('canvasElement', { static: true })
+  @ViewChild("canvasElement", {static: true})
   public canvas: ElementRef<HTMLCanvasElement>;
 
   /**
@@ -30,9 +30,9 @@ export class StarsComponent implements OnInit {
    */
   private config: StarConfig;
 
-  private scale: number = 1; // The device's pixel-ratio, which might change on resize.
-  private readonly screen: ClientScreen = { w: 0, h: 0 };
-  private readonly pointer: Position2D = { x: null, y: null };
+  private scale = 1; // The device's pixel-ratio, which might change on resize.
+  private readonly screen: ClientScreen = {w: 0, h: 0};
+  private readonly pointer: Position2D = {x: null, y: null};
 
   /**
    * The list of stars that we need to re-render on each step
@@ -60,9 +60,11 @@ export class StarsComponent implements OnInit {
 
   private isTouchscreen = false;
 
-  private reverse: boolean = false;
+  private reverse = false;
 
-  constructor () {
+  constructor(
+    @Inject("Window") private readonly window: Window
+  ) {
     this.config = {
       moveEaseness: this.moveStiffness[0],
       starDensity: 0.05,
@@ -77,20 +79,22 @@ export class StarsComponent implements OnInit {
     };
   }
 
-  public ngOnInit () {
-    this.context = this.canvas.nativeElement.getContext('2d');
+  public ngOnInit() {
+    this.context = this.canvas.nativeElement.getContext("2d");
 
     this.generate();
     this.step();
 
     StarsService.reverse$.subscribe((reverse: boolean) => {
       this.reverse = reverse;
-      !reverse && this.resize();
+      if (!reverse) {
+        this.resize();
+      }
       this.config.moveEaseness = this.moveStiffness[Number(reverse)];
     });
 
 
-    window.onresize = this.resize;
+    this.window.onresize = this.resize;
     document.onmousemove = this.onMouseMove;
     document.onmouseleave = this.onMouseLeave;
     document.ontouchmove = this.onTouchMove;
@@ -139,10 +143,10 @@ export class StarsComponent implements OnInit {
 
   private resize = () => {
 
-    this.scale = window.devicePixelRatio || 1;
+    this.scale = this.window.devicePixelRatio || 1;
 
-    this.screen.w = window.innerWidth * this.scale;
-    this.screen.h = window.innerHeight * this.scale;
+    this.screen.w = this.window.innerWidth * this.scale;
+    this.screen.h = this.window.innerHeight * this.scale;
 
     this.canvas.nativeElement.width = this.screen.w;
     this.canvas.nativeElement.height = this.screen.h;
@@ -156,8 +160,8 @@ export class StarsComponent implements OnInit {
     body.x += this.velocity.x * body.z;
     body.y += this.velocity.y * body.z;
 
-    const xDistance: number = (body.x - this.screen.w / 2);
-    const yDistance: number = (body.y - this.screen.h / 2);
+    const xDistance: number = (body.x - (this.screen.w / 2));
+    const yDistance: number = (body.y - (this.screen.h / 2));
 
     if (!this.reverse) {
       body.x += xDistance * this.velocity.z * body.z;
@@ -186,7 +190,7 @@ export class StarsComponent implements OnInit {
 
   private recycleBody = (body: CelestialPosition) => {
 
-    let direction = 'z';
+    let direction = "z";
 
     const vx = Math.abs(this.velocity.x);
     const vy = Math.abs(this.velocity.y);
@@ -195,60 +199,60 @@ export class StarsComponent implements OnInit {
       let axis: string;
 
       if (vx > vy) {
-        axis = Math.random() < vx / (vx + vy) ? 'h' : 'v';
+        axis = Math.random() < vx / (vx + vy) ? "h" : "v";
       } else {
-        axis = Math.random() < vy / (vx + vy) ? 'v' : 'h';
+        axis = Math.random() < vy / (vx + vy) ? "v" : "h";
       }
 
-      if (axis === 'h') {
-        direction = this.velocity.x > 0 ? 'l' : 'r';
+      if (axis === "h") {
+        direction = this.velocity.x > 0 ? "l" : "r";
       } else {
-        direction = this.velocity.y > 0 ? 't' : 'b';
+        direction = this.velocity.y > 0 ? "t" : "b";
       }
     }
 
-    body.z = this.config.starMinScale + Math.random() * (1 - this.config.starMinScale);
+    body.z = (this.config.starMinScale + Math.random()) * (1 - this.config.starMinScale);
 
-    if (direction === 'z') {
+    if (direction === "z") {
       body.z = 0.1;
       body.x = Math.random() * this.screen.w;
       body.y = Math.random() * this.screen.h;
-    } else if (direction === 'l') {
+    } else if (direction === "l") {
       body.x = -this.config.overflow;
       body.y = this.screen.h * Math.random();
-    } else if (direction === 'r') {
+    } else if (direction === "r") {
       body.x = this.screen.w + this.config.overflow;
       body.y = this.screen.h * Math.random();
-    } else if (direction === 't') {
+    } else if (direction === "t") {
       body.x = this.screen.w * Math.random();
       body.y = -this.config.overflow;
-    } else if (direction === 'b') {
+    } else if (direction === "b") {
       body.x = this.screen.w * Math.random();
       body.y = this.screen.h + this.config.overflow;
     }
 
   };
 
-  private generate () {
+  private generate() {
 
-    const starCount = (window.innerWidth + window.innerHeight) * this.config.starDensity;
+    const starCount = (this.window.innerWidth + this.window.innerHeight) * this.config.starDensity;
 
     for (let i = 0; i < starCount; i++) {
       this.newStar();
     }
   }
 
-  private newStar () {
+  private newStar() {
     this.stars.push({
       x: 0,
       y: 0,
-      z: this.config.starMinScale + Math.random() * (1 - this.config.starMinScale),
+      z: (this.config.starMinScale + Math.random()) * (1 - this.config.starMinScale),
       color: this.randomStarColor()
     });
   }
 
 
-  private update () {
+  private update() {
     if (Math.abs(this.velocity.xMomentum) > 0.01) {
       this.velocity.xMomentum *= 0.96;
       this.velocity.yMomentum *= 0.96;
@@ -261,16 +265,16 @@ export class StarsComponent implements OnInit {
 
   }
 
-  private render () {
+  private render() {
 
     this.stars.forEach((star: Star) => {
 
       this.context.beginPath();
-      this.context.lineCap = 'round';
+      this.context.lineCap = "round";
       this.context.lineWidth = this.config.size * star.z * this.scale;
 
       // Make stars twinkle
-      this.context.strokeStyle = `rgba(${ star.color },${ (0.5 + 0.5 * Math.random()) }`;
+      this.context.strokeStyle = `rgba(${star.color},${(0.5 + (0.5 * Math.random()))}`;
 
       this.context.beginPath();
       this.context.moveTo(star.x, star.y);
@@ -294,21 +298,23 @@ export class StarsComponent implements OnInit {
 
   }
 
-  private movePointer (x: number, y: number) {
+  private movePointer(x: number, y: number) {
     if (+this.pointer.x + +this.pointer.y) {
 
       const ox: number = x - this.pointer.x;
       const oy: number = y - this.pointer.y;
 
-      this.velocity.xMomentum = this.velocity.xMomentum + ox / this.config.moveEaseness * this.scale * (this.isTouchscreen ? 1 : -1);
-      this.velocity.yMomentum = this.velocity.yMomentum + oy / this.config.moveEaseness * this.scale * (this.isTouchscreen ? 1 : -1);
+      this.velocity.xMomentum = this.velocity.xMomentum +
+        (((ox / this.config.moveEaseness) * this.scale) * (this.isTouchscreen ? 1 : -1));
+      this.velocity.yMomentum = this.velocity.yMomentum +
+        (((oy / this.config.moveEaseness) * this.scale) * (this.isTouchscreen ? 1 : -1));
 
     }
     this.pointer.x = x;
     this.pointer.y = y;
   }
 
-  private randomStarColor (): string {
+  private randomStarColor(): string {
     const r = 50 + Math.floor(200 * Math.random());
     let g = 30 + Math.floor(170 * Math.random());
     if (g * 1.3 > r) {
@@ -319,11 +325,11 @@ export class StarsComponent implements OnInit {
       const rand = Math.random();
       if (rand > 0.7) {
         // blue star
-        return `${ rand * 255 },${ rand * 255 },255`;
+        return `${rand * 255},${rand * 255},255`;
       }
-      return '255,255,255';
+      return "255,255,255";
     }
-    return `${ r },${ g },${ b }`;
+    return `${r},${g},${b}`;
   }
 
 }

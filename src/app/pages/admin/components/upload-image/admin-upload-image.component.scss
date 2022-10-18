@@ -1,0 +1,28 @@
+@import 'colors';
+
+dd.complete {
+
+  .progress {
+    .progress-bar {
+      background: #27ae60;
+      cursor: default;
+    }
+  }
+}
+
+.progress {
+  margin-bottom: 1rem;
+
+  .progress-bar {
+    height: 40px;
+    background: #1da1f2;
+    box-shadow: 2px 14px 15px -7px rgba(30, 166, 250, 0.36);
+    border-radius: 50px;
+    transition: all 0.5s;
+    cursor: progress;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

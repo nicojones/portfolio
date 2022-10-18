@@ -1,1 +1,1 @@
-export * from './random.function';
+export * from "./random.function";

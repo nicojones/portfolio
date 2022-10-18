@@ -1,10 +1,57 @@
 <div class="text form-box mt-50">
-  <mat-tab-group (selectedIndexChange)="changedTab($event)">
-    <mat-tab label="_____">
-      <h2>Choose a tab to edit it.</h2>
+  <mat-tab-group #matTabGroup (selectedTabChange)="changedTab($event.tab.labelClass)">
+    <mat-tab label="Links" [labelClass]="MyRoutes.LINKS">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.LINKS) && service.linksForm as f" class="flex-column">
+        <mat-form-field hintLabel="These are the main links on the homepage.">
+          <mat-label>Greeting</mat-label>
+          <input matInput formControlName="title">
+        </mat-form-field>
+        <div>
+          <h2>Cards</h2>
+          <div
+            *ngFor="let control of formArray(f, 'links').controls as controls; index as i"
+            class="flex-column"
+          >
+            <h3>Item {{ i + 1 }}</h3>
+            <mat-form-field>
+              <mat-label>position</mat-label>
+              <input matInput [formControl]="formControl(control, 'index')">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Text to show</mat-label>
+              <input matInput [formControl]="formControl(control, 'name')">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Text as subtitle</mat-label>
+              <input matInput [formControl]="formControl(control, 'subTitle')">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Url it points to</mat-label>
+              <mat-select [formControl]="formControl(control, 'url')">
+                <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">{{ RouteKeys[i] }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>image</mat-label>
+              <mat-select [formControl]="formControl(control, 'image')">
+                <mat-option *ngFor="let image of images; index as i" [value]="image.url" class="image-select">
+                  <img [src]="image.url" height="150" [alt]="image.name"/>
+                  {{ image.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <hr>
+            <button
+              mat-button (click)="formArray(f, 'title').removeAt(i)" class="mat-error"
+            >remove item {{ i + 1 }}</button>
+          </div>
+          <button mat-button (click)="addLinkControl(formArray(f, 'links'))" class="mat-accent">+ add item</button>
+        </div>
+        <button mat-button (click)="saveLinksForm()">Save</button>
+      </form>
     </mat-tab>
-    <mat-tab label="Home">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Home) && service.homeForm as f" class="flex-column">
+    <mat-tab label="Home" [labelClass]="MyRoutes.HOME">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.HOME) && service.homeForm as f" class="flex-column">
         <mat-form-field hintLabel="This is the name of the website, the page title.">
           <mat-label>Name of the website</mat-label>
           <input matInput formControlName="pageTitle">
@@ -53,8 +100,8 @@
         <button mat-button (click)="saveHomeForm()">Save</button>
       </form>
     </mat-tab>
-    <mat-tab label="About">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.About) && service.aboutForm as f" class="flex-column">
+    <mat-tab label="About" [labelClass]="MyRoutes.ABOUT">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.ABOUT) && service.aboutForm as f" class="flex-column">
         <h2>Title</h2>
         <!------------------------------------------->
         <div class="flex-column" style="margin-left: 20px">
@@ -113,8 +160,8 @@
         <button mat-button (click)="saveAboutForm()">Save</button>
       </form>
     </mat-tab>
-    <mat-tab label="Contact">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Contact) && service.contactForm as f" class="flex-column">
+    <mat-tab label="Contact" [labelClass]="MyRoutes.CONTACT">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.CONTACT) && service.contactForm as f" class="flex-column">
         <mat-form-field>
           <mat-label>Title</mat-label>
           <input matInput [formControl]="formControl(f, 'title')">
@@ -126,8 +173,8 @@
       </form>
 
     </mat-tab>
-    <mat-tab label="Work Projects">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Work) && service.workForm as f" class="flex-column">
+    <mat-tab label="Work Projects" [labelClass]="MyRoutes.WORK">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.WORK) && service.workForm as f" class="flex-column">
         <mat-form-field>
           <mat-label>Title</mat-label>
           <input matInput [formControl]="formControl(f, 'title')">
@@ -136,8 +183,8 @@
         <button mat-button (click)="saveWorkForm()">Save</button>
       </form>
     </mat-tab>
-    <mat-tab label="Art Projects">
-      <form [formGroup]="f" *ngIf="(currentIndex === tabs.Art) && service.artForm as f" class="flex-column">
+    <mat-tab label="Art Projects" [labelClass]="MyRoutes.ART">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.ART) && service.artForm as f" class="flex-column">
         <mat-form-field>
           <mat-label>Title</mat-label>
           <input matInput [formControl]="formControl(f, 'title')">
@@ -146,20 +193,34 @@
         <button mat-button (click)="saveArtForm()">Save</button>
       </form>
     </mat-tab>
+    <mat-tab label="Stories" [labelClass]="MyRoutes.BLOG">
+      <form [formGroup]="f" *ngIf="(currentTab === MyRoutes.BLOG) && service.blogForm as f" class="flex-column">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput [formControl]="formControl(f, 'title')">
+        </mat-form-field>
+        <ng-container *ngTemplateOutlet="projectContent;context:{form: f}"></ng-container>
+        <button mat-button (click)="saveBlogForm()">Save</button>
+      </form>
+    </mat-tab>
+    <mat-tab label="UPLOAD" [labelClass]="MyRoutes.UPLOAD_IMAGE">
+      <app-admin-upload-image></app-admin-upload-image>
+    </mat-tab>
   </mat-tab-group>
 </div>
 
 <ng-template #textContent let-form="form">
   <h2>Text</h2>
   <div *ngFor="let control of formArray(form, 'text').controls; index as i" class="flex-column border-box">
-    <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
+    <app-rich-text [imageList]="images" [control]="formControl(control, 'content')"></app-rich-text>
     <button
       mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error"
     >remove #{{ i + 1 }}</button>
   </div>
   <button mat-button
-    (click)="addFormControl(formArray(form, 'text'), service.textContent({}))"
-    class="mat-accent">+ add content item</button>
+          (click)="addFormControl(formArray(form, 'text'), service.textContent({}))"
+          class="mat-accent">+ add content item
+  </button>
 </ng-template>
 
 <ng-template #linkContent let-form="form">
@@ -177,7 +238,7 @@
       <mat-label>attr-title</mat-label>
       <input matInput [formControl]="formControl(control, 'title')">
     </mat-form-field>
-<!--    <mat-checkbox [formControl]="formControl(control, 'blank')">_blank</mat-checkbox>-->
+    <!--    <mat-checkbox [formControl]="formControl(control, 'blank')">_blank</mat-checkbox>-->
     <mat-form-field>
       <mat-label>Icon</mat-label>
       <mat-select [formControl]="formControl(control, 'icon')">
@@ -191,8 +252,9 @@
     >remove link #{{ i + 1 }} {{ formControl(control, 'text').value }}</button>
   </div>
   <button mat-button
-    (click)="addFormControl(formArray(form, 'link'), service.linkContent({}))"
-    class="mat-accent">+ add link</button>
+          (click)="addFormControl(formArray(form, 'link'), service.linkContent({}))"
+          class="mat-accent">+ add link
+  </button>
 </ng-template>
 
 
@@ -242,11 +304,17 @@
         </mat-form-field>
         <mat-form-field hintLabel="an image source for the project list page">
           <mat-label>Image</mat-label>
-          <input matInput [formControl]="formControl(control, 'image')">
-          <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60" alt="Preview image"/>
+          <mat-select [formControl]="formControl(control, 'image')">
+            <mat-option *ngFor="let image of images; index as i" [value]="image.url" class="image-select">
+              <img [src]="image.url" height="150" [alt]="image.name"/>
+              {{ image.name }}
+            </mat-option>
+          </mat-select>
+          <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60"
+               alt="Preview image"/>
         </mat-form-field>
         <h4>Description of project</h4>
-        <app-rich-text [control]="formControl(control, 'content')"></app-rich-text>
+        <app-rich-text [imageList]="images" [control]="formControl(control, 'content')"></app-rich-text>
         <button
           mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error"
         >remove project #{{ i + 1 }} {{ formControl(control, 'title').value }}</button>
@@ -254,6 +322,7 @@
     </div>
   </div>
   <button mat-button
-    (click)="addFormControl(formArray(form, 'projects'), service.projectContent({}))"
-    class="mat-accent">+ add project</button>
+          (click)="addFormControl(formArray(form, 'projects'), service.projectContent({}))"
+          class="mat-accent">+ add project
+  </button>
 </ng-template>

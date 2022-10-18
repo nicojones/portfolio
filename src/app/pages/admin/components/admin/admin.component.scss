@@ -8,7 +8,7 @@
   margin-right: auto;
   width: 90%;
   color: $black;
-  max-width: 1000px;
+  max-width: max(1200px, 90vw);
 }
 
 .form-group > .mat-form-field {
@@ -25,7 +25,13 @@
 ._box_ {
   margin: 0;
   padding: 0;
+
   &.hidden {
     display: none;
   }
+}
+
+mat-option.image-select {
+  height: 11rem;
+  border-bottom: 1px solid black;
 }

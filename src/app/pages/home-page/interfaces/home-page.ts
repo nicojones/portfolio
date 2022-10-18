@@ -1,4 +1,4 @@
-import { MyRoutes } from '~routes/routes';
+import {MyRoutes} from "~routes/routes";
 
 
 export interface HomePage {

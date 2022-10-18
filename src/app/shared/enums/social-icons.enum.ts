@@ -1,8 +1,8 @@
 export const enum SocialIcons {
-  Github = 'github',
-  Youtube = 'youtube',
-  Linkedin = 'linkedin',
-  PDF = 'pdf',
-  Mail = 'email',
-  User = 'user'
+  GITHUB = "github",
+  YOUTUBE = "youtube",
+  LINKEDIN = "linkedin",
+  PDF = "pdf",
+  MAIL = "email",
+  USER = "user"
 }

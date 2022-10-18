@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '~app/shared';
-import { TextComponent } from '~app/modules/text/text.component';
+import {NgModule} from "@angular/core";
+import {SharedModule} from "~app/shared";
+import {TextComponent} from "~app/modules/text/text.component";
 
 
 @NgModule({

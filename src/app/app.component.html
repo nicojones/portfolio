@@ -1,4 +1,4 @@
-<a id="name-logo" routerLink="">
+<a id="name-logo" routerLink="" *ngIf="currentPage !== Routes.HOMEPAGE_LINK">
   <i>&nbsp;&nbsp;&nbsp;&nbsp;</i><span class="name-bg">nico<i>.</i>kupfer</span><i class="name-bg l1">.es/</i>
 </a>
 
@@ -11,7 +11,13 @@
 </a>
 
 <span id="authed" *ngIf="auth">
-  <a [routerLink]="absolute(key)" style="margin-right: 20px" *ngFor="let key of RouteKeys">{{ key }}</a>
+  <ng-container
+    *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.WORK, MyRoutes.BLOG, MyRoutes.ADMIN, MyRoutes.LOGIN]">
+    <a [routerLink]="'/' + url"
+       style="margin-right: 20px"
+       [innerHTML]="url"
+    ></a>
+  </ng-container>
 
   <a (click)="logout()">logout</a>
 </span>

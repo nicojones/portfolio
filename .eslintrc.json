@@ -12,7 +12,8 @@
   },
   "ignorePatterns": [
     "**/*.html",
-    "**/*.scss"
+    "**/*.scss",
+    "**/*.spec.ts"
   ],
   "plugins": [
     "@angular-eslint/eslint-plugin",

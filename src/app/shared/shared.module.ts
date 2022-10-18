@@ -5,6 +5,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ImageDirective} from "~app/shared/directives";
 import {BackTitleComponent} from "~app/components/back-title/back-title.component";
 import {RouterModule} from "@angular/router";
+import {EnumToArrayPipe} from "~app/shared/pipes/enum-to-array.pipe";
 
 
 @NgModule({
@@ -13,14 +14,16 @@ import {RouterModule} from "@angular/router";
   ],
   declarations: [
     ImageDirective,
-    BackTitleComponent
+    BackTitleComponent,
+    EnumToArrayPipe
   ],
   exports: [
     ImageDirective,
     BackTitleComponent,
     CommonModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EnumToArrayPipe
   ]
 })
 export class SharedModule {

@@ -9,8 +9,10 @@
     "mobile": "ng serve --port=4201 --host=0.0.0.0 --disableHostCheck --disable-host-check --configuration mobile",
     "build": "ng build --configuration production --aot --named-chunks --extract-css --configuration=production --build-optimizer",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint": "eslint \"src/app/**/*.ts\" -c .eslintrc.json --cache",
+    "lint-fix": "npm run lint -- --fix",
+    "lint-fix-errors": "npm run lint -- --fix --fix-type problem,layout"
   },
   "private": true,
   "dependencies": {

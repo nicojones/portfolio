@@ -1,9 +1,8 @@
 export interface Environment {
   production: boolean;
-  getUrl: string;
-  phpUrl: string;
   pageTitle: string;
-  baseHref: string;
+  dbKeyPrefix: string;
+  fileStorage: (bucket: string, name: string) => string;
   fireBase: {
     apiKey: string;
     authDomain: string;

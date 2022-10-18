@@ -1,5 +1,5 @@
-import {AbstractControl, AbstractControlOptions, AsyncValidatorFn, UntypedFormGroup, ValidatorFn} from '@angular/forms';
-import {FormObject} from '~app/shared/interfaces';
+import {AbstractControl, AbstractControlOptions, AsyncValidatorFn, UntypedFormGroup, ValidatorFn} from "@angular/forms";
+import {FormObject} from "~app/shared/interfaces";
 
 
 // @ts-ignore

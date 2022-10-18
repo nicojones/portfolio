@@ -5,9 +5,9 @@ import {
   UntypedFormArray,
   UntypedFormControl,
   ValidatorFn
-} from '@angular/forms';
-import { MainFormGroup } from '~app/shared/classes/main-form-group.class';
-import { FormObject } from '~app/shared/interfaces';
+} from "@angular/forms";
+import {MainFormGroup} from "~app/shared/classes/main-form-group.class";
+import {FormObject} from "~app/shared/interfaces";
 
 
 export class MainFormArray<T extends Array<any>> extends UntypedFormArray {
@@ -15,7 +15,7 @@ export class MainFormArray<T extends Array<any>> extends UntypedFormArray {
 
   public value: T;
 
-  constructor (
+  constructor(
     controls: UntypedFormControl[] | MainFormGroup[],
     validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null,
     asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null

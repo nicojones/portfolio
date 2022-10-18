@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminComponent } from './admin.component';
-import { SharedModule } from '~app/shared';
+import {AdminComponent} from './admin.component';
+import {SharedModule} from '~app/shared';
 
 
 describe('AdminComponent', () => {

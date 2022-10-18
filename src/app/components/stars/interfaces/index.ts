@@ -1,2 +1,2 @@
-export * from './star-object';
-export * from './star';
+export * from "./star-object";
+export * from "./star";

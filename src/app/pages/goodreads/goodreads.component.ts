@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from "@angular/core";
 import {Shelf} from "~goodreads/shared/interfaces/book";
 import {slideIn} from "~app/shared/animations";
 import {BooksService} from "~app/services";
-import {Routes} from "~routes/routes";
+import {MyRoutes} from "~routes/routes";
 
 
 @Component({
@@ -27,10 +27,6 @@ export class GoodreadsComponent {
     read: `books since ${(new Date()).getFullYear() - 5}`
   };
 
-  public readonly Routes = Routes;
+  public readonly Routes = MyRoutes;
 
-  constructor(
-    public booksService: BooksService
-  ) {
-  }
 }

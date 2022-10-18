@@ -76,12 +76,12 @@ $name-logo-width: 13rem;
 
 $star-position: 0px;
 $star-size: 30px;
-$star-icon-size: 15px;
+$star-icon-size: 20px;
 #toggle-stars {
   @include transitions(1s);
   cursor: pointer;
   position: fixed;
-  opacity: 0.3;
+  opacity: 0.6;
   bottom: $star-position;
   left: $star-position;
   height: $star-size;
@@ -89,6 +89,7 @@ $star-icon-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   #star {
     width: $star-icon-size;
     height: $star-icon-size;

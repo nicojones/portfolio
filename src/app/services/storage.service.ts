@@ -54,7 +54,7 @@ abstract class StorageService {
    * @param value - Value to stringify
    */
   private static setItem<T>(storage: Storage, key: string, value: T): void {
-    storage.setItem(StorageKey.Prefix + key, JSON.stringify(value));
+    storage.setItem(StorageKey.PREFIX + key, JSON.stringify(value));
   }
 
   /**
@@ -63,7 +63,7 @@ abstract class StorageService {
    * @returns - Parsed object or number or a plain string
    */
   private static getItem<T>(storage: Storage, key: string): T {
-    const unparsed = storage.getItem(StorageKey.Prefix + key);
+    const unparsed = storage.getItem(StorageKey.PREFIX + key);
 
     try {
       return JSON.parse(unparsed);
@@ -77,7 +77,7 @@ abstract class StorageService {
    * @param key - Key to remove
    */
   private static removeItem(storage: Storage, key: string): void {
-    storage.removeItem(StorageKey.Prefix + key);
+    storage.removeItem(StorageKey.PREFIX + key);
   }
 
   /**
@@ -86,7 +86,7 @@ abstract class StorageService {
    */
   private static removeItems(storage: Storage, keys: string[]): void {
     for (let i = 0, length = keys.length; i < length; i++) {
-      storage.removeItem(StorageKey.Prefix + keys[i]);
+      storage.removeItem(StorageKey.PREFIX + keys[i]);
     }
   }
 
@@ -103,7 +103,7 @@ abstract class StorageService {
    * @returns - True if the storage has such key
    */
   private static has(storage: Storage, key: string): boolean {
-    return storage.hasOwnProperty(StorageKey.Prefix + key);
+    return storage.hasOwnProperty(StorageKey.PREFIX + key);
   }
 }
 

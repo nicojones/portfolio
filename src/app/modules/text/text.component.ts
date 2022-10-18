@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { LinkContent, ProjectContent, TextContent } from '~app/shared/interfaces';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {Component, Input} from "@angular/core";
+import {LinkContent, ProjectContent, TextContent} from "~app/shared/interfaces";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 
 @Component({
-  selector: 'app-text',
-  templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss']
+  selector: "app-text",
+  templateUrl: "./text.component.html",
+  styleUrls: ["./text.component.scss"]
 })
-export class TextComponent implements OnInit {
+export class TextComponent {
 
   @Input()
   public text: (TextContent)[];
@@ -23,10 +23,7 @@ export class TextComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit (): void {
-  }
-
-  public sanitize (text: any, key: string = 'content'): SafeHtml {
+  public sanitize(text: any, key: string = "content"): SafeHtml {
     return (text._sanitized = this.sanitizer.bypassSecurityTrustHtml(text[key]));
   }
 

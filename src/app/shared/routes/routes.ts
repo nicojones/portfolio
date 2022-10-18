@@ -1,33 +1,25 @@
-export interface MyRoutes {
-  WORK: string;
-  ART: string;
-  CONTACT: string;
-  ABOUT: string;
-  HOME: string;
-  READING: string;
-  LOGIN: string;
-  ADMIN: string;
+export /* non-const */ enum MyRoutes {
+  HOMEPAGE_LINK = "", // same as our homepage
+
+  WORK = "projects",
+  ART = "art",
+  CONTACT = "contact",
+  ABOUT = "about",
+  HOME = "home",
+  LINKS = "",
+  READING = "books",
+  ADMIN = "dashboard",
+  BLOG = "blog",
+  UPLOAD_IMAGE = "upload-image",
+  LOGIN = "_login_"
 }
 
 export interface MyRoutesFunctions {
-  url: (key: keyof MyRoutes) => string;
-  path: (keys: (keyof MyRoutes)[], absolute: string) => string;
+  absolute: (key: MyRoutes) => string;
+  path: (keys: MyRoutes[], absolute?: string) => string;
 }
 
-export const RouteUrls: MyRoutes = {
-  WORK: "projects",
-  ART: "art",
-  CONTACT: "contact",
-  ABOUT: "about",
-  HOME: "",
-  READING: "books",
-  ADMIN: "dashboard",
-  LOGIN: "_login_"
-};
-
-export const Routes: MyRoutes & MyRoutesFunctions = {
-  ...RouteUrls,
-
-  url: (key: keyof MyRoutes) => `/${Routes[key]}`,
-  path: (keys: Extract<MyRoutes, string>[], absolute: string = "/") => absolute + keys.join("/")
+export const Routes: MyRoutesFunctions = {
+  absolute: (key: MyRoutes) => `/${Routes[key]}`,
+  path: (keys: MyRoutes[], absolute: string = "/") => absolute + keys.join("/")
 };

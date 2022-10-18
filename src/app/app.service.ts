@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from "@angular/core";
+import {BehaviorSubject} from "rxjs";
 
 
 @Injectable()
@@ -12,5 +12,5 @@ export class AppService {
   /**
    * Not every time we load projects we want animations. When we go "back" we don't.
    */
-  public static projectSlideIn: boolean = true;
+  public static projectSlideIn = true;
 }

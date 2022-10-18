@@ -1,7 +1,7 @@
 export const enum StorageKey {
-  Prefix = 'p',
-  Books = 'b',
-  ClientOS = 'co',
-  Auth = 'x',
-  Stars = 's'
+  PREFIX = "p",
+  BOOKS = "b",
+  CLIENT_OS = "co",
+  AUTH = "x",
+  STARS = "s"
 }

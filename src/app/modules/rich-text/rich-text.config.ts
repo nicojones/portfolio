@@ -1,13 +1,14 @@
 import {TinyMCE} from "tinymce";
+import {FirestoreFile} from "~admin/types";
 
 type TinyMCEInitConfig = Parameters<TinyMCE["init"]>[0];
 
-interface RichTextConfig extends TinyMCEInitConfig {
+export interface RichTextConfig extends TinyMCEInitConfig {
   registration: string;
 }
 
 
-export const richTextConfig: RichTextConfig = {
+export const richTextConfig = (images: FirestoreFile[]): RichTextConfig => ({
   registration: "b46wo57p4bao2qt3js3dkdi5zsx96j7ld04usyjjbtggmdzb",
   plugins: "lists link image media table code wordcount fullscreen visualblocks codesample",
   toolbar: "undo redo | styles | bold italic | outdent indent | image media codesample visualblocks | fullscreen",
@@ -22,5 +23,6 @@ export const richTextConfig: RichTextConfig = {
   image_class_list: [
     {title: "Overflow", value: "project-image center"},
     {title: "No Overflow", value: "project-image"}
-  ]
-};
+  ],
+  image_list: images.map((i: FirestoreFile) => ({title: i.name, value: i.url}))
+});

@@ -1,1 +1,1 @@
-export * from './contact-me.resolver';
+export * from "./contact-me.resolver";

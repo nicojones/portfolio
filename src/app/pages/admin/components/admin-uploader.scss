@@ -1,0 +1,25 @@
+.file-upload {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  height: 200px;
+  width: 400px;
+  display: block;
+
+  border: 2px dashed darkgreen;
+  background-image: url("/assets/icons/upload.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &.dragging {
+    background-color: greenyellow;
+
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .file-input {
+    position: fixed;
+    left: -1000rem;
+  }
+}

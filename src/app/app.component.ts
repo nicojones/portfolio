@@ -1,7 +1,7 @@
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject} from "@angular/core";
 
-import {MyRoutes, Routes, RouteUrls} from "~routes/routes";
+import {MyRoutes, Routes} from "~routes/routes";
 
 import {StorageKey} from "~app/shared/enums";
 import {detectAndSaveOS} from "~app/functions";
@@ -22,12 +22,12 @@ export class AppComponent {
   /**
    * The Absolute (real-path) URL
    */
-  public readonly absolute = Routes.url;
+  public readonly absolute = Routes.absolute;
 
   /**
    * Only the routes, no functions.
    */
-  public readonly RouteKeys: (keyof MyRoutes)[] = Object.keys(RouteUrls) as (keyof MyRoutes)[];
+  public readonly MyRoutes = MyRoutes;
 
   /**
    * Toggle to disable stars.
@@ -39,10 +39,20 @@ export class AppComponent {
    */
   public auth = false;
 
+  /**
+   * The URL of the current page
+   */
+  public currentPage: MyRoutes;
+
+  /**
+   * All the routes
+   */
+  public Routes = MyRoutes;
+
   constructor(
-    private route: ActivatedRoute,
-    private title: AppTitleService,
-    private router: Router,
+    public readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly title: AppTitleService,
     @Inject("Window") private readonly window: Window,
     private readonly ref: ChangeDetectorRef,
     private readonly fireAuth: AngularFireAuth,
@@ -54,13 +64,14 @@ export class AppComponent {
     AppTitleService.title.setTitle(environment.pageTitle);
 
     // The visibility state of the stars/canvas.
-    this.stars = !(getLocalStorage().getItem(StorageKey.Stars) === false);
+    this.stars = !(getLocalStorage().getItem(StorageKey.STARS) === false);
 
     // Re-scroll the window to the top when the route changes.
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
+      this.currentPage = (this.router.url.substring(1)) as MyRoutes;
       this.window.scrollTo(0, 0);
     });
 
@@ -77,7 +88,7 @@ export class AppComponent {
    */
   public toggleStars(): void {
     this.stars = !this.stars;
-    getLocalStorage().setItem(StorageKey.Stars, this.stars);
+    getLocalStorage().setItem(StorageKey.STARS, this.stars);
   }
 
   public logout(): void {
@@ -85,7 +96,7 @@ export class AppComponent {
       .signOut()
       .then(() => {
         this.snackBar.open("Logged out", null, {duration: 3000});
-        this.router.navigate([`/${RouteUrls.HOME}`]);
+        this.router.navigate([`/${MyRoutes.HOME}`]);
       });
   }
 }

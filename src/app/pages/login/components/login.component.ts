@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginData} from "~login/shared/interfaces";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
-import {RouteUrls} from "~routes/routes";
+import {MyRoutes, Routes} from "~routes/routes";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 
@@ -15,7 +15,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class LoginComponent {
 
-  public readonly RouteUrls = RouteUrls;
+  public readonly RouteUrls = MyRoutes;
 
   public loginError: any;
 
@@ -39,7 +39,7 @@ export class LoginComponent {
 
     this.firebaseLogin.signInWithEmailAndPassword(value.username, value.password)
       .then((a) => {
-        this.router.navigate([`/${RouteUrls.ADMIN}`]);
+        this.router.navigate([Routes.path([MyRoutes.ADMIN])]);
       })
       .catch((error) => {
         this.loginError = error;

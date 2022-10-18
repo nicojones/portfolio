@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { ContactMeComponent } from './contact-me.component';
-import { SharedModule } from '~app/shared';
-import { RouterModule } from '@angular/router';
-import { ContactMeResolver } from '~home-page/pages/contact-me/shared/resolvers';
-import { TextModule } from '~app/modules/text';
+import {NgModule} from "@angular/core";
+import {ContactMeComponent} from "./contact-me.component";
+import {SharedModule} from "~app/shared";
+import {RouterModule} from "@angular/router";
+import {ContactMeResolver} from "~home-page/pages/contact-me/shared/resolvers";
+import {TextModule} from "~app/modules/text";
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { TextModule } from '~app/modules/text';
   imports: [
     RouterModule.forChild([
       {
-        path: '',
+        path: "",
         component: ContactMeComponent,
         resolve: {
           contactMe: ContactMeResolver

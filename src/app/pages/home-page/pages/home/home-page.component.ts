@@ -22,7 +22,7 @@ export class HomePageComponent {
   /**
    * Info about the client's OS and browser.
    */
-  public clientOs: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.ClientOS);
+  public clientOs: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.CLIENT_OS);
 
   /**
    * Data for the home page

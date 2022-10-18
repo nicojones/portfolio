@@ -1,4 +1,4 @@
-import { LinkContent, TextContent } from '~app/shared/interfaces';
+import {LinkContent, TextContent} from "~app/shared/interfaces";
 
 
 export interface ContactMePage {

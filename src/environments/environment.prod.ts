@@ -1,12 +1,12 @@
 import {Environment} from "~env/environment.interface";
+import {Constants} from "~app/constants.enum";
 
 
 export const environment: Environment = {
   production: true,
   pageTitle: "Nico Kupfer",
-  getUrl: "https://kupfer.es/portfolio-api/json/",
-  phpUrl: "https://kupfer.es/portfolio-api/api/app.php",
-  baseHref: "/",
+  fileStorage: (bucket: string, name: string) => `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${Constants.STORAGE_BUCKET_FOLDER}%2F${name}?alt=media`,
+  dbKeyPrefix: "",
   fireBase: {
     apiKey: "AIzaSyAA-rfKPDUp0VZwIZjFVGkwkx5BkdtmjoY",
     authDomain: "kupferes-serefpuk.firebaseapp.com",

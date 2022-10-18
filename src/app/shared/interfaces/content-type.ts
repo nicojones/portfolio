@@ -1,1 +1,1 @@
-export type ContentType = 'hr' | 'img' | 'p';
+export type ContentType = "hr" | "img" | "p";

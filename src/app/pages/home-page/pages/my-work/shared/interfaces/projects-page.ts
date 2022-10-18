@@ -1,4 +1,4 @@
-import {ProjectContent} from '~app/shared/interfaces';
+import {ProjectContent} from "~app/shared/interfaces";
 
 
 export interface ProjectsPage {

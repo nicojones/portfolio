@@ -1,4 +1,4 @@
-import { OperatingSystem } from '~app/shared/enums';
+import {OperatingSystem} from "~app/shared/enums";
 
 
 export interface ClientOs {
