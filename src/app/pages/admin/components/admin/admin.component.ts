@@ -9,8 +9,8 @@ import {catchError, tap} from "rxjs/operators";
 import {MyRoutes} from "~routes/routes";
 
 import {AdminService} from "~admin/services";
-import {MainFormArray} from "~app/shared/classes";
-import {FirebasePageEnum, SocialIcons} from "~app/shared/enums";
+import {MainFormArray, MainFormGroup} from "~app/shared/classes";
+import {ArticleGroup, FirebasePageEnum, SocialIcons} from "~app/shared/enums";
 
 import {HomePage} from "~home-page/interfaces";
 import {ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
@@ -97,6 +97,13 @@ export class AdminComponent {
     return form.get(key) as UntypedFormControl;
   }
 
+  public addProjectControl(form: MainFormGroup<ProjectsPage>): void {
+    this.addFormControl(
+      this.formArray(form, "projects"),
+      this.service.projectContent({}, this.formArray(form, "projects").length)
+    );
+  }
+
   public addFormControl(
     form: UntypedFormArray,
     control: AbstractControl = new UntypedFormControl(null, Validators.required)
@@ -180,45 +187,48 @@ export class AdminComponent {
   }
 
   public setupWorkForm() {
-    return this.getSection<ProjectsPage>(FirebasePageEnum.WORK).subscribe((work: ProjectsPage) => {
-      this.service.workForm.reset();
-      this.service.workForm.patchValue(work);
+    return this.getProjectPage(FirebasePageEnum.WORK, ArticleGroup.WORK)
+      .subscribe((work: ProjectsPage) => {
+        this.service.workForm.reset();
+        this.service.workForm.patchValue(work);
 
-      for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
-        (this.service.workForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
-          this.service.projectContent(work.projects[i])
-        );
-      }
-      this.currentTab = MyRoutes.WORK;
-    });
+        for (let i = 0, len = (work.projects || []).length; i < len; ++i) {
+          (this.service.workForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
+            this.service.projectContent(work.projects[i], i)
+          );
+        }
+        this.currentTab = MyRoutes.WORK;
+      });
   }
 
   public setupArtForm() {
-    return this.getSection<ProjectsPage>(FirebasePageEnum.ART).subscribe((art: ProjectsPage) => {
-      this.service.artForm.reset();
-      this.service.artForm.patchValue(art);
+    return this.getProjectPage(FirebasePageEnum.ART, ArticleGroup.ART)
+      .subscribe((art: ProjectsPage) => {
+        this.service.artForm.reset();
+        this.service.artForm.patchValue(art);
 
-      for (let i = 0, len = (art.projects || []).length; i < len; ++i) {
-        (this.service.artForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
-          this.service.projectContent(art.projects[i])
-        );
-      }
-      this.currentTab = MyRoutes.ART;
-    });
+        for (let i = 0, len = (art.projects || []).length; i < len; ++i) {
+          (this.service.artForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
+            this.service.projectContent(art.projects[i], i)
+          );
+        }
+        this.currentTab = MyRoutes.ART;
+      });
   }
 
   public setupBlogForm() {
-    return this.getSection<ProjectsPage>(FirebasePageEnum.BLOG).subscribe((blog: ProjectsPage) => {
-      this.service.blogForm.reset();
-      this.service.blogForm.patchValue(blog);
+    return this.getProjectPage(FirebasePageEnum.BLOG, ArticleGroup.BLOG)
+      .subscribe((blog: ProjectsPage) => {
+        this.service.blogForm.reset();
+        this.service.blogForm.patchValue(blog);
 
-      for (let i = 0, len = (blog.projects || []).length; i < len; ++i) {
-        (this.service.blogForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
-          this.service.projectContent(blog.projects[i])
-        );
-      }
-      this.currentTab = MyRoutes.BLOG;
-    });
+        for (let i = 0, len = (blog.projects || []).length; i < len; ++i) {
+          (this.service.blogForm.get("projects") as MainFormArray<ProjectsPage["projects"]>).push(
+            this.service.projectContent(blog.projects[i], i)
+          );
+        }
+        this.currentTab = MyRoutes.BLOG;
+      });
   }
 
   public saveHomeForm() {
@@ -245,16 +255,19 @@ export class AdminComponent {
 
   public saveWorkForm() {
     const value: ProjectsPage = this.service.workForm.value;
+    value.projects.sort((a, b) => a.index - b.index);
     this.save<ProjectsPage>(FirebasePageEnum.WORK, value);
   }
 
   public saveArtForm() {
     const value: ProjectsPage = this.service.artForm.value;
+    value.projects.sort((a, b) => a.index - b.index);
     this.save<ProjectsPage>(FirebasePageEnum.ART, value);
   }
 
   public saveBlogForm() {
     const value: ProjectsPage = this.service.blogForm.value;
+    value.projects.sort((a, b) => a.index - b.index);
     this.save<ProjectsPage>(FirebasePageEnum.BLOG, value);
   }
 
@@ -279,6 +292,13 @@ export class AdminComponent {
 
   private getSection<T>(page: FirebasePageEnum): Observable<T> {
     return this.fireApi.fetchPageDocument(page)
+      .pipe(
+        tap(() => (this.formSetup[page] = true))
+      );
+  }
+
+  private getProjectPage(page: FirebasePageEnum, article: ArticleGroup): Observable<ProjectsPage> {
+    return this.getSection<ProjectsPage>(page)
       .pipe(
         tap(() => (this.formSetup[page] = true))
       );

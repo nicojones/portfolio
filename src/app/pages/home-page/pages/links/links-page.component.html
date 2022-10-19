@@ -3,7 +3,8 @@
   <div id="cards" (mousemove)="onMouseMove($event)" @fadeIn>
     <a
       *ngFor="let link of linksPage.links" [class.accent]="false"
-      [routerLink]="'/' + link.url"
+      [routerLink]="link.external ? null : link.url"
+      (click)="onExternalClick(link)"
       class="card fade-in"
       #card
     >

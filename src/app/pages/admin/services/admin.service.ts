@@ -85,6 +85,7 @@ export class AdminService {
     return new MainFormGroup<LinksPageLink>({
       image: new FormControl(link.image, Validators.required),
       name: new FormControl(link.name, Validators.required),
+      external: new FormControl<boolean>(link.external),
       subTitle: new FormControl(link.subTitle, Validators.required),
       index: new FormControl(index + 1),
       url: new FormControl(link.url, Validators.required)
@@ -107,8 +108,9 @@ export class AdminService {
     });
   }
 
-  public projectContent(projectContent: Partial<ProjectContent>) {
+  public projectContent(projectContent: Partial<ProjectContent>, index: number) {
     return new MainFormGroup<ProjectContent>({
+      index: new UntypedFormControl(index + 1),
       image: new UntypedFormControl(projectContent.image, Validators.required),
       content: new UntypedFormControl(projectContent.content, Validators.required),
       url: new UntypedFormControl(projectContent.url, Validators.required),

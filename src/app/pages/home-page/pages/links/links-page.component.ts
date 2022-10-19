@@ -1,7 +1,7 @@
 import {ActivatedRoute} from "@angular/router";
-import {ChangeDetectionStrategy, Component, ElementRef, QueryList, ViewChildren} from "@angular/core";
+import {ChangeDetectionStrategy, Component, ElementRef, Inject, QueryList, ViewChildren} from "@angular/core";
 import {fadeIn} from "~app/shared/animations";
-import {LinksPage} from "~home-page/pages/links/interfaces";
+import {LinksPage, LinksPageLink} from "~home-page/pages/links/interfaces";
 
 
 @Component({
@@ -22,7 +22,8 @@ export class LinksPageComponent {
   public cardElementRef: QueryList<ElementRef<HTMLDivElement>>;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject("Window") private readonly window: Window
   ) {
   }
 
@@ -35,6 +36,13 @@ export class LinksPageComponent {
       card.nativeElement.style.setProperty("--mouse-x", `${x}px`);
       card.nativeElement.style.setProperty("--mouse-y", `${y}px`);
     });
+  }
+
+  public onExternalClick(link: LinksPageLink): void {
+    if (!link.external) {
+      return;
+    }
+    this.window.open(link.url);
   }
 
 }

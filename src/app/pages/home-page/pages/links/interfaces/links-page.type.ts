@@ -5,10 +5,13 @@ export interface LinksPage {
   links: LinksPageLink[];
 }
 
-export interface LinksPageLink {
+export type ExternalPageLink = { url: keyof MyRoutes; external: false } | { url: string; external: true };
+
+export interface CommonLinksPageLink {
   image: string;
-  url: keyof MyRoutes;
   name: string;
   subTitle: string;
   index: number;
 }
+
+export type LinksPageLink = CommonLinksPageLink & ExternalPageLink;

@@ -26,10 +26,15 @@
               <input matInput [formControl]="formControl(control, 'subTitle')">
             </mat-form-field>
             <mat-form-field>
+              <mat-checkbox [formControl]="formControl(control, 'external')">Custom url?</mat-checkbox>
               <mat-label>Url it points to</mat-label>
-              <mat-select [formControl]="formControl(control, 'url')">
-                <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">{{ RouteKeys[i] }}</mat-option>
-              </mat-select>
+              <ng-container *ngIf="{ external: formControl(control, 'external').value } as _">
+                <mat-select *ngIf="!_.external" [formControl]="formControl(control, 'url')">
+                  <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">
+                    /{{ RouteKeys[i] }}</mat-option>
+                </mat-select>
+                <input matInput *ngIf="_.external" [formControl]="formControl(control, 'url')"/>
+              </ng-container>
             </mat-form-field>
             <mat-form-field>
               <mat-label>image</mat-label>
@@ -267,9 +272,13 @@
                  background: formControl(control, 'bgColor').value,
                  color:  formControl(control, 'textColor').value
                }"
-              [innerHTML]="formControl(control, 'title').value || ''"
+              [innerHTML]="formControl(control, 'title').value || '&gt;NO TITLE YET&lt;'"
       ></button>
       <div [class.hidden]="!_.visible" class="_box_ flex-column">
+        <mat-form-field hintLabel="index">
+          <mat-label>Index</mat-label>
+          <input matInput [formControl]="formControl(control, 'index')"/>
+        </mat-form-field>
         <mat-form-field hintLabel="color for the background">
           <mat-label>Background color</mat-label>
           <mat-select [formControl]="formControl(control, 'bgColor')">
@@ -322,7 +331,7 @@
     </div>
   </div>
   <button mat-button
-          (click)="addFormControl(formArray(form, 'projects'), service.projectContent({}))"
+          (click)="addProjectControl(form)"
           class="mat-accent">+ add project
   </button>
 </ng-template>

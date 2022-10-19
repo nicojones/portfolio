@@ -4,7 +4,7 @@
 @import 'images';
 @import 'breakpoints';
 
-$card-gap: 8px;
+$card-gap: 12px;
 $bg-color: rgb(20, 20, 20);
 $card-color: rgb(23, 23, 23);
 $card-width: min(350px, calc(33.33333% - #{$card-gap}));
@@ -154,7 +154,7 @@ i {
 .card-info {
   align-items: flex-start;
   display: flex;
-  gap: 10px;
+  gap: $card-gap;
 
   > i {
     font-size: 1em;

@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
 import {ArticleGroup, FirebasePageEnum} from "~app/shared/enums";
-import {from, map, Observable, take, zip} from "rxjs";
+import {from, map, Observable, take} from "rxjs";
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {ProjectContent} from "~app/shared/interfaces";
 import {arrayFirst} from "~app/functions";
-import {DatabaseReference} from "@angular/fire/compat/database/interfaces";
 import {ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 
 @Injectable({providedIn: "root"})
@@ -24,37 +23,15 @@ export class FirebaseApiService {
 
   public getProjects(
     firebasePage: FirebasePageEnum,
-    article: ArticleGroup
+    article: ArticleGroup = null
   ): Observable<ProjectsPage> {
-    return zip(
-      this.fetchPageDocument<ProjectsPage>(firebasePage),
-      this.db
-        .list<ProjectContent>(
-          "/articles",
-          ref => ref.orderByChild("section").equalTo(article)
-        )
-        .valueChanges()
-        .pipe(take(1))
-    ).pipe(
-      map(([page, projects]: [ProjectsPage, ProjectContent[]]) => ({
-        ...page,
-        projects: projects
-      }))
-    )
-      ;
+    return this.fetchPageDocument<ProjectsPage>(firebasePage);
   }
 
-  public fetchProject(articleGroup: ArticleGroup, projectUrl: string): Observable<ProjectContent> {
-    return this.db
-      .list<ProjectContent>(
-        "/articles",
-        (ref: DatabaseReference) =>
-          ref.orderByChild("section").equalTo(articleGroup)
-      )
-      .valueChanges()
+  public fetchProject(page: FirebasePageEnum, projectUrl: string): Observable<ProjectContent> {
+    return this.getProjects(page)
       .pipe(
-        take(1),
-        map((projects: ProjectContent[]) => projects.filter((p: ProjectContent) => p.url === projectUrl)),
+        map((project: ProjectsPage) => project.projects.filter((p: ProjectContent) => p.url === projectUrl)),
         map(arrayFirst)
       );
   }

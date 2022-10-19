@@ -17,6 +17,7 @@ export interface LinkContent<Type = any> {
 }
 
 export interface ProjectContent {
+  index: number; // the position of the homepage items -- frontend only
   image: string;
   title: string;
   summary: string; // short text

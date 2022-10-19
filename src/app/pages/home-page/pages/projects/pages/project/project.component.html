@@ -6,7 +6,9 @@
   <app-back-title [url]="routingData.path">
     <span [innerHTML]="project.title"></span>
     <span class="subtitle" [innerHTML]="project.summary"></span>
-    <a [href]="project.link" target="_blank" class="project-link subtitle">
+    <a [href]="project.link" *ngIf="project.link"
+       target="_blank"
+       class="project-link subtitle">
       {{ project.link }}
       <img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
     </a>
