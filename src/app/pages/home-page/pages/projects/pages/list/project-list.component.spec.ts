@@ -2,10 +2,10 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ProjectListComponent} from './project-list.component';
 import {SharedModule} from '~app/shared';
-import {ProjectListResolver} from '~home-page/pages/my-work/shared/resolvers';
+import {ProjectPageResolver} from '~home-page/pages/projects/shared/resolvers';
 import {TestModule} from '~app/tests';
 import {Resolve} from '@angular/router';
-import {ProjectsPage} from '~home-page/pages/my-work/shared/interfaces';
+import {ProjectsPage} from '~home-page/pages/projects/shared/interfaces';
 import {of} from 'rxjs';
 
 
@@ -23,7 +23,7 @@ describe('MyWorkComponent', () => {
         SharedModule
       ],
       providers: [
-        {provide: ProjectListResolver, useClass: MyFakeWorkResolver}
+        {provide: ProjectPageResolver, useClass: MyFakeWorkResolver}
       ]
     }).compileComponents();
   });

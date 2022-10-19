@@ -2,50 +2,55 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
 import {MyRoutes} from "~routes/routes";
-import {HomePageResolver, LinksPageResolver} from "~app/shared/resolvers";
-import {FirebasePageEnum} from "~app/shared/enums";
-import {HomePageComponent} from "~home-page/pages/home";
-import {LinksPageComponent} from "~home-page/pages/links";
+import {ArticleGroup, FirebasePageEnum} from "~app/shared/enums";
+import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
 
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: "",
-        component: LinksPageComponent,
-        resolve: {
-          linksPage: LinksPageResolver
-        }
+        path: MyRoutes.LINKS,
+        loadChildren: () => import("~home-page/pages/links/links-page.module")
+          .then((m) => m.LinksPageModule)
       },
       {
-        path: "home",
-        component: HomePageComponent,
-        resolve: {
-          homePage: HomePageResolver
-        }
+        path: MyRoutes.HOME,
+        loadChildren: () => import("~home-page/pages/home/home-page.module")
+          .then((m) => m.HomePageModule)
       },
       {
         path: MyRoutes.READING,
-        loadChildren: () => import("~goodreads/goodreads.module").then((m) => m.GoodreadsModule)
+        loadChildren: () => import("~goodreads/goodreads.module")
+          .then((m) => m.GoodreadsModule)
       },
       {
         path: MyRoutes.CONTACT,
-        loadChildren: () => import("~home-page/pages/contact-me").then((m) => m.ContactMeModule)
+        loadChildren: () => import("~home-page/pages/contact-me")
+          .then((m) => m.ContactMeModule)
       },
       {
         path: MyRoutes.ABOUT,
-        loadChildren: () => import("~home-page/pages/about").then((m) => m.AboutModule)
+        loadChildren: () => import("~home-page/pages/about")
+          .then((m) => m.AboutModule)
       },
       {
         path: MyRoutes.WORK,
-        data: {page: FirebasePageEnum.WORK},
-        loadChildren: () => import("~home-page/pages/my-work").then((m) => m.ProjectsModule)
+        data: {path: MyRoutes.WORK, page: FirebasePageEnum.WORK, article: ArticleGroup.WORK} as ProjectRoutingData,
+        loadChildren: () => import("~home-page/pages/projects")
+          .then((m) => m.ProjectsModule)
       },
       {
         path: MyRoutes.ART,
-        data: {page: FirebasePageEnum.ART},
-        loadChildren: () => import("~home-page/pages/my-work").then((m) => m.ProjectsModule)
+        data: {path: MyRoutes.ART, page: FirebasePageEnum.ART, article: ArticleGroup.ART} as ProjectRoutingData,
+        loadChildren: () => import("~home-page/pages/projects")
+          .then((m) => m.ProjectsModule)
+      },
+      {
+        path: MyRoutes.BLOG,
+        data: {path: MyRoutes.BLOG, page: FirebasePageEnum.BLOG, article: ArticleGroup.BLOG} as ProjectRoutingData,
+        loadChildren: () => import("~home-page/pages/projects")
+          .then((m) => m.ProjectsModule)
       }
     ])
   ],

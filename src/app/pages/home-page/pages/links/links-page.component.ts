@@ -9,7 +9,7 @@ import {LinksPage} from "~home-page/pages/links/interfaces";
   templateUrl: "./links-page.component.html",
   styleUrls: ["./links-page.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [fadeIn(300, "400ms", 0)]
+  animations: [fadeIn(50, "300ms 600ms")]
 })
 export class LinksPageComponent {
 

@@ -32,7 +32,7 @@ $rocket-width: 200px;
 }
 
 .spiral-in {
-  @include transitions(90s);
+  @include transitions(30s);
   transform-origin: 0 center;
   top: 50%;
   left: 50%;

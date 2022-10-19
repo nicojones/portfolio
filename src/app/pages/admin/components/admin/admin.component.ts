@@ -13,7 +13,7 @@ import {MainFormArray} from "~app/shared/classes";
 import {FirebasePageEnum, SocialIcons} from "~app/shared/enums";
 
 import {HomePage} from "~home-page/interfaces";
-import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";
 import {FirebaseApiService} from "~app/services/firebase-api.service";
@@ -87,7 +87,6 @@ export class AdminComponent {
       case MyRoutes.UPLOAD_IMAGE:
         this.currentTab = MyRoutes.UPLOAD_IMAGE;
     }
-
   }
 
   public formArray(form: UntypedFormGroup, key: string): MainFormArray<any> {

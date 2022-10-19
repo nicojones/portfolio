@@ -42,7 +42,7 @@ export class AppComponent {
   /**
    * The URL of the current page
    */
-  public currentPage: MyRoutes;
+  public currentPage: MyRoutes = MyRoutes.HOMEPAGE_LINK;
 
   /**
    * All the routes
@@ -96,7 +96,7 @@ export class AppComponent {
       .signOut()
       .then(() => {
         this.snackBar.open("Logged out", null, {duration: 3000});
-        this.router.navigate([`/${MyRoutes.HOME}`]);
+        this.router.navigate([`/${MyRoutes.HOMEPAGE_LINK}`]);
       });
   }
 }

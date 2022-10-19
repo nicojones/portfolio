@@ -11,15 +11,18 @@ import {ClientOs, ProjectContent} from "~app/shared/interfaces";
 
 import {addClass, removeClass} from "~app/functions";
 import {AppService} from "~app/app.service";
+import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
 
 
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
-  styleUrls: ["./project.component.scss", "../../project-list.component.scss"],
+  styleUrls: ["./project.component.scss"],
   animations: [slideIn()]
 })
 export class ProjectComponent implements OnDestroy {
+
+  public readonly routingData: ProjectRoutingData = this.route.parent.snapshot.data as ProjectRoutingData;
 
   /**
    * The routes object
@@ -65,6 +68,8 @@ export class ProjectComponent implements OnDestroy {
 
     // After visiting this page, we don't want the projects to auto-load.
     AppService.projectSlideIn = false;
+
+    console.log(this.route.parent.snapshot.data);
   }
 
   public ngOnDestroy() {

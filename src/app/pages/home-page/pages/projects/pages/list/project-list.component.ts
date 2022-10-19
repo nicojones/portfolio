@@ -5,7 +5,7 @@ import {MyRoutes} from "~routes/routes";
 
 import {slideIn} from "~app/shared/animations";
 
-import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectRoutingData, ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 import {AppService} from "~app/app.service";
 
 
@@ -26,7 +26,12 @@ export class ProjectListComponent implements AfterViewInit {
   /**
    * Info about the page.
    */
-  public readonly myWork: ProjectsPage;
+  public readonly routingData: ProjectRoutingData = this.route.snapshot.data as ProjectRoutingData;
+
+  /**
+   * Information about the page
+   */
+  public readonly projectPage: ProjectsPage = this.route.snapshot.data.projectPage as ProjectsPage;
 
   /**
    * We don't always want a .slide-in for the projects, not if we clicked on "back" from a project!
@@ -36,10 +41,8 @@ export class ProjectListComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute
   ) {
-    /**
-     * Set the information
-     */
-    this.myWork = this.route.snapshot.data.myWork;
+
+    console.log(this.route.snapshot.data);
   }
 
   public ngAfterViewInit() {

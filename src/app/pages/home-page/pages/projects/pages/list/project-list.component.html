@@ -1,10 +1,10 @@
 <div @slideIn [@.disabled]="!projectSlideIn">
-  <app-back-title [url]="RouteUrls.HOME">{{ myWork.title }}</app-back-title>
+  <app-back-title [url]="RouteUrls.HOMEPAGE_LINK">{{ projectPage.title }}</app-back-title>
   <div class="app-row bottom-padding">
     <a
-      *ngFor="let project of myWork.projects; index as i"
+      *ngFor="let project of projectPage.projects; index as i"
       class="project-item text no-deco slide-in"
-      [routerLink]="'/' + RouteUrls.WORK + '/' + project.url"
+      [routerLink]="'/' + routingData.path + '/' + project.url"
     >
       <div class="project-item-text">
         <h2 class="my-0 project-name" [innerHTML]="project.title"></h2>

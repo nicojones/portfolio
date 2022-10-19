@@ -7,3 +7,9 @@ export const enum FirebasePageEnum {
   CONTACT = "CONTACT",
   ABOUT = "ABOUT"
 }
+
+export const enum ArticleGroup {
+  BLOG = "blog",
+  WORK = "portfolio",
+  ART = "personal"
+}

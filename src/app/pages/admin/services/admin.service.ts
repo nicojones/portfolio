@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {FormControl, UntypedFormArray, UntypedFormControl, Validators} from "@angular/forms";
 import {MainFormArray, MainFormGroup} from "~app/shared/classes";
-import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {HomePage} from "~home-page/interfaces";
 import {ContactMePage} from "~home-page/pages/contact-me/shared/interfaces";

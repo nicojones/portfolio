@@ -4,12 +4,12 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 
 
-import {ProjectsPage} from "~home-page/pages/my-work/shared/interfaces";
+import {ProjectRoutingData, ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()
-export class ProjectListResolver implements Resolve<unknown> {
+export class ProjectPageResolver implements Resolve<unknown> {
 
   constructor(
     private readonly firebaseApi: FirebaseApiService
@@ -17,6 +17,9 @@ export class ProjectListResolver implements Resolve<unknown> {
   }
 
   public resolve(snapshot: ActivatedRouteSnapshot): Observable<ProjectsPage> {
-    return this.firebaseApi.fetchPageDocument(snapshot.parent.data.page);
+    return this.firebaseApi.getProjects(
+      (snapshot.parent.data as ProjectRoutingData).page,
+      (snapshot.parent.data as ProjectRoutingData).article
+    );
   }
 }

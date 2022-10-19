@@ -1,12 +1,12 @@
 export /* non-const */ enum MyRoutes {
   HOMEPAGE_LINK = "", // same as our homepage
 
+  LINKS = "",
+  HOME = "home",
   WORK = "projects",
   ART = "art",
   CONTACT = "contact",
   ABOUT = "about",
-  HOME = "home",
-  LINKS = "",
   READING = "books",
   ADMIN = "dashboard",
   BLOG = "blog",

@@ -2,9 +2,6 @@ import {NgModule} from "@angular/core";
 
 import {SharedModule} from "~app/shared";
 import {PublicPagesRouting} from "~home-page/public-pages.routing";
-import {HomePageResolver, LinksPageResolver} from "~app/shared/resolvers";
-import {HomePageComponent} from "~home-page/pages/home";
-import {LinksPageComponent} from "~home-page/pages/links";
 
 
 @NgModule({
@@ -12,14 +9,8 @@ import {LinksPageComponent} from "~home-page/pages/links";
     SharedModule,
     PublicPagesRouting
   ],
-  declarations: [
-    HomePageComponent,
-    LinksPageComponent
-  ],
-  providers: [
-    HomePageResolver,
-    LinksPageResolver
-  ]
+  declarations: [],
+  providers: []
 
 })
 export class PublicPagesModule {

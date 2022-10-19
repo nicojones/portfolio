@@ -16,6 +16,9 @@ body {
   scroll-behavior: smooth;
   @include transitions();
   min-height: 100%; // otherwise we can't vertically center stuff
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.black {
     color: $black;

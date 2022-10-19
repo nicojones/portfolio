@@ -1,24 +1,22 @@
 <div class="app-row">
-  <app-back-title [url]="RouteUrls.HOME" [huge]="false">login</app-back-title>
+  <app-back-title [url]="RouteUrls.HOMEPAGE_LINK" [huge]="false">login</app-back-title>
 
-  <form [formGroup]="form" (ngSubmit)="login()" class="form">
+  <form [formGroup]="form" (ngSubmit)="login()" class="form" action="">
     <div class="row">
       <label>
         Name
       </label>
-      <input formControlName="username"/>
+      <input formControlName="username" name="email"/>
     </div>
     <div class="row">
       <label>
         Password
       </label>
-      <input formControlName="password" type="password"/>
+      <input formControlName="password" type="password" name="password"/>
     </div>
     <div class="row">
-      <button mat-button>login</button>
+      <button mat-button type="submit">login</button>
     </div>
-    <div *ngIf="loginError">
-      {{ loginError }}
-    </div>
+    <div *ngIf="loginError" [innerHTML]="loginError"></div>
   </form>
 </div>
