@@ -31,38 +31,38 @@ $card-transition-duration: 500ms;
   width: 100%;
 }
 
+@mixin card-hover-title {
+  .card-title-1 {
+    top: .5rem;
+  }
+
+  .card-title-2 {
+    opacity: 1;
+    top: .3rem;
+  }
+}
+
 :host {
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   min-height: 100vh;
-}
 
-//.links-wrapper {
-//  display: flex;
-//  flex-direction: column;
-//  justify-content: center;
-//  height: 100vh;
-//}
+}
 
 #cards {
   display: flex;
   flex-wrap: wrap;
   gap: $card-gap;
   max-width: 916px;
-  //width: calc(100% - 20px);
   width: 90vw;
 
   &:hover > .card::after {
     opacity: 1;
   }
-
-
-  //a {
-  //  text-decoration: none;
-  //}
 }
+
 
 .card {
   background-color: rgba(255, 255, 255, 0.1);
@@ -82,6 +82,8 @@ $card-transition-duration: 500ms;
     .card-image {
       filter: grayscale(0);
     }
+
+    @include card-hover-title;
   }
 
   &::before {
@@ -93,7 +95,6 @@ $card-transition-duration: 500ms;
     );
     z-index: 3;
   }
-
 
   &::after {
     @extend %card-before-after;
@@ -120,12 +121,6 @@ $card-transition-duration: 500ms;
 }
 
 
-/* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
-
-i {
-  color: rgb(240, 240, 240);
-}
-
 .card-image {
   align-items: center;
   display: flex;
@@ -149,33 +144,38 @@ i {
   flex-grow: 1;
   justify-content: flex-start;
   padding: 0px 20px;
-}
+
 
 .card-info {
   align-items: flex-start;
   display: flex;
   gap: $card-gap;
-
-  > i {
-    font-size: 1em;
-    height: 20px;
-    line-height: 20px;
-  }
+}
 }
 
 .card-info-title {
-  > .card-title-1 {
-    font-size: 2.1em;
-    line-height: 20px;
-    margin-bottom: 1rem;
+  %card-titles {
+    position: relative;
     text-align: center;
+    line-height: 20px;
+    margin-bottom: 0;
+    @include transitions();
+  }
+
+  > .card-title-1 {
+    @extend %card-titles;
+    font-size: 2.1em;
+    margin-top: 0;
+    top: 1rem;
   }
 
   > .card-title-2 {
+    @extend %card-titles;
+    opacity: 0;
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.85em;
-    margin-top: 8px;
-    text-align: center;
+    margin-top: 1rem;
+    top: 0;
   }
 }
 
@@ -183,6 +183,8 @@ i {
 @media(max-width: 800px) {
   .card {
     width: calc(50% - #{$card-gap});
+
+    @include card-hover-title;
   }
 }
 

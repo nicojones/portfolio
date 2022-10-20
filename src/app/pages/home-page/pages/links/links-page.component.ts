@@ -2,7 +2,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ChangeDetectionStrategy, Component, ElementRef, Inject, QueryList, ViewChildren} from "@angular/core";
 import {fadeIn} from "~app/shared/animations";
 import {LinksPage, LinksPageLink} from "~home-page/pages/links/interfaces";
-
+import PocketBase from "pocketbase";
 
 @Component({
   selector: "app-links-page",
@@ -25,6 +25,27 @@ export class LinksPageComponent {
     private route: ActivatedRoute,
     @Inject("Window") private readonly window: Window
   ) {
+
+
+    // this.dohtat();
+  }
+
+  public async dohtat() {
+    const client = new PocketBase("http://kupfer.es:8090");
+
+    // ...
+
+    // fetch a paginated records list
+    const resultList = await client.records.getList("links", 1, 50, {
+      filter: 'created >= "2022-01-01 00:00:00"',
+      expand: "url,url.text"
+    });
+
+    // alternatively you can also fetch all records at once via getFullList:
+    const records = await client.records.getFullList("links", 200 /* batch size */, {
+      sort: "-created"
+    });
+
   }
 
   public onMouseMove($event) {
