@@ -1,9 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AboutComponent } from './about.component';
-import { TestModule } from '~app/tests';
-import { CarouselModule } from '~app/modules/carousel';
-import { BooksService } from '~app/services';
+import {AboutComponent} from './about.component';
+import {TestModule} from '~app/tests';
+import {CarouselModule} from '~app/modules/carousel';
 
 
 describe('AboutComponent', () => {
@@ -20,7 +19,6 @@ describe('AboutComponent', () => {
         CarouselModule
       ],
       providers: [
-        BooksService
       ]
     }).compileComponents();
   });

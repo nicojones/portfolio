@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CarouselComponent } from './carousel.component';
-import { TestModule } from '~app/tests';
-import { BookModule } from '~app/modules/book/book.module';
-import { lastBook } from '~app/modules/book/last-book';
+import {CarouselComponent} from './carousel.component';
+import {TestModule} from '~app/tests';
+import {BookModule} from '~app/modules/book/book.module';
+import {lastBook} from '~app/modules/book/last-book';
 
 
 describe('CarouselComponent', () => {
@@ -25,7 +25,7 @@ describe('CarouselComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
-    component.books = [lastBook];
+    component.elements = [lastBook];
     fixture.detectChanges();
   });
 

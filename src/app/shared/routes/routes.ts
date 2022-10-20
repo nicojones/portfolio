@@ -7,7 +7,6 @@ export /* non-const */ enum MyRoutes {
   ART = "art",
   CONTACT = "contact",
   ABOUT = "about",
-  READING = "books",
   ADMIN = "dashboard",
   BLOG = "blog",
   UPLOAD_IMAGE = "upload-image",

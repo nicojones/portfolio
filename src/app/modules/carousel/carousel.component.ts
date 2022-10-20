@@ -13,8 +13,9 @@ import {Carousel, IOptions} from "latte-carousel";
 
 import {clone} from "~app/functions";
 
-import {Book, Books} from "~goodreads/shared/interfaces/book";
+interface MyElement {
 
+}
 
 @Component({
   selector: "app-carousel",
@@ -40,13 +41,13 @@ export class CarouselComponent implements OnInit, AfterViewInit {
    * List of Goodreads books
    */
   @Input()
-  public books: Books = null;
+  public elements: MyElement[] = null;
 
   /**
    * If you know the total amount of books, we show this instead of the length of the carousel
    */
   @Input()
-  public totalBooks: number = null;
+  public totalElements: number = null;
 
   /**
    * If true, the last brings you to the first.
@@ -58,7 +59,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
    * A fake book that could link to Goodreads, for example.
    */
   @Input()
-  public lastBook: Book = null;
+  public lastElement: MyElement = null;
 
   /**
    * The carousel itself
@@ -83,8 +84,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
-    if (this.lastBook) {
-      this.books = [...clone(this.books), this.lastBook];
+    if (this.lastElement) {
+      this.elements = [...clone(this.elements), this.lastElement];
     }
   }
 

@@ -1,5 +1,5 @@
 <div class="carousel-box latte-carousel" #carouselElement>
-  <app-book class="book-card latte-item" *ngFor="let book of books" [book]="book"></app-book>
+  <app-book class="book-card latte-item" *ngFor="let book of elements" [book]="book"></app-book>
 </div>
 <span class="just-center pagination">
   <span class="my-30 pagination-title">{{ title }}</span>
@@ -9,11 +9,11 @@
         (click)="prevItem()"
         [disabled]="!wrap && index === 1"
       ><i></i><i></i></button>
-      <span class="pagination-counter">{{ index }} / {{ totalBooks || books.length }}</span>
+      <span class="pagination-counter">{{ index }} / {{ totalElements || elements.length }}</span>
       <button
         class="paginate right"
         (click)="nextItem()"
-        [disabled]="!wrap && index === books.length"
+        [disabled]="!wrap && index === elements.length"
       ><i></i><i></i></button>
     </span>
 </span>

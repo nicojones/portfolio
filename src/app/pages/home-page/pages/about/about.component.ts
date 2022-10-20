@@ -3,11 +3,6 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from "@angular/co
 import {MyRoutes} from "~routes/routes";
 
 import {slideIn} from "~app/shared/animations";
-import {BooksService} from "~app/services";
-
-import {Book, Shelf} from "~goodreads/shared/interfaces/book";
-import {zip} from "rxjs";
-import {lastBook} from "~app/modules/book/last-book";
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
 import {ActivatedRoute} from "@angular/router";
 
@@ -27,16 +22,6 @@ export class AboutComponent {
   public readonly RouteUrls = MyRoutes;
 
   /**
-   * Info about my reading/read books
-   */
-  public readonly shelf: Shelf = BooksService.shelf;
-
-  /**
-   * The last book i updated the reading progress on.
-   */
-  public readonly lastBook: Book = lastBook;
-
-  /**
    * Title for the page.
    */
   public readonly title: string = "books I've read";
@@ -53,22 +38,12 @@ export class AboutComponent {
 
   constructor(
     public route: ActivatedRoute,
-    public booksService: BooksService,
     private ref: ChangeDetectorRef
   ) {
     /**
      * Set the About page.
      */
     this.aboutPage = this.route.snapshot.data.aboutPage;
-
-    /**
-     * Get the Read + Reading books.
-     */
-    zip(
-      this.booksService.getCurrentlyReading(),
-      this.booksService.getReadBooks()
-    )
-      .subscribe(() => this.ref.markForCheck());
 
     /**
      * Change the "multiple-value" title automatically.

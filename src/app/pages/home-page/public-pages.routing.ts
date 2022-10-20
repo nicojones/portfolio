@@ -20,11 +20,6 @@ import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
           .then((m) => m.HomePageModule)
       },
       {
-        path: MyRoutes.READING,
-        loadChildren: () => import("~goodreads/goodreads.module")
-          .then((m) => m.GoodreadsModule)
-      },
-      {
         path: MyRoutes.CONTACT,
         loadChildren: () => import("~home-page/pages/contact-me")
           .then((m) => m.ContactMeModule)
