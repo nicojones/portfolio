@@ -3,8 +3,8 @@ import {Injectable} from "@angular/core";
 
 import {Observable} from "rxjs";
 import {FirebasePageEnum} from "~app/shared/enums";
-import {FirebaseApiService} from "~app/services/firebase-api.service";
 import {LinksPage} from "~home-page/pages/links/interfaces";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()

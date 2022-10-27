@@ -6,9 +6,8 @@ import {arrayFirst} from "~app/functions";
 import {ProjectsPage} from "~home-page/pages/projects/shared/interfaces";
 import PocketBase from "pocketbase";
 import {environment} from "~env/environment";
-import {tap} from "rxjs/operators";
 
-@Injectable({providedIn: "root"})
+@Injectable()
 export class PocketbaseApiService {
 
   private readonly pb = new PocketBase(environment.pocketBase);
@@ -21,8 +20,7 @@ export class PocketbaseApiService {
       filter: `route="${page}"`
     })) as unknown as Observable<PocketbaseResult<T>>)
       .pipe(
-        map((l: PocketbaseResult<T>) => l.items[0]),
-        tap(a => console.log(a))
+        map((l: PocketbaseResult<T>) => l.items[0])
       );
   }
 
@@ -34,8 +32,7 @@ export class PocketbaseApiService {
     })) as unknown as Observable<PocketbaseResult<T>>)
       .pipe(
         map((l: PocketbaseResult<T>) => this.extractExpanded<T>(l.items)),
-        map((items: PocketbaseItem<T>[]) => arrayFirst(items as unknown[]) as PocketbaseItem<T>),
-        tap((a) => console.log(a))
+        map((items: PocketbaseItem<T>[]) => arrayFirst(items as unknown[]) as PocketbaseItem<T>)
       );
   }
 

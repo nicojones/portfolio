@@ -4,8 +4,8 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 
 import {AboutPage} from "~home-page/pages/about/interfaces/about-page";
-import {FirebaseApiService} from "~app/services/firebase-api.service";
 import {FirebasePageEnum} from "~app/shared/enums";
+import {FirebaseApiService} from "~app/services/firebase-api.service";
 
 
 @Injectable()
