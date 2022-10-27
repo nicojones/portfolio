@@ -190,6 +190,10 @@ $card-transition-duration: 500ms;
 }
 
 @media(max-width: 450px) {
+  .links-wrapper {
+    padding-left: 5vw;
+  }
+
   .card {
     width: 100%;
   }

@@ -10,6 +10,7 @@ export const environment: Environment = {
   production: false,
   pageTitle: "NK - Local",
   dbKeyPrefix: "local-",
+  pocketBase: "http://kupfer.es:8090",
   fileStorage: (bucket: string, name: string) => `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${Constants.STORAGE_BUCKET_FOLDER}%2F${name}?alt=media`,
   fireBase: {
     apiKey: "AIzaSyAA-rfKPDUp0VZwIZjFVGkwkx5BkdtmjoY",

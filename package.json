@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4201",
-    "mobile": "ng serve --port=4201 --host=0.0.0.0 --disableHostCheck --disable-host-check --configuration mobile",
+    "mobile": "ng serve --port=4201 --host=0.0.0.0 --disableHostCheck --disable-host-check",
     "build": "ng build --configuration production --aot --named-chunks --extract-css --configuration=production --build-optimizer",
     "test": "ng test",
     "e2e": "ng e2e",

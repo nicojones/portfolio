@@ -5,6 +5,7 @@ import {Constants} from "~app/constants.enum";
 export const environment: Environment = {
   production: true,
   pageTitle: "Nico Kupfer",
+  pocketBase: "http://kupfer.es:8090",
   fileStorage: (bucket: string, name: string) => `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${Constants.STORAGE_BUCKET_FOLDER}%2F${name}?alt=media`,
   dbKeyPrefix: "",
   fireBase: {

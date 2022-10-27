@@ -13,4 +13,5 @@ export interface Environment {
     appId: string;
     measurementId: string;
   };
+  pocketBase: string;
 }
