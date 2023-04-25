@@ -282,6 +282,7 @@ export class AdminComponent {
   private save<T>(page: FirebasePageEnum, value: T) {
     this.fireApi.updatePage(page, value)
       .pipe(catchError((error: HttpErrorResponse) => {
+        console.error(page, error);
         this.snackBar.open("ERROR! " + JSON.stringify(error.error), "dismiss");
         return throwError(error);
       }))
