@@ -23,6 +23,5 @@ export const richTextConfig = (images: FirestoreFile[]): RichTextConfig => ({
   image_class_list: [
     {title: "Overflow", value: "project-image center"},
     {title: "No Overflow", value: "project-image"}
-  ],
-  image_list: images.map((i: FirestoreFile) => ({title: i.name, value: i.url}))
+  ]
 });

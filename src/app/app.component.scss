@@ -1,3 +1,4 @@
+@use "sass:math";
 @import 'colors';
 @import 'breakpoints';
 @import 'images';
@@ -27,7 +28,7 @@ $name-logo-width: 13rem;
   @include transitions();
 
   @media (max-width: $breakpoint-mobile) {
-    top: $name-logo-top / 4;
+    top: math.div($name-logo-top, 4);
   }
 
   .name-bg {
@@ -55,9 +56,9 @@ $name-logo-width: 13rem;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    left: calc(50% - #{$name-logo-width / 2}); // centered
+    left: calc(50% - #{math.div($name-logo-width, 2)}); // centered
     &:hover {
-      left: calc(50% - #{$name-logo-width / 2 + $name-logo-move-on-hover});
+      left: calc(50% - #{math.div($name-logo-width, 2) + $name-logo-move-on-hover});
     }
   }
 }

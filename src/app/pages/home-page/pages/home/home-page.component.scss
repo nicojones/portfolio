@@ -1,3 +1,4 @@
+@use "sass:math";
 @import 'mixins';
 @import 'colors';
 @import 'globals';
@@ -166,7 +167,7 @@ $tap-anywhere-width: 15rem;
   width: $tap-anywhere-width;
   left: 50%;
   text-align: center;
-  margin-left: -$tap-anywhere-width / 2;
+  margin-left: math.div(-$tap-anywhere-width, 2);
   animation: pulse 3s infinite ease-in-out;
 
   @media (orientation: landscape) {

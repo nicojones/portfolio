@@ -8,10 +8,7 @@
         </mat-form-field>
         <div>
           <h2>Cards</h2>
-          <div
-            *ngFor="let control of formArray(f, 'links').controls as controls; index as i"
-            class="flex-column"
-          >
+          <div *ngFor="let control of formArray(f, 'links').controls as controls; index as i" class="flex-column">
             <h3>Item {{ i + 1 }}</h3>
             <mat-form-field>
               <mat-label>position</mat-label>
@@ -33,22 +30,21 @@
                   <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">
                     /{{ RouteKeys[i] }}</mat-option>
                 </mat-select>
-                <input matInput *ngIf="_.external" [formControl]="formControl(control, 'url')"/>
+                <input matInput *ngIf="_.external" [formControl]="formControl(control, 'url')" />
               </ng-container>
             </mat-form-field>
             <mat-form-field>
               <mat-label>image</mat-label>
               <mat-select [formControl]="formControl(control, 'image')">
                 <mat-option *ngFor="let image of images; index as i" [value]="image.url" class="image-select">
-                  <img [src]="image.url" height="150" [alt]="image.name"/>
+                  <img [src]="image.url" height="150" [alt]="image.name" />
                   {{ image.name }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <hr>
-            <button
-              mat-button (click)="formArray(f, 'links').removeAt(i)" class="mat-error"
-            >remove item {{ i + 1 }}</button>
+            <button mat-button (click)="formArray(f, 'links').removeAt(i)" class="mat-error">remove item {{ i + 1
+              }}</button>
           </div>
           <button mat-button (click)="addLinkControl(formArray(f, 'links'))" class="mat-accent">+ add item</button>
         </div>
@@ -67,10 +63,7 @@
         </mat-form-field>
         <div>
           <h2>Title</h2>
-          <div
-            *ngFor="let control of formArray(f, 'title').controls as controls; index as i"
-            class="flex-column"
-          >
+          <div *ngFor="let control of formArray(f, 'title').controls as controls; index as i" class="flex-column">
             <h3>Item {{ i + 1 }}</h3>
             <mat-checkbox [formControl]="formControl(control, 'accent')">With accent</mat-checkbox>
             <mat-form-field>
@@ -96,9 +89,8 @@
               <input matInput [formControl]="formControl(control, 'mini')">
             </mat-form-field>
             <hr>
-            <button
-              mat-button (click)="formArray(f, 'title').removeAt(i)" class="mat-error"
-            >remove item {{ i + 1 }}</button>
+            <button mat-button (click)="formArray(f, 'title').removeAt(i)" class="mat-error">remove item {{ i + 1
+              }}</button>
           </div>
           <button mat-button (click)="addTitleControl(formArray(f, 'title'))" class="mat-accent">+ add item</button>
         </div>
@@ -116,13 +108,10 @@
               <!--suppress AngularInvalidExpressionResultType -->
               <input matInput [formControl]="first">
             </mat-form-field>
-            <button
-              mat-button (click)="formArray(f, 'title.first').removeAt(i)" class="mat-error"
-            >remove FIRST item {{ i + 1 }}</button>
+            <button mat-button (click)="formArray(f, 'title.first').removeAt(i)" class="mat-error">remove FIRST item {{
+              i + 1 }}</button>
           </div>
-          <button
-            mat-button (click)="addFormControl(formArray(f, 'title.first'))" class="mat-accent"
-          >+ add FIRST item
+          <button mat-button (click)="addFormControl(formArray(f, 'title.first'))" class="mat-accent">+ add FIRST item
           </button>
         </div>
         <!------------------------------------------->
@@ -133,13 +122,10 @@
               <!--suppress AngularInvalidExpressionResultType -->
               <input matInput [formControl]="multi">
             </mat-form-field>
-            <button
-              mat-button (click)="formArray(f, 'title.multi').removeAt(i)" class="mat-error"
-            >remove MULTI item {{ i + 1 }}</button>
+            <button mat-button (click)="formArray(f, 'title.multi').removeAt(i)" class="mat-error">remove MULTI item {{
+              i + 1 }}</button>
           </div>
-          <button
-            mat-button (click)="addFormControl(formArray(f, 'title.multi'))" class="mat-accent"
-          >+ add MULTI item
+          <button mat-button (click)="addFormControl(formArray(f, 'title.multi'))" class="mat-accent">+ add MULTI item
           </button>
         </div>
         <!------------------------------------------->
@@ -150,13 +136,10 @@
               <!--suppress AngularInvalidExpressionResultType -->
               <input matInput [formControl]="last">
             </mat-form-field>
-            <button
-              mat-button (click)="formArray(f, 'title.last').removeAt(i)" class="mat-error"
-            >remove LAST item {{ i + 1 }}</button>
+            <button mat-button (click)="formArray(f, 'title.last').removeAt(i)" class="mat-error">remove LAST item {{ i
+              + 1 }}</button>
           </div>
-          <button
-            mat-button (click)="addFormControl(formArray(f, 'title.last'))" class="mat-accent"
-          >+ add LAST item
+          <button mat-button (click)="addFormControl(formArray(f, 'title.last'))" class="mat-accent">+ add LAST item
           </button>
         </div>
         <!------------------------------------------->
@@ -218,13 +201,10 @@
   <h2>Text</h2>
   <div *ngFor="let control of formArray(form, 'text').controls; index as i" class="flex-column border-box">
     <app-rich-text [imageList]="images" [control]="formControl(control, 'content')"></app-rich-text>
-    <button
-      mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error"
-    >remove #{{ i + 1 }}</button>
+    <button mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error">remove #{{ i + 1 }}</button>
   </div>
-  <button mat-button
-          (click)="addFormControl(formArray(form, 'text'), service.textContent({}))"
-          class="mat-accent">+ add content item
+  <button mat-button (click)="addFormControl(formArray(form, 'text'), service.textContent({}))" class="mat-accent">
+    + add content item
   </button>
 </ng-template>
 
@@ -233,11 +213,11 @@
   <div *ngFor="let control of formArray(form, 'link').controls; index as i" class="flex-column border-box">
     <mat-form-field>
       <mat-label>Title / Label</mat-label>
-      <input matInput [formControl]="formControl(control, 'text')"/>
+      <input matInput [formControl]="formControl(control, 'text')" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>URL</mat-label>
-      <input matInput [formControl]="formControl(control, 'url')"/>
+      <input matInput [formControl]="formControl(control, 'url')" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>attr-title</mat-label>
@@ -252,13 +232,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button
-      mat-button (click)="formArray(form, 'link').removeAt(i)" class="mat-error"
-    >remove link #{{ i + 1 }} {{ formControl(control, 'text').value }}</button>
+    <button mat-button (click)="formArray(form, 'link').removeAt(i)" class="mat-error">remove link #{{ i + 1 }} {{
+      formControl(control, 'text').value }}</button>
   </div>
-  <button mat-button
-          (click)="addFormControl(formArray(form, 'link'), service.linkContent({}))"
-          class="mat-accent">+ add link
+  <button mat-button (click)="addFormControl(formArray(form, 'link'), service.linkContent({}))" class="mat-accent">+ add
+    link
   </button>
 </ng-template>
 
@@ -266,27 +244,23 @@
 <ng-template #projectContent let-form="form">
   <div *ngFor="let control of formArray(form, 'projects').controls; index as i" class="flex-column border-box">
     <div *ngIf="{ visible: false } as _" class="flex-column">
-      <button (click)="_.visible = !_.visible"
-              class="mat-button"
-              [style]="{
+      <button (click)="_.visible = !_.visible" class="mat-button" [style]="{
                  background: formControl(control, 'bgColor').value,
                  color:  formControl(control, 'textColor').value
-               }"
-              [innerHTML]="formControl(control, 'title').value || '&gt;NO TITLE YET&lt;'"
-      ></button>
+               }" [innerHTML]="formControl(control, 'title').value || '&gt;NO TITLE YET&lt;'"></button>
       <div [class.hidden]="!_.visible" class="_box_ flex-column">
         <mat-form-field hintLabel="index">
           <mat-label>Index</mat-label>
-          <input matInput [formControl]="formControl(control, 'index')"/>
+          <input matInput [formControl]="formControl(control, 'index')" />
         </mat-form-field>
         <mat-form-field hintLabel="color for the background">
           <mat-label>Background color</mat-label>
           <mat-select [formControl]="formControl(control, 'bgColor')">
             <mat-option *ngFor="let color of service.colors" [value]="color"
-                        [style]="'background-color:' + color + '; color:' + color">{{ color }}</mat-option>
+              [style]="'background-color:' + color + '; color:' + color">{{ color }}</mat-option>
           </mat-select>
           <span matSuffix
-                [style]="'background-color: ' + formControl(control, 'bgColor').value + ';height: 50px;width: 50px; float: right; display: inline-block'"></span>
+            [style]="'background-color: ' + formControl(control, 'bgColor').value + ';height: 50px;width: 50px; float: right; display: inline-block'"></span>
         </mat-form-field>
         <mat-form-field hintLabel="color for the text">
           <mat-label>Text color</mat-label>
@@ -297,41 +271,39 @@
         </mat-form-field>
         <mat-form-field hintLabel="title of the project">
           <mat-label>Project Name</mat-label>
-          <input matInput [formControl]="formControl(control, 'title')"/>
+          <input matInput [formControl]="formControl(control, 'title')" />
         </mat-form-field>
         <mat-form-field hintLabel="short text to show near the title in the project list page">
           <mat-label>Project Summary</mat-label>
-          <input matInput [formControl]="formControl(control, 'summary')"/>
+          <input matInput [formControl]="formControl(control, 'summary')" />
         </mat-form-field>
         <mat-form-field hintLabel="the internal URL to access the project view">
           <mat-label>URL to the page</mat-label>
-          <input matInput [formControl]="formControl(control, 'url')"/>
+          <input matInput [formControl]="formControl(control, 'url')" />
         </mat-form-field>
         <mat-form-field hintLabel="external URL to this project">
           <mat-label>URL to the project (http:..)</mat-label>
-          <input matInput [formControl]="formControl(control, 'link')"/>
+          <input matInput [formControl]="formControl(control, 'link')" />
         </mat-form-field>
         <mat-form-field hintLabel="an image source for the project list page">
           <mat-label>Image</mat-label>
           <mat-select [formControl]="formControl(control, 'image')">
             <mat-option *ngFor="let image of images; index as i" [value]="image.url" class="image-select">
-              <img [src]="image.url" height="150" [alt]="image.name"/>
+              <img [src]="image.url" height="150" [alt]="image.name" />
               {{ image.name }}
             </mat-option>
           </mat-select>
           <img matSuffix *ngIf="formControl(control, 'image').value as src" [src]="src" height="60"
-               alt="Preview image"/>
+            alt="Preview image" />
         </mat-form-field>
         <h4>Description of project</h4>
         <app-rich-text [imageList]="images" [control]="formControl(control, 'content')"></app-rich-text>
-        <button
-          mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error"
-        >remove project #{{ i + 1 }} {{ formControl(control, 'title').value }}</button>
+        <button mat-button (click)="formArray(form, 'projects').removeAt(i)" class="mat-error">
+          remove project #{{ i + 1}} {{ formControl(control, 'title').value }}
+        </button>
       </div>
     </div>
   </div>
-  <button mat-button
-          (click)="addProjectControl(form)"
-          class="mat-accent">+ add project
+  <button mat-button (click)="addProjectControl(form)" class="mat-accent">+ add project
   </button>
 </ng-template>

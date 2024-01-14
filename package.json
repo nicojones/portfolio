@@ -10,6 +10,7 @@
     "build": "ng build --configuration production --aot --named-chunks --extract-css --configuration=production --build-optimizer",
     "test": "ng test",
     "e2e": "ng e2e",
+    "deploy": "ng deploy",
     "lint": "eslint \"src/app/**/*.ts\" -c .eslintrc.json --cache",
     "lint-fix": "npm run lint -- --fix",
     "lint-fix-errors": "npm run lint -- --fix --fix-type problem,layout"
