@@ -1,5 +1,5 @@
-import {TinyMCE} from "tinymce";
-import {FirestoreFile} from "~admin/types";
+import { TinyMCE } from "tinymce";
+import { FirestoreFile } from "~admin/types";
 
 type TinyMCEInitConfig = Parameters<TinyMCE["init"]>[0];
 
@@ -20,8 +20,9 @@ export const richTextConfig = (images: FirestoreFile[]): RichTextConfig => ({
       .project-image.center {max-width: 100%}
      `,
   image_description: false,
+  image_dimensions: false,
   image_class_list: [
-    {title: "Overflow", value: "project-image center"},
-    {title: "No Overflow", value: "project-image"}
-  ]
+    { title: "Overflow", value: "project-image center" },
+    { title: "No Overflow", value: "project-image" }
+  ],
 });
