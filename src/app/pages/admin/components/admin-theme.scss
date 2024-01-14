@@ -252,7 +252,7 @@ $mat-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0
 
   .mat-button, .mat-icon-button, .mat-stroked-button {
     color: inherit;
-    background: transparent
+    background: #ffe0de
   }
 
   .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
@@ -557,4 +557,43 @@ $mat-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0
   .mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled) {
     background: rgba(0, 0, 0, .04)
   }
+}
+
+
+@import 'colors';
+
+.form-box {
+  background-color: $white;
+  padding: 20px;
+  min-height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  color: $black;
+  max-width: max(1200px, 90vw);
+}
+
+.form-group > .mat-form-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.border-box {
+  border: 1px solid black;
+  margin: 10px 0;
+  padding: 30px;
+}
+
+._box_ {
+  margin: 0;
+  padding: 0;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+mat-option.image-select {
+  height: 11rem;
+  border-bottom: 1px solid black;
 }

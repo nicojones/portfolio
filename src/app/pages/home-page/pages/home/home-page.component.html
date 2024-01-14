@@ -3,7 +3,8 @@
     class="jumbo-box"
     [class.show-menu]="showMenu % 2"
     [class.hover-effects]="!(_.loading  || clientOs.isMobile)"
-    @slideUnder (@slideUnder.done)="_.loading = false"
+    @slideUnder
+    (@slideUnder.done)="_.loading = false"
   >
     <div
       *ngFor="let t of homePage.title" [class.accent]="t.accent"

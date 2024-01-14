@@ -1,0 +1,48 @@
+<div class="text form-box mt-50">
+
+  <form [formGroup]="f" *ngIf="service.homeForm as f" class="flex-column">
+    <mat-form-field hintLabel="This is the name of the website, the page title.">
+      <mat-label>Name of the website</mat-label>
+      <input matInput formControlName="pageTitle">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mobile tap message</mat-label>
+      <input matInput formControlName="mobileTap">
+    </mat-form-field>
+    <div>
+      <h2>Title</h2>
+      <div *ngFor="let control of formArray(f, 'title').controls as controls; index as i" class="flex-column">
+        <h3>Item {{ i + 1 }}</h3>
+        <mat-checkbox [formControl]="formControl(control, 'accent')">With accent</mat-checkbox>
+        <mat-form-field>
+          <mat-label>position</mat-label>
+          <input matInput [formControl]="formControl(control, 'index')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Text to show</mat-label>
+          <input matInput [formControl]="formControl(control, 'text')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Text to show on hover</mat-label>
+          <input matInput [formControl]="formControl(control, 'textHover')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Url it points to</mat-label>
+          <mat-select [formControl]="formControl(control, 'url')">
+            <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">{{ RouteKeys[i] }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Small text on the right?</mat-label>
+          <input matInput [formControl]="formControl(control, 'mini')">
+        </mat-form-field>
+        <hr>
+        <button mat-button (click)="formArray(f, 'title').removeAt(i)" class="mat-error">remove item {{ i + 1
+          }}</button>
+      </div>
+      <button mat-button (click)="addTitleControl(formArray(f, 'title'))" class="mat-accent">+ add item</button>
+    </div>
+    <button mat-button (click)="saveHomeForm()">Save</button>
+  </form>
+
+</div>

@@ -1,0 +1,51 @@
+<div class="text form-box mt-50">
+  <form [formGroup]="f" *ngIf="service.aboutForm as f" class="flex-column">
+    <h2>Title</h2>
+    <!------------------------------------------->
+    <div class="flex-column" style="margin-left: 20px">
+      <mat-label>First</mat-label>
+      <div *ngFor="let first of formArray(f, 'title.first').controls; index as i" class="flex-row">
+        <mat-form-field>
+          <!--suppress AngularInvalidExpressionResultType -->
+          <input matInput [formControl]="first">
+        </mat-form-field>
+        <button mat-button (click)="formArray(f, 'title.first').removeAt(i)" class="mat-error">remove FIRST item {{
+          i + 1 }}</button>
+      </div>
+      <button mat-button (click)="addFormControl(formArray(f, 'title.first'))" class="mat-accent">+ add FIRST item
+      </button>
+    </div>
+    <!------------------------------------------->
+    <div class="flex-column" style="margin-left: 20px">
+      <mat-label>Multi</mat-label>
+      <div *ngFor="let multi of formArray(f, 'title.multi').controls; index as i" class="flex-row">
+        <mat-form-field>
+          <!--suppress AngularInvalidExpressionResultType -->
+          <input matInput [formControl]="multi">
+        </mat-form-field>
+        <button mat-button (click)="formArray(f, 'title.multi').removeAt(i)" class="mat-error">remove MULTI item {{
+          i + 1 }}</button>
+      </div>
+      <button mat-button (click)="addFormControl(formArray(f, 'title.multi'))" class="mat-accent">+ add MULTI item
+      </button>
+    </div>
+    <!------------------------------------------->
+    <div class="flex-column" style="margin-left: 20px">
+      <mat-label>Last</mat-label>
+      <div *ngFor="let last of formArray(f, 'title.last').controls; index as i" class="flex-row">
+        <mat-form-field>
+          <!--suppress AngularInvalidExpressionResultType -->
+          <input matInput [formControl]="last">
+        </mat-form-field>
+        <button mat-button (click)="formArray(f, 'title.last').removeAt(i)" class="mat-error">remove LAST item {{ i
+          + 1 }}</button>
+      </div>
+      <button mat-button (click)="addFormControl(formArray(f, 'title.last'))" class="mat-accent">+ add LAST item
+      </button>
+    </div>
+    <!------------------------------------------->
+    <hr>
+    <app-admin-helpers-text [form]="f"></app-admin-helpers-text>
+    <button mat-button (click)="saveAboutForm()">Save</button>
+  </form>
+</div>

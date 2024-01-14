@@ -1,0 +1,29 @@
+<h2>Links</h2>
+<div *ngFor="let control of formArray(form, 'link').controls; index as i" class="flex-column border-box">
+  <mat-form-field>
+    <mat-label>Title / Label</mat-label>
+    <input matInput [formControl]="formControl(control, 'text')" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>URL</mat-label>
+    <input matInput [formControl]="formControl(control, 'url')" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>attr-title</mat-label>
+    <input matInput [formControl]="formControl(control, 'title')">
+  </mat-form-field>
+  <!--    <mat-checkbox [formControl]="formControl(control, 'blank')">_blank</mat-checkbox>-->
+  <mat-form-field>
+    <mat-label>Icon</mat-label>
+    <mat-select [formControl]="formControl(control, 'icon')">
+      <mat-option *ngFor="let icon of icons" [value]="icon">
+        {{ icon }}<img [src]="'/assets/icons/' + icon + '.svg'" [alt]="icon" style="height: 30px;">
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="formArray(form, 'link').removeAt(i)" class="mat-error">remove link #{{ i + 1 }} {{
+    formControl(control, 'text').value }}</button>
+</div>
+<button mat-button (click)="addFormControl(formArray(form, 'link'), service.linkContent({}))" class="mat-accent" style="margin-bottom: 1rem">
+  + Add link
+</button>

@@ -30,8 +30,8 @@ import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
           .then((m) => m.AboutModule)
       },
       {
-        path: MyRoutes.WORK,
-        data: {path: MyRoutes.WORK, page: FirebasePageEnum.WORK, article: ArticleGroup.WORK} as ProjectRoutingData,
+        path: MyRoutes.PROJECTS,
+        data: {path: MyRoutes.PROJECTS, page: FirebasePageEnum.WORK, article: ArticleGroup.WORK} as ProjectRoutingData,
         loadChildren: () => import("~home-page/pages/projects")
           .then((m) => m.ProjectsModule)
       },

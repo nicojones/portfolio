@@ -7,17 +7,16 @@
 <app-stars *ngIf="stars"></app-stars>
 
 <a (click)="toggleStars()" id="toggle-stars" [title]="stars ? 'Hide stars': 'Show stars'" [class.no-stars]="!stars">
-  <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background"/>
+  <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background" />
 </a>
 
 <span id="authed" *ngIf="auth">
-  <ng-container
-    *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.WORK, MyRoutes.BLOG, MyRoutes.ADMIN, MyRoutes.LOGIN]">
-    <a [routerLink]="'/' + url"
-       style="margin-right: 20px"
-       [innerHTML]="url"
-    ></a>
-  </ng-container>
+  <div id="authed-items">
+    <ng-container
+      *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.ADMIN]">
+      <a [routerLink]="'/' + url" style="margin-left: 20px" [innerHTML]="url"></a>
+    </ng-container>
+  </div>
 
-  <a (click)="logout()">logout</a>
+  <a role="button" (click)="logout()" style="margin-left: 20px">logout</a>
 </span>

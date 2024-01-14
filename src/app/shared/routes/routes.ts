@@ -2,8 +2,9 @@ export /* non-const */ enum MyRoutes {
   HOMEPAGE_LINK = "", // same as our homepage
 
   LINKS = "",
+  LINKS_DASHBOARD = "links",
   HOME = "home",
-  WORK = "projects",
+  PROJECTS = "projects",
   ART = "art",
   CONTACT = "contact",
   ABOUT = "about",

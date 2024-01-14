@@ -68,10 +68,18 @@ $name-logo-width: 13rem;
   position: fixed;
   text-decoration: none;
   top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
   @include transitions();
 
   &:hover {
     opacity: 1;
+  }
+
+  #authed-items {
+    display: flex;
+    flex-direction: row;
   }
 }
 

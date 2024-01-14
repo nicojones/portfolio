@@ -1,0 +1,8 @@
+<h2>Text</h2>
+<div *ngFor="let control of formArray(form, 'text').controls; index as i" class="flex-column border-box">
+  <app-rich-text [imageList]="images" [control]="formControl(control, 'content')"></app-rich-text>
+  <button mat-button (click)="formArray(form, 'text').removeAt(i)" class="mat-error">remove #{{ i + 1 }}</button>
+</div>
+<button mat-button (click)="addFormControl(formArray(form, 'text'), service.textContent({}))" class="mat-accent">
+  + add content item
+</button>
