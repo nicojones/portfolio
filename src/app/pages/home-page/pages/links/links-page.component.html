@@ -1,24 +1,21 @@
 <div class="links-wrapper">
   <h2 class="links-header" [innerHTML]="linksPage.title"></h2>
   <div id="cards" (mousemove)="onMouseMove($event)" @fadeIn>
-    <a
-      *ngFor="let link of linksPage.links" [class.accent]="false"
-      [routerLink]="link.external ? null : link.url"
-      (click)="onExternalClick(link)"
-      class="card fade-in"
-      #card
-    >
-      <div class="card-content">
-        <div class="card-image" [style]="{backgroundImage: 'url(' + link.image + ')'}"></div>
-        <div class="card-info-wrapper">
-          <div class="card-info">
-            <div class="card-info-title">
-              <h2 class="card-title-1" [innerHTML]="link.name"></h2>
-              <h4 *ngIf="link.subTitle" class="card-title-2" [innerHTML]="link.subTitle"></h4>
+    <ng-container *ngFor="let link of linksPage.links">
+      <a *ngIf="!link.hidden" [class.accent]="false" [routerLink]="link.external ? null : link.url" (click)="onExternalClick(link)"
+        class="card fade-in" #card>
+        <div class="card-content">
+          <div class="card-image" [style]="{backgroundImage: 'url(' + link.image + ')'}"></div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <div class="card-info-title">
+                <h2 class="card-title-1" [innerHTML]="link.name"></h2>
+                <h4 *ngIf="link.subTitle" class="card-title-2" [innerHTML]="link.subTitle"></h4>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </ng-container>
   </div>
 </div>

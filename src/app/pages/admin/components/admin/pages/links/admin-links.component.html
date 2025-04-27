@@ -9,6 +9,7 @@
       <h2>Cards</h2>
       <div *ngFor="let control of formArray(f, 'links').controls as controls; index as i" class="flex-column">
         <h3>Item {{ i + 1 }}</h3>
+        <mat-checkbox matInput [formControl]="formControl(control, 'hidden')">hidden</mat-checkbox>
         <mat-form-field>
           <mat-label>position</mat-label>
           <input matInput [formControl]="formControl(control, 'index')">
@@ -27,7 +28,7 @@
           <ng-container *ngIf="{ external: formControl(control, 'external').value } as _">
             <mat-select *ngIf="!_.external" [formControl]="formControl(control, 'url')">
               <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">
-                /{{ RouteKeys[i] }}</mat-option>
+                {{ RouteKeys[i] }}</mat-option>
             </mat-select>
             <input matInput *ngIf="_.external" [formControl]="formControl(control, 'url')" />
           </ng-container>

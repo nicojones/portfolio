@@ -2,7 +2,7 @@ export const enum SocialIcons {
   GITHUB = "github",
   YOUTUBE = "youtube",
   LINKEDIN = "linkedin",
-  PDF = "pdf",
+  FILE = "file",
   MAIL = "email",
-  USER = "user"
+  FILE_HEART = "file-heart"
 }

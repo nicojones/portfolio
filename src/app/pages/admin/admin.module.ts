@@ -24,6 +24,7 @@ import { AdminBlogComponent } from "./components/admin/pages/blog/admin-blog.com
 import { AdminContactComponent } from "./components/admin/pages/contact/admin-contact.component";
 import { AdminHelpersLinksComponent } from "./components/admin/helpers/links/admin-helpers-links.component";
 import { RouterModule } from "@angular/router";
+import { AdminOnComponent } from "./components/admin/pages/on/admin-on.component";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RouterModule } from "@angular/router";
     AdminContactComponent,
     AdminLinksComponent,
     AdminArtComponent,
+    AdminOnComponent,
     AdminBlogComponent,
     // Upload page
     AdminUploadImageComponent,

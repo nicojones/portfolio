@@ -11,6 +11,7 @@ export /* non-const */ enum MyRoutes {
   ADMIN = "dashboard",
   BLOG = "blog",
   UPLOAD_IMAGE = "upload-image",
+  PAGE_X = "on-running",
   LOGIN = "_login_"
 }
 

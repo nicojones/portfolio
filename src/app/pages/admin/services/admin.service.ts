@@ -44,6 +44,11 @@ export class AdminService {
     projects: new MainFormArray<ProjectsPage["projects"]>([])
   });
 
+  public onForm: MainFormGroup<ProjectsPage> = new MainFormGroup<ProjectsPage>({
+    title: new UntypedFormControl(null, Validators.required),
+    projects: new MainFormArray<ProjectsPage["projects"]>([])
+  });
+
   public aboutForm: MainFormGroup<AboutPage> = new MainFormGroup<AboutPage>({
     title: new MainFormGroup<AboutPage["title"]>({
       first: new MainFormArray([]),
@@ -83,6 +88,7 @@ export class AdminService {
 
   public linkForm(link: LinksPageLink, index: number) {
     return new MainFormGroup<LinksPageLink>({
+      hidden: new FormControl(link.hidden),
       image: new FormControl(link.image, Validators.required),
       name: new FormControl(link.name, Validators.required),
       external: new FormControl<boolean>(link.external),

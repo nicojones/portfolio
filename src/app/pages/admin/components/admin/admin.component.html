@@ -2,7 +2,7 @@
   <div style="margin-left: 3rem; position: relative; top: 2rem; margin-bottom: 4rem; border: 1px solid #ccc; display: flex; flex-direction: row">
     <span style="margin-right: 2rem">Admin Routes:</span>
     <ng-container
-      *ngFor="let url of [MyRoutes.ABOUT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.CONTACT, MyRoutes.HOME, MyRoutes.LINKS_DASHBOARD, MyRoutes.PROJECTS]">
+      *ngFor="let url of [MyRoutes.ABOUT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.CONTACT, MyRoutes.HOME, MyRoutes.LINKS_DASHBOARD, MyRoutes.PROJECTS, MyRoutes.PAGE_X]">
       <a [routerLink]="'/' + MyRoutes.ADMIN + '/' + url" style="margin-right: 20px" [innerHTML]="url"></a>
     </ng-container>
   </div>

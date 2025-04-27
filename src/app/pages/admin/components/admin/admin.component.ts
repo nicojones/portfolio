@@ -39,11 +39,11 @@ export class AdminComponent {
     SocialIcons.LINKEDIN,
     SocialIcons.YOUTUBE,
     SocialIcons.MAIL,
-    SocialIcons.PDF,
-    SocialIcons.USER
+    SocialIcons.FILE,
+    SocialIcons.FILE_HEART
   ];
 
-  public images: FirestoreFile[] = this.route.snapshot.data.files;
+  public images: FirestoreFile[] = [];
 
   public formSetup: { [key: string]: boolean } = {} as unknown as any;
 
@@ -62,6 +62,8 @@ export class AdminComponent {
     public readonly fireApi: FirebaseApiService,
     public readonly ref: ChangeDetectorRef
   ) {
+
+    this.images = this.route.snapshot.data?.files ?? this.route.parent.snapshot.data?.files;
 
   }
 

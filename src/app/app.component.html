@@ -13,7 +13,7 @@
 <span id="authed" *ngIf="auth">
   <div id="authed-items">
     <ng-container
-      *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.ADMIN]">
+      *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.ADMIN, MyRoutes.PAGE_X]">
       <a [routerLink]="'/' + url" style="margin-left: 20px" [innerHTML]="url"></a>
     </ng-container>
   </div>

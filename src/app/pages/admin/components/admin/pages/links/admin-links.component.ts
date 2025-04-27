@@ -20,6 +20,8 @@ export class AdminLinksComponent extends AdminComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setupLinksForm();
+
+    console.log("IMAGES", this.images);
   }
 
   public setupLinksForm() {

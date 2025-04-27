@@ -12,6 +12,7 @@ export interface CommonLinksPageLink {
   name: string;
   subTitle: string;
   index: number;
+  hidden?: boolean;
 }
 
 export type LinksPageLink = CommonLinksPageLink & ExternalPageLink;

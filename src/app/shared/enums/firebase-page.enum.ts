@@ -5,11 +5,13 @@ export const enum FirebasePageEnum {
   LINKS = "LINKS",
   BLOG = "BLOG",
   CONTACT = "CONTACT",
-  ABOUT = "ABOUT"
+  ABOUT = "ABOUT",
+  PAGE_X = "PAGE_X",
 }
 
 export const enum ArticleGroup {
   BLOG = "blog",
   WORK = "portfolio",
-  ART = "personal"
+  ART = "personal",
+  ON = "on",
 }

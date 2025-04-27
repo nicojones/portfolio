@@ -1,0 +1,10 @@
+<div class="text form-box mt-50">
+  <form [formGroup]="f" *ngIf="service.onForm as f" class="flex-column">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [formControl]="formControl(f, 'title')">
+    </mat-form-field>
+    <app-admin-helpers-project [form]="f"></app-admin-helpers-project>
+    <button mat-button (click)="saveOnForm()">Save</button>
+  </form>
+</div>

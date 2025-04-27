@@ -1,9 +1,9 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
-import {MyRoutes} from "~routes/routes";
-import {ArticleGroup, FirebasePageEnum} from "~app/shared/enums";
-import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
+import { MyRoutes } from "~routes/routes";
+import { ArticleGroup, FirebasePageEnum } from "~app/shared/enums";
+import { ProjectRoutingData } from "~home-page/pages/projects/shared/interfaces";
 
 
 @NgModule({
@@ -31,19 +31,29 @@ import {ProjectRoutingData} from "~home-page/pages/projects/shared/interfaces";
       },
       {
         path: MyRoutes.PROJECTS,
-        data: {path: MyRoutes.PROJECTS, page: FirebasePageEnum.WORK, article: ArticleGroup.WORK} as ProjectRoutingData,
+        data: {
+          path: MyRoutes.PROJECTS,
+          page: FirebasePageEnum.WORK,
+          article: ArticleGroup.WORK
+        } as ProjectRoutingData,
         loadChildren: () => import("~home-page/pages/projects")
           .then((m) => m.ProjectsModule)
       },
       {
         path: MyRoutes.ART,
-        data: {path: MyRoutes.ART, page: FirebasePageEnum.ART, article: ArticleGroup.ART} as ProjectRoutingData,
+        data: { path: MyRoutes.ART, page: FirebasePageEnum.ART, article: ArticleGroup.ART } as ProjectRoutingData,
         loadChildren: () => import("~home-page/pages/projects")
           .then((m) => m.ProjectsModule)
       },
+      // {
+      //   path: MyRoutes.BLOG,
+      //   data: {path: MyRoutes.BLOG, page: FirebasePageEnum.BLOG, article: ArticleGroup.BLOG} as ProjectRoutingData,
+      //   loadChildren: () => import("~home-page/pages/projects")
+      //     .then((m) => m.ProjectsModule)
+      // }
       {
-        path: MyRoutes.BLOG,
-        data: {path: MyRoutes.BLOG, page: FirebasePageEnum.BLOG, article: ArticleGroup.BLOG} as ProjectRoutingData,
+        path: MyRoutes.PAGE_X,
+        data: { path: MyRoutes.PAGE_X, page: FirebasePageEnum.PAGE_X, article: ArticleGroup.ON } as ProjectRoutingData,
         loadChildren: () => import("~home-page/pages/projects")
           .then((m) => m.ProjectsModule)
       }

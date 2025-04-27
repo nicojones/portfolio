@@ -1,8 +1,8 @@
-@import 'colors';
-@import 'globals';
-@import 'breakpoints';
-@import 'images';
-@import 'mixins';
+@import "colors";
+@import "globals";
+@import "breakpoints";
+@import "images";
+@import "mixins";
 
 html {
   height: 100%; // the body can't be 100%-high, otherwise we can't reset the scroll to 0,0
@@ -25,7 +25,8 @@ body {
   }
 }
 
-html, body {
+html,
+body {
   font-size: $app-font-size;
   overflow-x: hidden;
 }
@@ -61,7 +62,7 @@ a {
     }
   }
 
-  @media(max-width: $breakpoint-mobile) {
+  @media (max-width: $breakpoint-mobile) {
     width: $app-row-width-sm;
     .text {
       padding: 0 0;
@@ -101,7 +102,8 @@ a {
   filter: brightness(0);
 }
 
-.app-row, .fluid {
+.app-row,
+.fluid {
   @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, 15px, $app-font-size);
 }
 
@@ -109,7 +111,7 @@ a {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $img-min-height, $img-max-height, 'max-height');
+  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $img-min-height, $img-max-height, "max-height");
   display: flex;
   width: auto;
   justify-content: center;
@@ -119,4 +121,24 @@ a {
   @include transitions();
 
   @extend %centered-object;
+}
+
+
+.project-content {
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
+
+  a {
+    mix-blend-mode: luminosity;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.no-style {
+      color: inherit;
+    }
+  }
 }
