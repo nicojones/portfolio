@@ -1,0 +1,47 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "es2020",
+    "allowJs": true,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "~env/*": [
+        "src/environments/*"
+      ],
+      "~routes/*": [
+        "src/app/shared/routes/*"
+      ],
+      "~app/*": [
+        "src/app/*"
+      ],
+      "~landing/*": [
+        "src/app/pages/landing/*"
+      ],
+      "~goodreads/*": [
+        "src/app/pages/goodreads/*"
+      ],
+      "~home-page/*": [
+        "src/app/pages/home-page/*"
+      ],
+      "~login/*": [
+        "src/app/pages/login/*"
+      ],
+      "~admin/*": [
+        "src/app/pages/admin/*"
+      ]
+    }
+  }
+}

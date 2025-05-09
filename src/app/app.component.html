@@ -1,0 +1,22 @@
+<a id="name-logo" routerLink="" *ngIf="currentPage !== Routes.HOMEPAGE_LINK">
+  <i>&nbsp;&nbsp;&nbsp;&nbsp;</i><span class="name-bg">nico<i>.</i>kupfer</span><i class="name-bg l1">.es/</i>
+</a>
+
+<router-outlet></router-outlet>
+
+<app-stars *ngIf="stars"></app-stars>
+
+<a (click)="toggleStars()" id="toggle-stars" [title]="stars ? 'Hide stars': 'Show stars'" [class.no-stars]="!stars">
+  <img src="assets/icons/star.svg" id="star" alt="Toggle Star Background" />
+</a>
+
+<span id="authed" *ngIf="auth">
+  <div id="authed-items">
+    <ng-container
+      *ngFor="let url of [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.ADMIN, MyRoutes.PAGE_X]">
+      <a [routerLink]="'/' + url" style="margin-left: 20px" [innerHTML]="url"></a>
+    </ng-container>
+  </div>
+
+  <a role="button" (click)="logout()" style="margin-left: 20px">logout</a>
+</span>

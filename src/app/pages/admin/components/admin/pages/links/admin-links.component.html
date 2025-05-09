@@ -1,0 +1,54 @@
+<div class="text form-box mt-50">
+
+  <form [formGroup]="f" *ngIf="service.linksForm as f" class="flex-column">
+    <mat-form-field hintLabel="These are the main links on the homepage.">
+      <mat-label>Greeting</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <div>
+      <h2>Cards</h2>
+      <div *ngFor="let control of formArray(f, 'links').controls as controls; index as i" class="flex-column">
+        <h3>Item {{ i + 1 }}</h3>
+        <mat-checkbox matInput [formControl]="formControl(control, 'hidden')">hidden</mat-checkbox>
+        <mat-form-field>
+          <mat-label>position</mat-label>
+          <input matInput [formControl]="formControl(control, 'index')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Text to show</mat-label>
+          <input matInput [formControl]="formControl(control, 'name')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Text as subtitle</mat-label>
+          <input matInput [formControl]="formControl(control, 'subTitle')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-checkbox [formControl]="formControl(control, 'external')">Custom url?</mat-checkbox>
+          <mat-label>Url it points to</mat-label>
+          <ng-container *ngIf="{ external: formControl(control, 'external').value } as _">
+            <mat-select *ngIf="!_.external" [formControl]="formControl(control, 'url')">
+              <mat-option *ngFor="let route of Routes; index as i" [value]="Routes[i]">
+                {{ RouteKeys[i] }}</mat-option>
+            </mat-select>
+            <input matInput *ngIf="_.external" [formControl]="formControl(control, 'url')" />
+          </ng-container>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>image</mat-label>
+          <mat-select [formControl]="formControl(control, 'image')">
+            <mat-option *ngFor="let image of images; index as i" [value]="image.url" class="image-select">
+              <img [src]="image.url" height="150" [alt]="image.name" />
+              {{ image.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <hr>
+        <button mat-button (click)="formArray(f, 'links').removeAt(i)" class="mat-error">remove item {{ i + 1
+          }}</button>
+      </div>
+      <button mat-button (click)="addLinkControl(formArray(f, 'links'))" class="mat-accent">+ add item</button>
+    </div>
+    <button mat-button (click)="saveLinksForm()">Save</button>
+  </form>
+
+</div>

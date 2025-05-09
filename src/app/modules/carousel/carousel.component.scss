@@ -1,0 +1,33 @@
+@import 'breakpoints';
+@import 'globals';
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-box {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.pagination {
+  font-size: $book-font-size;
+  margin-top: 20px;
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $app-font-size;
+  }
+
+  display: inline-flex;
+  flex-wrap: wrap-reverse;
+  &-numbers {
+    //flex: 1 0 200px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-title {
+    //flex: 0 1 50%;
+    text-align: right;
+    margin-right: 30px
+  }
+}

@@ -1,0 +1,115 @@
+@import 'globals';
+@import 'mixins';
+@import 'breakpoints';
+
+:host {
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .project-main-image {
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 100vw;
+    height: 50vh;
+    position: relative;
+    width: 1000px;
+    &.loading:before {
+      opacity: 0.8;
+    }
+    &:before {
+      @include transitions();
+      opacity: 0;
+      content: attr(data-loading);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: #ddd;
+      background: #ccc;
+      font-size: 100px;
+      text-align: center;
+      line-height: 50vh;
+    }
+  }
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .project-link {
+    @include transitions();
+
+    &:hover {
+      margin-left: $small-indent-hover;
+    }
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep {
+    .external {
+      top: 5px;
+      position: relative;
+      opacity: 0.3;
+      height: $app-font-size;
+      margin-left: $app-font-size;
+    }
+  }
+
+  .back-button {
+    font-size: $book-font-size;
+    text-align: center;
+    display: block;
+    margin-top: $book-font-size;
+    margin-bottom: $app-row-bottom;
+    position: relative;
+
+    &:before {
+      height: $book-font-size;
+      background-size: $book-font-size;
+    }
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  ::ng-deep .project-iframe {
+    width: 100%;
+    height: $img-min-height;
+    border: none;
+    @extend %centered-object;
+
+    & + * {
+      display: none;
+    }
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  .mobile ::ng-deep .project-iframe {
+    display: none;
+
+    & + * {
+      display: inline-block;
+    }
+  }
+
+}
+
+$progress-bar-height: 3px;
+#progress-bar {
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  position: fixed;
+  background: transparent;
+  height: $progress-bar-height;
+  @include transitions();
+
+  #progress-percent {
+    @include box_shadow(#333, 8px);
+    height: $progress-bar-height;
+    display: inline-block;
+    position: absolute;
+
+    &.white {
+      background: $white;
+    }
+    &.black {
+      background: $black;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import 'colors';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  width: 500px;
+  align-self: center;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+    %label-input {
+      padding: 10px;
+      font-size: 30px;
+    }
+
+    %border-color {
+      color: $text-color;
+      border: 1px solid $text-color;
+    }
+
+    label {
+      @extend %label-input;
+    }
+    input {
+      @extend %label-input;
+      background: transparent !important;
+      @extend %border-color;
+    }
+    button {
+      @extend %label-input;
+      width: 100%;
+      background: transparent;
+      @extend %border-color;
+    }
+  }
+}

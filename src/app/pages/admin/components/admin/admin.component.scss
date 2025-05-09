@@ -1,0 +1,37 @@
+@import 'colors';
+
+.form-box {
+  background-color: $white;
+  padding: 20px;
+  min-height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  color: $black;
+  max-width: max(1200px, 90vw);
+}
+
+.form-group > .mat-form-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.border-box {
+  border: 1px solid black;
+  margin: 10px 0;
+  padding: 30px;
+}
+
+._box_ {
+  margin: 0;
+  padding: 0;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+mat-option.image-select {
+  height: 11rem;
+  border-bottom: 1px solid black;
+}

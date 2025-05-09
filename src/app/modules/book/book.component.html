@@ -1,0 +1,14 @@
+<h2 class="book-title" [title]="book.title">
+  <a [href]="book.link"
+    target="_blank"
+    class="book-link no-deco"
+    [innerHTML]="book.title"
+  ></a>
+</h2>
+<div class="book-item" [title]="book.title">
+  <div class="book-img-box">
+    <img [src]="book.image" class="book-img" [alt]="book.title"/>
+    <span *ngIf="book.pages" ><span [innerHTML]="book.pages" class="accent"></span>&nbsp;<small>pages</small></span>
+  </div>
+  <p class="book-descr fluid" [innerHTML]="book.descr"></p>
+</div>

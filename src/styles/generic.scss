@@ -1,0 +1,132 @@
+@import 'mixins';
+@import 'colors';
+@import 'globals';
+@import 'breakpoints';
+
+.w-100 {
+  width: 100%
+}
+
+.relative {
+  position: relative;
+}
+
+.v-hidden {
+  visibility: hidden;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.just-left {
+  justify-content: left;
+}
+
+.just-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.accent {
+  color: $primary-color
+}
+
+.accent-bg {
+  background: $primary-color;
+  color: $text-color;
+}
+
+.progress {
+  cursor: progress !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.small-landing {
+  margin-top: 10vh;
+  margin-bottom: 15vh;
+}
+
+.landing {
+  margin-top: 16vh;
+  //min-height: 35vh;
+  margin-bottom: 20vh;
+
+  > .subtitle {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    display: block;
+    top: 1rem;
+    position: relative;
+
+    &.project-link {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+  }
+}
+
+.jumbo {
+  font-weight: $bold;
+  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size, $jumbo-font-size);
+  @include fluid-type($breakpoint-mobile-sm - 100px, $breakpoint-max-width, $h2-font-size * 1.2, $jumbo-font-size * .9, line-height);
+}
+.jumbo-huge {
+  font-weight: $bold;
+  @include fluid-type($breakpoint-mobile-sm, $breakpoint-max-width, $h2-font-size, $jumbo-huge-font-size);
+}
+
+h2, .h2 {
+  font-size: $h2-font-size;
+}
+
+.secondary {
+  opacity: 0.4;
+}
+
+.no-deco {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.l1 {
+  position: relative;
+  left: -2px;
+}
+
+::selection {
+  background-color: $primary-color;
+  color: $text-color;
+}
+
+.slide-under {
+  overflow: hidden;
+}
+
+hr {
+  border-width: 0 0 $app-hr-width 0;
+  border-style: solid;
+}

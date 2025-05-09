@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.plus-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  > span.absolute {
+    @include transitions();
+    position: absolute;
+    opacity: 0;
+
+    &.shown {
+      opacity: 1;
+    }
+  }
+  > span.relative {
+    opacity: 0;
+    color: transparent;
+    position: relative;
+    visibility: hidden;
+  }
+}
+
+app-carousel {
+  margin-top: 50px;
+}

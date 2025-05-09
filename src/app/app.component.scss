@@ -1,0 +1,117 @@
+@use "sass:math";
+@import 'colors';
+@import 'breakpoints';
+@import 'images';
+@import 'globals';
+@import 'mixins';
+
+$name-logo-width: 13rem;
+
+:host {
+  width: 100vw; // otherwise it measures 1 million pixels width!
+}
+
+#name-logo {
+  position: fixed;
+  font-family: 'Monospaced', monospace;
+  width: $name-logo-width;
+  text-align: center;
+  z-index: 1;
+  @if ($name-logo-position == 'right') {
+    left: calc(100% - #{$name-logo-right + $name-logo-width});
+  } @else {
+    left: $name-logo-left;
+  }
+  top: $name-logo-top;
+  color: inherit;
+  text-decoration: none;
+  @include transitions();
+
+  @media (max-width: $breakpoint-mobile) {
+    top: math.div($name-logo-top, 4);
+  }
+
+  .name-bg {
+    //background: $app-background;
+    //padding: 2px;
+  }
+
+
+  i {
+    @include transitions();
+    font-style: normal;
+    opacity: 0;
+  }
+
+  &:hover {
+    @if ($name-logo-position == 'right') {
+      left: calc(100% - #{$name-logo-right + $name-logo-width + $name-logo-move-on-hover});
+    } @else {
+      left: $name-logo-move-on-hover;
+    }
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    left: calc(50% - #{math.div($name-logo-width, 2)}); // centered
+    &:hover {
+      left: calc(50% - #{math.div($name-logo-width, 2) + $name-logo-move-on-hover});
+    }
+  }
+}
+
+#authed {
+  opacity: 0.05;
+  position: fixed;
+  text-decoration: none;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  @include transitions();
+
+  &:hover {
+    opacity: 1;
+  }
+
+  #authed-items {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+$star-position: 0px;
+$star-size: 30px;
+$star-icon-size: 20px;
+#toggle-stars {
+  @include transitions(1s);
+  cursor: pointer;
+  position: fixed;
+  opacity: 0.6;
+  bottom: $star-position;
+  left: $star-position;
+  height: $star-size;
+  width: $star-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  #star {
+    width: $star-icon-size;
+    height: $star-icon-size;
+  }
+
+  &:hover, &.no-stars {
+    @include transform(rotate(540deg));
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
+
+:host-context(.project-view) app-stars {
+  display: none;
+}

@@ -1,0 +1,19 @@
+<ng-container *ngFor="let t of text">
+
+  <div [innerHTML]="t._sanitized || sanitize(t)" class="slide-in"></div>
+<!--  <hr *ngIf="t.type === 'hr'" class="slide-in mat-divider">-->
+<!--  <p *ngIf="t.type === 'p'" [innerHTML]="t.content" class="slide-in"></p>-->
+<!--  <img *ngIf="t.type === 'img'" [src]="t.content" class="slide-in {{ t.extra?.className }}" [alt]="t.extra?.alt"/>-->
+</ng-container>
+
+<ng-container *ngFor="let l of links">
+  <a [href]="l.url"
+     target="_blank"
+     class="link"
+     [title]="l.title || l.url"
+     (click)="onLinkClick($event, l)"
+  >
+    <img [src]="'/assets/icons/' + l.icon + '.svg'" [alt]="l.icon" class="social"/>
+    <span class="text" [innerHTML]="l._sanitized || sanitize(l, 'text')"></span>
+  </a>
+</ng-container>

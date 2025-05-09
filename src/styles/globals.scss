@@ -1,0 +1,59 @@
+// set to true/false to center (or keep to the left) the menu in the home component
+$home-page-centered: false;
+// The position of the `Nico Kupfer` menu
+$name-logo-position: 'right';
+// Use opacity for the Home Page menu transitions
+$home-page-use-opacity: true;
+// Transparent / darkened images for Project View. Set to `false` or to the desired brightness (in %)
+$project-transparent-images: false;
+
+$bold: 800; // font-weight for bold type.
+
+$app-font-size: 20px; // MUST BE PX
+$jumbo-huge-font-size: 7 * $app-font-size;
+$jumbo-font-size: 6 * $app-font-size;
+$h2-font-size: 3 * $app-font-size;
+$big-font-size: 2 * $app-font-size;
+$book-font-size: 1.5 * $app-font-size;
+
+$app-box-padding: 5rem;
+
+$app-content-max-width: 650px; // Width for all paragraphs.
+
+$name-logo-top: 5rem;
+$name-logo-right: 4rem;
+$name-logo-left: 5rem;
+$name-logo-move-on-hover: 1rem;
+
+$app-row-top: 0;
+$app-row-bottom: 3rem;
+
+// How much to indent stuff in the home page when we hover on them
+$homepage-indent-hover: 4rem;
+$small-indent-hover: $app-font-size;
+
+$app-row-width: 75%;
+$app-row-width-sm: 95%;
+
+$app-row-text-padding: 2.5rem;
+
+// My photo in the homepage
+$myself-opacity: 1;
+$myself-brightness: 100%;
+///
+$myself-opacity-mobile: 0.3;
+$myself-brightness-mobile: 100%;
+//////
+
+$app-hr-width: 2px;
+
+$paragraph-margin: 4rem; // margin between paragraphs, or between big list items.
+$project-item-width: 300px; // The width of the Title+Summary for the Projects list. the rest is image.
+$project-item-height: 250px;
+$project-image-width: 250px; // The width of the Image for the Projects list.
+$project-content-image-width: 1100px;
+
+$book-carousel-width: 95vw;
+
+$img-min-height: 400px;
+$img-max-height: 600px;

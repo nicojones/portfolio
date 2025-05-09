@@ -1,0 +1,20 @@
+<div @slideIn [@.disabled]="!projectSlideIn">
+  <app-back-title [url]="RouteUrls.HOMEPAGE_LINK">{{ projectPage.title }}</app-back-title>
+  <div class="app-row bottom-padding">
+    <a
+      *ngFor="let project of projectPage.projects; index as i"
+      class="project-item text no-deco slide-in"
+      [style]="{'--color': project.textColor, '--bg-color': project.bgColor}"
+      [routerLink]="'/' + routingData.path + '/' + project.url"
+    >
+      <div class="project-item-bg"></div>
+      <div class="project-item-text">
+        <h2 class="my-0 project-name" [innerHTML]="project.title"></h2>
+        <small class="project-summary" [innerHTML]="project.summary"></small>
+      </div>
+      <div class="project-list-image">
+        <div [style]="'background-image: url(' + project.image + ')'" class="project-list-bg"></div>
+      </div>
+    </a>
+  </div>
+</div>

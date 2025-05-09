@@ -1,0 +1,41 @@
+@import 'globals';
+@import 'mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .link {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    @include transitions();
+
+    &:hover {
+      padding-left: $small-indent-hover;
+    }
+
+    .social {
+      height: $app-font-size * 2;
+      // filter: grayscale(100%);
+      // -webkit-filter: grayscale(100%);
+      margin-right: 20px;
+      user-select: none;
+    }
+
+    .text {
+      color: $text-color;
+    }
+  }
+
+  ::ng-deep {
+    .email {
+      display: none;
+    }
+    .email, .email2 {
+      font-style: normal;
+    }
+  }
+}

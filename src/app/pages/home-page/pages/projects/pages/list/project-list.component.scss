@@ -1,0 +1,79 @@
+@import 'globals';
+@import 'mixins';
+
+:root {
+  --color: black;
+  --bg-color: white;
+}
+
+:host {
+
+  .project-item {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin-bottom: $paragraph-margin;
+    position: relative;
+
+
+    .project-item-text {
+      flex: 1 1 $project-item-width;
+      padding: 0 $app-font-size;
+      //justify-content: flex-start;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+      flex-direction: column;
+    }
+
+    .project-name {
+      font-size: $big-font-size;
+    }
+
+    .project-summary {
+      margin-bottom: 1rem;
+    }
+
+    .project-item-bg {
+      background-color: var(--bg-color);
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      opacity: 0.25;
+      @include transitions();
+    }
+
+    .project-list-image {
+      height: $project-item-height;
+      flex: 1 1 $project-item-width;
+      overflow: hidden;
+
+      .project-list-bg {
+        @include transitions(#{10s all linear});
+        background-size: cover;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+    }
+
+    &:hover {
+      .project-item-bg {
+        opacity: 0.8;
+      }
+
+      .project-item-text, .project-summary {
+        color: var(--color);
+      }
+
+      .project-list-bg {
+        transform: scale(1.5);
+      }
+    }
+  }
+
+}

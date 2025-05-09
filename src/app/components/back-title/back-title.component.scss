@@ -1,0 +1,14 @@
+@import 'colors';
+
+:host {
+  position: sticky;
+  top: 0;
+}
+
+a.jumbo {
+  display: block;
+
+  &.is-pinned {
+    background-color: red;
+  }
+}

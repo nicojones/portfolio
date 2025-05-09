@@ -1,0 +1,112 @@
+@import 'mixins';
+
+$black-hole-color-1: #0a0808;
+$black-hole-color-2: #333;
+$black-hole-color-3: #000;
+$black-hole-size: 300px;
+
+
+.page {
+  height: 100%;
+}
+
+$astronaut-width: 150px;
+$rocket-width: 200px;
+
+// //////////////////////
+
+.astronaut {
+  width: $astronaut-width;
+  top: calc(50% - #{0 * $astronaut-width});
+  left: calc(50% - #{2 * $astronaut-width});
+  transform-origin: #{2 * $astronaut-width} center;
+  animation: circle 12s linear infinite reverse;
+}
+
+.rocket {
+  top: calc(50% - #{0 * $rocket-width});
+  left: calc(50% - #{2 * $rocket-width});
+  transform-origin: #{2 * $rocket-width} center;
+  width: 200px;
+  animation: circle 10s linear infinite;
+}
+
+.spiral-in {
+  @include transitions(30s);
+  transform-origin: 0 center;
+  top: 50%;
+  left: 50%;
+  width: 0;
+}
+
+.object {
+  position: fixed;
+}
+
+@keyframes circle {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.black-hole-box, .black-hole.big {
+  width: $black-hole-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $black-hole-size;
+}
+
+.black-hole {
+  width: 0;
+  height: 0;
+  @include transitions(15s);
+  border-radius: 50%;
+  background: linear-gradient(#{$black-hole-color-1}, #{$black-hole-color-2}, #{$black-hole-color-3});
+  animation: animate 4s linear infinite;
+
+  > span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(#{$black-hole-color-1}, #{$black-hole-color-2}, #{$black-hole-color-3});
+
+    &:nth-child(1) {
+      filter: blur(5px);
+    }
+
+    &:nth-child(2) {
+      filter: blur(10px);
+    }
+
+    &:nth-child(3) {
+      filter: blur(25px);
+    }
+
+    &:nth-child(4) {
+      filter: blur(50px);
+    }
+  }
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    right: 13px;
+    bottom: 14px;
+    background: $black-hole-color-1;
+    border-radius: 50%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

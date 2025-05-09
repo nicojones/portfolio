@@ -1,0 +1,202 @@
+@use "sass:math";
+@import 'mixins';
+@import 'colors';
+@import 'globals';
+@import 'images';
+@import 'breakpoints';
+
+$a-d: .7s;
+
+%show-menu {
+  > h1.hello {
+    @if ($home-page-use-opacity) {
+      animation: disappear $a-d forwards;
+
+    } @else {
+      display: none;
+    }
+  }
+
+  > h1.link {
+    @if ($home-page-use-opacity) {
+      color: inherit;
+      width: auto;
+      animation: appear $a-d forwards;
+
+    } @else {
+      display: inherit;
+    }
+  }
+}
+
+%show-menu-hover {
+  > h1.hello {
+    @if ($home-page-use-opacity) {
+      animation: disappear $a-d forwards;
+
+    } @else {
+      display: none;
+    }
+  }
+
+  > h1.link {
+    @if ($home-page-use-opacity) {
+      color: inherit;
+      width: auto;
+      animation: appear $a-d backwards;
+      overflow: visible;
+
+    } @else {
+      display: inherit;
+    }
+  }
+}
+
+.home {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  .myself {
+    @include transitions(2s);
+    position: absolute;
+    right: 0;
+    width: calc(25% + 15rem);
+    height: 90%;
+    top: 10%;
+    overflow: hidden;
+    background-image: url($image-nico);
+    background-position: 2.5rem 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: $myself-opacity;
+    filter: brightness($myself-brightness);
+    @media (max-width: $breakpoint-mobile-sm) {
+      opacity: $myself-opacity-mobile;
+      filter: brightness($myself-brightness-mobile);
+    }
+
+  }
+}
+
+.jumbo-box {
+
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80vh;
+  margin-top: 10vh;
+
+  @if ($home-page-centered) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.show-menu > .jumbo-line {
+    margin-left: 0;
+    @extend %show-menu;
+  }
+
+
+  .jumbo-line {
+    @include transitions();
+    min-width: max-content;
+    //height: 140px;
+    position: relative;
+
+    > .hover-item {
+      white-space: nowrap;
+      margin: 0 auto;
+      cursor: pointer;
+      display: flex;
+      z-index: 1;
+      height: 100%;
+      line-height: 140px;
+      top: -20px;
+
+      &.hello {
+        position: relative;
+        @if ($home-page-use-opacity) {
+          z-index: 0;
+          animation: appear $a-d forwards;
+        }
+      }
+
+      &.link {
+        @if ($home-page-use-opacity) {
+          position: absolute;
+          width: 0;
+          overflow: hidden;
+          animation: disappear $a-d backwards;
+        } @else {
+          display: none;
+        }
+      }
+
+      > .mini {
+        font-size: 1.5rem;
+        float: right;
+        align-self: center;
+        justify-content: center;
+        margin-left: 1rem;
+
+        @media (max-width: $breakpoint-mobile-sm) {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  &.hover-effects > .jumbo-line:hover {
+    padding-left: $homepage-indent-hover;
+    @extend %show-menu-hover;
+  }
+}
+
+.img-home {
+  height: 80%;
+  float: right;
+}
+
+$tap-anywhere-width: 15rem;
+.tap-anywhere {
+  position: fixed;
+  bottom: 3rem;
+  width: $tap-anywhere-width;
+  left: 50%;
+  text-align: center;
+  margin-left: math.div(-$tap-anywhere-width, 2);
+  animation: pulse 3s infinite ease-in-out;
+
+  @media (orientation: landscape) {
+    left: 1rem;
+    margin-left: 0;
+    bottom: 10px;
+  }
+
+}
+
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    //transform: rotate(10deg);
+  }
+  to {
+    opacity: 1;
+    //transform: rotate(0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    //transform: rotate(10deg);
+  }
+  to {
+    opacity: 0;
+    //transform: rotate(0);
+  }
+}
