@@ -45,12 +45,12 @@ import { ProjectRoutingData } from "~home-page/pages/projects/shared/interfaces"
         loadChildren: () => import("~home-page/pages/projects")
           .then((m) => m.ProjectsModule)
       },
-      // {
-      //   path: MyRoutes.BLOG,
-      //   data: {path: MyRoutes.BLOG, page: FirebasePageEnum.BLOG, article: ArticleGroup.BLOG} as ProjectRoutingData,
-      //   loadChildren: () => import("~home-page/pages/projects")
-      //     .then((m) => m.ProjectsModule)
-      // }
+      {
+        path: MyRoutes.BLOG,
+        data: {path: MyRoutes.BLOG, page: FirebasePageEnum.BLOG, article: ArticleGroup.BLOG} as ProjectRoutingData,
+        loadChildren: () => import("~home-page/pages/projects")
+          .then((m) => m.ProjectsModule)
+      },
       {
         path: MyRoutes.PAGE_X,
         data: { path: MyRoutes.PAGE_X, page: FirebasePageEnum.PAGE_X, article: ArticleGroup.ON } as ProjectRoutingData,

@@ -49,6 +49,8 @@ export class AppComponent {
    */
   public Routes = MyRoutes;
 
+  public URLS = [MyRoutes.HOME, MyRoutes.LINKS, MyRoutes.ABOUT, MyRoutes.CONTACT, MyRoutes.ART, MyRoutes.BLOG, MyRoutes.ADMIN, MyRoutes.PAGE_X];
+
   constructor(
     public readonly router: Router,
     private readonly route: ActivatedRoute,

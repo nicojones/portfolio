@@ -5,15 +5,16 @@
 <div class="app-row" @slideIn [class.mobile]="client.isMobile" #appRow>
   <app-back-title [url]="routingData.path">
     <span [innerHTML]="project.title"></span>
-    <span class="subtitle" [innerHTML]="project.summary"></span>
-    <a [href]="project.link" *ngIf="project.link"
-       target="_blank"
-       class="project-link subtitle"
-       (onclick)="$event.stopPropagation()">
-      {{ project.link }}
-      <img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
-    </a>
   </app-back-title>
+
+  <span class="subtitle" [innerHTML]="project.summary"></span>
+  <a [href]="project.link" *ngIf="project.link"
+     target="_blank"
+     class="project-link subtitle"
+     (onclick)="$event.stopPropagation()">
+    {{ project.link }}
+    <img src="/assets/icons/external.svg" class="external" alt="Open in new tab">
+  </a>
 
   <div class="text">
     <div class="project-main-image right slide-in" [bgImage]="project.image" data-loading="Loading..."></div>

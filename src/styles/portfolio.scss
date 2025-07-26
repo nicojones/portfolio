@@ -92,7 +92,7 @@ a {
     background-repeat: no-repeat;
   }
 
-  &:hover:before {
+  &:hover:before, .mobile &:before {
     opacity: 1;
     width: $title-back;
   }

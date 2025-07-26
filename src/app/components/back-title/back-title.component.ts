@@ -1,4 +1,7 @@
 import {Component, Input, OnInit, TemplateRef, ViewChild} from "@angular/core";
+import { getLocalStorage } from "~app/services";
+import { StorageKey } from "~app/shared/enums";
+import { ClientOs } from "~app/shared/interfaces";
 
 
 @Component({
@@ -16,6 +19,12 @@ export class BackTitleComponent implements OnInit {
 
   @ViewChild("title", {static: true})
   public titleRef: TemplateRef<any>;
+
+  /**
+   * Info about the client's OS and browser.
+   */
+  public clientOs: ClientOs = getLocalStorage().getItem<ClientOs>(StorageKey.CLIENT_OS);
+
 
   public ngOnInit() {
     // const el = this.titleRef.elementRef.nativeElement;
