@@ -12,3 +12,14 @@ a.jumbo {
     background-color: red;
   }
 }
+
+.back-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+
+  > .back-title-link, > .subtitle {
+    font-weight: bold;
+  }
+}

@@ -15,6 +15,12 @@ export class BackTitleComponent implements OnInit {
   public url: string;
 
   @Input()
+  public link: TemplateRef<any> | null = null;
+
+  @Input()
+  public subtitle: string | null = null;
+
+  @Input()
   public huge = true;
 
   @ViewChild("title", {static: true})

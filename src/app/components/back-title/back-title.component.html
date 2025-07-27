@@ -1,8 +1,12 @@
-<a class="jumbo slide-in center back-title no-deco"
-   [class.landing]="huge"
-   [class.small-landing]="!huge"
-   [routerLink]="'/' + url"
-   #title
->
-  <ng-content></ng-content>
-</a>
+<div class="back-title-container" [class.landing]="huge" [class.small-landing]="!huge">
+  <a class="jumbo slide-in center back-title no-deco"
+    [routerLink]="'/' + url" #title>
+    <ng-content></ng-content>
+  </a>
+
+  <span class="subtitle" *ngIf="subtitle" [innerHTML]="subtitle"></span>
+
+  <div class="back-title-link" *ngIf="link">
+    <ng-container [ngTemplateOutlet]="link"></ng-container>
+  </div>
+</div>

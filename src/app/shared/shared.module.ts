@@ -10,7 +10,8 @@ import {EnumToArrayPipe} from "~app/shared/pipes/enum-to-array.pipe";
 
 @NgModule({
   imports: [
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   declarations: [
     ImageDirective,
